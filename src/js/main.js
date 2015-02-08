@@ -81,10 +81,12 @@ var Stopwatch = React.createClass({
         var min = Math.floor(this.state.timerValue / 60000);
         var hrs = Math.floor(this.state.timerValue / 3600000);
         return (
-            <div>
+            <div className="mainWrapper">
                 <p className="mainWatch">{pad(hrs, 2)}:{pad(min, 2)}:{pad(sec, 2)}:{pad(ms, 2)}</p>
-                <button type="button" onClick={this.toggle}>{this.state.running ? 'pause' : 'resume'}</button>
-                <button type="button" onClick={this.reset}>reset</button>
+                <div>
+                    <button type="button" onClick={this.toggle}>{this.state.running ? 'pause' : 'resume'}</button>
+                    <button type="button" onClick={this.reset}>reset</button>
+                </div>
             </div>
         )
     }
@@ -126,7 +128,7 @@ var Module = React.createClass({
 
     render: function () {
         var cssClasses = 'Module';
-        if(this.props.m_isActive)
+        if (this.props.m_isActive)
             cssClasses += ' activeModule';
         return (
             <div className={cssClasses}>
@@ -177,8 +179,8 @@ var Main = React.createClass({
         var moduleID = newProps.id;
         console.log('Updating module ' + moduleID);
         var moduleIndex;
-        for(moduleIndex = 0; moduleIndex < this.state.Modules.length; moduleIndex++){
-            if(this.state.Modules[moduleIndex].props.id == moduleID)
+        for (moduleIndex = 0; moduleIndex < this.state.Modules.length; moduleIndex++) {
+            if (this.state.Modules[moduleIndex].props.id == moduleID)
                 break;
         }
         console.log('Updating module ' + moduleID + '...with index ' + moduleIndex);
@@ -205,8 +207,8 @@ var Main = React.createClass({
         })
     },
 
-    cycleActive: function (currentIndex, nextIndex){
-        if(currentIndex != nextIndex){
+    cycleActive: function (currentIndex, nextIndex) {
+        if (currentIndex != nextIndex) {
             var currentActiveStopwatchProps = this.state.Modules[currentIndex].props;
             currentActiveStopwatchProps.m_isActive = false;
             this.moduleUpdate(currentActiveStopwatchProps);
