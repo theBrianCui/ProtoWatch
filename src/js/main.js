@@ -128,6 +128,15 @@ var Module = React.createClass({
         }
     },
 
+    updateCountUp: function (event) {
+        console.log('updateCountUp was called. value: ' + event.target.value);
+        if(this.props.countUp != event.target.value) {
+            var newProps = JSON.parse(JSON.stringify(this.props));
+            newProps.countUp = event.target.value;
+            this.handlePropUpdate(newProps);
+        }
+    },
+
     render: function () {
         var cssClasses = 'Module';
         if (this.props.m_isActive)
@@ -140,6 +149,12 @@ var Module = React.createClass({
                         defaultChecked={this.props.autorun}
                         onChange={this.updateAutorun}
                     />
+                </p>
+                <p>Count:
+                    <select value={this.props.countUp} onChange={this.updateCountUp}>
+                        <option value={true}>up</option>
+                        <option value={false}>down</option>
+                    </select>
                 </p>
                 <p>Limit:
                     <input type="text"
@@ -170,6 +185,7 @@ var Main = React.createClass({
                 id: Date.now(),
                 autorun: true,
                 timerMax: 0,
+                countUp: true,
                 m_isActive: false,
                 m_moduleUpdate: this.moduleUpdate,
                 s_onMax: this.next, //make sure to also update moduleUpdate with new function props
