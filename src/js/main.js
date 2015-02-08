@@ -107,6 +107,10 @@ var Module = React.createClass({
         event.target.value = this.props.timerMax;
     },
 
+    blankField: function (event) {
+        event.target.value = '';
+    },
+
     updateTimerMax: function (event) {
         console.log('updateTimerMax was called. keypress: ' + event.keyCode);
         if (event.keyCode == 13) {
@@ -137,6 +141,7 @@ var Module = React.createClass({
                     <input type="text"
                         defaultValue={this.props.timerMax}
                         onKeyDown={this.updateTimerMax}
+                        onFocus={this.blankField}
                         onBlur={this.resetTimerMax}
                     />
                 </p>
