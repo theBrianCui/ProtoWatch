@@ -83,10 +83,10 @@ var Stopwatch = React.createClass({
         return (
             <div className="mainWrapper">
                 <p className="mainWatch">{pad(hrs, 2)}:{pad(min, 2)}:{pad(sec, 2)}:{pad(ms, 2)}</p>
-                <div>
-                    <button type="button" onClick={this.toggle}>{this.state.running ? 'pause' : 'resume'}</button>
-                    <button type="button" onClick={this.reset}>reset</button>
-                </div>
+                <p className="mainLinks">
+                    <a href="javascript:void(0)" onClick={this.toggle}>{this.state.running ? 'pause' : 'resume'}</a>
+                    <a href="javascript:void(0)" onClick={this.reset}>reset</a>
+                </p>
             </div>
         )
     }

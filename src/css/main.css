@@ -116,12 +116,17 @@ input[type=text]:focus, textarea:focus {
     text-align: center;
 }
 
+.mainLinks a {
+    min-width: 4em;
+    display: inline-block;
+}
+
 .mainWatch {
     font-size: 4em;
     font-weight: 200;
     line-height: 0;
     margin: 0.7em 0;
-    font-family: Consolas,monaco,monospace;
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;
 }
 
 .Module {
