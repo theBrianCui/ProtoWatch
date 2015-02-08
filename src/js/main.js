@@ -59,7 +59,8 @@ var Stopwatch = React.createClass({
     },
 
     tick: function () {
-        if (this.state.running) {
+        if (this.state.running && this.props.countUp) {
+            console.log('Running: ' + this.state.running + ', Counting up: ' + this.props.countUp);
             var newTimerValue = Date.now() - this.state.startTime;
             if (this.props.timerMax != 0 && newTimerValue >= this.props.timerMax) {
                 this.setState({
@@ -130,9 +131,10 @@ var Module = React.createClass({
 
     updateCountUp: function (event) {
         console.log('updateCountUp was called. value: ' + event.target.value);
-        if(this.props.countUp != event.target.value) {
+        var newCountUp = (event.target.value == 'true');
+        if (this.props.countUp != newCountUp) {
             var newProps = JSON.parse(JSON.stringify(this.props));
-            newProps.countUp = event.target.value;
+            newProps.countUp = newCountUp;
             this.handlePropUpdate(newProps);
         }
     },
@@ -151,9 +153,9 @@ var Module = React.createClass({
                     />
                 </p>
                 <p>Count:
-                    <select value={this.props.countUp} onChange={this.updateCountUp}>
-                        <option value={true}>up</option>
-                        <option value={false}>down</option>
+                    <select value={'' + this.props.countUp} onChange={this.updateCountUp}>
+                        <option value="true">up</option>
+                        <option value="false">down</option>
                     </select>
                 </p>
                 <p>Limit:
