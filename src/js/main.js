@@ -84,8 +84,10 @@ var Stopwatch = React.createClass({
             <div className="mainWrapper">
                 <p className="mainWatch">{pad(hrs, 2)}:{pad(min, 2)}:{pad(sec, 2)}:{pad(ms, 2)}</p>
                 <p className="mainLinks">
+                    <a href="javascript:void(0)" onClick={this.props.s_onPrevious}>previous</a>
                     <a href="javascript:void(0)" onClick={this.toggle}>{this.state.running ? 'pause' : 'resume'}</a>
                     <a href="javascript:void(0)" onClick={this.reset}>reset</a>
+                    <a href="javascript:void(0)" onClick={this.props.s_onNext}>next</a>
                 </p>
             </div>
         )
@@ -170,7 +172,9 @@ var Main = React.createClass({
                 timerMax: 0,
                 m_isActive: false,
                 m_moduleUpdate: this.moduleUpdate,
-                s_onMax: this.next
+                s_onMax: this.next, //make sure to also update moduleUpdate with new function props
+                s_onNext: this.next,
+                s_onPrevious: this.previous
             }))
         )
     },
@@ -187,8 +191,11 @@ var Main = React.createClass({
         var newModuleList = this.state.Modules;
         var newModule = React.createElement(Module, newProps);
 
+        //update these with function props
         newModule.props.m_moduleUpdate = this.moduleUpdate;
         newModule.props.s_onMax = this.next;
+        newModule.props.s_onNext = this.next;
+        newModule.props.s_onPrevious = this.previous;
 
         newModuleList[moduleIndex] = newModule;
         this.setState({
@@ -201,6 +208,17 @@ var Main = React.createClass({
         var nextIndex = this.state.Stopwatch_active_index + 1;
         if (nextIndex >= this.state.Modules.length)
             nextIndex = 0;
+        this.cycleActive(this.state.Stopwatch_active_index, nextIndex);
+        this.setState({
+            Stopwatch_active_index: nextIndex
+        })
+    },
+
+    previous: function () {
+        console.log('previous was called.');
+        var nextIndex = this.state.Stopwatch_active_index - 1;
+        if (nextIndex < 0)
+            nextIndex = this.state.Modules.length - 1;
         this.cycleActive(this.state.Stopwatch_active_index, nextIndex);
         this.setState({
             Stopwatch_active_index: nextIndex
