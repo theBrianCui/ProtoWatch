@@ -131,7 +131,7 @@ var Module = React.createClass({
 
     updateCountUp: function (event) {
         console.log('updateCountUp was called. value: ' + event.target.value);
-        var newCountUp = (event.target.value == 'true');
+        var newCountUp = (event.target.value == 'true'); //convert to boolean
         if (this.props.countUp != newCountUp) {
             var newProps = JSON.parse(JSON.stringify(this.props));
             newProps.countUp = newCountUp;
