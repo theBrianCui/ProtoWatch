@@ -17,13 +17,7 @@ var Stopwatch = React.createClass({
         return {
             startTime: Date.now(),
             timerValue: 0,
-            running: this.props.autorun,
-
-            //give each link a touch disable
-            touched_toggle: false,
-            touched_reset: false,
-            touched_previous: false,
-            touched_next: false
+            running: this.props.autorun
         };
     },
 
@@ -37,23 +31,7 @@ var Stopwatch = React.createClass({
     },
 
     toggle: function (event) {
-        if(event.type == 'click') {
-            if (this.state.touched_toggle) {
-                this.setState({
-                    touched_toggle: false
-                })
-            } else {
-                this.toggle_i();
-            }
-        } else {
-            this.setState({
-                touched_toggle: true
-            });
-            this.toggle_i();
-        }
-    },
-
-    toggle_i: function () {
+        event.preventDefault();
         if (this.state.running)
             this.pause();
         else
@@ -76,23 +54,6 @@ var Stopwatch = React.createClass({
     },
 
     reset: function (event) {
-        if(event.type == 'click') {
-            if(this.state.touched_reset){
-                this.setState({
-                    touched_reset: false
-                })
-            }else{
-                this.reset_i();
-            }
-        } else {
-            this.setState({
-                touched_reset: true
-            });
-            this.reset_i();
-        }
-    },
-
-    reset_i: function () {
         this.setState({
             startTime: Date.now(),
             timerValue: 0,
@@ -118,37 +79,11 @@ var Stopwatch = React.createClass({
     },
 
     previous: function (event) {
-        if (event.type == 'click') {
-            if (this.state.touched_previous) {
-                this.setState({
-                    touched_previous: false
-                })
-            } else {
-                this.props.s_onPrevious();
-            }
-        } else {
-            this.setState({
-                touched_previous: true
-            });
-            this.props.s_onPrevious();
-        }
+        this.props.s_onPrevious();
     },
 
     next: function (event) {
-        if (event.type == 'click') {
-            if (this.state.touched_next) {
-                this.setState({
-                    touched_next: false
-                })
-            } else {
-                this.props.s_onNext();
-            }
-        } else {
-            this.setState({
-                touched_next: true
-            });
-            this.props.s_onNext();
-        }
+        this.props.s_onNext();
     },
 
     render: function () {
@@ -160,10 +95,10 @@ var Stopwatch = React.createClass({
             <div className="mainWrapper">
                 <p className="mainWatch">{pad(hrs, 2)}:{pad(min, 2)}:{pad(sec, 2)}:{pad(ms, 2)}</p>
                 <p className="mainLinks">
-                    <a href="javascript:void(0)" onTouchStart={this.previous} onClick={this.previous}>previous</a>
-                    <a href="javascript:void(0)" onTouchStart={this.toggle} onClick={this.toggle}>{this.state.running ? 'pause' : 'resume'}</a>
-                    <a href="javascript:void(0)" onTouchStart={this.reset} onClick={this.reset}>reset</a>
-                    <a href="javascript:void(0)" onTouchStart={this.next} onClick={this.next}>next</a>
+                    <a href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>previous</a>
+                    <a href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{this.state.running ? 'pause' : 'resume'}</a>
+                    <a href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>reset</a>
+                    <a href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>next</a>
                 </p>
             </div>
         )
