@@ -119,6 +119,12 @@ input[type=text]:focus, textarea:focus {
 .mainLinks a {
     min-width: 4em;
     display: inline-block;
+    border: 1px solid black;
+    margin: 0 .1em;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: white;
+    background-color: #f63737;
 }
 
 .mainWatch {
@@ -126,7 +132,7 @@ input[type=text]:focus, textarea:focus {
     font-weight: 200;
     line-height: 0;
     margin: 0.7em 0;
-    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;
+    font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
 }
 
 .Module {
@@ -137,6 +143,35 @@ input[type=text]:focus, textarea:focus {
 
 .Module.activeModule {
     background-color: #7eff80;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (max-device-width: 480px) {
+    .mainWatch {
+        font-size: 3em;
+        font-weight: 200;
+        line-height: 0;
+        margin: 0.7em 0;
+    }
+
+    .mainLinks a {
+        display: inline-block;
+        border: 1px solid black;
+        margin: 0 .1em;
+        font-size: .9em;
+        text-decoration: none;
+        color: white;
+        background-color: #f63737;
+    }
+
+    .Module {
+        padding: 0 .5em;
+    }
+
+    .Module p {
+        margin: .4em;
+    }
 }
 
 /* ==========================================================================
