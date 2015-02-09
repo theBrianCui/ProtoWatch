@@ -36,7 +36,24 @@ var Stopwatch = React.createClass({
         clearInterval(this.interval);
     },
 
-    toggle: function () {
+    toggle: function (event) {
+        if(event.type == 'click') {
+            if (this.state.touched_toggle) {
+                this.setState({
+                    touched_toggle: false
+                })
+            } else {
+                this.toggle_i();
+            }
+        } else {
+            this.setState({
+                touched_toggle: true
+            });
+            this.toggle_i();
+        }
+    },
+
+    toggle_i: function () {
         if (this.state.running)
             this.pause();
         else
@@ -58,7 +75,24 @@ var Stopwatch = React.createClass({
         }
     },
 
-    reset: function () {
+    reset: function (event) {
+        if(event.type == 'click') {
+            if(this.state.touched_reset){
+                this.setState({
+                    touched_reset: false
+                })
+            }else{
+                this.reset_i();
+            }
+        } else {
+            this.setState({
+                touched_reset: true
+            });
+            this.reset_i();
+        }
+    },
+
+    reset_i: function () {
         this.setState({
             startTime: Date.now(),
             timerValue: 0,
