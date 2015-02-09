@@ -14,6 +14,10 @@ html {
     line-height: 1.4;
 }
 
+body {
+    margin: 0 .3em;
+}
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -146,8 +150,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen
-and (max-device-width: 480px) {
+@media (max-width: 480px) {
     .mainWatch {
         font-size: 3em;
         font-weight: 200;
