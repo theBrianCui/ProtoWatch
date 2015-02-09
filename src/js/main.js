@@ -1,3 +1,5 @@
+React.initializeTouchEvents(true);
+
 function pad(str, max) {
     str = '' + str;
     return str.length < max ? pad("0" + str, max) : str;
@@ -15,7 +17,13 @@ var Stopwatch = React.createClass({
         return {
             startTime: Date.now(),
             timerValue: 0,
-            running: this.props.autorun
+            running: this.props.autorun,
+
+            //give each link a touch disable
+            touched_toggle: false,
+            touched_reset: false,
+            touched_previous: false,
+            touched_next: false
         };
     },
 
@@ -60,7 +68,6 @@ var Stopwatch = React.createClass({
 
     tick: function () {
         if (this.state.running && this.props.countUp) {
-            console.log('Running: ' + this.state.running + ', Counting up: ' + this.props.countUp);
             var newTimerValue = Date.now() - this.state.startTime;
             if (this.props.timerMax != 0 && newTimerValue >= this.props.timerMax) {
                 this.setState({
@@ -76,6 +83,40 @@ var Stopwatch = React.createClass({
         }
     },
 
+    previous: function (event) {
+        if (event.type == 'click') {
+            if (this.state.touched_previous) {
+                this.setState({
+                    touched_previous: false
+                })
+            } else {
+                this.props.s_onPrevious();
+            }
+        } else {
+            this.setState({
+                touched_previous: true
+            });
+            this.props.s_onPrevious();
+        }
+    },
+
+    next: function (event) {
+        if (event.type == 'click') {
+            if (this.state.touched_next) {
+                this.setState({
+                    touched_next: false
+                })
+            } else {
+                this.props.s_onNext();
+            }
+        } else {
+            this.setState({
+                touched_next: true
+            });
+            this.props.s_onNext();
+        }
+    },
+
     render: function () {
         var ms = Math.floor(this.state.timerValue % 1000 / 10);
         var sec = Math.floor(this.state.timerValue / 1000) % 60;
@@ -85,10 +126,10 @@ var Stopwatch = React.createClass({
             <div className="mainWrapper">
                 <p className="mainWatch">{pad(hrs, 2)}:{pad(min, 2)}:{pad(sec, 2)}:{pad(ms, 2)}</p>
                 <p className="mainLinks">
-                    <a href="javascript:void(0)" onClick={this.props.s_onPrevious}>previous</a>
-                    <a href="javascript:void(0)" onClick={this.toggle}>{this.state.running ? 'pause' : 'resume'}</a>
-                    <a href="javascript:void(0)" onClick={this.reset}>reset</a>
-                    <a href="javascript:void(0)" onClick={this.props.s_onNext}>next</a>
+                    <a href="javascript:void(0)" onTouchStart={this.previous} onClick={this.previous}>previous</a>
+                    <a href="javascript:void(0)" onTouchStart={this.toggle} onClick={this.toggle}>{this.state.running ? 'pause' : 'resume'}</a>
+                    <a href="javascript:void(0)" onTouchStart={this.reset} onClick={this.reset}>reset</a>
+                    <a href="javascript:void(0)" onTouchStart={this.next} onClick={this.next}>next</a>
                 </p>
             </div>
         )
