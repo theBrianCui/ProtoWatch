@@ -17,7 +17,7 @@ var Stopwatch = React.createClass({
     },
 
     componentDidMount: function () {
-        this.interval = setInterval(this.tick, 2);
+        this.interval = setInterval(this.tick, 5);
     },
 
     /* make sure to disable stopwatch upon removal */
