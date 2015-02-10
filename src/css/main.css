@@ -132,10 +132,10 @@ input[type=text]:focus, textarea:focus {
 }
 
 .mainWatch {
-    font-size: 4em;
+    font-size: 15vw;
     font-weight: 200;
     line-height: 0;
-    margin: 0.7em 0;
+    margin: 10vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
 }
 
@@ -151,12 +151,6 @@ input[type=text]:focus, textarea:focus {
 
 /* Smartphones (portrait and landscape) ----------- */
 @media (max-width: 480px) {
-    .mainWatch {
-        font-size: 3em;
-        font-weight: 200;
-        line-height: 0;
-        margin: 0.7em 0;
-    }
 
     .mainLinks a {
         display: inline-block;
