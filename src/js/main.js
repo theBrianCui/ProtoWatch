@@ -6,18 +6,13 @@ function pad(str, max) {
 }
 
 var Stopwatch = React.createClass({
-    getDefaultProps: function () {
-        return {
-            autorun: true,
-            timerMax: 0
-        };
-    },
-
     getInitialState: function () {
         return {
-            startTime: Date.now(),
+            startTime: Date.now().valueOf(),
+            endTime: Number.MAX_VALUE,
             timerValue: 0,
-            running: this.props.autorun
+            running: this.props.autorun,
+            countingUp: this.props.countUp
         };
     },
 
@@ -46,36 +41,75 @@ var Stopwatch = React.createClass({
 
     resume: function () {
         if (!this.state.running) {
-            this.setState({
-                startTime: new Date(Date.now() - this.state.timerValue),
-                running: true
-            })
+            this.correctStartEndTimes();
         }
     },
 
     reset: function (event) {
         this.setState({
-            startTime: Date.now(),
+            startTime: Date.now().valueOf(),
             timerValue: 0,
             running: false
         })
     },
 
     tick: function () {
-        if (this.state.running && this.props.countUp) {
-            var newTimerValue = Date.now() - this.state.startTime;
-            if (this.props.timerMax != 0 && newTimerValue >= this.props.timerMax) {
-                this.setState({
-                    timerValue: this.props.timerMax,
-                    running: false
-                });
-                this.props.s_onLimit();
+        if (this.state.running) {
+            var newTimerValue;
+            if (this.props.countUp) {
+                if (this.state.countingUp) { //was counting up and continue to count up
+                    newTimerValue = Date.now().valueOf() - this.state.startTime;
+                    if (this.props.timerMax != 0 && newTimerValue >= this.props.timerMax) {
+                        this.setState({
+                            timerValue: this.props.timerMax,
+                            running: false
+                        });
+                        this.props.s_onLimit();
+                    } else {
+                        this.setState({
+                            timerValue: newTimerValue
+                        })
+                    }
+                } else { //was counting down, now count up
+                    this.correctStartEndTimes();
+                }
             } else {
-                this.setState({
-                    timerValue: newTimerValue
-                })
+                if (this.state.countingUp) { //was counting up, now count down
+                    this.correctStartEndTimes();
+                } else { //was counting down and continue to count down
+                    newTimerValue = this.state.endTime - Date.now().valueOf();
+                    this.setState({
+                        timerValue: newTimerValue
+                    })
+                }
             }
         }
+    },
+
+    //reset the start/end times based on the current timerValue and assuming the stopwatch is paused
+    correctStartEndTimes: function () {
+        if (this.props.countUp && !this.state.countingUp) { //switch counting down to up
+            this.setState({
+                countingUp: true,
+                startTime: Date.now().valueOf() - this.state.timerValue
+            })
+        } else if (this.props.countUp && this.state.countingUp) {
+            this.setState({
+                startTime: Date.now().valueOf() - this.state.timerValue
+            })
+        } else if (!this.props.countUp && this.state.countingUp) { //switch counting up to down
+            this.setState({
+                countingUp: false,
+                endTime: Date.now().valueOf() + this.state.timerValue
+            })
+        } else if (!this.props.countUp && !this.state.countingUp) {
+            this.setState({
+                endTime: Date.now().valueOf() + this.state.timerValue
+            })
+        }
+        this.setState({
+            running: true
+        })
     },
 
     previous: function (event) {
@@ -89,7 +123,7 @@ var Stopwatch = React.createClass({
     render: function () {
         var ms = Math.floor(this.state.timerValue % 1000 / 10);
         var sec = Math.floor(this.state.timerValue / 1000) % 60;
-        var min = Math.floor(this.state.timerValue / 60000);
+        var min = Math.floor(this.state.timerValue / 60000) % 60;
         var hrs = Math.floor(this.state.timerValue / 3600000);
         return (
             <div className="mainWrapper">
@@ -194,7 +228,7 @@ var Main = React.createClass({
     createDefaultModule: function () {
         return (
             React.createElement(Module, ({
-                id: Date.now(),
+                id: Date.now().valueOf(),
                 autorun: true,
                 timerMax: 0,
                 countUp: true,
