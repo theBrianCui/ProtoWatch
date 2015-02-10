@@ -14,10 +14,6 @@ html {
     line-height: 1.4;
 }
 
-body {
-    margin: 0 .3em;
-}
-
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -97,6 +93,18 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    margin: 0 .3em;
+    background:
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#282828;
+    background-size:16px 16px;
+    color: white;
+}
+
 input[type=text], textarea {
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
@@ -137,6 +145,7 @@ input[type=text]:focus, textarea:focus {
     line-height: 0;
     margin: 10vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px #000,2px 2px 4px #000,2px 2px 4px #000;
 }
 
 .Module {
@@ -151,7 +160,6 @@ input[type=text]:focus, textarea:focus {
 
 /* Smartphones (portrait and landscape) ----------- */
 @media (max-width: 480px) {
-
     .mainLinks a {
         display: inline-block;
         border: 1px solid black;
