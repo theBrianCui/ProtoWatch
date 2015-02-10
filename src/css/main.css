@@ -121,14 +121,14 @@ input[type=text]:focus, textarea:focus {
 }
 
 .mainLinks a {
-    min-width: 4em;
+    min-width: 14vw;
     display: inline-block;
     border: 1px solid black;
     margin: 0 .1em;
-    font-size: 1.2em;
+    font-size: 2.2vw;
     text-decoration: none;
     color: white;
-    background-color: #f63737;
+    background-color: rgb(51, 154, 255);
 }
 
 .mainWatch {
@@ -161,9 +161,6 @@ input[type=text]:focus, textarea:focus {
         border: 1px solid black;
         font-size: 1em;
         margin: 0 .1em;
-        text-decoration: none;
-        color: white;
-        background-color: #f63737;
     }
 
     .Module {
@@ -181,9 +178,6 @@ input[type=text]:focus, textarea:focus {
         border: 1px solid black;
         margin: .1em 0;
         font-size: 1.2em;
-        text-decoration: none;
-        color: white;
-        background-color: #f63737;
         list-style: none;
     }
 }
