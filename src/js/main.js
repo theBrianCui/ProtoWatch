@@ -69,7 +69,7 @@ var Stopwatch = React.createClass({
                     timerValue: this.props.timerMax,
                     running: false
                 });
-                this.props.s_onMax();
+                this.props.s_onLimit();
             } else {
                 this.setState({
                     timerValue: newTimerValue
@@ -200,7 +200,7 @@ var Main = React.createClass({
                 countUp: true,
                 m_isActive: false,
                 m_moduleUpdate: this.moduleUpdate,
-                s_onMax: this.next, //make sure to also update moduleUpdate with new function props
+                s_onLimit: this.next, //make sure to also update moduleUpdate with new function props
                 s_onNext: this.next,
                 s_onPrevious: this.previous
             }))
@@ -221,7 +221,7 @@ var Main = React.createClass({
 
         //update these with function props
         newModule.props.m_moduleUpdate = this.moduleUpdate;
-        newModule.props.s_onMax = this.next;
+        newModule.props.s_onLimit = this.next;
         newModule.props.s_onNext = this.next;
         newModule.props.s_onPrevious = this.previous;
 
