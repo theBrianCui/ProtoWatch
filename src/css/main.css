@@ -131,6 +131,10 @@ input[type=text]:focus, textarea:focus {
     background-color: rgb(51, 154, 255);
 }
 
+.mainLinks a.toggleButton{
+    min-width: 20vw;
+}
+
 .mainWatch {
     font-size: 15vw;
     font-weight: 200;
