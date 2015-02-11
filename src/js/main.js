@@ -74,9 +74,7 @@ var Stopwatch = React.createClass({
                     this.correctStartEndTimes();
                 }
             } else {
-                if (this.state.countingUp) { //was counting up, now count down
-                    this.correctStartEndTimes();
-                } else { //was counting down and continue to count down
+                if (!this.state.countingUp) { //was counting down and continue to count down
                     newTimerValue = this.state.endTime - Date.now().valueOf();
                     if (newTimerValue >= 0) {
                         this.setState({
@@ -89,6 +87,8 @@ var Stopwatch = React.createClass({
                         });
                         this.props.s_onLimit();
                     }
+                } else { //was counting up, now count down
+                    this.correctStartEndTimes();
                 }
             }
         }
