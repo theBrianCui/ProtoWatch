@@ -45,7 +45,7 @@ var Stopwatch = React.createClass({
         }
     },
 
-    reset: function (event) {
+    reset: function () { //optional: pass in an event parameter.
         this.setState({
             startTime: Date.now().valueOf(),
             timerValue: 0,
@@ -94,37 +94,38 @@ var Stopwatch = React.createClass({
         }
     },
 
-    //reset the start/end times based on the current timerValue and assuming the stopwatch is paused
+    //reset the start/end times based on the current timerValue
     correctStartEndTimes: function () {
         if (this.props.countUp && !this.state.countingUp) { //switch counting down to up
             this.setState({
                 countingUp: true,
-                startTime: Date.now().valueOf() - this.state.timerValue
+                startTime: Date.now().valueOf() - this.state.timerValue,
+                running: true
             })
         } else if (this.props.countUp && this.state.countingUp) {
             this.setState({
-                startTime: Date.now().valueOf() - this.state.timerValue
+                startTime: Date.now().valueOf() - this.state.timerValue,
+                running: true
             })
         } else if (!this.props.countUp && this.state.countingUp) { //switch counting up to down
             this.setState({
                 countingUp: false,
-                endTime: Date.now().valueOf() + this.state.timerValue
+                endTime: Date.now().valueOf() + this.state.timerValue,
+                running: true
             })
         } else if (!this.props.countUp && !this.state.countingUp) {
             this.setState({
-                endTime: Date.now().valueOf() + this.state.timerValue
+                endTime: Date.now().valueOf() + this.state.timerValue,
+                running: true
             })
         }
-        this.setState({
-            running: true
-        })
     },
 
-    previous: function (event) {
+    previous: function () { //optional: pass in an event parameter.
         this.props.s_onPrevious();
     },
 
-    next: function (event) {
+    next: function () { //optional: pass in an event parameter.
         this.props.s_onNext();
     },
 
@@ -133,12 +134,17 @@ var Stopwatch = React.createClass({
         var sec = Math.floor(this.state.timerValue / 1000) % 60;
         var min = Math.floor(this.state.timerValue / 60000) % 60;
         var hrs = Math.floor(this.state.timerValue / 3600000);
+        var toggleButton;
+        if(this.state.running)
+            toggleButton = <i className="fa fa-play"></i>;
+        else
+            toggleButton = <i className="fa fa-pause"></i>;
         return (
             <div className="mainWrapper">
                 <p className="mainWatch">{pad(hrs, 2)}:{pad(min, 2)}:{pad(sec, 2)}:{pad(ms, 2)}</p>
                 <p className="mainLinks">
                     <a href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>previous</a>
-                    <a href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{this.state.running ? 'pause' : 'resume'}</a>
+                    <a href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
                     <a href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>reset</a>
                     <a href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>next</a>
                 </p>
