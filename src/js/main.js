@@ -143,12 +143,16 @@ var Stopwatch = React.createClass({
             <div className="mainWrapper">
                 <p className="mainWatch">{pad(hrs, 2)}:{pad(min, 2)}:{pad(sec, 2)}:{pad(ms, 2)}</p>
                 <p className="mainLinks">
-                    <a href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>previous</a>
+                    <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
+                        <i className="fa fa-angle-double-right fa-flip-horizontal doubleArrow"></i>
+                    </a>
                     <a className="bigButton" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
                     <a className="bigButton" href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>
                         <i className="fa fa-undo fa-flip-horizontal" id="resetButton"></i>
                     </a>
-                    <a href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>next</a>
+                    <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
+                        <i className="fa fa-angle-double-right doubleArrow"></i>
+                    </a>
                 </p>
             </div>
         )
