@@ -149,10 +149,9 @@ input[type=text]:focus, textarea:focus {
 }
 
 .mainLinks a.leftRightButton{
-    min-width: 4.5vw;
-    min-height: 3.5vw;
+    min-width: 9vw;
     vertical-align: middle;
-    line-height: 3.5vw;
+    line-height: 4.5vw;
     font-size: 5vw;
 }
 
