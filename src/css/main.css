@@ -121,14 +121,11 @@ input[type=text]:focus, textarea:focus {
 }
 
 .mainLinks a {
-    min-width: 14vw;
     display: inline-block;
-    border: 1px solid black;
     margin: 0 .1em;
-    font-size: 2.2vw;
     text-decoration: none;
     color: white;
-    background-color: rgb(51, 154, 255);
+    background-color: #0789d6;
 }
 
 .mainLinks a.bigButton{
@@ -139,8 +136,28 @@ input[type=text]:focus, textarea:focus {
     font-size: 6.5vw;
 }
 
-#resetButton{
+.mainLinks a.bigButton{
+    min-width: 18vw;
+    min-height: 8.5vw;
+    vertical-align: middle;
+    line-height: 8.5vw;
+    font-size: 6.5vw;
+}
+
+.mainLinks #resetButton{
     margin-left: -.05em;
+}
+
+.mainLinks a.leftRightButton{
+    min-width: 4.5vw;
+    min-height: 3.5vw;
+    vertical-align: middle;
+    line-height: 3.5vw;
+    font-size: 5vw;
+}
+
+.mainLinks .doubleArrow{
+    margin-top: -.09em;
 }
 
 .mainWatch {
@@ -164,7 +181,7 @@ input[type=text]:focus, textarea:focus {
 
 /* Smartphones (portrait and landscape) ----------- */
 @media (max-width: 480px) {
-    .mainWatch {
+    /*.mainWatch {
         text-shadow: none;
     }
 
@@ -173,7 +190,7 @@ input[type=text]:focus, textarea:focus {
         border: 1px solid black;
         font-size: 1em;
         margin: 0 .1em;
-    }
+    }*/
 
     .Module {
         padding: 0 .5em;
@@ -185,13 +202,13 @@ input[type=text]:focus, textarea:focus {
 }
 
 @media (max-width: 320px) {
-    .mainLinks a {
+    /*.mainLinks a {
         display: list-item;
         border: 1px solid black;
         margin: .1em 0;
         font-size: 1.2em;
         list-style: none;
-    }
+    }*/
 }
 
 /* ==========================================================================
