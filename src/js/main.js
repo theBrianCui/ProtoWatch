@@ -135,7 +135,7 @@ var Stopwatch = React.createClass({
         var min = Math.floor(this.state.timerValue / 60000) % 60;
         var hrs = Math.floor(this.state.timerValue / 3600000);
         var toggleButton;
-        if(this.state.running)
+        if (this.state.running)
             toggleButton = <i className="fa fa-pause"></i>;
         else
             toggleButton = <i className="fa fa-play"></i>;
@@ -144,8 +144,10 @@ var Stopwatch = React.createClass({
                 <p className="mainWatch">{pad(hrs, 2)}:{pad(min, 2)}:{pad(sec, 2)}:{pad(ms, 2)}</p>
                 <p className="mainLinks">
                     <a href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>previous</a>
-                    <a className="toggleButton" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
-                    <a href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>reset</a>
+                    <a className="bigButton" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
+                    <a className="bigButton" href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>
+                        <i className="fa fa-undo fa-flip-horizontal" id="resetButton"></i>
+                    </a>
                     <a href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>next</a>
                 </p>
             </div>
