@@ -9,7 +9,7 @@ var Stopwatch = React.createClass({
     getInitialState: function () {
         var gIS_endTime = 0;
         var gIS_timerValue = 0;
-        if(!this.props.countUp){
+        if (!this.props.countUp) {
             gIS_endTime = Date.now().valueOf() + this.props.timerMax;
             gIS_timerValue = this.props.timerMax;
         }
@@ -57,7 +57,7 @@ var Stopwatch = React.createClass({
                 timerValue: 0,
                 running: false
             })
-        }else{
+        } else {
             this.setState({
                 timerValue: this.props.timerMax,
                 running: false
@@ -89,7 +89,7 @@ var Stopwatch = React.createClass({
                 newTimerValue = this.state.endTime - Date.now().valueOf();
                 if (!this.state.countingUp && (!(this.props.timerMax > 0) || newTimerValue < this.props.timerMax)) { //was counting down and continue to count down
                     /*if(this.props.timerMax > 0 && this.state.timerValue > this.props.timerMax)
-                        newTimerValue = this.props.timerMax;*/
+                     newTimerValue = this.props.timerMax;*/
                     if (newTimerValue >= 0) {
                         this.setState({
                             timerValue: newTimerValue
@@ -125,7 +125,7 @@ var Stopwatch = React.createClass({
             })
         } else {
             var endTimeOffset = this.state.timerValue;
-            if(this.props.timerMax > 0 && this.state.timerValue > this.props.timerMax)
+            if (this.props.timerMax > 0 && this.state.timerValue > this.props.timerMax)
                 endTimeOffset = this.props.timerMax;
             if (!this.props.countUp && this.state.countingUp) { //switch counting up to down
                 this.setState({
@@ -155,6 +155,10 @@ var Stopwatch = React.createClass({
         var sec = Math.floor(this.state.timerValue / 1000) % 60;
         var min = Math.floor(this.state.timerValue / 60000) % 60;
         var hrs = Math.floor(this.state.timerValue / 3600000);
+        var display = [];
+        display.push(pad(min, 2));
+        display.push(pad(sec, 2));
+        display.push(pad(ms, 2));
         var toggleButton;
         if (this.state.running)
             toggleButton = <i className="fa fa-pause"></i>;
@@ -162,7 +166,7 @@ var Stopwatch = React.createClass({
             toggleButton = <i className="fa fa-play"></i>;
         return (
             <div className="mainWrapper">
-                <p className="mainWatch">{pad(hrs, 2)}:{pad(min, 2)}:{pad(sec, 2)}:{pad(ms, 2)}</p>
+                <p className="mainWatch"><span id="hourDisplay">{pad(hrs, 2)}:</span>{display.join(':')}</p>
                 <p className="mainLinks">
                     <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
                         <i className="fa fa-angle-double-right fa-flip-horizontal doubleArrow"></i>
