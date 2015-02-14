@@ -175,7 +175,20 @@ input[type=text]:focus, textarea:focus {
 }
 
 .Module.activeModule {
-    background-color: #7eff80;
+    animation-name: activeModuleGlow;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    animation-direction: alternate;
+}
+
+@keyframes activeModuleGlow {
+    from {
+        background-color: #24ff24;
+    }
+    to {
+        background-color: #b6ffb0;
+    }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
