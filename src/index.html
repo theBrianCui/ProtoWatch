@@ -22,7 +22,15 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <!-- Add your site or application content here -->
-        <div id="container">If you're reading this, it likely means you have JavaScript disabled. ProtoWatch requires JavaScript to work.</div>
+
+        <div id="container">
+            <div id="loadingScreen">
+                <p><i class="fa fa-circle-o-notch fa-spin fa-5x"></i></p>
+                <p>ProtoWatch is loading - hold tight!</p>
+                <p>If you see this for more than a couple of seconds, you may have JavaScript disabled.
+                    ProtoWatch requires JavaScript to work.</p>
+            </div>
+        </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/{{JQUERY_VERSION}}/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>

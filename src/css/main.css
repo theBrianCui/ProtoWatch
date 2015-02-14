@@ -97,6 +97,17 @@ body {
     margin: 0 .3em;
 }
 
+#loadingScreen {
+    max-height: 16em;
+    max-width: 40em;
+    text-align: center;
+    padding: 1.5em;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    font-size: 1.1em;
+}
+
 input[type=text], textarea {
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
@@ -192,7 +203,11 @@ input[type=text]:focus, textarea:focus {
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media (max-width: 480px) {
+@media (max-width: 540px) {
+    #loadingScreen {
+        font-size: .9em;
+    }
+
     .mainWatch {
         text-shadow: none;
     }
