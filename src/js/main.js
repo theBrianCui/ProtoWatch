@@ -52,11 +52,17 @@ var Stopwatch = React.createClass({
     },
 
     reset: function () { //optional: pass in an event parameter.
-        this.setState({
-            startTime: Date.now().valueOf(),
-            timerValue: 0,
-            running: false
-        })
+        if (this.props.countUp) {
+            this.setState({
+                timerValue: 0,
+                running: false
+            })
+        }else{
+            this.setState({
+                timerValue: this.props.timerMax,
+                running: false
+            })
+        }
     },
 
     tick: function () {
