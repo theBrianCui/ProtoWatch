@@ -7,10 +7,16 @@ function pad(str, max) {
 
 var Stopwatch = React.createClass({
     getInitialState: function () {
+        var gIS_endTime = 0;
+        var gIS_timerValue = 0;
+        if(!this.props.countUp){
+            gIS_endTime = Date.now().valueOf() + this.props.timerMax;
+            gIS_timerValue = this.props.timerMax;
+        }
         return {
             startTime: Date.now().valueOf(),
-            endTime: 0,
-            timerValue: 0,
+            endTime: gIS_endTime,
+            timerValue: gIS_timerValue,
             running: this.props.autorun,
             countingUp: this.props.countUp
         };
@@ -74,8 +80,10 @@ var Stopwatch = React.createClass({
                     this.correctStartEndTimes();
                 }
             } else {
-                if (!this.state.countingUp) { //was counting down and continue to count down
-                    newTimerValue = this.state.endTime - Date.now().valueOf();
+                newTimerValue = this.state.endTime - Date.now().valueOf();
+                if (!this.state.countingUp && (!(this.props.timerMax > 0) || newTimerValue < this.props.timerMax)) { //was counting down and continue to count down
+                    /*if(this.props.timerMax > 0 && this.state.timerValue > this.props.timerMax)
+                        newTimerValue = this.props.timerMax;*/
                     if (newTimerValue >= 0) {
                         this.setState({
                             timerValue: newTimerValue
@@ -96,6 +104,8 @@ var Stopwatch = React.createClass({
 
     //reset the start/end times based on the current timerValue
     correctStartEndTimes: function () {
+        console.log('Correcting StartEndTimes: this.props.countUp: ' + this.props.countUp
+        + ', this.state.countingUp: ' + this.state.countingUp);
         if (this.props.countUp && !this.state.countingUp) { //switch counting down to up
             this.setState({
                 countingUp: true,
@@ -107,17 +117,22 @@ var Stopwatch = React.createClass({
                 startTime: Date.now().valueOf() - this.state.timerValue,
                 running: true
             })
-        } else if (!this.props.countUp && this.state.countingUp) { //switch counting up to down
-            this.setState({
-                countingUp: false,
-                endTime: Date.now().valueOf() + this.state.timerValue,
-                running: true
-            })
-        } else if (!this.props.countUp && !this.state.countingUp) {
-            this.setState({
-                endTime: Date.now().valueOf() + this.state.timerValue,
-                running: true
-            })
+        } else {
+            var endTimeOffset = this.state.timerValue;
+            if(this.props.timerMax > 0 && this.state.timerValue > this.props.timerMax)
+                endTimeOffset = this.props.timerMax;
+            if (!this.props.countUp && this.state.countingUp) { //switch counting up to down
+                this.setState({
+                    countingUp: false,
+                    endTime: Date.now().valueOf() + endTimeOffset,
+                    running: true
+                })
+            } else if (!this.props.countUp && !this.state.countingUp) {
+                this.setState({
+                    endTime: Date.now().valueOf() + endTimeOffset,
+                    running: true
+                })
+            }
         }
     },
 
@@ -207,6 +222,11 @@ var Module = React.createClass({
         var cssClasses = 'Module';
         if (this.props.m_isActive)
             cssClasses += ' activeModule';
+        var upToDownFrom;
+        if (this.props.countUp)
+            upToDownFrom = 'Up to:';
+        else
+            upToDownFrom = 'Down from:';
         return (
             <div className={cssClasses}>
                 <p>Stopwatch ID: {this.props.id}</p>
@@ -222,7 +242,7 @@ var Module = React.createClass({
                         <option value="false">down</option>
                     </select>
                 </p>
-                <p>Limit:
+                <p>{upToDownFrom}
                     <input type="text"
                         defaultValue={this.props.timerMax}
                         onKeyDown={this.updateTimerMax}
