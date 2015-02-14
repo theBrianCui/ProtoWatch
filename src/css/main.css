@@ -183,6 +183,20 @@ input[type=text]:focus, textarea:focus {
     animation-iteration-count: infinite;
     animation-timing-function: ease;
     animation-direction: alternate;
+    -webkit-animation-name: activeModuleGlow;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes activeModuleGlow {
+    from {
+        background-color: #24ff24;
+    }
+    to {
+        background-color: #b6ffb0;
+    }
 }
 
 @keyframes activeModuleGlow {
