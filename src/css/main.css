@@ -140,11 +140,11 @@ input[type=text]:focus, textarea:focus {
 }
 
 .mainLinks a.bigButton{
-    min-width: 18vw;
-    min-height: 8.5vw;
+    min-width: 19vw;
+    min-height: 9vw;
     vertical-align: middle;
-    line-height: 8.5vw;
-    font-size: 6.5vw;
+    line-height: 9vw;
+    font-size: 7.25vw;
 }
 
 .mainLinks #resetButton{
@@ -154,12 +154,12 @@ input[type=text]:focus, textarea:focus {
 .mainLinks a.leftRightButton{
     min-width: 9vw;
     vertical-align: middle;
-    line-height: 4.5vw;
+    line-height: 6vw;
     font-size: 5vw;
 }
 
 .mainLinks .doubleArrow{
-    margin-top: -.09em;
+    margin-top: .1em;
 }
 
 .mainWatch {
