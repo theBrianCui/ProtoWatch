@@ -94,7 +94,8 @@ textarea {
    ========================================================================== */
 
 body {
-    margin: 0 .3em;
+    /*margin: 0 .3em;*/
+    background-color: #D5D4D2;
 }
 
 #loadingScreen {
@@ -131,12 +132,16 @@ input[type=text]:focus, textarea:focus {
     text-align: center;
 }
 
+.mainLinks {
+    margin: 0;
+    background-color: #5D5D5D;
+}
+
 .mainLinks a {
     display: inline-block;
-    margin: 0 .1em;
     text-decoration: none;
     color: white;
-    background-color: #0789d6;
+    background-color: #fc3e00;
 }
 
 .mainLinks a.bigButton{
@@ -164,11 +169,12 @@ input[type=text]:focus, textarea:focus {
 
 .mainWatch {
     font-size: 15vw;
-    font-weight: 200;
-    line-height: 0;
-    margin: 10vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
-    text-shadow: 2px 2px 4px #CCC;
+    background-color: #323232;
+    color: white;
+    margin: 0;
+    padding-bottom: .5vw;
+    line-height: 16vw;
 }
 
 .Module {
