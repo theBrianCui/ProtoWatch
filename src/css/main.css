@@ -239,22 +239,21 @@ input[type=text]:focus, textarea:focus {
     }
 
     .mainLinks a {
-        height: 90px;
-        line-height: 90px;
+        height: 80px;
     }
 
     .mainLinks a.bigButton{
         width: 34%;
-        line-height: 90px;
-        font-size: 83px;
+        line-height: 82px;
+        font-size: 70px;
     }
 
     .mainLinks a.leftRightButton{
         width: 16%;
         /*min-width: 80px;*/
         vertical-align: middle;
-        line-height: 90px;
-        font-size: 52px;
+        line-height: 80px;
+        font-size: 50px;
     }
 }
 
@@ -277,6 +276,16 @@ input[type=text]:focus, textarea:focus {
     .mainWatch {
         font-size: 4.75em;
         line-height: 1.25em;
+    }
+
+    .mainLinks a.bigButton{
+        width: 50%;
+        line-height: 82px;
+        font-size: 70px;
+    }
+
+    .mainLinks a.leftRightButton{
+        display: none;
     }
 
     #hourDisplay {
