@@ -279,7 +279,7 @@ var Main = React.createClass({
         return (
             React.createElement(Module, ({
                 id: Date.now().valueOf(),
-                autorun: true,
+                autorun: false,
                 timerMax: 0,
                 countUp: true,
                 m_isActive: false,
