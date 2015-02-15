@@ -145,14 +145,16 @@ input[type=text]:focus, textarea:focus {
 
 .mainLinks a {
     display: inline-block;
+    height: 9vw;
+    /*min-height: 80px;*/
     text-decoration: none;
     color: white;
     background-color: #484848;
 }
 
 .mainLinks a.bigButton{
-    min-width: 19vw;
-    min-height: 9vw;
+    width: 19vw;
+    /*min-width: 180px;*/
     vertical-align: middle;
     line-height: 9vw;
     font-size: 7.25vw;
@@ -168,8 +170,8 @@ input[type=text]:focus, textarea:focus {
 }
 
 .mainLinks a.leftRightButton{
-    min-width: 9vw;
-    min-height: 9vw;
+    width: 9vw;
+    /*min-width: 80px;*/
     vertical-align: middle;
     line-height: 9vw;
     font-size: 4.5vw;
@@ -226,8 +228,34 @@ input[type=text]:focus, textarea:focus {
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+    .mainWatch {
+        font-size: 17vw;
+        line-height: 18vw;
+    }
 
+    .mainLinksWrapper {
+        max-width: 530px;
+    }
+
+    .mainLinks a {
+        height: 90px;
+        line-height: 90px;
+    }
+
+    .mainLinks a.bigButton{
+        width: 34%;
+        line-height: 90px;
+        font-size: 83px;
+    }
+
+    .mainLinks a.leftRightButton{
+        width: 16%;
+        /*min-width: 80px;*/
+        vertical-align: middle;
+        line-height: 90px;
+        font-size: 52px;
+    }
 }
 
 /* Smartphones (portrait and landscape) ----------- */

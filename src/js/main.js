@@ -168,6 +168,7 @@ var Stopwatch = React.createClass({
             <div className="mainWrapper">
                 <p className="mainWatch"><span id="hourDisplay">{pad(hrs, 2)}:</span>{display.join(':')}</p>
                 <p className="mainLinks">
+                    <span className="mainLinksWrapper">
                     <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
                         <i className="fa fa-step-backward doubleArrow"></i>
                     </a>
@@ -178,6 +179,7 @@ var Stopwatch = React.createClass({
                     <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
                         <i className="fa fa-step-forward doubleArrow"></i>
                     </a>
+                    </span>
                 </p>
             </div>
         )
