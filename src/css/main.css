@@ -95,7 +95,7 @@ textarea {
 
 body {
     /*margin: 0 .3em;*/
-    background-color: #D5D4D2;
+    background-color: #f5f5f5;
 }
 
 #loadingScreen {
@@ -127,6 +127,12 @@ input[type=text]:focus, textarea:focus {
     border: 1px solid rgba(81, 203, 238, 1);
 }
 
+#topbar {
+    font-size: 1.2em;
+    min-height: 2em;
+    line-height: 2em;
+}
+
 .mainWrapper {
     margin: 0 auto;
     text-align: center;
@@ -134,14 +140,14 @@ input[type=text]:focus, textarea:focus {
 
 .mainLinks {
     margin: 0;
-    background-color: #5D5D5D;
+    background-color: #8D8D8D;
 }
 
 .mainLinks a {
     display: inline-block;
     text-decoration: none;
     color: white;
-    background-color: #fc3e00;
+    background-color: #484848;
 }
 
 .mainLinks a.bigButton{
@@ -152,15 +158,21 @@ input[type=text]:focus, textarea:focus {
     font-size: 7.25vw;
 }
 
+.mainLinks #toggleButton{
+    background-color: #00B008;
+}
+
 .mainLinks #resetButton{
-    margin-left: -.05em;
+    /*margin-left: -.05em;*/
+    background-color: #D00;
 }
 
 .mainLinks a.leftRightButton{
     min-width: 9vw;
+    min-height: 9vw;
     vertical-align: middle;
-    line-height: 6vw;
-    font-size: 5vw;
+    line-height: 9vw;
+    font-size: 4.5vw;
 }
 
 .mainLinks .doubleArrow{
@@ -215,27 +227,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 @media (max-width: 640px) {
-    .mainLinks a {
-        margin: 0 .1em;
-    }
 
-    .mainLinks a.bigButton{
-        min-width: 2.8em;
-        min-height: 1em;
-        line-height: 1.33em;
-        font-size: 2.55em;
-    }
-
-    .mainLinks #resetButton{
-        margin-left: -.05em;
-    }
-
-    .mainLinks a.leftRightButton{
-        min-width: 1.68em;
-        vertical-align: middle;
-        line-height: .9em;
-        font-size: 2em;
-    }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -243,17 +235,6 @@ input[type=text]:focus, textarea:focus {
     #loadingScreen {
         font-size: .9em;
     }
-
-    .mainWatch {
-        text-shadow: none;
-    }
-
-    /*.mainLinks a {
-        display: inline-block;
-        border: 1px solid black;
-        font-size: 1em;
-        margin: 0 .1em;
-    }*/
 
     .Module {
         padding: 0 .5em;
@@ -265,19 +246,6 @@ input[type=text]:focus, textarea:focus {
 }
 
 @media (max-width: 320px) {
-    /*.mainLinks a {
-        display: list-item;
-        border: 1px solid black;
-        margin: .1em 0;
-        font-size: 1.2em;
-        list-style: none;
-    }*/
-
-    .mainWatch {
-        font-size: 23.5vw;
-        margin: 17vw 0;
-    }
-
     #hourDisplay {
         display: none;
     }
