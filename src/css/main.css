@@ -273,7 +273,12 @@ input[type=text]:focus, textarea:focus {
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 360px) {
+    .mainWatch {
+        font-size: 4.75em;
+        line-height: 1.25em;
+    }
+
     #hourDisplay {
         display: none;
     }
