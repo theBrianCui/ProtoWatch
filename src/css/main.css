@@ -199,8 +199,12 @@ input[type=text]:focus, textarea:focus {
 
 .Module {
     padding: 0 1em;
-    margin: 1em 0;
+    margin: 1em .5em;
     display: inline-block;
+    vertical-align: top;
+    background-color: white;
+    min-height: 12em;
+    min-width: 14em;
 }
 
 .Module.activeModule {

@@ -380,10 +380,10 @@ var Main = React.createClass({
                     {...currentActiveStopwatch.props}
                     key={currentActiveStopwatch.props.id}
                 />
-                <span id="moduleList">
+                <div id="moduleList">
                     {this.state.Modules}
-                    <a href="javascript:void(0)" onClick={this.add}>Add a Stopwatch...</a>
-                </span>
+                    <div className="Module" onClick={this.add}><p>Add a stopwatch</p></div>
+                </div>
                 <p>{currentActiveStopwatch.props.id}</p>
             </div>
         )
