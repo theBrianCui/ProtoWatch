@@ -166,19 +166,30 @@ var Stopwatch = React.createClass({
             toggleButton = <i className="fa fa-play"></i>;
         return (
             <div className="mainWrapper">
-                <p className="mainWatch"><span id="hourDisplay">{pad(hrs, 2)}:</span>{display.join(':')}</p>
+                <p className="mainWatch">
+                    <span id="hourDisplay">{pad(hrs, 2)}:</span>{display.join(':')}</p>
                 <p className="mainLinks">
-                    <span className="mainLinksWrapper">
-                    <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
-                        <i className="fa fa-step-backward doubleArrow"></i>
-                    </a>
-                    <a id="toggleButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
-                    <a id="resetButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>
-                        <i className="fa fa-undo fa-flip-horizontal" id="resetButton"></i>
-                    </a>
-                    <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
-                        <i className="fa fa-step-forward doubleArrow"></i>
-                    </a>
+                    <span>
+                        <span className="mainLinksWrapper">
+                            <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
+                                <i className="fa fa-step-backward doubleArrow"></i>
+                            </a>
+                            <a id="toggleButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
+                            <a id="resetButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>
+                                <i className="fa fa-undo fa-flip-horizontal" id="resetButton"></i>
+                            </a>
+                            <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
+                                <i className="fa fa-step-forward doubleArrow"></i>
+                            </a>
+                        </span>
+                    { /* <span className="lowerLinksWrapper">
+                     <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
+                     <i className="fa fa-step-backward doubleArrow"></i>
+                     </a>
+                     <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
+                     <i className="fa fa-step-forward doubleArrow"></i>
+                     </a>
+                     </span> */ }
                     </span>
                 </p>
             </div>

@@ -181,6 +181,12 @@ input[type=text]:focus, textarea:focus {
     margin-top: .1em;
 }
 
+/*
+.lowerLinksWrapper {
+    display: none;
+}
+*/
+
 .mainWatch {
     font-size: 15vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
@@ -287,6 +293,15 @@ input[type=text]:focus, textarea:focus {
     .mainLinks a.leftRightButton{
         display: none;
     }
+/*
+    .lowerLinksWrapper {
+        display: block;
+    }
+
+    .lowerLinksWrapper a.leftRightButton{
+        width: 50%;
+        display: inline-block;
+    }*/
 
     #hourDisplay {
         display: none;
