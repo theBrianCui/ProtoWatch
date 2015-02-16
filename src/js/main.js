@@ -252,27 +252,44 @@ var Module = React.createClass({
             upToDownFrom = 'Down from:';
         return (
             <div className={cssClasses}>
-                <p>Stopwatch ID: {this.props.id}</p>
-                <p>Run Automatically:
-                    <input type="checkbox"
-                        defaultChecked={this.props.autorun}
-                        onChange={this.updateAutorun}
-                    />
-                </p>
-                <p>Count:
-                    <select value={'' + this.props.countUp} onChange={this.updateCountUp}>
-                        <option value="true">up</option>
-                        <option value="false">down</option>
-                    </select>
-                </p>
-                <p>{upToDownFrom}
-                    <input type="text"
-                        defaultValue={this.props.timerMax}
-                        onKeyDown={this.updateTimerMax}
-                        onFocus={this.blankField}
-                        onBlur={this.resetTimerMax}
-                    />
-                </p>
+                <div className="tabs">
+                    <div className="tab">
+                        <label for="tab-1">
+                            <input type="radio" id="tab-1" name="tab-group-1" defaultChecked={true} >Tab One</input>
+                        </label>
+                        <div className="content">
+                            <p>Stopwatch ID: {this.props.id}</p>
+                            <p>Run Automatically:
+                                <input type="checkbox"
+                                    defaultChecked={this.props.autorun}
+                                    onChange={this.updateAutorun}
+                                />
+                            </p>
+                            <p>Count:
+                                <select value={'' + this.props.countUp} onChange={this.updateCountUp}>
+                                    <option value="true">up</option>
+                                    <option value="false">down</option>
+                                </select>
+                            </p>
+                            <p>{upToDownFrom}
+                                <input type="text"
+                                    defaultValue={this.props.timerMax}
+                                    onKeyDown={this.updateTimerMax}
+                                    onFocus={this.blankField}
+                                    onBlur={this.resetTimerMax}
+                                />
+                            </p>
+                        </div>
+                    </div>
+                    <div className="tab">
+                        <label for="tab-2">
+                            <input type="radio" id="tab-2" name="tab-group-1" >Tab Two</input>
+                        </label>
+                        <div className="content">
+                            <p>Stopwatch ID: {this.props.id}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -377,12 +394,14 @@ var Main = React.createClass({
         return (
             <div>
                 <Stopwatch
-                    {...currentActiveStopwatch.props}
+                {...currentActiveStopwatch.props}
                     key={currentActiveStopwatch.props.id}
                 />
                 <div id="moduleList">
-                    {this.state.Modules}
-                    <div className="Module" onClick={this.add}><p>Add a stopwatch</p></div>
+                {this.state.Modules}
+                    <div className="Module" onClick={this.add}>
+                        <p>Add a stopwatch</p>
+                    </div>
                 </div>
                 <p>{currentActiveStopwatch.props.id}</p>
             </div>
@@ -391,6 +410,7 @@ var Main = React.createClass({
 });
 
 React.render(
-    <Main />,
+    <Main />
+    ,
     document.getElementById('container')
 );
