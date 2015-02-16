@@ -254,9 +254,8 @@ var Module = React.createClass({
             <div className={cssClasses}>
                 <div className="tabs">
                     <div className="tab">
-                        <label for="tab-1">
-                            <input type="radio" id="tab-1" name="tab-group-1" defaultChecked={true} >Tab One</input>
-                        </label>
+                        <input type="radio" id={this.props.id + '-1'} name={this.props.id} defaultChecked={true} />
+                        <label htmlFor={this.props.id + '-1'}>Tab One</label>
                         <div className="content">
                             <p>Stopwatch ID: {this.props.id}</p>
                             <p>Run Automatically:
@@ -282,9 +281,8 @@ var Module = React.createClass({
                         </div>
                     </div>
                     <div className="tab">
-                        <label for="tab-2">
-                            <input type="radio" id="tab-2" name="tab-group-1" >Tab Two</input>
-                        </label>
+                        <input type="radio" id={this.props.id + '-2'} name={this.props.id} />
+                        <label htmlFor={this.props.id + '-2'}>Tab Two</label>
                         <div className="content">
                             <p>Stopwatch ID: {this.props.id}</p>
                         </div>

@@ -242,7 +242,8 @@ input[type=text]:focus, textarea:focus {
 
 .tabs {
     position: relative;
-    min-height: 200px; /* This part sucks */
+    min-height: 14em; /* This part sucks */
+    min-width: 20em;
     clear: both;
     margin: 25px 0;
 }
@@ -257,9 +258,9 @@ input[type=text]:focus, textarea:focus {
     position: relative;
     left: 1px;
 }
-/*.tab [type=radio] {
+.tab [type=radio] {
     display: none;
-}*/
+}
 .content {
     position: absolute;
     top: 28px;
@@ -267,7 +268,7 @@ input[type=text]:focus, textarea:focus {
     background: white;
     right: 0;
     bottom: 0;
-    padding: 20px;
+    padding: .5em .75em;
     border: 1px solid #ccc;
 }
 [type=radio]:checked ~ label {
