@@ -234,14 +234,28 @@ input[type=text]:focus, textarea:focus {
     }
 }
 
+@media (max-width: 1024px) {
+    .mainLinks a {
+        height: 92px;
+    }
+
+    .mainLinks a.bigButton{
+        width: 195px;
+        line-height: 92px;
+        font-size: 75px;
+    }
+
+    .mainLinks a.leftRightButton{
+        width: 92px;
+        line-height: 92px;
+        font-size: 46px;
+    }
+}
+
 @media (max-width: 768px) {
     .mainWatch {
         font-size: 17vw;
         line-height: 18vw;
-    }
-
-    .mainLinksWrapper {
-        max-width: 530px;
     }
 
     .mainLinks a {
