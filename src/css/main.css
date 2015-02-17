@@ -188,25 +188,30 @@ input[type=text]:focus, textarea:focus {
 */
 
 .mainWatch {
-    font-size: 15vw;
+    font-size: 14vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
     background-color: #323232;
     color: white;
     margin: 0;
-    padding-bottom: .5vw;
-    line-height: 16vw;
+    padding-bottom: .25vw;
+    line-height: 14.5vw;
+}
+
+#moduleList {
+    padding: .5em 1em;
 }
 
 .Module {
-    padding: 0 1em;
+    /*padding: 0 1em;*/
     margin: 1em .5em;
     display: inline-block;
     vertical-align: top;
-    background-color: white;
+    background-color: #ACD5F3;
     border: 1px solid #d7d7d7;
     box-shadow: 0 5px 8px #d7d7d7;
     min-height: 12em;
     min-width: 14em;
+    padding: .1em 0 0 0;
 }
 
 .Module.activeModule {
@@ -220,23 +225,25 @@ input[type=text]:focus, textarea:focus {
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: ease;
     -webkit-animation-direction: alternate;
+    border: 1px solid #4090ff;
+    box-shadow: 0 5px 8px #4090ff;
 }
 
 @-webkit-keyframes activeModuleGlow {
     from {
-        background-color: #24ff24;
+        background-color: #1b61ff;
     }
     to {
-        background-color: #b6ffb0;
+        background-color: #4090ff;
     }
 }
 
 @keyframes activeModuleGlow {
     from {
-        background-color: #24ff24;
+        background-color: #1b61ff;
     }
     to {
-        background-color: #b6ffb0;
+        background-color: #4090ff;
     }
 }
 
@@ -245,15 +252,16 @@ input[type=text]:focus, textarea:focus {
     min-height: 14em; /* This part sucks */
     min-width: 20em;
     clear: both;
-    margin: 25px 0;
+    margin: 1.6em 0 0;
 }
 .tab {
     float: left;
 }
 .tab label {
     background: #eee;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: .5em .5em .25em;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
     margin-left: -1px;
     position: relative;
     left: 1px;
@@ -263,13 +271,13 @@ input[type=text]:focus, textarea:focus {
 }
 .content {
     position: absolute;
-    top: 28px;
+    top: 24px;
     left: 0;
     background: white;
     right: 0;
     bottom: 0;
     padding: .5em .75em;
-    border: 1px solid #ccc;
+    border-top: 1px solid #ccc;
 }
 [type=radio]:checked ~ label {
     background: white;
@@ -300,8 +308,8 @@ input[type=text]:focus, textarea:focus {
 
 @media (max-width: 640px) {
     .mainWatch {
-        font-size: 17vw;
-        line-height: 18vw;
+        font-size: 16vw;
+        line-height: 16vw;
     }
 
     .mainLinks a {
@@ -321,7 +329,13 @@ input[type=text]:focus, textarea:focus {
         line-height: 80px;
         font-size: 50px;
     }
+
+    .tabs {
+        min-width: unset;
+    }
+
     .Module {
+
         display: block;
     }
 }
@@ -332,12 +346,23 @@ input[type=text]:focus, textarea:focus {
         font-size: .9em;
     }
 
+    #moduleList {
+        padding: 0;
+    }
+
     .Module {
-        padding: 0 .5em;
+        margin: 1em 0;
+        box-shadow: 0 3px 4px #d7d7d7;
+        border: none;
+    }
+
+    .Module.activeModule{
+        box-shadow: 0 3px 4px #4090ff;
+        border: none;
     }
 
     .Module p {
-        margin: .4em;
+        margin: .4em 0;
     }
 }
 
