@@ -215,16 +215,9 @@ input[type=text]:focus, textarea:focus {
 }
 
 .Module.activeModule {
-    animation-name: activeModuleGlow;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease;
-    animation-direction: alternate;
-    -webkit-animation-name: activeModuleGlow;
-    -webkit-animation-duration: 1s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: ease;
-    -webkit-animation-direction: alternate;
+    animation: activeModuleGlow 1s ease 0s infinite alternate;
+    -webkit-animation: activeModuleGlow 1s ease 0s infinite alternate;
+    background-color: #266fff;
     border: 1px solid #4090ff;
     box-shadow: 0 5px 8px #4090ff;
 }
@@ -357,12 +350,19 @@ input[type=text]:focus, textarea:focus {
     }
 
     .Module.activeModule{
+        animation: none;
+        -webkit-animation: none;
         box-shadow: 0 3px 4px #4090ff;
         border: none;
     }
 
     .Module p {
         margin: .4em 0;
+    }
+
+    .tabs {
+        margin-top: 1em;
+        min-height: 11em;
     }
 }
 
