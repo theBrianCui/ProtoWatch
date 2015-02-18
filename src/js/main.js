@@ -214,12 +214,21 @@ var Module = React.createClass({
         this.handlePropUpdate(newProps);
     },
 
+    updateCountUp: function (event) {
+        console.log('updateCountUp was called. value: ' + event.target.value);
+        var newCountUp = (event.target.value == 'true'); //convert to boolean
+        if (this.props.countUp != newCountUp) {
+            var newProps = JSON.parse(JSON.stringify(this.props));
+            newProps.countUp = newCountUp;
+            this.handlePropUpdate(newProps);
+        }
+    },
+
     resetTimerMax: function (event) {
         console.log('Resetting timerMax field: ' + event.target.id);
         if (event.target.value == 0 || isNaN(event.target.value)) {
             //Set default limit configuration values
             var fields = this.computeTimerFields();
-
             switch (event.target.id) {
                 case "hrsField":
                     event.target.value = fields.hrs;
@@ -235,6 +244,7 @@ var Module = React.createClass({
                     break;
             }
         }
+        this.setUpdateButton();
     },
 
     blankField: function (event) {
@@ -243,27 +253,19 @@ var Module = React.createClass({
     },
 
     updateTimerMax: function (event) {
-        this.refs.moduleLimitButton.getDOMNode().disabled = false;
+        this.setUpdateButton();
         /*console.log('updateTimerMax was called. keypress: ' + event.keyCode);
-        if (event.keyCode == 13) {
-            var newTimerMax = parseInt(event.target.value);
-            if (!isNaN(newTimerMax)) {
-                *//* clone current props to avoid modifying existing ones *//*
-                var newProps = JSON.parse(JSON.stringify(this.props));
-                newProps.timerMax = newTimerMax;
-                this.handlePropUpdate(newProps);
-            }
-        }*/
-    },
-
-    updateCountUp: function (event) {
-        console.log('updateCountUp was called. value: ' + event.target.value);
-        var newCountUp = (event.target.value == 'true'); //convert to boolean
-        if (this.props.countUp != newCountUp) {
-            var newProps = JSON.parse(JSON.stringify(this.props));
-            newProps.countUp = newCountUp;
-            this.handlePropUpdate(newProps);
-        }
+         if (event.keyCode == 13) {
+         var newTimerMax = parseInt(event.target.value);
+         if (!isNaN(newTimerMax)) {
+         */
+        /* clone current props to avoid modifying existing ones */
+        /*
+         var newProps = JSON.parse(JSON.stringify(this.props));
+         newProps.timerMax = newTimerMax;
+         this.handlePropUpdate(newProps);
+         }
+         }*/
     },
 
     computeTimerFields: function () {
@@ -274,6 +276,22 @@ var Module = React.createClass({
         fields.min = Math.floor(tMax / 60000) % 60;
         fields.hrs = Math.floor(tMax / 3600000);
         return fields;
+    },
+
+    setUpdateButton: function () {
+        var original = this.computeTimerFields();
+        var update = {};
+        update.hrs = this.refs.hrsField.getDOMNode().value;
+        update.min = this.refs.minField.getDOMNode().value;
+        update.sec = this.refs.secField.getDOMNode().value;
+        update.cs = this.refs.csField.getDOMNode().value;
+
+        if (!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs)
+            && (original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs)) {
+            console.log('Button should be enabled!');
+        } else {
+            console.log('Button should be disabled!');
+        }
     },
 
     render: function () {
@@ -326,36 +344,37 @@ var Module = React.createClass({
                             </table>
                             <p className="moduleLimitText">Count {upToDownFrom}</p>
                             <div className="moduleLimitInputWrapper">
+                            {/* We use ID to identify elements and ref to select them */}
                                 <input type="text"
                                     defaultValue={fields.hrs}
                                     onFocus={this.blankField}
                                     onBlur={this.resetTimerMax}
-                                    onChange={this.updateTimerMax}
-                                    id="hrsField"
+                                    onChange={this.setUpdateButton}
+                                    id="hrsField" ref="hrsField"
                                 />
                                 :
                                 <input type="text"
                                     defaultValue={fields.min}
                                     onFocus={this.blankField}
                                     onBlur={this.resetTimerMax}
-                                    onChange={this.updateTimerMax}
-                                    id="minField"
+                                    onChange={this.setUpdateButton}
+                                    id="minField" ref="minField"
                                 />
                                 :
                                 <input type="text"
                                     defaultValue={fields.sec}
                                     onFocus={this.blankField}
                                     onBlur={this.resetTimerMax}
-                                    onChange={this.updateTimerMax}
-                                    id="secField"
+                                    onChange={this.setUpdateButton}
+                                    id="secField" ref="secField"
                                 />
                                 :
                                 <input type="text"
                                     defaultValue={fields.cs}
                                     onFocus={this.blankField}
                                     onBlur={this.resetTimerMax}
-                                    onChange={this.updateTimerMax}
-                                    id="csField"
+                                    onChange={this.setUpdateButton}
+                                    id="csField" ref="csField"
                                 />
                                 <button type="button" ref="moduleLimitButton" disabled>Update</button>
                             </div>
