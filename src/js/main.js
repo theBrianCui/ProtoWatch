@@ -225,25 +225,13 @@ var Module = React.createClass({
     },
 
     resetTimerMax: function (event) {
-        console.log('Resetting timerMax field: ' + event.target.id);
-        if (event.target.value == '' || isNaN(event.target.value)) {
-            //Set default limit configuration values
-            var fields = this.computeTimerFields();
-            switch (event.target.dataset.tag) {
-                case "hrsField":
-                    event.target.value = fields.hrs;
-                    break;
-                case "minField":
-                    event.target.value = fields.min;
-                    break;
-                case "secField":
-                    event.target.value = fields.sec;
-                    break;
-                case "csField":
-                    event.target.value = fields.cs;
-                    break;
-            }
-        }
+        //Set default limit configuration values
+        var fields = this.computeTimerFields();
+        this.refs.hrsField.getDOMNode().value = fields.hrs;
+        this.refs.minField.getDOMNode().value = fields.min;
+        this.refs.secField.getDOMNode().value = fields.sec;
+        this.refs.csField.getDOMNode().value = fields.cs;
+
         this.setUpdateButton();
     },
 
@@ -253,6 +241,7 @@ var Module = React.createClass({
     },
 
     updateTimerMax: function (event) {
+        console.log('updateTimerMax was called.');
         this.setUpdateButton();
         /*console.log('updateTimerMax was called. keypress: ' + event.keyCode);
          if (event.keyCode == 13) {
@@ -288,9 +277,11 @@ var Module = React.createClass({
 
         if (!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs)
             && (original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs)) {
-            this.refs.moduleLimitButton.getDOMNode().disabled = false;
+            //this.refs.moduleLimitButton.getDOMNode().disabled = false;
+            this.refs.moduleUpdateButtonWrapper.getDOMNode().className += ' untucked';
         } else {
-            this.refs.moduleLimitButton.getDOMNode().disabled = true;
+            //this.refs.moduleLimitButton.getDOMNode().disabled = true;
+            this.refs.moduleUpdateButtonWrapper.getDOMNode().className = 'moduleUpdateButtonWrapper';
         }
     },
 
@@ -342,13 +333,13 @@ var Module = React.createClass({
                                     </td>
                                 </tr>
                             </table>
-                            <p className="moduleLimitText">Count {upToDownFrom}</p>
-                            <div className="moduleLimitInputWrapper">
-                            {/* We use data-tag to identify elements and ref to select them */}
+                            <div className="moduleUpdatableDivider"></div>
+                            <div className="moduleUpdatableWrapper moduleLimitInputWrapper">
+                                <p className="moduleLimitText">Count {upToDownFrom}</p>
+                                {/* We use data-tag to identify elements and ref to select them */}
                                 <input type="text"
                                     defaultValue={fields.hrs}
                                     onFocus={this.blankField}
-                                    onBlur={this.resetTimerMax}
                                     onChange={this.setUpdateButton}
                                     data-tag="hrsField" ref="hrsField"
                                 />
@@ -356,7 +347,6 @@ var Module = React.createClass({
                                 <input type="text"
                                     defaultValue={fields.min}
                                     onFocus={this.blankField}
-                                    onBlur={this.resetTimerMax}
                                     onChange={this.setUpdateButton}
                                     data-tag="minField" ref="minField"
                                 />
@@ -364,7 +354,6 @@ var Module = React.createClass({
                                 <input type="text"
                                     defaultValue={fields.sec}
                                     onFocus={this.blankField}
-                                    onBlur={this.resetTimerMax}
                                     onChange={this.setUpdateButton}
                                     data-tag="secField" ref="secField"
                                 />
@@ -372,11 +361,9 @@ var Module = React.createClass({
                                 <input type="text"
                                     defaultValue={fields.cs}
                                     onFocus={this.blankField}
-                                    onBlur={this.resetTimerMax}
                                     onChange={this.setUpdateButton}
                                     data-tag="csField" ref="csField"
                                 />
-                                <button type="button" ref="moduleLimitButton" disabled>Update</button>
                             </div>
                         </div>
                     </div>
@@ -386,8 +373,17 @@ var Module = React.createClass({
                             Sounds</label>
                         <div className="content">
                             <p>Sounds will go here! Soon!</p>
+                            <div className="moduleUpdatableDivider"></div>
                         </div>
                     </div>
+                </div>
+                <div className="moduleUpdateButtonWrapper" ref="moduleUpdateButtonWrapper">
+                    <button type="button"
+                        ref="moduleLimitButton"
+                        onClick={this.updateTimerMax}>Update</button>
+                    <button type="button"
+                        ref="moduleLimitButton"
+                        onClick={this.resetTimerMax} data-tag="resetButton">Revert</button>
                 </div>
             </div>
         );

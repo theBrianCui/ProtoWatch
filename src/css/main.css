@@ -205,6 +205,8 @@ input[type=text]:focus, textarea:focus {
     min-width: 14em;
     padding: .1em 0 0 0;
     font-size: .9em;
+    border-radius: .8em;
+    overflow: hidden;
 }
 
 .Module.activeModule {
@@ -294,6 +296,28 @@ td.moduleTableRight {
     width: 20%;
 }
 
+.moduleUpdatableDivider {
+    margin: 1em auto .5em;
+    width: 80%;
+    height: 1px;
+    background-color: #909090;
+}
+
+.moduleUpdatableWrapper {
+}
+
+.moduleUpdateButtonWrapper {
+    background-color: #ACD5F3;
+    padding: .5em;
+    text-align: center;
+    margin-top: -2.8em;
+    transition: margin 0.25s;
+}
+
+.moduleUpdateButtonWrapper.untucked {
+    margin-top: 0;
+}
+
 .moduleLimitText {
     font-weight: bold;
     text-align: center;
@@ -316,7 +340,7 @@ td.moduleTableRight {
     text-align: center;
     font-weight: normal;
     max-width: 2em;
-    margin: 0 .3em;
+    margin: .25em .3em;
     padding: .1em .2em;
 }
 
@@ -367,7 +391,6 @@ td.moduleTableRight {
     }
 
     .Module {
-
         display: block;
     }
 }
