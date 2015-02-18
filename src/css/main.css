@@ -140,12 +140,12 @@ input[type=text]:focus, textarea:focus {
 
 .mainLinks {
     margin: 0;
-    background-color: #8D8D8D;
+    background-color: #777;
 }
 
 .mainLinks a {
     display: inline-block;
-    height: 9vw;
+    height: 8vw;
     /*min-height: 80px;*/
     text-decoration: none;
     color: white;
@@ -156,8 +156,8 @@ input[type=text]:focus, textarea:focus {
     width: 19vw;
     /*min-width: 180px;*/
     vertical-align: middle;
-    line-height: 9vw;
-    font-size: 7.25vw;
+    line-height: 8vw;
+    font-size: 6.5vw;
 }
 
 .mainLinks #toggleButton{
@@ -173,7 +173,7 @@ input[type=text]:focus, textarea:focus {
     width: 9vw;
     /*min-width: 80px;*/
     vertical-align: middle;
-    line-height: 9vw;
+    line-height: 8vw;
     font-size: 4.5vw;
 }
 
@@ -188,13 +188,13 @@ input[type=text]:focus, textarea:focus {
 */
 
 .mainWatch {
-    font-size: 14vw;
+    font-size: 12.5vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
     background-color: #323232;
     color: white;
     margin: 0;
     padding-bottom: .25vw;
-    line-height: 14.5vw;
+    line-height: 13vw;
 }
 
 #moduleList {
