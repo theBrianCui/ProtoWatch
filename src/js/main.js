@@ -215,7 +215,30 @@ var Module = React.createClass({
     },
 
     resetTimerMax: function (event) {
-        event.target.value = this.props.timerMax;
+        console.log('Resetting timerMax field: ' + event.target.id);
+        if(event.target.value == '') {
+            //Set default limit configuration values
+            var tMax = this.props.timerMax;
+            var cs = Math.floor(tMax % 1000 / 10);
+            var sec = Math.floor(tMax / 1000) % 60;
+            var min = Math.floor(tMax / 60000) % 60;
+            var hrs = Math.floor(tMax / 3600000);
+
+            switch (event.target.id) {
+                case "hrsField":
+                    event.target.value = hrs;
+                    break;
+                case "minField":
+                    event.target.value = min;
+                    break;
+                case "secField":
+                    event.target.value = sec;
+                    break;
+                case "csField":
+                    event.target.value = cs;
+                    break;
+            }
+        }
     },
 
     blankField: function (event) {
@@ -300,16 +323,16 @@ var Module = React.createClass({
                             <p className="moduleLimitText">Count {upToDownFrom}</p>
                             <div className="moduleLimitInputWrapper">
                                 <input type="text" className="moduleLimitInputs"
-                                    defaultValue={hrs}
+                                    defaultValue={hrs} onFocus={this.blankField} onBlur={this.resetTimerMax} id="hrsField"
                                 />
                                 :<input type="text" className="moduleLimitInputs"
-                                    defaultValue={min}
+                                    defaultValue={min} onFocus={this.blankField} onBlur={this.resetTimerMax} id="minField"
                                 />
                                 :<input type="text" className="moduleLimitInputs"
-                                    defaultValue={sec}
+                                    defaultValue={sec} onFocus={this.blankField} onBlur={this.resetTimerMax} id="secField"
                                 />
                                 :<input type="text" className="moduleLimitInputs"
-                                    defaultValue={cs}
+                                    defaultValue={cs} onFocus={this.blankField} onBlur={this.resetTimerMax} id="csField"
                                 />
                             </div>
                         </div>
