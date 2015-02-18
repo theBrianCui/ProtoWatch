@@ -282,7 +282,7 @@ var Module = React.createClass({
                                     </td>
                                 </tr>
                             </table>
-                            <p>Count {upToDownFrom}</p>
+                            <p className="moduleLimitText">Count {upToDownFrom}</p>
                             <input type="text"
                                 defaultValue={this.props.timerMax}
                                 onKeyDown={this.updateTimerMax}

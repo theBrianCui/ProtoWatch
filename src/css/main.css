@@ -294,6 +294,12 @@ td.moduleTableRight {
     width: 20%;
 }
 
+.moduleLimitText {
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
 @media (max-width: 1024px) {
     .mainLinks a {
         height: 80px;
