@@ -226,10 +226,10 @@ var Module = React.createClass({
 
     resetTimerMax: function (event) {
         console.log('Resetting timerMax field: ' + event.target.id);
-        if (event.target.value == 0 || isNaN(event.target.value)) {
+        if (event.target.value == '' || isNaN(event.target.value)) {
             //Set default limit configuration values
             var fields = this.computeTimerFields();
-            switch (event.target.id) {
+            switch (event.target.dataset.tag) {
                 case "hrsField":
                     event.target.value = fields.hrs;
                     break;
@@ -288,9 +288,9 @@ var Module = React.createClass({
 
         if (!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs)
             && (original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs)) {
-            console.log('Button should be enabled!');
+            this.refs.moduleLimitButton.getDOMNode().disabled = false;
         } else {
-            console.log('Button should be disabled!');
+            this.refs.moduleLimitButton.getDOMNode().disabled = true;
         }
     },
 
@@ -344,13 +344,13 @@ var Module = React.createClass({
                             </table>
                             <p className="moduleLimitText">Count {upToDownFrom}</p>
                             <div className="moduleLimitInputWrapper">
-                            {/* We use ID to identify elements and ref to select them */}
+                            {/* We use data-tag to identify elements and ref to select them */}
                                 <input type="text"
                                     defaultValue={fields.hrs}
                                     onFocus={this.blankField}
                                     onBlur={this.resetTimerMax}
                                     onChange={this.setUpdateButton}
-                                    id="hrsField" ref="hrsField"
+                                    data-tag="hrsField" ref="hrsField"
                                 />
                                 :
                                 <input type="text"
@@ -358,7 +358,7 @@ var Module = React.createClass({
                                     onFocus={this.blankField}
                                     onBlur={this.resetTimerMax}
                                     onChange={this.setUpdateButton}
-                                    id="minField" ref="minField"
+                                    data-tag="minField" ref="minField"
                                 />
                                 :
                                 <input type="text"
@@ -366,7 +366,7 @@ var Module = React.createClass({
                                     onFocus={this.blankField}
                                     onBlur={this.resetTimerMax}
                                     onChange={this.setUpdateButton}
-                                    id="secField" ref="secField"
+                                    data-tag="secField" ref="secField"
                                 />
                                 :
                                 <input type="text"
@@ -374,7 +374,7 @@ var Module = React.createClass({
                                     onFocus={this.blankField}
                                     onBlur={this.resetTimerMax}
                                     onChange={this.setUpdateButton}
-                                    id="csField" ref="csField"
+                                    data-tag="csField" ref="csField"
                                 />
                                 <button type="button" ref="moduleLimitButton" disabled>Update</button>
                             </div>
