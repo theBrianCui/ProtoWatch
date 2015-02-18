@@ -216,7 +216,7 @@ var Module = React.createClass({
 
     resetTimerMax: function (event) {
         console.log('Resetting timerMax field: ' + event.target.id);
-        if(event.target.value == '') {
+        if(event.target.value == 0 || isNaN(event.target.value)) {
             //Set default limit configuration values
             var tMax = this.props.timerMax;
             var cs = Math.floor(tMax % 1000 / 10);
@@ -242,6 +242,7 @@ var Module = React.createClass({
     },
 
     blankField: function (event) {
+        //console.log('className: ' + this.refs.confirmButton.getDOMNode().className);
         event.target.value = '';
     },
 
@@ -322,18 +323,19 @@ var Module = React.createClass({
                             </table>
                             <p className="moduleLimitText">Count {upToDownFrom}</p>
                             <div className="moduleLimitInputWrapper">
-                                <input type="text" className="moduleLimitInputs"
+                                <input type="text"
                                     defaultValue={hrs} onFocus={this.blankField} onBlur={this.resetTimerMax} id="hrsField"
                                 />
-                                :<input type="text" className="moduleLimitInputs"
+                                :<input type="text"
                                     defaultValue={min} onFocus={this.blankField} onBlur={this.resetTimerMax} id="minField"
                                 />
-                                :<input type="text" className="moduleLimitInputs"
+                                :<input type="text"
                                     defaultValue={sec} onFocus={this.blankField} onBlur={this.resetTimerMax} id="secField"
                                 />
-                                :<input type="text" className="moduleLimitInputs"
+                                :<input type="text"
                                     defaultValue={cs} onFocus={this.blankField} onBlur={this.resetTimerMax} id="csField"
                                 />
+                                <button type="button" disabled>Update</button>
                             </div>
                         </div>
                     </div>

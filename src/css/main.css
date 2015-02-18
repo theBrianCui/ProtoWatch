@@ -275,7 +275,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 .content * {
-    margin: .4em 0;
+    margin: .45em 0;
 }
 
 .content select {
@@ -303,9 +303,15 @@ td.moduleTableRight {
 .moduleLimitInputWrapper{
     text-align: center;
     font-weight: bold;
+    margin-top: 0;
 }
 
-input.moduleLimitInputs {
+.moduleLimitInputWrapper button{
+    margin-left: .15em;
+    font-weight: normal;
+}
+
+.moduleLimitInputWrapper input {
     display: inline-block;
     text-align: center;
     font-weight: normal;
