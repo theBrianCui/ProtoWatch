@@ -212,6 +212,7 @@ input[type=text]:focus, textarea:focus {
     min-height: 12em;
     min-width: 14em;
     padding: .1em 0 0 0;
+    font-size: .8em;
 }
 
 .Module.activeModule {
@@ -283,19 +284,19 @@ input[type=text]:focus, textarea:focus {
 
 @media (max-width: 1024px) {
     .mainLinks a {
-        height: 92px;
+        height: 80px;
     }
 
     .mainLinks a.bigButton{
-        width: 195px;
-        line-height: 92px;
-        font-size: 75px;
+        width: 190px;
+        line-height: 80px;
+        font-size: 66px;
     }
 
     .mainLinks a.leftRightButton{
-        width: 92px;
-        line-height: 92px;
-        font-size: 46px;
+        width: 90px;
+        line-height: 80px;
+        font-size: 38px;
     }
 }
 
@@ -305,7 +306,7 @@ input[type=text]:focus, textarea:focus {
         line-height: 16vw;
     }
 
-    .mainLinks a {
+/*    .mainLinks a {
         height: 80px;
     }
 
@@ -317,11 +318,11 @@ input[type=text]:focus, textarea:focus {
 
     .mainLinks a.leftRightButton{
         width: 16%;
-        /*min-width: 80px;*/
+        *//*min-width: 80px;*//*
         vertical-align: middle;
         line-height: 80px;
         font-size: 50px;
-    }
+    }*/
 
     .tabs {
         min-width: unset;
