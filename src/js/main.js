@@ -216,26 +216,22 @@ var Module = React.createClass({
 
     resetTimerMax: function (event) {
         console.log('Resetting timerMax field: ' + event.target.id);
-        if(event.target.value == 0 || isNaN(event.target.value)) {
+        if (event.target.value == 0 || isNaN(event.target.value)) {
             //Set default limit configuration values
-            var tMax = this.props.timerMax;
-            var cs = Math.floor(tMax % 1000 / 10);
-            var sec = Math.floor(tMax / 1000) % 60;
-            var min = Math.floor(tMax / 60000) % 60;
-            var hrs = Math.floor(tMax / 3600000);
+            var fields = this.computeTimerFields();
 
             switch (event.target.id) {
                 case "hrsField":
-                    event.target.value = hrs;
+                    event.target.value = fields.hrs;
                     break;
                 case "minField":
-                    event.target.value = min;
+                    event.target.value = fields.min;
                     break;
                 case "secField":
-                    event.target.value = sec;
+                    event.target.value = fields.sec;
                     break;
                 case "csField":
-                    event.target.value = cs;
+                    event.target.value = fields.cs;
                     break;
             }
         }
@@ -247,16 +243,17 @@ var Module = React.createClass({
     },
 
     updateTimerMax: function (event) {
-        console.log('updateTimerMax was called. keypress: ' + event.keyCode);
+        this.refs.moduleLimitButton.getDOMNode().disabled = false;
+        /*console.log('updateTimerMax was called. keypress: ' + event.keyCode);
         if (event.keyCode == 13) {
             var newTimerMax = parseInt(event.target.value);
             if (!isNaN(newTimerMax)) {
-                /* clone current props to avoid modifying existing ones */
+                *//* clone current props to avoid modifying existing ones *//*
                 var newProps = JSON.parse(JSON.stringify(this.props));
                 newProps.timerMax = newTimerMax;
                 this.handlePropUpdate(newProps);
             }
-        }
+        }*/
     },
 
     updateCountUp: function (event) {
@@ -267,6 +264,16 @@ var Module = React.createClass({
             newProps.countUp = newCountUp;
             this.handlePropUpdate(newProps);
         }
+    },
+
+    computeTimerFields: function () {
+        var tMax = this.props.timerMax;
+        var fields = {};
+        fields.cs = Math.floor(tMax % 1000 / 10);
+        fields.sec = Math.floor(tMax / 1000) % 60;
+        fields.min = Math.floor(tMax / 60000) % 60;
+        fields.hrs = Math.floor(tMax / 3600000);
+        return fields;
     },
 
     render: function () {
@@ -283,11 +290,7 @@ var Module = React.createClass({
             upToDownFrom = 'Down From:';
 
         //Set default limit configuration values
-        var tMax = this.props.timerMax;
-        var cs = Math.floor(tMax % 1000 / 10);
-        var sec = Math.floor(tMax / 1000) % 60;
-        var min = Math.floor(tMax / 60000) % 60;
-        var hrs = Math.floor(tMax / 3600000);
+        var fields = this.computeTimerFields();
 
         return (
             <div className={cssClasses}>
@@ -324,18 +327,37 @@ var Module = React.createClass({
                             <p className="moduleLimitText">Count {upToDownFrom}</p>
                             <div className="moduleLimitInputWrapper">
                                 <input type="text"
-                                    defaultValue={hrs} onFocus={this.blankField} onBlur={this.resetTimerMax} id="hrsField"
+                                    defaultValue={fields.hrs}
+                                    onFocus={this.blankField}
+                                    onBlur={this.resetTimerMax}
+                                    onChange={this.updateTimerMax}
+                                    id="hrsField"
                                 />
-                                :<input type="text"
-                                    defaultValue={min} onFocus={this.blankField} onBlur={this.resetTimerMax} id="minField"
+                                :
+                                <input type="text"
+                                    defaultValue={fields.min}
+                                    onFocus={this.blankField}
+                                    onBlur={this.resetTimerMax}
+                                    onChange={this.updateTimerMax}
+                                    id="minField"
                                 />
-                                :<input type="text"
-                                    defaultValue={sec} onFocus={this.blankField} onBlur={this.resetTimerMax} id="secField"
+                                :
+                                <input type="text"
+                                    defaultValue={fields.sec}
+                                    onFocus={this.blankField}
+                                    onBlur={this.resetTimerMax}
+                                    onChange={this.updateTimerMax}
+                                    id="secField"
                                 />
-                                :<input type="text"
-                                    defaultValue={cs} onFocus={this.blankField} onBlur={this.resetTimerMax} id="csField"
+                                :
+                                <input type="text"
+                                    defaultValue={fields.cs}
+                                    onFocus={this.blankField}
+                                    onBlur={this.resetTimerMax}
+                                    onChange={this.updateTimerMax}
+                                    id="csField"
                                 />
-                                <button type="button" disabled>Update</button>
+                                <button type="button" ref="moduleLimitButton" disabled>Update</button>
                             </div>
                         </div>
                     </div>
