@@ -151,14 +151,18 @@ var Stopwatch = React.createClass({
     },
 
     render: function () {
-        var ms = Math.floor(this.state.timerValue % 1000 / 10);
-        var sec = Math.floor(this.state.timerValue / 1000) % 60;
-        var min = Math.floor(this.state.timerValue / 60000) % 60;
-        var hrs = Math.floor(this.state.timerValue / 3600000);
+        //compute display timer values
+        var tValue = this.state.timerValue;
+        var cs = Math.floor(tValue % 1000 / 10);
+        var sec = Math.floor(tValue / 1000) % 60;
+        var min = Math.floor(tValue / 60000) % 60;
+        var hrs = Math.floor(tValue / 3600000);
         var display = [];
         display.push(pad(min, 2));
         display.push(pad(sec, 2));
-        display.push(pad(ms, 2));
+        display.push(pad(cs, 2));
+
+        //determine toggleButton state
         var toggleButton;
         if (this.state.running)
             toggleButton = <i className="fa fa-pause"></i>;
@@ -242,14 +246,25 @@ var Module = React.createClass({
     },
 
     render: function () {
+        //Highlight activeModule
         var cssClasses = 'Module';
         if (this.props.m_isActive)
             cssClasses += ' activeModule';
         var upToDownFrom;
+
+        //Set countUp/countDown limit text
         if (this.props.countUp)
             upToDownFrom = 'Up Towards:';
         else
             upToDownFrom = 'Down From:';
+
+        //Set default limit configuration values
+        var tMax = this.props.timerMax;
+        var cs = Math.floor(tMax % 1000 / 10);
+        var sec = Math.floor(tMax / 1000) % 60;
+        var min = Math.floor(tMax / 60000) % 60;
+        var hrs = Math.floor(tMax / 3600000);
+
         return (
             <div className={cssClasses}>
                 <div className="tabs">
