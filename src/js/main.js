@@ -298,12 +298,20 @@ var Module = React.createClass({
                                 </tr>
                             </table>
                             <p className="moduleLimitText">Count {upToDownFrom}</p>
-                            <input type="text"
-                                defaultValue={this.props.timerMax}
-                                onKeyDown={this.updateTimerMax}
-                                onFocus={this.blankField}
-                                onBlur={this.resetTimerMax}
-                            />
+                            <div className="moduleLimitInputWrapper">
+                                <input type="text" className="moduleLimitInputs"
+                                    defaultValue={hrs}
+                                />
+                                :<input type="text" className="moduleLimitInputs"
+                                    defaultValue={min}
+                                />
+                                :<input type="text" className="moduleLimitInputs"
+                                    defaultValue={sec}
+                                />
+                                :<input type="text" className="moduleLimitInputs"
+                                    defaultValue={cs}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className="tab">
