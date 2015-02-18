@@ -282,14 +282,22 @@ input[type=text]:focus, textarea:focus {
     z-index: 1;
 }
 
+.content * {
+    margin: .4em 0;
+}
+
+.content select {
+    margin: 0;
+}
+
 td.moduleTableLeft {
-    background-color: #f0f0f0;
+    /*background-color: #f0f0f0;*/
     font-weight: bold;
     width: 80%;
 }
 
 td.moduleTableRight {
-    background-color: #aaaaaa;
+    /*background-color: #aaaaaa;*/
     text-align: right;
     width: 20%;
 }
