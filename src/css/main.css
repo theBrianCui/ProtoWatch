@@ -282,6 +282,18 @@ input[type=text]:focus, textarea:focus {
     z-index: 1;
 }
 
+td.moduleTableLeft {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    width: 80%;
+}
+
+td.moduleTableRight {
+    background-color: #aaaaaa;
+    text-align: right;
+    width: 20%;
+}
+
 @media (max-width: 1024px) {
     .mainLinks a {
         height: 80px;

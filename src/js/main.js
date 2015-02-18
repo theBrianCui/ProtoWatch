@@ -247,9 +247,9 @@ var Module = React.createClass({
             cssClasses += ' activeModule';
         var upToDownFrom;
         if (this.props.countUp)
-            upToDownFrom = 'Up to:';
+            upToDownFrom = 'Up Towards:';
         else
-            upToDownFrom = 'Down from:';
+            upToDownFrom = 'Down From:';
         return (
             <div className={cssClasses}>
                 <div className="tabs">
@@ -258,27 +258,37 @@ var Module = React.createClass({
                         <label htmlFor={this.props.id + '-1'}>
                             Main Settings</label>
                         <div className="content">
-                            <p>Stopwatch ID: {this.props.id}</p>
-                            <p>Run Automatically:
-                                <input type="checkbox"
-                                    defaultChecked={this.props.autorun}
-                                    onChange={this.updateAutorun}
-                                />
-                            </p>
-                            <p>Count:
-                                <select value={'' + this.props.countUp} onChange={this.updateCountUp}>
-                                    <option value="true">up</option>
-                                    <option value="false">down</option>
-                                </select>
-                            </p>
-                            <p>{upToDownFrom}
-                                <input type="text"
-                                    defaultValue={this.props.timerMax}
-                                    onKeyDown={this.updateTimerMax}
-                                    onFocus={this.blankField}
-                                    onBlur={this.resetTimerMax}
-                                />
-                            </p>
+                            <table>
+                                <tr>
+                                    <td className="moduleTableLeft">Stopwatch ID:</td>
+                                    <td className="moduleTableRight">{this.props.id}</td>
+                                </tr>
+                                <tr>
+                                    <td className="moduleTableLeft">Run Automatically:</td>
+                                    <td className="moduleTableRight">
+                                        <input type="checkbox"
+                                            defaultChecked={this.props.autorun}
+                                            onChange={this.updateAutorun}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="moduleTableLeft">Count Direction:</td>
+                                    <td className="moduleTableRight">
+                                        <select value={'' + this.props.countUp} onChange={this.updateCountUp}>
+                                            <option value="true">up</option>
+                                            <option value="false">down</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p>Count {upToDownFrom}</p>
+                            <input type="text"
+                                defaultValue={this.props.timerMax}
+                                onKeyDown={this.updateTimerMax}
+                                onFocus={this.blankField}
+                                onBlur={this.resetTimerMax}
+                            />
                         </div>
                     </div>
                     <div className="tab">
@@ -286,7 +296,7 @@ var Module = React.createClass({
                         <label htmlFor={this.props.id + '-2'}>
                             Sounds</label>
                         <div className="content">
-                            <p>Stopwatch ID: {this.props.id}</p>
+                            <p>Sounds will go here! Soon!</p>
                         </div>
                     </div>
                 </div>
