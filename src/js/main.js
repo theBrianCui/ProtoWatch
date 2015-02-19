@@ -224,8 +224,9 @@ var Module = React.createClass({
         }
     },
 
-    resetTimerMax: function (event) {
+    resetTimerMax: function () { //TODO: generalize this function, along with updateTimerMax, and the buttons too
         //Set default limit configuration values
+        console.log('timerMax: ' + this.props.timerMax);
         var fields = this.computeTimerFields();
         this.refs.hrsField.getDOMNode().value = fields.hrs;
         this.refs.minField.getDOMNode().value = fields.min;
@@ -240,21 +241,30 @@ var Module = React.createClass({
         event.target.value = '';
     },
 
-    updateTimerMax: function (event) {
+    updateTimerMax: function () { //TODO: Sanitize inputs if updateTimerMax is called with faulty data
         console.log('updateTimerMax was called.');
-        this.setUpdateButton();
-        /*console.log('updateTimerMax was called. keypress: ' + event.keyCode);
-         if (event.keyCode == 13) {
-         var newTimerMax = parseInt(event.target.value);
-         if (!isNaN(newTimerMax)) {
-         */
-        /* clone current props to avoid modifying existing ones */
+        var newProps = JSON.parse(JSON.stringify(this.props));
+
+        var newTimerMax = (this.refs.hrsField.getDOMNode().value * 3600000);
+        newTimerMax += (this.refs.minField.getDOMNode().value * 60000);
+        newTimerMax += (this.refs.secField.getDOMNode().value * 1000);
+        newTimerMax += (this.refs.csField.getDOMNode().value * 10);
+
+        console.log('newTimerMax: ' + newTimerMax);
+
+        newProps.timerMax = newTimerMax;
+
+        this.handlePropUpdate(newProps);
         /*
-         var newProps = JSON.parse(JSON.stringify(this.props));
-         newProps.timerMax = newTimerMax;
-         this.handlePropUpdate(newProps);
-         }
-         }*/
+        Don't add any code after this, as the function will run in the context of the old props.
+        Put code inside componentDidUpdate instead.
+        */
+    },
+
+    componentDidUpdate: function () {
+        console.log('timerMax now: ' + this.props.timerMax);
+        this.resetTimerMax();
+        this.setUpdateButton();
     },
 
     computeTimerFields: function () {
