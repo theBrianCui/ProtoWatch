@@ -406,8 +406,9 @@ td.moduleTableRight {
     }
 
     .Module {
-        margin: 1em 0;
+        margin: 1em .8em;
         box-shadow: 0 3px 4px #d7d7d7;
+        border-radius: 0.6em;
         border: none;
     }
 
@@ -415,16 +416,10 @@ td.moduleTableRight {
         animation: none;
         -webkit-animation: none;
         box-shadow: 0 3px 4px #4090ff;
-        border: none;
-    }
-
-    .Module p {
-        margin: .4em 0;
     }
 
     .tabs {
-        margin-top: 1em;
-        min-height: 11em;
+        margin-top: 1.4em;
     }
 }
 
