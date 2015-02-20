@@ -227,7 +227,7 @@ var Module = React.createClass({
     resetTimerMax: function () { //TODO: generalize this function, along with updateTimerMax, and the buttons too
         //Set default limit configuration values
         console.log('timerMax: ' + this.props.timerMax);
-        var fields = this.computeTimerFields();
+        var fields = this.computeTimerMaxFields();
         this.refs.hrsField.getDOMNode().value = fields.hrs;
         this.refs.minField.getDOMNode().value = fields.min;
         this.refs.secField.getDOMNode().value = fields.sec;
@@ -241,24 +241,25 @@ var Module = React.createClass({
         event.target.value = '';
     },
 
-    updateTimerMax: function () { //TODO: Sanitize inputs if updateTimerMax is called with faulty data
+    updateTimerMax: function () {
         console.log('updateTimerMax was called.');
-        var newProps = JSON.parse(JSON.stringify(this.props));
+        if (this.verifyTimerMaxFields()) {
+            var newProps = JSON.parse(JSON.stringify(this.props));
 
-        var newTimerMax = (this.refs.hrsField.getDOMNode().value * 3600000);
-        newTimerMax += (this.refs.minField.getDOMNode().value * 60000);
-        newTimerMax += (this.refs.secField.getDOMNode().value * 1000);
-        newTimerMax += (this.refs.csField.getDOMNode().value * 10);
+            var newTimerMax = (parseInt(this.refs.hrsField.getDOMNode().value, 10) * 3600000);
+            newTimerMax += (parseInt(this.refs.minField.getDOMNode().value, 10) * 60000);
+            newTimerMax += (parseInt(this.refs.secField.getDOMNode().value, 10) * 1000);
+            newTimerMax += (parseInt(this.refs.csField.getDOMNode().value, 10) * 10);
 
-        console.log('newTimerMax: ' + newTimerMax);
+            console.log('newTimerMax: ' + newTimerMax);
+            newProps.timerMax = newTimerMax;
 
-        newProps.timerMax = newTimerMax;
-
-        this.handlePropUpdate(newProps);
+            this.handlePropUpdate(newProps);
+        }
         /*
-        Don't add any code after this, as the function will run in the context of the old props.
-        Put code inside componentDidUpdate instead.
-        */
+         Don't add any code after this, as the function will run in the context of the old props.
+         Put code inside componentDidUpdate instead.
+         */
     },
 
     componentDidUpdate: function () {
@@ -267,7 +268,7 @@ var Module = React.createClass({
         this.setUpdateButton();
     },
 
-    computeTimerFields: function () {
+    computeTimerMaxFields: function () {
         var tMax = this.props.timerMax;
         var fields = {};
         fields.cs = Math.floor(tMax % 1000 / 10);
@@ -277,20 +278,27 @@ var Module = React.createClass({
         return fields;
     },
 
-    setUpdateButton: function () {
-        var original = this.computeTimerFields();
+    verifyTimerMaxFields: function () { //Verified values 1) are valid and 2) are not equal their existing values.
+        var original = this.computeTimerMaxFields();
         var update = {};
-        update.hrs = this.refs.hrsField.getDOMNode().value;
-        update.min = this.refs.minField.getDOMNode().value;
-        update.sec = this.refs.secField.getDOMNode().value;
-        update.cs = this.refs.csField.getDOMNode().value;
+        update.hrs = parseInt(this.refs.hrsField.getDOMNode().value, 10);
+        update.min = parseInt(this.refs.minField.getDOMNode().value, 10);
+        update.sec = parseInt(this.refs.secField.getDOMNode().value, 10);
+        update.cs = parseInt(this.refs.csField.getDOMNode().value, 10);
 
-        if (!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs)
+        if ((!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs))
+            && (update.hrs >= 0 && update.min >= 0 && update.sec >= 0 && update.cs >= 0)
             && (original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs)) {
-            //this.refs.moduleLimitButton.getDOMNode().disabled = false;
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    setUpdateButton: function () { //All fields must be verified for the update button to be untucked.
+        if (this.verifyTimerMaxFields()) {
             this.refs.updateButtonWrapper.getDOMNode().className += ' untucked';
         } else {
-            //this.refs.moduleLimitButton.getDOMNode().disabled = true;
             this.refs.updateButtonWrapper.getDOMNode().className = 'updateButtonWrapper';
         }
     },
@@ -309,7 +317,7 @@ var Module = React.createClass({
             upToDownFrom = 'Down From:';
 
         //Set default limit configuration values
-        var fields = this.computeTimerFields();
+        var fields = this.computeTimerMaxFields();
 
         return (
             <div className={cssClasses}>
@@ -347,7 +355,7 @@ var Module = React.createClass({
                             <div className="updatableWrapper limitInputWrapper">
                                 <p className="limitText">Count {upToDownFrom}</p>
                                 {/* We use data-tag to identify elements and ref to select them */}
-                                <input type="text"
+                                <input type="3text"
                                     defaultValue={fields.hrs}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
