@@ -276,8 +276,8 @@ input[type=text]:focus, textarea:focus {
     z-index: 1;
 }
 
-.content * {
-    margin: .45em 0;
+.content td {
+    padding: .1em 0;
 }
 
 .content select {
@@ -297,7 +297,7 @@ td.moduleTableRight {
 }
 
 .moduleUpdatableDivider {
-    margin: 1em auto .5em;
+    margin: .8em auto .5em;
     width: 80%;
     height: 1px;
     background-color: #909090;
