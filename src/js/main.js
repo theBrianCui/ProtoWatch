@@ -288,10 +288,10 @@ var Module = React.createClass({
         if (!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs)
             && (original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs)) {
             //this.refs.moduleLimitButton.getDOMNode().disabled = false;
-            this.refs.moduleUpdateButtonWrapper.getDOMNode().className += ' untucked';
+            this.refs.updateButtonWrapper.getDOMNode().className += ' untucked';
         } else {
             //this.refs.moduleLimitButton.getDOMNode().disabled = true;
-            this.refs.moduleUpdateButtonWrapper.getDOMNode().className = 'moduleUpdateButtonWrapper';
+            this.refs.updateButtonWrapper.getDOMNode().className = 'updateButtonWrapper';
         }
     },
 
@@ -321,12 +321,12 @@ var Module = React.createClass({
                         <div className="content">
                             <table>
                                 <tr>
-                                    <td className="moduleTableLeft">Stopwatch ID:</td>
-                                    <td className="moduleTableRight">{this.props.id}</td>
+                                    <td className="tableLeft">Stopwatch ID:</td>
+                                    <td className="tableRight">{this.props.id}</td>
                                 </tr>
                                 <tr>
-                                    <td className="moduleTableLeft">Run Automatically:</td>
-                                    <td className="moduleTableRight">
+                                    <td className="tableLeft">Run Automatically:</td>
+                                    <td className="tableRight">
                                         <input type="checkbox"
                                             defaultChecked={this.props.autorun}
                                             onChange={this.updateAutorun}
@@ -334,8 +334,8 @@ var Module = React.createClass({
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td className="moduleTableLeft">Count Direction:</td>
-                                    <td className="moduleTableRight">
+                                    <td className="tableLeft">Count Direction:</td>
+                                    <td className="tableRight">
                                         <select value={'' + this.props.countUp} onChange={this.updateCountUp}>
                                             <option value="true">up</option>
                                             <option value="false">down</option>
@@ -343,9 +343,9 @@ var Module = React.createClass({
                                     </td>
                                 </tr>
                             </table>
-                            <div className="moduleUpdatableDivider"></div>
-                            <div className="moduleUpdatableWrapper moduleLimitInputWrapper">
-                                <p className="moduleLimitText">Count {upToDownFrom}</p>
+                            <div className="updatableDivider"></div>
+                            <div className="updatableWrapper limitInputWrapper">
+                                <p className="limitText">Count {upToDownFrom}</p>
                                 {/* We use data-tag to identify elements and ref to select them */}
                                 <input type="text"
                                     defaultValue={fields.hrs}
@@ -383,11 +383,11 @@ var Module = React.createClass({
                             Sounds</label>
                         <div className="content">
                             <p>Sounds will go here! Soon!</p>
-                            <div className="moduleUpdatableDivider"></div>
+                            <div className="updatableDivider"></div>
                         </div>
                     </div>
                 </div>
-                <div className="moduleUpdateButtonWrapper" ref="moduleUpdateButtonWrapper">
+                <div className="updateButtonWrapper" ref="updateButtonWrapper">
                     <button type="button"
                         ref="moduleLimitButton"
                         onClick={this.updateTimerMax}>Update</button>

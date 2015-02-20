@@ -284,29 +284,29 @@ input[type=text]:focus, textarea:focus {
     margin: 0;
 }
 
-.Module td.moduleTableLeft {
+.Module td.tableLeft {
     /*background-color: #f0f0f0;*/
     font-weight: bold;
     width: 80%;
 }
 
-.Module td.moduleTableRight {
+.Module td.tableRight {
     /*background-color: #aaaaaa;*/
     text-align: right;
     width: 20%;
 }
 
-.Module .moduleUpdatableDivider {
+.Module .updatableDivider {
     margin: .8em auto .5em;
     width: 80%;
     height: 1px;
     background-color: #909090;
 }
 
-.Module .moduleUpdatableWrapper {
+.Module .updatableWrapper {
 }
 
-.Module .moduleUpdateButtonWrapper {
+.Module .updateButtonWrapper {
     background-color: #ACD5F3;
     padding: .5em;
     text-align: center;
@@ -314,32 +314,32 @@ input[type=text]:focus, textarea:focus {
     transition: margin 0.25s;
 }
 
-.Module .moduleUpdateButtonWrapper.untucked {
+.Module .updateButtonWrapper.untucked {
     margin-top: 0;
 }
 
-.Module .moduleUpdateButtonWrapper button {
+.Module .updateButtonWrapper button {
     margin: 0 .2em;
 }
 
-.Module .moduleLimitText {
+.Module .limitText {
     font-weight: bold;
     text-align: center;
     margin: 0;
 }
 
-.Module .moduleLimitInputWrapper{
+.Module .limitInputWrapper{
     text-align: center;
     font-weight: bold;
     margin-top: 0;
 }
 
-.Module .moduleLimitInputWrapper button{
+.Module .limitInputWrapper button{
     margin-left: .15em;
     font-weight: normal;
 }
 
-.Module .moduleLimitInputWrapper input {
+.Module .limitInputWrapper input {
     display: inline-block;
     text-align: center;
     font-weight: normal;
