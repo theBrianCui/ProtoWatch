@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1718dd94-0dd7-46f9-92f3-c5b9a3fb97a8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/main.css" afterPath="$PROJECT_DIR$/src/css/main.css" />
+    <list default="true" id="1718dd94-0dd7-46f9-92f3-c5b9a3fb97a8" name="Default" comment="Fixed small input type error typo.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/main.js" afterPath="$PROJECT_DIR$/src/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ProtoWatch1.iws" />
@@ -50,7 +50,7 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="697">
+            <state vertical-scroll-proportion="-7.733333" vertical-offset="23" max-vertical-offset="697">
               <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
               <folding />
             </state>
@@ -60,21 +60,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="9163">
-              <caret line="393" column="55" selection-start-line="393" selection-start-column="55" selection-end-line="393" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.57949793" vertical-offset="5860" max-vertical-offset="9163">
+              <caret line="361" column="45" selection-start-line="361" selection-start-column="45" selection-end-line="361" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28870293" vertical-offset="7834" max-vertical-offset="9469">
-              <caret line="473" column="21" selection-start-line="473" selection-start-column="21" selection-end-line="473" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="7579" max-vertical-offset="9469">
+              <caret line="472" column="25" selection-start-line="472" selection-start-column="25" selection-end-line="472" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -102,8 +102,8 @@
         <option value="$PROJECT_DIR$/src/css/normalize.css" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/index.html" />
-        <option value="$PROJECT_DIR$/src/js/main.js" />
         <option value="$PROJECT_DIR$/src/css/main.css" />
+        <option value="$PROJECT_DIR$/src/js/main.js" />
       </list>
     </option>
   </component>
@@ -308,12 +308,6 @@
       <created>1423334817527</created>
       <option name="number" value="Default" />
       <updated>1423334817527</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Set autorun to false in default module properties.">
-      <created>1423980043118</created>
-      <option name="number" value="00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1423980043118</updated>
     </task>
     <task id="LOCAL-00054" summary="Increased the size of the main watch buttons.">
       <created>1423980568649</created>
@@ -603,7 +597,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424470986556</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Added touch-action: manipulation to combat 300ms touch delay">
+      <created>1424471136826</created>
+      <option name="number" value="00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1424471136826</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -628,9 +628,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32080537" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32080537" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -686,7 +686,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Modified tab names." />
     <MESSAGE value="Reduced the size of the stopwatch and button elements." />
     <MESSAGE value="Improved module appearance." />
     <MESSAGE value="Stored module settings in table format." />
@@ -711,7 +710,8 @@
     <MESSAGE value="Created and implemented verifyTimerMaxFields function." />
     <MESSAGE value="Added sample audio element, accessed through &quot;Sounds&quot; tab" />
     <MESSAGE value="Added touch-action: manipulation to combat 300ms touch delay" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added touch-action: manipulation to combat 300ms touch delay" />
+    <MESSAGE value="Fixed small input type error typo." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed small input type error typo." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1060,29 +1060,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/src/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="697">
-          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="7579" max-vertical-offset="9469">
+          <caret line="472" column="25" selection-start-line="472" selection-start-column="25" selection-end-line="472" selection-end-column="25" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/vendor/modernizr-2.8.3.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="136">
           <caret line="3" column="10381" selection-start-line="3" selection-start-column="10381" selection-end-line="3" selection-end-column="10381" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6916" max-vertical-offset="9163">
-          <caret line="393" column="55" selection-start-line="393" selection-start-column="55" selection-end-line="393" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -1095,10 +1084,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/main.css">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28870293" vertical-offset="7834" max-vertical-offset="9469">
-          <caret line="473" column="21" selection-start-line="473" selection-start-column="21" selection-end-line="473" selection-end-column="21" />
+        <state vertical-scroll-proportion="-7.733333" vertical-offset="23" max-vertical-offset="697">
+          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.57949793" vertical-offset="5860" max-vertical-offset="9163">
+          <caret line="361" column="45" selection-start-line="361" selection-start-column="45" selection-end-line="361" selection-end-column="45" />
           <folding />
         </state>
       </provider>

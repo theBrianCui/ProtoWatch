@@ -359,7 +359,7 @@ var Module = React.createClass({
                             <div className="updatableWrapper limitInputWrapper">
                                 <p className="limitText">Count {upToDownFrom}</p>
                                 {/* We use data-tag to identify elements and ref to select them */}
-                                <input type="3text"
+                                <input type="text"
                                     defaultValue={fields.hrs}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
