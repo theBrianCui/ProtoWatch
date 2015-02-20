@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1718dd94-0dd7-46f9-92f3-c5b9a3fb97a8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/main.css" afterPath="$PROJECT_DIR$/src/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/main.js" afterPath="$PROJECT_DIR$/src/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ProtoWatch1.iws" />
@@ -64,8 +63,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.470014" vertical-offset="4029" max-vertical-offset="9180">
-              <caret line="299" column="27" selection-start-line="299" selection-start-column="27" selection-end-line="299" selection-end-column="27" />
+            <state vertical-scroll-proportion="-1.7503487" vertical-offset="5998" max-vertical-offset="9316">
+              <caret line="279" column="35" selection-start-line="279" selection-start-column="35" selection-end-line="279" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -281,12 +280,6 @@
       <created>1423334817527</created>
       <option name="number" value="Default" />
       <updated>1423334817527</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Removed button scaling on screens &lt;= 640px">
-      <created>1423890451143</created>
-      <option name="number" value="00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1423890451143</updated>
     </task>
     <task id="LOCAL-00049" summary="Hid the hour display on small screens.">
       <created>1423894923565</created>
@@ -576,7 +569,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424466237639</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Cleaned up redundant CSS class names.">
+      <created>1424466629939</created>
+      <option name="number" value="00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1424466629939</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -659,7 +658,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added box shadow to modules to make them distinct." />
     <MESSAGE value="Added basic, though not working, tab implementation" />
     <MESSAGE value="Working implementation of tabs! Hoorah!" />
     <MESSAGE value="Improved tab and module styling." />
@@ -684,7 +682,8 @@
     <MESSAGE value="Modified and added margins to improve cross-browser compatibility." />
     <MESSAGE value="Removed and replaced inefficient * css selector." />
     <MESSAGE value="Nested .Module descendant classes inside .Module" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nested .Module descendant classes inside .Module" />
+    <MESSAGE value="Cleaned up redundant CSS class names." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up redundant CSS class names." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1070,8 +1069,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.470014" vertical-offset="4029" max-vertical-offset="9180">
-          <caret line="299" column="27" selection-start-line="299" selection-start-column="27" selection-end-line="299" selection-end-column="27" />
+        <state vertical-scroll-proportion="-1.7503487" vertical-offset="5998" max-vertical-offset="9316">
+          <caret line="279" column="35" selection-start-line="279" selection-start-column="35" selection-end-line="279" selection-end-column="35" />
           <folding />
         </state>
       </provider>

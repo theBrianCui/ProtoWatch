@@ -105,7 +105,10 @@ body {
     padding: 1.5em;
     margin: auto;
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     font-size: 1.1em;
 }
 
@@ -144,7 +147,7 @@ input[type=text]:focus, textarea:focus {
     background-color: #484848;
 }
 
-.mainLinks a.bigButton{
+.mainLinks a.bigButton {
     width: 19vw;
     /*min-width: 180px;*/
     vertical-align: middle;
@@ -152,16 +155,16 @@ input[type=text]:focus, textarea:focus {
     font-size: 6.5vw;
 }
 
-.mainLinks #toggleButton{
+.mainLinks #toggleButton {
     background-color: #00B008;
 }
 
-.mainLinks #resetButton{
+.mainLinks #resetButton {
     /*margin-left: -.05em;*/
     background-color: #D00;
 }
 
-.mainLinks a.leftRightButton{
+.mainLinks a.leftRightButton {
     width: 9vw;
     /*min-width: 80px;*/
     vertical-align: middle;
@@ -169,7 +172,7 @@ input[type=text]:focus, textarea:focus {
     font-size: 4.5vw;
 }
 
-.mainLinks .doubleArrow{
+.mainLinks .doubleArrow {
     margin-top: .1em;
 }
 
@@ -242,9 +245,11 @@ input[type=text]:focus, textarea:focus {
     clear: both;
     margin: 1.6em 0 0;
 }
+
 .Module .tab {
     float: left;
 }
+
 .Module .tab label {
     background: #e1e1e1;
     padding: .5em .5em .25em;
@@ -254,9 +259,11 @@ input[type=text]:focus, textarea:focus {
     position: relative;
     left: 1px;
 }
+
 .Module .tab [type=radio] {
     display: none;
 }
+
 .Module .content {
     position: absolute;
     top: 1.5em;
@@ -267,11 +274,13 @@ input[type=text]:focus, textarea:focus {
     padding: .5em .75em;
     border-top: 1px solid #ccc;
 }
+
 .Module [type=radio]:checked ~ label {
     background: white;
     border-bottom: 1px solid white;
     z-index: 2;
 }
+
 .Module [type=radio]:checked ~ label ~ .content {
     z-index: 1;
 }
@@ -328,13 +337,13 @@ input[type=text]:focus, textarea:focus {
     margin: 0;
 }
 
-.Module .limitInputWrapper{
+.Module .limitInputWrapper {
     text-align: center;
     font-weight: bold;
     margin-top: 0;
 }
 
-.Module .limitInputWrapper button{
+.Module .limitInputWrapper button {
     margin-left: .15em;
     font-weight: normal;
 }
@@ -353,13 +362,13 @@ input[type=text]:focus, textarea:focus {
         height: 80px;
     }
 
-    .mainLinks a.bigButton{
+    .mainLinks a.bigButton {
         width: 190px;
         line-height: 80px;
         font-size: 66px;
     }
 
-    .mainLinks a.leftRightButton{
+    .mainLinks a.leftRightButton {
         width: 90px;
         line-height: 80px;
         font-size: 38px;
@@ -372,24 +381,23 @@ input[type=text]:focus, textarea:focus {
         line-height: 16vw;
     }
 
-/*    .mainLinks a {
-        height: 80px;
-    }
+    /*    .mainLinks a {
+            height: 80px;
+        }
 
-    .mainLinks a.bigButton{
-        width: 34%;
-        line-height: 82px;
-        font-size: 70px;
-    }
+        .mainLinks a.bigButton{
+            width: 34%;
+            line-height: 82px;
+            font-size: 70px;
+        }
 
-    .mainLinks a.leftRightButton{
-        width: 16%;
-        *//*min-width: 80px;*//*
-        vertical-align: middle;
-        line-height: 80px;
-        font-size: 50px;
-    }*/
-
+        .mainLinks a.leftRightButton{
+            width: 16%;
+            *//*min-width: 80px;*//*
+            vertical-align: middle;
+            line-height: 80px;
+            font-size: 50px;
+        }*/
     .tabs {
         min-width: unset;
     }
@@ -416,7 +424,7 @@ input[type=text]:focus, textarea:focus {
         border: none;
     }
 
-    .Module.activeModule{
+    .Module.activeModule {
         animation: none;
         -webkit-animation: none;
         box-shadow: 0 3px 4px #4090ff;
@@ -433,25 +441,25 @@ input[type=text]:focus, textarea:focus {
         line-height: 1.25em;
     }
 
-    .mainLinks a.bigButton{
+    .mainLinks a.bigButton {
         width: 50%;
         line-height: 82px;
         font-size: 70px;
     }
 
-    .mainLinks a.leftRightButton{
+    .mainLinks a.leftRightButton {
         display: none;
     }
-/*
-    .lowerLinksWrapper {
-        display: block;
-    }
 
-    .lowerLinksWrapper a.leftRightButton{
-        width: 50%;
-        display: inline-block;
-    }*/
+    /*
+        .lowerLinksWrapper {
+            display: block;
+        }
 
+        .lowerLinksWrapper a.leftRightButton{
+            width: 50%;
+            display: inline-block;
+        }*/
     #hourDisplay {
         display: none;
     }
