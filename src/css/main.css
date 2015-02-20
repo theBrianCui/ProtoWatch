@@ -235,17 +235,17 @@ input[type=text]:focus, textarea:focus {
     }
 }
 
-.tabs {
+.Module .tabs {
     position: relative;
     min-height: 14em; /* This part sucks */
     min-width: 20em;
     clear: both;
     margin: 1.6em 0 0;
 }
-.tab {
+.Module .tab {
     float: left;
 }
-.tab label {
+.Module .tab label {
     background: #e1e1e1;
     padding: .5em .5em .25em;
     border-top: 1px solid #ccc;
@@ -254,10 +254,10 @@ input[type=text]:focus, textarea:focus {
     position: relative;
     left: 1px;
 }
-.tab [type=radio] {
+.Module .tab [type=radio] {
     display: none;
 }
-.content {
+.Module .content {
     position: absolute;
     top: 1.5em;
     left: 0;
@@ -267,46 +267,46 @@ input[type=text]:focus, textarea:focus {
     padding: .5em .75em;
     border-top: 1px solid #ccc;
 }
-[type=radio]:checked ~ label {
+.Module [type=radio]:checked ~ label {
     background: white;
     border-bottom: 1px solid white;
     z-index: 2;
 }
-[type=radio]:checked ~ label ~ .content {
+.Module [type=radio]:checked ~ label ~ .content {
     z-index: 1;
 }
 
-.content td {
+.Module .content td {
     padding: .1em 0;
 }
 
-.content select {
+.Module .content select {
     margin: 0;
 }
 
-td.moduleTableLeft {
+.Module td.moduleTableLeft {
     /*background-color: #f0f0f0;*/
     font-weight: bold;
     width: 80%;
 }
 
-td.moduleTableRight {
+.Module td.moduleTableRight {
     /*background-color: #aaaaaa;*/
     text-align: right;
     width: 20%;
 }
 
-.moduleUpdatableDivider {
+.Module .moduleUpdatableDivider {
     margin: .8em auto .5em;
     width: 80%;
     height: 1px;
     background-color: #909090;
 }
 
-.moduleUpdatableWrapper {
+.Module .moduleUpdatableWrapper {
 }
 
-.moduleUpdateButtonWrapper {
+.Module .moduleUpdateButtonWrapper {
     background-color: #ACD5F3;
     padding: .5em;
     text-align: center;
@@ -314,32 +314,32 @@ td.moduleTableRight {
     transition: margin 0.25s;
 }
 
-.moduleUpdateButtonWrapper.untucked {
+.Module .moduleUpdateButtonWrapper.untucked {
     margin-top: 0;
 }
 
-.moduleUpdateButtonWrapper button {
+.Module .moduleUpdateButtonWrapper button {
     margin: 0 .2em;
 }
 
-.moduleLimitText {
+.Module .moduleLimitText {
     font-weight: bold;
     text-align: center;
     margin: 0;
 }
 
-.moduleLimitInputWrapper{
+.Module .moduleLimitInputWrapper{
     text-align: center;
     font-weight: bold;
     margin-top: 0;
 }
 
-.moduleLimitInputWrapper button{
+.Module .moduleLimitInputWrapper button{
     margin-left: .15em;
     font-weight: normal;
 }
 
-.moduleLimitInputWrapper input {
+.Module .moduleLimitInputWrapper input {
     display: inline-block;
     text-align: center;
     font-weight: normal;
