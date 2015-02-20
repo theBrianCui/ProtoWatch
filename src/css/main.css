@@ -259,7 +259,7 @@ input[type=text]:focus, textarea:focus {
 }
 .content {
     position: absolute;
-    top: 22px;
+    top: 1.5em;
     left: 0;
     background: white;
     right: 0;
@@ -310,12 +310,16 @@ td.moduleTableRight {
     background-color: #ACD5F3;
     padding: .5em;
     text-align: center;
-    margin-top: -2.8em;
+    margin-top: -2.85em;
     transition: margin 0.25s;
 }
 
 .moduleUpdateButtonWrapper.untucked {
     margin-top: 0;
+}
+
+.moduleUpdateButtonWrapper button {
+    margin: 0 .2em;
 }
 
 .moduleLimitText {
