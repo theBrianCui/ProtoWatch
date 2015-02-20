@@ -465,6 +465,15 @@ input[type=text]:focus, textarea:focus {
     }
 }
 
+a, button, input, label, select
+{
+    -ms-touch-action: manipulation; /* IE10  */
+    touch-action: manipulation;     /* IE11+ */
+    -ms-touch-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
