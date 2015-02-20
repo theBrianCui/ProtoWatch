@@ -303,6 +303,10 @@ var Module = React.createClass({
         }
     },
 
+    playAudioSample: function () {
+        document.getElementById('sounds_bloop').play()
+    },
+
     render: function () {
         //Highlight activeModule
         var cssClasses = 'Module';
@@ -390,7 +394,7 @@ var Module = React.createClass({
                         <label htmlFor={this.props.id + '-2'}>
                             Sounds</label>
                         <div className="content">
-                            <p>Sounds will go here! Soon!</p>
+                            <button onClick={this.playAudioSample}>Play the Audio</button>
                             <div className="updatableDivider"></div>
                         </div>
                     </div>

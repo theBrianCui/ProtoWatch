@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1718dd94-0dd7-46f9-92f3-c5b9a3fb97a8" name="Default" comment="Created and implemented verifyTimerMaxFields function.">
+    <list default="true" id="1718dd94-0dd7-46f9-92f3-c5b9a3fb97a8" name="Default" comment="Added sample audio element, accessed through &quot;Sounds&quot; tab">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sounds/bloop.mp3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/main.js" afterPath="$PROJECT_DIR$/src/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -30,8 +32,18 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1020">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.6153846" vertical-offset="306" max-vertical-offset="1071">
+              <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modernizr-2.8.3.min.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/vendor/modernizr-2.8.3.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="136">
+              <caret line="3" column="10381" selection-start-line="3" selection-start-column="10381" selection-end-line="3" selection-end-column="10381" />
               <folding />
             </state>
           </provider>
@@ -53,8 +65,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6820084" vertical-offset="4621" max-vertical-offset="9095">
-              <caret line="291" column="24" selection-start-line="291" selection-start-column="24" selection-end-line="291" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.46861926" vertical-offset="6457" max-vertical-offset="9163">
+              <caret line="393" column="61" selection-start-line="393" selection-start-column="61" selection-end-line="393" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -90,9 +102,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/js/snippets.js" />
         <option value="$PROJECT_DIR$/src/css/normalize.css" />
-        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/css/main.css" />
+        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/js/main.js" />
       </list>
     </option>
@@ -159,6 +171,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProtoWatch1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProtoWatch1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sounds" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -280,12 +310,6 @@
       <created>1423334817527</created>
       <option name="number" value="Default" />
       <updated>1423334817527</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Added webkit prefixes to CSS animations.">
-      <created>1423948528129</created>
-      <option name="number" value="00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1423948528130</updated>
     </task>
     <task id="LOCAL-00051" summary="Commented out unused jQuery references (for now).">
       <created>1423979614882</created>
@@ -575,7 +599,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424466656714</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="Created and implemented verifyTimerMaxFields function.">
+      <created>1424469101008</created>
+      <option name="number" value="00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1424469101009</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -600,9 +630,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32080537" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32080537" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -658,7 +688,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Improved tab and module styling." />
     <MESSAGE value="Changed animation tags to shorthand version." />
     <MESSAGE value="Modified tab names." />
     <MESSAGE value="Reduced the size of the stopwatch and button elements." />
@@ -683,7 +712,8 @@
     <MESSAGE value="Cleaned up redundant CSS class names." />
     <MESSAGE value="Formatted CSS code." />
     <MESSAGE value="Created and implemented verifyTimerMaxFields function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created and implemented verifyTimerMaxFields function." />
+    <MESSAGE value="Added sample audio element, accessed through &quot;Sounds&quot; tab" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sample audio element, accessed through &quot;Sounds&quot; tab" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -692,14 +722,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6256">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1209" max-vertical-offset="1519">
@@ -1040,14 +1062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="279" max-vertical-offset="1860">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="697">
@@ -1059,6 +1073,14 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/vendor/modernizr-2.8.3.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="136">
+          <caret line="3" column="10381" selection-start-line="3" selection-start-column="10381" selection-end-line="3" selection-end-column="10381" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7630" max-vertical-offset="9316">
@@ -1067,10 +1089,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846" vertical-offset="306" max-vertical-offset="1071">
+          <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6820084" vertical-offset="4621" max-vertical-offset="9095">
-          <caret line="291" column="24" selection-start-line="291" selection-start-column="24" selection-end-line="291" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.46861926" vertical-offset="6457" max-vertical-offset="9163">
+          <caret line="393" column="61" selection-start-line="393" selection-start-column="61" selection-end-line="393" selection-end-column="61" />
           <folding />
         </state>
       </provider>
