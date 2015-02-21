@@ -15,6 +15,15 @@ ProtoWatch relies primarily on the following files:
  2. *index.html* modifies the page that holds the ProtoWatch app. Very little is done here.
  3. *css/main.css* makes everything look pretty.
 
+Understanding the Source Code
+--------------------------
+
+**Why don't Modules have state?**
+Because of how rarely they are updated (relative to the Stopwatch), they were designed to work without state. This makes it slower to update the individual properties of Modules, as they have to pass through the Main component first, but it reduces the overall complexity of updating the state of the Main component by not having to refresh the state of its children.
+
+**What's with the repeated use of JSON.stringify and JSON.parse?**
+Often times when modifying the state or properties of an object in React, it is necessary to quickly clone the object itself to avoid modifying the existing object. Since properties are considered immutable, it is often safer to quickly clone properties and modify those to prevent internal contextual conflicts from occurring.
+
 Deploying for Production/Release
 --------------------------
 
@@ -33,3 +42,4 @@ The master source code for ProtoWatch is written with [JSX](http://facebook.gith
   `<script src="js/main.js"></script>`
 
 Now, when the middleman branch is merged into gh-pages, gh-pages receives pure JavaScript.
+

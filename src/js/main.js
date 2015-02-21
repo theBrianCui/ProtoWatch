@@ -313,13 +313,9 @@ var Module = React.createClass({
         update.sec = parseInt(this.refs.secField.getDOMNode().value, 10);
         update.cs = parseInt(this.refs.csField.getDOMNode().value, 10);
 
-        if ((!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs))
+        return ((!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs))
             && (update.hrs >= 0 && update.min >= 0 && update.sec >= 0 && update.cs >= 0)
-            && (original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs)) {
-            return true;
-        } else {
-            return false;
-        }
+            && (original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs))
     },
 
     setUpdateButton: function () { //All fields must be verified for the update button to be untucked.
