@@ -5,6 +5,10 @@ function pad(str, max) {
     return str.length < max ? pad("0" + str, max) : str;
 }
 
+function quickClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
 var Stopwatch = React.createClass({
     getInitialState: function () {
         var gIS_endTime = 0;
@@ -202,6 +206,31 @@ var Stopwatch = React.createClass({
 });
 
 var Module = React.createClass({
+    shouldComponentUpdate: function(nextProps, nextState) {
+        console.log('Old props: ' + JSON.stringify(this.props));
+        console.log('New props: ' + JSON.stringify(nextProps));
+
+        var oldProps_noActive = JSON.parse(JSON.stringify(this.props));
+        var newProps_noActive = JSON.parse(JSON.stringify(nextProps));
+        delete oldProps_noActive.m_isActive;
+        delete newProps_noActive.m_isActive;
+
+        console.log('Old props without active: ' + JSON.stringify(oldProps_noActive));
+        console.log('New props without active: ' + JSON.stringify(newProps_noActive));
+        //light equality test
+        if(JSON.stringify(oldProps_noActive) == JSON.stringify(newProps_noActive)) {
+            console.log('Old props and new props match!');
+            console.log('Was active: ' + this.props.m_isActive + ', will be active: ' + nextProps.m_isActive);
+            if (this.props.m_isActive && !nextProps.m_isActive) {
+                document.getElementById(this.props.id).className = 'Module';
+            }else if (!this.props.m_isActive && nextProps.m_isActive){
+                document.getElementById(this.props.id).className = 'Module activeModule';
+            }
+            return false;
+        }
+        return true;
+    },
+
     handlePropUpdate: function (newProps) {
         this.props.m_moduleUpdate(newProps);
     },
@@ -324,7 +353,7 @@ var Module = React.createClass({
         var fields = this.computeTimerMaxFields();
 
         return (
-            <div className={cssClasses}>
+            <div id={this.props.id} className={cssClasses}>
                 <div className="tabs">
                     <div className="tab">
                         <input type="radio" id={this.props.id + '-1'} name={this.props.id} defaultChecked={true} />
@@ -486,10 +515,10 @@ var Main = React.createClass({
 
     cycleActive: function (currentIndex, nextIndex) {
         if (currentIndex != nextIndex) {
-            var currentActiveStopwatchProps = this.state.Modules[currentIndex].props;
+            var currentActiveStopwatchProps = JSON.parse(JSON.stringify(this.state.Modules[currentIndex].props));
             currentActiveStopwatchProps.m_isActive = false;
             this.moduleUpdate(currentActiveStopwatchProps);
-            var nextActiveStopwatchProps = this.state.Modules[nextIndex].props;
+            var nextActiveStopwatchProps = JSON.parse(JSON.stringify(this.state.Modules[nextIndex].props));
             nextActiveStopwatchProps.m_isActive = true;
             this.moduleUpdate(nextActiveStopwatchProps);
         }
