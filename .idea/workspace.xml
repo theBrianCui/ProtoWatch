@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1718dd94-0dd7-46f9-92f3-c5b9a3fb97a8" name="Default" comment="Disabled render when all module objects are equal. &#10;&#10;This preserves the state of forms. The active highlight state is managed manually through the DOM API.">
+    <list default="true" id="1718dd94-0dd7-46f9-92f3-c5b9a3fb97a8" name="Default" comment="Added and implemented quickClone function:&#10;&#10;Replaces JSON.parse(JSON.stringify)">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/main.js" afterPath="$PROJECT_DIR$/src/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -63,8 +63,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1744373" vertical-offset="0" max-vertical-offset="17608">
-              <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.48197114" vertical-offset="9488" max-vertical-offset="17546">
+              <caret line="319" column="9" selection-start-line="319" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -310,12 +310,6 @@
       <created>1423334817527</created>
       <option name="number" value="Default" />
       <updated>1423334817527</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Increased the size of the main watch buttons.">
-      <created>1423980652533</created>
-      <option name="number" value="00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1423980652533</updated>
     </task>
     <task id="LOCAL-00056" summary="Applied new color scheme">
       <created>1424022553855</created>
@@ -605,7 +599,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424471386894</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Disabled render when all module objects are equal. &#10;&#10;This preserves the state of forms. The active highlight state is managed manually through the DOM API.">
+      <created>1424554761165</created>
+      <option name="number" value="00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1424554761167</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -632,7 +632,7 @@
     <frame x="-231" y="1042" width="2176" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32062256" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32009345" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -688,7 +688,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Improved module appearance." />
     <MESSAGE value="Stored module settings in table format." />
     <MESSAGE value="Split off stopwatch limit to have its own element." />
     <MESSAGE value="Improved module content spacing." />
@@ -713,7 +712,8 @@
     <MESSAGE value="Added touch-action: manipulation to combat 300ms touch delay" />
     <MESSAGE value="Fixed small input type error typo." />
     <MESSAGE value="Disabled render when all module objects are equal. &#10;&#10;This preserves the state of forms. The active highlight state is managed manually through the DOM API." />
-    <option name="LAST_COMMIT_MESSAGE" value="Disabled render when all module objects are equal. &#10;&#10;This preserves the state of forms. The active highlight state is managed manually through the DOM API." />
+    <MESSAGE value="Added and implemented quickClone function:&#10;&#10;Replaces JSON.parse(JSON.stringify)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added and implemented quickClone function:&#10;&#10;Replaces JSON.parse(JSON.stringify)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1101,8 +1101,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1744373" vertical-offset="0" max-vertical-offset="17608">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.48197114" vertical-offset="9488" max-vertical-offset="17546">
+          <caret line="319" column="9" selection-start-line="319" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
           <folding />
         </state>
       </provider>

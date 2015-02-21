@@ -207,20 +207,18 @@ var Stopwatch = React.createClass({
 
 var Module = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
-        console.log('Old props: ' + JSON.stringify(this.props));
-        console.log('New props: ' + JSON.stringify(nextProps));
-
-        var oldProps_noActive = JSON.parse(JSON.stringify(this.props));
-        var newProps_noActive = JSON.parse(JSON.stringify(nextProps));
+        //console.log('Old props: ' + JSON.stringify(this.props));
+        //console.log('New props: ' + JSON.stringify(nextProps));
+        var oldProps_noActive = quickClone(this.props);
+        var newProps_noActive = quickClone(nextProps);
         delete oldProps_noActive.m_isActive;
         delete newProps_noActive.m_isActive;
-
-        console.log('Old props without active: ' + JSON.stringify(oldProps_noActive));
-        console.log('New props without active: ' + JSON.stringify(newProps_noActive));
+        //console.log('Old props without active: ' + JSON.stringify(oldProps_noActive));
+        //console.log('New props without active: ' + JSON.stringify(newProps_noActive));
         //light equality test
         if(JSON.stringify(oldProps_noActive) == JSON.stringify(newProps_noActive)) {
-            console.log('Old props and new props match!');
-            console.log('Was active: ' + this.props.m_isActive + ', will be active: ' + nextProps.m_isActive);
+            //console.log('Old props and new props match!');
+            //console.log('Was active: ' + this.props.m_isActive + ', will be active: ' + nextProps.m_isActive);
             if (this.props.m_isActive && !nextProps.m_isActive) {
                 document.getElementById(this.props.id).className = 'Module';
             }else if (!this.props.m_isActive && nextProps.m_isActive){
@@ -238,7 +236,7 @@ var Module = React.createClass({
     updateAutorun: function (event) {
         var newAutorun = event.target.checked;
         console.log('updateAutorun was called. value: ' + newAutorun);
-        var newProps = JSON.parse(JSON.stringify(this.props));
+        var newProps = quickClone(this.props);
         newProps.autorun = newAutorun;
         this.handlePropUpdate(newProps);
     },
@@ -247,7 +245,7 @@ var Module = React.createClass({
         console.log('updateCountUp was called. value: ' + event.target.value);
         var newCountUp = (event.target.value == 'true'); //convert to boolean
         if (this.props.countUp != newCountUp) {
-            var newProps = JSON.parse(JSON.stringify(this.props));
+            var newProps = quickClone(this.props);
             newProps.countUp = newCountUp;
             this.handlePropUpdate(newProps);
         }
@@ -273,7 +271,7 @@ var Module = React.createClass({
     updateTimerMax: function () {
         console.log('updateTimerMax was called.');
         if (this.verifyTimerMaxFields()) {
-            var newProps = JSON.parse(JSON.stringify(this.props));
+            var newProps = quickClone(this.props);
 
             var newTimerMax = (parseInt(this.refs.hrsField.getDOMNode().value, 10) * 3600000);
             newTimerMax += (parseInt(this.refs.minField.getDOMNode().value, 10) * 60000);
@@ -515,10 +513,10 @@ var Main = React.createClass({
 
     cycleActive: function (currentIndex, nextIndex) {
         if (currentIndex != nextIndex) {
-            var currentActiveStopwatchProps = JSON.parse(JSON.stringify(this.state.Modules[currentIndex].props));
+            var currentActiveStopwatchProps = quickClone(this.state.Modules[currentIndex].props);
             currentActiveStopwatchProps.m_isActive = false;
             this.moduleUpdate(currentActiveStopwatchProps);
-            var nextActiveStopwatchProps = JSON.parse(JSON.stringify(this.state.Modules[nextIndex].props));
+            var nextActiveStopwatchProps = quickClone(this.state.Modules[nextIndex].props);
             nextActiveStopwatchProps.m_isActive = true;
             this.moduleUpdate(nextActiveStopwatchProps);
         }
