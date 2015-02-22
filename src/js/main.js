@@ -206,8 +206,8 @@ var Stopwatch = React.createClass({
 });
 
 var Module = React.createClass({
-    shouldComponentUpdate: function(nextProps, nextState) {
-        //console.log('Old props: ' + JSON.stringify(this.props));
+/*    shouldComponentUpdate: function(nextProps, nextState) {
+*//*        //console.log('Old props: ' + JSON.stringify(this.props));
         //console.log('New props: ' + JSON.stringify(nextProps));
         var oldProps_noActive = quickClone(this.props);
         var newProps_noActive = quickClone(nextProps);
@@ -226,8 +226,8 @@ var Module = React.createClass({
             }
             return false;
         }
-        return true;
-    },
+        return true;*//*
+    },*/
 
     handlePropUpdate: function (newProps) {
         this.props.m_moduleUpdate(newProps);
@@ -290,8 +290,8 @@ var Module = React.createClass({
     },
 
     componentDidUpdate: function () {
-        console.log('timerMax now: ' + this.props.timerMax);
-        this.resetTimerMax();
+        //console.log('timerMax now: ' + this.props.timerMax);
+        //this.resetTimerMax();
         this.setUpdateButton();
     },
 
