@@ -206,33 +206,16 @@ var Stopwatch = React.createClass({
 });
 
 var Module = React.createClass({
-/*    shouldComponentUpdate: function(nextProps, nextState) {
-*//*        //console.log('Old props: ' + JSON.stringify(this.props));
-        //console.log('New props: ' + JSON.stringify(nextProps));
-        var oldProps_noActive = quickClone(this.props);
-        var newProps_noActive = quickClone(nextProps);
-        delete oldProps_noActive.m_isActive;
-        delete newProps_noActive.m_isActive;
-        //console.log('Old props without active: ' + JSON.stringify(oldProps_noActive));
-        //console.log('New props without active: ' + JSON.stringify(newProps_noActive));
-        //light equality test
-        if(JSON.stringify(oldProps_noActive) == JSON.stringify(newProps_noActive)) {
-            //console.log('Old props and new props match!');
-            //console.log('Was active: ' + this.props.m_isActive + ', will be active: ' + nextProps.m_isActive);
-            if (this.props.m_isActive && !nextProps.m_isActive) {
-                document.getElementById(this.props.id).className = 'Module';
-            }else if (!this.props.m_isActive && nextProps.m_isActive){
-                document.getElementById(this.props.id).className = 'Module activeModule';
-            }
-            return false;
-        }
-        return true;*//*
-    },*/
-
     handlePropUpdate: function (newProps) {
         this.props.m_moduleUpdate(newProps);
     },
 
+    blankField: function (event) {
+        //console.log('className: ' + this.refs.confirmButton.getDOMNode().className);
+        event.target.value = '';
+    },
+
+    /* Fields above the break are updated in real time. They get their own update functions. */
     updateAutorun: function (event) {
         var newAutorun = event.target.checked;
         console.log('updateAutorun was called. value: ' + newAutorun);
@@ -251,9 +234,13 @@ var Module = React.createClass({
         }
     },
 
-    resetTimerMax: function () { //TODO: generalize this function, along with updateTimerMax, and the buttons too
+    /*
+     We can't just use this.forceUpdate() here because React is a little too smart for its own good,
+     and won't update the form fields back to their default state. So instead, we manually reset the form fields
+     to their default state.
+     */
+    resetFormFields: function () {
         //Set default limit configuration values
-        console.log('timerMax: ' + this.props.timerMax);
         var fields = this.computeTimerMaxFields();
         this.refs.hrsField.getDOMNode().value = fields.hrs;
         this.refs.minField.getDOMNode().value = fields.min;
@@ -263,12 +250,8 @@ var Module = React.createClass({
         this.setUpdateButton();
     },
 
-    blankField: function (event) {
-        //console.log('className: ' + this.refs.confirmButton.getDOMNode().className);
-        event.target.value = '';
-    },
-
-    updateTimerMax: function () {
+    /* Take the modified contents of form fields and update this module's props with them. */
+    updateFormFields: function () {
         console.log('updateTimerMax was called.');
         if (this.verifyTimerMaxFields()) {
             var newProps = quickClone(this.props);
@@ -425,10 +408,10 @@ var Module = React.createClass({
                 <div className="updateButtonWrapper" ref="updateButtonWrapper">
                     <button type="button"
                         ref="moduleLimitButton"
-                        onClick={this.updateTimerMax}>Update</button>
+                        onClick={this.updateFormFields}>Update</button>
                     <button type="button"
                         ref="moduleLimitButton"
-                        onClick={this.resetTimerMax} data-tag="resetButton">Revert</button>
+                        onClick={this.resetFormFields} data-tag="resetButton">Revert</button>
                 </div>
             </div>
         );
