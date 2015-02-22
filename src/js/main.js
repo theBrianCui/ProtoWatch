@@ -1,8 +1,8 @@
 React.initializeTouchEvents(true);
 
-function pad(str, max) {
+function pad2(str) {
     str = '' + str;
-    return str.length < max ? pad("0" + str, max) : str;
+    return str.length < 2 ? ('0' + str) : str;
 }
 
 function quickClone(obj) {
@@ -162,9 +162,9 @@ var Stopwatch = React.createClass({
         var min = Math.floor(tValue / 60000) % 60;
         var hrs = Math.floor(tValue / 3600000);
         var display = [];
-        display.push(pad(min, 2));
-        display.push(pad(sec, 2));
-        display.push(pad(cs, 2));
+        display.push(pad2(min));
+        display.push(pad2(sec));
+        display.push(pad2(cs));
 
         //determine toggleButton state
         var toggleButton;
@@ -175,7 +175,7 @@ var Stopwatch = React.createClass({
         return (
             <div className="mainWrapper">
                 <p className="mainWatch">
-                    <span id="hourDisplay">{pad(hrs, 2)}:</span>{display.join(':')}</p>
+                    <span id="hourDisplay">{pad2(hrs)}:</span>{display.join(':')}</p>
                 <p className="mainLinks">
                     <span>
                         <span className="mainLinksWrapper">
