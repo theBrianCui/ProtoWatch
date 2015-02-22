@@ -200,16 +200,36 @@ input[type=text]:focus, textarea:focus {
     /*padding: 0 1em;*/
     margin: 1em .5em;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     background-color: #ACD5F3;
     border: 1px solid #d7d7d7;
     box-shadow: 0 5px 8px #d7d7d7;
-    min-height: 12em;
-    min-width: 14em;
+    /*min-height: 12em;*/
+    /*min-width: 14em;*/
     padding: .1em 0 0 0;
     font-size: .9em;
     border-radius: .8em;
     overflow: hidden;
+}
+
+.Module#addModuleButton {
+    margin-left: 1.5em;
+    min-height: 11em;
+    min-width: 15em;
+    border: .3em dashed #549df3;
+    color: #549df3;
+    background-color: rgba(172, 213, 243, 0.5);
+}
+
+.Module#addModuleButton:hover {
+    cursor: pointer;
+}
+
+.Module#addModuleButton p{
+    font-size: 5em;
+    line-height: 50%;
+    font-weight: bold;
+    text-align: center;
 }
 
 .Module.activeModule {
