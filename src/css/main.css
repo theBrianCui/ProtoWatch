@@ -218,10 +218,11 @@ input[type=text]:focus, textarea:focus {
     min-width: 15em;
     border: .3em dashed #549df3;
     color: #549df3;
-    background-color: rgba(172, 213, 243, 0.5);
+    background-color: rgba(172, 213, 243, 0.50);
 }
 
 .Module#addModuleButton:hover {
+    background-color: #ACD5F3;
     cursor: pointer;
 }
 
