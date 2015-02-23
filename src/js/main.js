@@ -241,11 +241,11 @@ var Module = React.createClass({
      */
     resetFormFields: function () {
         //Set default limit configuration values
-        var fields = this.computeTimerMaxFields();
-        this.refs.hrsField.getDOMNode().value = fields.hrs;
-        this.refs.minField.getDOMNode().value = fields.min;
-        this.refs.secField.getDOMNode().value = fields.sec;
-        this.refs.csField.getDOMNode().value = fields.cs;
+        var timerMaxFields = this.computeTimerMaxFields();
+        this.refs.hrsField.getDOMNode().value = timerMaxFields.hrs;
+        this.refs.minField.getDOMNode().value = timerMaxFields.min;
+        this.refs.secField.getDOMNode().value = timerMaxFields.sec;
+        this.refs.csField.getDOMNode().value = timerMaxFields.cs;
 
         this.setUpdateButton();
     },
