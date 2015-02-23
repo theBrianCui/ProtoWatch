@@ -306,22 +306,28 @@ input[type=text]:focus, textarea:focus {
     z-index: 1;
 }
 
-.Module .content td {
-    padding: .1em 0;
+.Module select {
+    margin: 0;
 }
 
-.Module .content select {
-    margin: 0;
+.Module table {
+    width: 100%;
+}
+
+.Module td {
+    padding: .1em 0;
 }
 
 .Module td.tableLeft {
     /*background-color: #f0f0f0;*/
     font-weight: bold;
     width: 80%;
+    text-align: left;
 }
 
 .Module td.tableRight {
     /*background-color: #aaaaaa;*/
+    font-weight: normal;
     text-align: right;
     width: 20%;
 }
@@ -352,16 +358,14 @@ input[type=text]:focus, textarea:focus {
     margin: 0 .2em;
 }
 
-.Module .limitText {
-    font-weight: bold;
-    text-align: center;
-    margin: 0;
-}
-
-.Module .limitInputWrapper {
+.Module .updatableWrapper {
     text-align: center;
     font-weight: bold;
     margin-top: 0;
+}
+
+.Module .updatableWrapper p {
+    margin: .1em;
 }
 
 .Module .limitInputWrapper button {
