@@ -242,10 +242,10 @@ var Module = React.createClass({
     resetFormFields: function () {
         //Set default limit configuration values
         var timerMaxFields = this.computeTimerMaxFields();
-        this.refs.hrsField.getDOMNode().value = timerMaxFields.hrs;
-        this.refs.minField.getDOMNode().value = timerMaxFields.min;
-        this.refs.secField.getDOMNode().value = timerMaxFields.sec;
-        this.refs.csField.getDOMNode().value = timerMaxFields.cs;
+        this.refs.hrsField.getDOMNode().value = pad2(timerMaxFields.hrs);
+        this.refs.minField.getDOMNode().value = pad2(timerMaxFields.min);
+        this.refs.secField.getDOMNode().value = pad2(timerMaxFields.sec);
+        this.refs.csField.getDOMNode().value = pad2(timerMaxFields.cs);
 
         this.setUpdateButton();
     },
@@ -273,8 +273,18 @@ var Module = React.createClass({
     },
 
     componentDidUpdate: function () {
-        //console.log('timerMax now: ' + this.props.timerMax);
+        console.log('Component updated! timerMax now: ' + this.props.timerMax);
         //this.resetTimerMax();
+
+        /*
+         For some reason, React won't display the padded values in the form fields after an update
+         So instead, we'll manually pad them here.
+        */
+        this.refs.hrsField.getDOMNode().value = pad2(this.refs.hrsField.getDOMNode().value);
+        this.refs.minField.getDOMNode().value = pad2(this.refs.minField.getDOMNode().value);
+        this.refs.secField.getDOMNode().value = pad2(this.refs.secField.getDOMNode().value);
+        this.refs.csField.getDOMNode().value = pad2(this.refs.csField.getDOMNode().value);
+
         this.setUpdateButton();
     },
 
@@ -366,28 +376,28 @@ var Module = React.createClass({
                                 <p>Count {upToDownFrom}</p>
                                 {/* We use data-tag to identify elements and ref to select them */}
                                 <input type="text"
-                                    defaultValue={fields.hrs}
+                                    defaultValue={pad2(fields.hrs)}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
                                     data-tag="hrsField" ref="hrsField"
                                 />
                                 :
                                 <input type="text"
-                                    defaultValue={fields.min}
+                                    defaultValue={pad2(fields.min)}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
                                     data-tag="minField" ref="minField"
                                 />
                                 :
                                 <input type="text"
-                                    defaultValue={fields.sec}
+                                    defaultValue={pad2(fields.sec)}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
                                     data-tag="secField" ref="secField"
                                 />
                                 :
                                 <input type="text"
-                                    defaultValue={fields.cs}
+                                    defaultValue={pad2(fields.cs)}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
                                     data-tag="csField" ref="csField"
