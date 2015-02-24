@@ -254,7 +254,7 @@ var Module = React.createClass({
     /* Take the modified contents of form fields and update this module's props with them. */
     updateFormFields: function () {
         console.log('updateTimerMax was called.');
-        if (this.verifyTimerMaxFields()) {
+        if (this.verifyTimerMaxFields(false)) {
             var newProps = quickClone(this.props);
             var newTimerMax = this.computeNewTimerMax();
 
@@ -281,8 +281,10 @@ var Module = React.createClass({
          allowing users to perform unit conversions inside the form fields (300 seconds -> 5 minutes).
          Since only the default state of input fields are binded to props, React won't update the field
          values with the converted ones. So instead, we'll do it manually.
+
+         We can also use this opportunity to pad the timer max fields appropriately.
         */
-        if (this.verifyTimerMaxFields()) {
+        if (this.verifyTimerMaxFields(true)) {
             var newTimerMax = this.computeNewTimerMax();
             console.log('Component Updated: newTimerMax is ' + newTimerMax);
             console.log('Component Updated: old timerMax is ' + this.props.timerMax);
@@ -311,7 +313,7 @@ var Module = React.createClass({
         return newTimerMax;
     },
 
-    verifyTimerMaxFields: function () { //Verified values 1) are valid and 2) are not equal their existing values.
+    verifyTimerMaxFields: function (canMatchExistingValues) {
         var original = this.computeTimerMaxFields();
         var update = {};
         update.hrs = parseInt(this.refs.hrsField.getDOMNode().value, 10);
@@ -321,11 +323,11 @@ var Module = React.createClass({
 
         return ((!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs))
         && (update.hrs >= 0 && update.min >= 0 && update.sec >= 0 && update.cs >= 0)
-        && (original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs))
+        && (canMatchExistingValues || original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs))
     },
 
     setUpdateButton: function () { //All fields must be verified for the update button to be untucked.
-        if (this.verifyTimerMaxFields()) {
+        if (this.verifyTimerMaxFields(false)) {
             this.refs.updateButtonWrapper.getDOMNode().className += ' untucked';
         } else {
             this.refs.updateButtonWrapper.getDOMNode().className = 'updateButtonWrapper';
