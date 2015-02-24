@@ -423,12 +423,16 @@ input[type=text]:focus, textarea:focus {
             line-height: 80px;
             font-size: 50px;
         }*/
-    .tabs {
+    .Module {
+        display: block;
+    }
+
+    .Module .tabs {
         min-width: unset;
     }
 
-    .Module {
-        display: block;
+    .Module#addModuleButton {
+        margin: 1.75em;
     }
 }
 
@@ -455,7 +459,7 @@ input[type=text]:focus, textarea:focus {
         box-shadow: 0 3px 4px #4090ff;
     }
 
-    .tabs {
+    .Module .tabs {
         margin-top: 1.4em;
     }
 }
