@@ -240,6 +240,7 @@ var Module = React.createClass({
      to their default state.
      */
     resetFormFields: function () {
+        console.log('Resetting form fields...');
         //Set default limit configuration values
         var timerMaxFields = this.computeTimerMaxFields();
         this.refs.hrsField.getDOMNode().value = pad2(timerMaxFields.hrs);
@@ -255,11 +256,7 @@ var Module = React.createClass({
         console.log('updateTimerMax was called.');
         if (this.verifyTimerMaxFields()) {
             var newProps = quickClone(this.props);
-
-            var newTimerMax = (parseInt(this.refs.hrsField.getDOMNode().value, 10) * 3600000);
-            newTimerMax += (parseInt(this.refs.minField.getDOMNode().value, 10) * 60000);
-            newTimerMax += (parseInt(this.refs.secField.getDOMNode().value, 10) * 1000);
-            newTimerMax += (parseInt(this.refs.csField.getDOMNode().value, 10) * 10);
+            var newTimerMax = this.computeNewTimerMax();
 
             console.log('newTimerMax: ' + newTimerMax);
             newProps.timerMax = newTimerMax;
@@ -284,14 +281,11 @@ var Module = React.createClass({
          allowing users to perform unit conversions inside the form fields (300 seconds -> 5 minutes).
          Since only the default state of input fields are binded to props, React won't update the field
          values with the converted ones. So instead, we'll do it manually.
-
-         We can also use it to pad the timer fields appropriately after an update.
         */
         if (this.verifyTimerMaxFields()) {
-            var newTimerMax = (parseInt(this.refs.hrsField.getDOMNode().value, 10) * 3600000);
-            newTimerMax += (parseInt(this.refs.minField.getDOMNode().value, 10) * 60000);
-            newTimerMax += (parseInt(this.refs.secField.getDOMNode().value, 10) * 1000);
-            newTimerMax += (parseInt(this.refs.csField.getDOMNode().value, 10) * 10);
+            var newTimerMax = this.computeNewTimerMax();
+            console.log('Component Updated: newTimerMax is ' + newTimerMax);
+            console.log('Component Updated: old timerMax is ' + this.props.timerMax);
             if (newTimerMax == this.props.timerMax)
                 this.resetFormFields();
         }
@@ -307,6 +301,14 @@ var Module = React.createClass({
         fields.min = Math.floor(tMax / 60000) % 60;
         fields.hrs = Math.floor(tMax / 3600000);
         return fields;
+    },
+
+    computeNewTimerMax: function () {
+        var newTimerMax = (parseInt(this.refs.hrsField.getDOMNode().value, 10) * 3600000);
+        newTimerMax += (parseInt(this.refs.minField.getDOMNode().value, 10) * 60000);
+        newTimerMax += (parseInt(this.refs.secField.getDOMNode().value, 10) * 1000);
+        newTimerMax += (parseInt(this.refs.csField.getDOMNode().value, 10) * 10);
+        return newTimerMax;
     },
 
     verifyTimerMaxFields: function () { //Verified values 1) are valid and 2) are not equal their existing values.
