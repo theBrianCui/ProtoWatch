@@ -274,16 +274,15 @@ var Module = React.createClass({
 
     componentDidUpdate: function () {
         console.log('Component updated! timerMax now: ' + this.props.timerMax);
-        //this.resetTimerMax();
 
-        /*
-         For some reason, React won't display the padded values in the form fields after an update
-         So instead, we'll manually pad them here.
-        */
-        this.refs.hrsField.getDOMNode().value = pad2(this.refs.hrsField.getDOMNode().value);
-        this.refs.minField.getDOMNode().value = pad2(this.refs.minField.getDOMNode().value);
-        this.refs.secField.getDOMNode().value = pad2(this.refs.secField.getDOMNode().value);
-        this.refs.csField.getDOMNode().value = pad2(this.refs.csField.getDOMNode().value);
+        if (this.verifyTimerMaxFields()) {
+            var newTimerMax = (parseInt(this.refs.hrsField.getDOMNode().value, 10) * 3600000);
+            newTimerMax += (parseInt(this.refs.minField.getDOMNode().value, 10) * 60000);
+            newTimerMax += (parseInt(this.refs.secField.getDOMNode().value, 10) * 1000);
+            newTimerMax += (parseInt(this.refs.csField.getDOMNode().value, 10) * 10);
+            if (newTimerMax == this.props.timerMax)
+                this.resetFormFields();
+        }
 
         this.setUpdateButton();
     },
