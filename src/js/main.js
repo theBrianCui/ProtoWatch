@@ -250,7 +250,7 @@ var Module = React.createClass({
      to their default state.
      */
     resetFormFields: function () {
-        console.log('Resetting form fields...');
+        //console.log('Resetting form fields...');
         //Set default limit configuration values
         var timerMaxFields = this.computeTimerMaxFields();
         this.refs.hrsField.getDOMNode().value = pad2(timerMaxFields.hrs);
@@ -280,7 +280,7 @@ var Module = React.createClass({
     },
 
     componentDidUpdate: function () {
-        console.log('Component updated! timerMax now: ' + this.props.timerMax);
+        //console.log('Component updated! timerMax now: ' + this.props.timerMax);
 
         /*
          Here we have a special case where the updated props don't precisely reflect the input.
@@ -296,8 +296,8 @@ var Module = React.createClass({
         */
         if (this.verifyTimerMaxFields(true)) {
             var newTimerMax = this.computeNewTimerMax();
-            console.log('Component Updated: newTimerMax is ' + newTimerMax);
-            console.log('Component Updated: old timerMax is ' + this.props.timerMax);
+            //console.log('Component Updated: newTimerMax is ' + newTimerMax);
+            //console.log('Component Updated: old timerMax is ' + this.props.timerMax);
             if (newTimerMax == this.props.timerMax)
                 this.resetFormFields();
         }
@@ -481,7 +481,7 @@ var Main = React.createClass({
 
     moduleUpdate: function (newProps) {
         var moduleID = newProps.id;
-        console.log('Updating module ' + moduleID);
+        //console.log('Updating module ' + moduleID);
         var moduleIndex;
         for (moduleIndex = 0; moduleIndex < this.state.Modules.length; moduleIndex++) {
             if (this.state.Modules[moduleIndex].props.id == moduleID)
