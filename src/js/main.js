@@ -35,6 +35,14 @@ var Stopwatch = React.createClass({
         clearInterval(this.interval);
     },
 
+    //componentWillReceiveProps: function (nextProps) {
+    //    if(this.props.countUp && !nextProps.countUp) {
+    //
+    //    } else if (!this.props.countUp && nextProps.countUp) {
+    //
+    //    }
+    //},
+
     toggle: function (event) {
         event.preventDefault();
         if (this.state.running)
