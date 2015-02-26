@@ -125,14 +125,9 @@ var Stopwatch = React.createClass({
     correctStartEndTimes: function (nextProps) {
         console.log('Correcting StartEndTimes: nextProps.countUp: ' + nextProps.countUp
         + ', this.props.countUp: ' + this.props.countUp);
-        if (nextProps.countUp && !this.props.countUp) { //switch counting down to up
+        if (nextProps.countUp) { //switch counting down to up
             this.setState({
                 //countingUp: true,
-                startTime: Date.now().valueOf() - this.state.timerValue
-                //running: true
-            })
-        } else if (nextProps.countUp && this.props.countUp) {
-            this.setState({
                 startTime: Date.now().valueOf() - this.state.timerValue
                 //running: true
             })
@@ -141,18 +136,11 @@ var Stopwatch = React.createClass({
             if (nextProps.timerMax > 0 && this.state.timerValue > nextProps.timerMax) {
                 endTimeOffset = nextProps.timerMax;
             }
-            if (!nextProps.countUp && this.props.countUp) { //switch counting up to down
-                this.setState({
-                    //countingUp: false,
-                    endTime: Date.now().valueOf() + endTimeOffset
-                    //running: true
-                })
-            } else if (!nextProps.countUp && !this.props.countUp) {
-                this.setState({
-                    endTime: Date.now().valueOf() + endTimeOffset
-                    //running: true
-                })
-            }
+            this.setState({
+                //countingUp: false,
+                endTime: Date.now().valueOf() + endTimeOffset
+                //running: true
+            })
         }
     },
 
