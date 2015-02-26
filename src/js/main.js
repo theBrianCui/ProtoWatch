@@ -65,6 +65,9 @@ var Stopwatch = React.createClass({
         if (!this.state.running) {
             this.correctStartEndTimes(this.props);
         }
+        this.setState({
+            running: true
+        })
     },
 
     reset: function () { //optional: pass in an event parameter.
@@ -91,6 +94,7 @@ var Stopwatch = React.createClass({
                         timerValue: this.props.timerMax,
                         running: false
                     });
+                    console.log('Calling this.props.s_onLimit');
                     this.props.s_onLimit();
                 } else {
                     this.setState({
@@ -110,6 +114,7 @@ var Stopwatch = React.createClass({
                         timerValue: 0,
                         running: false
                     });
+                    console.log('Calling this.props.s_onLimit');
                     this.props.s_onLimit();
                 }
             }
@@ -123,28 +128,29 @@ var Stopwatch = React.createClass({
         if (nextProps.countUp && !this.props.countUp) { //switch counting down to up
             this.setState({
                 //countingUp: true,
-                startTime: Date.now().valueOf() - this.state.timerValue,
-                running: true
+                startTime: Date.now().valueOf() - this.state.timerValue
+                //running: true
             })
         } else if (nextProps.countUp && this.props.countUp) {
             this.setState({
-                startTime: Date.now().valueOf() - this.state.timerValue,
-                running: true
+                startTime: Date.now().valueOf() - this.state.timerValue
+                //running: true
             })
         } else {
             var endTimeOffset = this.state.timerValue;
-            if (this.props.timerMax > 0 && this.state.timerValue > this.props.timerMax)
-                endTimeOffset = this.props.timerMax;
+            if (nextProps.timerMax > 0 && this.state.timerValue > nextProps.timerMax) {
+                endTimeOffset = nextProps.timerMax;
+            }
             if (!nextProps.countUp && this.props.countUp) { //switch counting up to down
                 this.setState({
                     //countingUp: false,
-                    endTime: Date.now().valueOf() + endTimeOffset,
-                    running: true
+                    endTime: Date.now().valueOf() + endTimeOffset
+                    //running: true
                 })
             } else if (!nextProps.countUp && !this.props.countUp) {
                 this.setState({
-                    endTime: Date.now().valueOf() + endTimeOffset,
-                    running: true
+                    endTime: Date.now().valueOf() + endTimeOffset
+                    //running: true
                 })
             }
         }
