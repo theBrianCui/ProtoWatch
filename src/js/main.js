@@ -35,13 +35,14 @@ var Stopwatch = React.createClass({
         clearInterval(this.interval);
     },
 
-    //componentWillReceiveProps: function (nextProps) {
-    //    if(this.props.countUp && !nextProps.countUp) {
-    //
-    //    } else if (!this.props.countUp && nextProps.countUp) {
-    //
-    //    }
-    //},
+    componentWillReceiveProps: function (nextProps) {
+        var newTimerValue = this.state.endTime - Date.now().valueOf();
+        if(!nextProps.countUp && !(!this.props.countUp && (!(nextProps.timerMax > 0) || newTimerValue < nextProps.timerMax))) { //currently counting up, but count down next
+            console.log('Time to correctStartEndTimes! Counting up, should count down next');
+        } else if (nextProps.countUp && !this.props.countUp) { //currently counting down, but count up next
+            console.log('Time to correctStartEndTimes! Counting down, should count up next');
+        }
+    },
 
     toggle: function (event) {
         event.preventDefault();
@@ -58,6 +59,7 @@ var Stopwatch = React.createClass({
     },
 
     resume: function () {
+        console.log('Resuming: ');
         if (!this.state.running) {
             this.correctStartEndTimes();
         }
