@@ -454,14 +454,14 @@ var Module = React.createClass({
 var Main = React.createClass({
     getInitialState: function () {
         var initialModule = this.createDefaultModule();
-        initialModule.props.m_isActive = true;
+        initialModule.props.m_isActive = true; //TODO: Warning in React 0.13
         return {
             Modules: [initialModule],
             Stopwatch_active_index: 0
         };
     },
 
-    createDefaultModule: function () {
+    createDefaultModule: function () { //TODO: For React 0.13, make this use getDefaultModuleProps
         return (
             React.createElement(Module, ({
                 id: Date.now().valueOf(),
@@ -487,7 +487,7 @@ var Main = React.createClass({
         }
         console.log('Updating module ' + moduleID + '...with index ' + moduleIndex);
         var newModuleList = this.state.Modules;
-        var newModule = React.createElement(Module, newProps);
+        var newModule = React.createElement(Module, newProps); //TODO: Warning in React 0.13
 
         //update these with function props
         newModule.props.m_moduleUpdate = this.moduleUpdate;
