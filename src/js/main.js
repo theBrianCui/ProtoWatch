@@ -210,7 +210,8 @@ var Module = React.createClass({
             hrsField: fields.hrs,
             minField: fields.min,
             secField: fields.sec,
-            csField: fields.cs
+            csField: fields.cs,
+            newPropsReceived: false
         }
     },
 
@@ -289,6 +290,12 @@ var Module = React.createClass({
          */
     },
 
+    componentWillReceiveProps: function (newProps) {
+        this.setState({
+            newPropsReceived: true
+        });
+    },
+
     componentDidUpdate: function () {
         console.log('Component updated!');
         /*
@@ -296,15 +303,21 @@ var Module = React.createClass({
          Typically, updated state reflect the previous input, and this.setUpdateButton() will hide
          the update button.
 
-         TODO: transfer this code to when new props are received.
-         */
-
-        if (this.verifyTimerMaxFields(false)) {
-            var newTimerMax = this.computeNewTimerMax();
-            //console.log('Component Updated: newTimerMax is ' + newTimerMax);
-            //console.log('Component Updated: old timerMax is ' + this.props.timerMax);
-            if (newTimerMax == this.props.timerMax)
-                this.resetFormFields();
+         We use this.state.newPropsReceived to prevent this function from firing every time state
+         has been changed and the component was modified.
+        */
+        if(this.state.newPropsReceived) {
+            if (this.verifyTimerMaxFields(false)) {
+                var newTimerMax = this.computeNewTimerMax();
+                //console.log('Component Updated: newTimerMax is ' + newTimerMax);
+                //console.log('Component Updated: old timerMax is ' + this.props.timerMax);
+                if (this.props.timerMax == newTimerMax) {
+                    this.resetFormFields();
+                }
+            }
+            this.setState({
+                newPropsReceived: false
+            });
         }
 
         this.setUpdateButton();
