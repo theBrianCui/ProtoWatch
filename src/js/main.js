@@ -359,9 +359,6 @@ var Module = React.createClass({
         else
             upToDownFrom = 'Down From:';
 
-        //Set default limit configuration values
-        var fields = this.computeTimerMaxFields();
-
         return (
             <div id={this.props.id} className={cssClasses}>
                 <div className="tabs">
@@ -399,28 +396,28 @@ var Module = React.createClass({
                                 <p>Count {upToDownFrom}</p>
                                 {/* We use data-tag to identify elements and ref to select them */}
                                 <input type="text"
-                                    defaultValue={pad2(fields.hrs)}
+                                    value={this.state.hrsField}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
                                     data-tag="hrsField" ref="hrsField"
                                 />
                                 :
                                 <input type="text"
-                                    defaultValue={pad2(fields.min)}
+                                    value={this.state.minField}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
                                     data-tag="minField" ref="minField"
                                 />
                                 :
                                 <input type="text"
-                                    defaultValue={pad2(fields.sec)}
+                                    value={this.state.secField}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
                                     data-tag="secField" ref="secField"
                                 />
                                 :
                                 <input type="text"
-                                    defaultValue={pad2(fields.cs)}
+                                    value={this.state.csField}
                                     onFocus={this.blankField}
                                     onChange={this.setUpdateButton}
                                     data-tag="csField" ref="csField"
