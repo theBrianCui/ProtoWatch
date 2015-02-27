@@ -207,10 +207,10 @@ var Module = React.createClass({
     getInitialState: function () {
         var fields = this.computeTimerMaxFields();
         return {
-            hrsField: pad2(fields.hrs),
-            minField: pad2(fields.min),
-            secField: pad2(fields.sec),
-            csField: pad2(fields.cs)
+            hrsField: fields.hrs,
+            minField: fields.min,
+            secField: fields.sec,
+            csField: fields.cs
         }
     },
 
