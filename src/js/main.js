@@ -207,10 +207,10 @@ var Module = React.createClass({
     getInitialState: function () {
         var fields = this.computeOldTimerMaxFields();
         return {
-            hrsField: fields.hrs,
-            minField: fields.min,
-            secField: fields.sec,
-            csField: fields.cs,
+            hrsField: pad2(fields.hrs),
+            minField: pad2(fields.min),
+            secField: pad2(fields.sec),
+            csField: pad2(fields.cs),
             newPropsReceived: false
         }
     },
@@ -231,7 +231,10 @@ var Module = React.createClass({
     },
 
     restoreField: function (event) {
-        this.forceUpdate();
+        var newState = new Object();
+        newState[event.target.dataset.tag] = pad2(this.state[event.target.dataset.tag]);
+        this.setState(newState);
+        //this.forceUpdate();
     },
 
     /* Fields above the break are updated in real time. They get their own update functions. */
@@ -263,10 +266,10 @@ var Module = React.createClass({
         console.log('resetFormFields was called.');
         var fields = this.computeOldTimerMaxFields();
         this.setState({
-            hrsField: fields.hrs,
-            minField: fields.min,
-            secField: fields.sec,
-            csField: fields.cs
+            hrsField: pad2(fields.hrs),
+            minField: pad2(fields.min),
+            secField: pad2(fields.sec),
+            csField: pad2(fields.cs)
         });
 
         this.setUpdateButton();
@@ -309,8 +312,6 @@ var Module = React.createClass({
         if(this.state.newPropsReceived) {
             if (this.verifyTimerMaxFields(false)) {
                 var newTimerMax = this.computeNewTimerMax();
-                //console.log('Component Updated: newTimerMax is ' + newTimerMax);
-                //console.log('Component Updated: old timerMax is ' + this.props.timerMax);
                 if (this.props.timerMax == newTimerMax) {
                     this.resetFormFields();
                 }
