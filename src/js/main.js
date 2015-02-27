@@ -257,10 +257,10 @@ var Module = React.createClass({
         //console.log('Resetting form fields...');
         //Set default limit configuration values
         var timerMaxFields = this.computeTimerMaxFields();
-        this.refs.hrsField.getDOMNode().value = pad2(timerMaxFields.hrs);
-        this.refs.minField.getDOMNode().value = pad2(timerMaxFields.min);
-        this.refs.secField.getDOMNode().value = pad2(timerMaxFields.sec);
-        this.refs.csField.getDOMNode().value = pad2(timerMaxFields.cs);
+        this.state.hrsField.value = pad2(timerMaxFields.hrs);
+        this.state.minField.value = pad2(timerMaxFields.min);
+        this.state.secField.value = pad2(timerMaxFields.sec);
+        this.state.csField.value = pad2(timerMaxFields.cs);
 
         this.setUpdateButton();
     },
@@ -320,20 +320,20 @@ var Module = React.createClass({
     },
 
     computeNewTimerMax: function () {
-        var newTimerMax = (parseInt(this.refs.hrsField.getDOMNode().value, 10) * 3600000);
-        newTimerMax += (parseInt(this.refs.minField.getDOMNode().value, 10) * 60000);
-        newTimerMax += (parseInt(this.refs.secField.getDOMNode().value, 10) * 1000);
-        newTimerMax += (parseInt(this.refs.csField.getDOMNode().value, 10) * 10);
+        var newTimerMax = (parseInt(this.state.hrsField.value, 10) * 3600000);
+        newTimerMax += (parseInt(this.state.minField.value, 10) * 60000);
+        newTimerMax += (parseInt(this.state.secField.value, 10) * 1000);
+        newTimerMax += (parseInt(this.state.csField.value, 10) * 10);
         return newTimerMax;
     },
 
     verifyTimerMaxFields: function (canMatchExistingValues) {
         var original = this.computeTimerMaxFields();
         var update = {};
-        update.hrs = parseInt(this.refs.hrsField.getDOMNode().value, 10);
-        update.min = parseInt(this.refs.minField.getDOMNode().value, 10);
-        update.sec = parseInt(this.refs.secField.getDOMNode().value, 10);
-        update.cs = parseInt(this.refs.csField.getDOMNode().value, 10);
+        update.hrs = parseInt(this.state.hrsField.value, 10);
+        update.min = parseInt(this.state.minField.value, 10);
+        update.sec = parseInt(this.state.secField.value, 10);
+        update.cs = parseInt(this.state.csField.value, 10);
 
         return ((!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs))
         && (update.hrs >= 0 && update.min >= 0 && update.sec >= 0 && update.cs >= 0)
