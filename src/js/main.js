@@ -204,6 +204,16 @@ var Stopwatch = React.createClass({
 });
 
 var Module = React.createClass({
+    getInitialState: function () {
+        var fields = this.computeTimerMaxFields();
+        return {
+            hrsField: fields.hrs,
+            minField: fields.min,
+            secField: fields.sec,
+            csField: fields.cs
+        }
+    },
+
     handlePropUpdate: function (newProps) {
         this.props.m_moduleUpdate(newProps);
     },
