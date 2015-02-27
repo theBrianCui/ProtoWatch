@@ -255,6 +255,7 @@ var Module = React.createClass({
      */
     resetFormFields: function () {
         //We will consider prop data "old data".
+        console.log('resetFormFields was called.');
         var fields = this.computeOldTimerMaxFields();
         this.setState({
             hrsField: fields.hrs,
@@ -287,24 +288,20 @@ var Module = React.createClass({
     componentDidUpdate: function () {
         console.log('Component updated!');
         /*
-         Here we have a special case where the updated props don't precisely reflect the input.
-         Typically, updated props reflect the previous input, and this.setUpdateButton() will hide
+         Here we have a special case where the updated state don't precisely reflect the input.
+         Typically, updated state reflect the previous input, and this.setUpdateButton() will hide
          the update button.
 
-         The timerMax form fields can take values larger than their watch limits (such as >59 seconds)
-         allowing users to perform unit conversions inside the form fields (300 seconds -> 5 minutes).
-         Since only the default state of input fields are binded to props, React won't update the field
-         values with the converted ones. So instead, we'll do it manually.
-
-         We can also use this opportunity to pad the timer max fields appropriately.
+         TODO: transfer this code to when new props are received.
          */
-/*        if (this.verifyTimerMaxFields(true)) {
+
+        if (this.verifyTimerMaxFields(false)) {
             var newTimerMax = this.computeNewTimerMax();
             //console.log('Component Updated: newTimerMax is ' + newTimerMax);
             //console.log('Component Updated: old timerMax is ' + this.props.timerMax);
             if (newTimerMax == this.props.timerMax)
                 this.resetFormFields();
-        }*/
+        }
 
         this.setUpdateButton();
     },
