@@ -229,6 +229,10 @@ var Module = React.createClass({
         event.target.value = '';
     },
 
+    restoreField: function (event) {
+        this.forceUpdate();
+    },
+
     /* Fields above the break are updated in real time. They get their own update functions. */
     updateAutorun: function (event) {
         var newAutorun = event.target.checked;
@@ -401,6 +405,7 @@ var Module = React.createClass({
                                 <input type="text"
                                     value={this.state.hrsField}
                                     onFocus={this.blankField}
+                                    onBlur={this.restoreField}
                                     onChange={this.handleChange}
                                     data-tag="hrsField" ref="hrsField"
                                 />
@@ -408,6 +413,7 @@ var Module = React.createClass({
                                 <input type="text"
                                     value={this.state.minField}
                                     onFocus={this.blankField}
+                                    onBlur={this.restoreField}
                                     onChange={this.handleChange}
                                     data-tag="minField" ref="minField"
                                 />
@@ -415,6 +421,7 @@ var Module = React.createClass({
                                 <input type="text"
                                     value={this.state.secField}
                                     onFocus={this.blankField}
+                                    onBlur={this.restoreField}
                                     onChange={this.handleChange}
                                     data-tag="secField" ref="secField"
                                 />
@@ -422,6 +429,7 @@ var Module = React.createClass({
                                 <input type="text"
                                     value={this.state.csField}
                                     onFocus={this.blankField}
+                                    onBlur={this.restoreField}
                                     onChange={this.handleChange}
                                     data-tag="csField" ref="csField"
                                 />
