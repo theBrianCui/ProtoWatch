@@ -205,7 +205,7 @@ var Stopwatch = React.createClass({
 
 var Module = React.createClass({
     getInitialState: function () {
-        var fields = this.computeTimerMaxFields();
+        var fields = this.computeOldTimerMaxFields();
         return {
             hrsField: fields.hrs,
             minField: fields.min,
@@ -254,13 +254,14 @@ var Module = React.createClass({
      to their default state.
      */
     resetFormFields: function () {
-        //console.log('Resetting form fields...');
-        //Set default limit configuration values
-        var timerMaxFields = this.computeTimerMaxFields();
-        this.state.hrsField.value = pad2(timerMaxFields.hrs);
-        this.state.minField.value = pad2(timerMaxFields.min);
-        this.state.secField.value = pad2(timerMaxFields.sec);
-        this.state.csField.value = pad2(timerMaxFields.cs);
+        //We will consider prop data "old data".
+        var fields = this.computeOldTimerMaxFields();
+        this.setState({
+            hrsField: fields.hrs,
+            minField: fields.min,
+            secField: fields.sec,
+            csField: fields.cs
+        });
 
         this.setUpdateButton();
     },
@@ -284,8 +285,7 @@ var Module = React.createClass({
     },
 
     componentDidUpdate: function () {
-        //console.log('Component updated! timerMax now: ' + this.props.timerMax);
-
+        console.log('Component updated!');
         /*
          Here we have a special case where the updated props don't precisely reflect the input.
          Typically, updated props reflect the previous input, and this.setUpdateButton() will hide
@@ -298,18 +298,18 @@ var Module = React.createClass({
 
          We can also use this opportunity to pad the timer max fields appropriately.
          */
-        if (this.verifyTimerMaxFields(true)) {
+/*        if (this.verifyTimerMaxFields(true)) {
             var newTimerMax = this.computeNewTimerMax();
             //console.log('Component Updated: newTimerMax is ' + newTimerMax);
             //console.log('Component Updated: old timerMax is ' + this.props.timerMax);
             if (newTimerMax == this.props.timerMax)
                 this.resetFormFields();
-        }
+        }*/
 
         this.setUpdateButton();
     },
 
-    computeTimerMaxFields: function () {
+    computeOldTimerMaxFields: function () {
         var tMax = this.props.timerMax;
         var fields = {};
         fields.cs = Math.floor(tMax % 1000 / 10);
@@ -320,28 +320,28 @@ var Module = React.createClass({
     },
 
     computeNewTimerMax: function () {
-        var newTimerMax = (parseInt(this.state.hrsField.value, 10) * 3600000);
-        newTimerMax += (parseInt(this.state.minField.value, 10) * 60000);
-        newTimerMax += (parseInt(this.state.secField.value, 10) * 1000);
-        newTimerMax += (parseInt(this.state.csField.value, 10) * 10);
+        var newTimerMax = (parseInt(this.state.hrsField, 10) * 3600000);
+        newTimerMax += (parseInt(this.state.minField, 10) * 60000);
+        newTimerMax += (parseInt(this.state.secField, 10) * 1000);
+        newTimerMax += (parseInt(this.state.csField, 10) * 10);
         return newTimerMax;
     },
 
     verifyTimerMaxFields: function (canMatchExistingValues) {
-        var original = this.computeTimerMaxFields();
+        var original = this.computeOldTimerMaxFields();
         var update = {};
-        update.hrs = parseInt(this.state.hrsField.value, 10);
-        update.min = parseInt(this.state.minField.value, 10);
-        update.sec = parseInt(this.state.secField.value, 10);
-        update.cs = parseInt(this.state.csField.value, 10);
-
-        return ((!isNaN(update.hrs) && !isNaN(update.min) && !isNaN(update.sec) && !isNaN(update.cs))
-        && (update.hrs >= 0 && update.min >= 0 && update.sec >= 0 && update.cs >= 0)
-        && (canMatchExistingValues || original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs))
+        update.hrs = parseInt(this.state.hrsField, 10);
+        update.min = parseInt(this.state.minField, 10);
+        update.sec = parseInt(this.state.secField, 10);
+        update.cs = parseInt(this.state.csField, 10);
+        return ((update.hrs >= 0 && update.min >= 0 && update.sec >= 0 && update.cs >= 0)
+        && (canMatchExistingValues || original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs));
     },
 
     setUpdateButton: function () { //All fields must be verified for the update button to be untucked.
+        console.log('setUpdateButton was called.');
         if (this.verifyTimerMaxFields(false)) {
+            console.log('Revealing update button...');
             this.refs.updateButtonWrapper.getDOMNode().className += ' untucked';
         } else {
             this.refs.updateButtonWrapper.getDOMNode().className = 'updateButtonWrapper';
