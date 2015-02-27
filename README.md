@@ -18,9 +18,6 @@ ProtoWatch relies primarily on the following files:
 Understanding the Source Code
 --------------------------
 
-**Why don't Modules have state?**
-Because of how rarely they are updated (relative to the Stopwatch), they were designed to work without state. This makes it slower to update the individual properties of Modules, as they have to pass through the Main component first, but it reduces the overall complexity of updating the state of the Main component by not having to refresh the state of its children.
-
 **What's with the repeated use of JSON.stringify and JSON.parse?**
 Often times when modifying the state or properties of an object in React, it is necessary to quickly clone the object itself to avoid modifying the existing object. Since properties are considered immutable, it is often safer to quickly clone properties and modify those to prevent internal contextual conflicts from occurring.
 
