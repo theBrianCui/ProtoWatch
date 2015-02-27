@@ -207,15 +207,21 @@ var Module = React.createClass({
     getInitialState: function () {
         var fields = this.computeTimerMaxFields();
         return {
-            hrsField: fields.hrs,
-            minField: fields.min,
-            secField: fields.sec,
-            csField: fields.cs
+            hrsField: pad2(fields.hrs),
+            minField: pad2(fields.min),
+            secField: pad2(fields.sec),
+            csField: pad2(fields.cs)
         }
     },
 
     handlePropUpdate: function (newProps) {
         this.props.m_moduleUpdate(newProps);
+    },
+
+    handleChange: function (event) {
+        var newState = new Object();
+        newState[event.target.dataset.tag] = event.target.value;
+        this.setState(newState);
     },
 
     blankField: function (event) {
@@ -398,28 +404,28 @@ var Module = React.createClass({
                                 <input type="text"
                                     value={this.state.hrsField}
                                     onFocus={this.blankField}
-                                    onChange={this.setUpdateButton}
+                                    onChange={this.handleChange}
                                     data-tag="hrsField" ref="hrsField"
                                 />
                                 :
                                 <input type="text"
                                     value={this.state.minField}
                                     onFocus={this.blankField}
-                                    onChange={this.setUpdateButton}
+                                    onChange={this.handleChange}
                                     data-tag="minField" ref="minField"
                                 />
                                 :
                                 <input type="text"
                                     value={this.state.secField}
                                     onFocus={this.blankField}
-                                    onChange={this.setUpdateButton}
+                                    onChange={this.handleChange}
                                     data-tag="secField" ref="secField"
                                 />
                                 :
                                 <input type="text"
                                     value={this.state.csField}
                                     onFocus={this.blankField}
-                                    onChange={this.setUpdateButton}
+                                    onChange={this.handleChange}
                                     data-tag="csField" ref="csField"
                                 />
                             </div>
