@@ -478,14 +478,14 @@ var Main = React.createClass({
         var initialModuleProps = this.getDefaultModuleProps();
         initialModuleProps.m_isActive = true;
         return {
-            Modules: [React.createElement(Module, initialModuleProps)],
+            Modules: [<Module {...initialModuleProps} />],
             Stopwatch_active_index: 0
         };
     },
 
     createDefaultModule: function () {
         return (
-            React.createElement(Module, this.getDefaultModuleProps())
+            <Module {...this.getDefaultModuleProps()} />
         )
     },
 
