@@ -475,28 +475,32 @@ var Module = React.createClass({
 
 var Main = React.createClass({
     getInitialState: function () {
-        var initialModule = this.createDefaultModule();
-        initialModule.props.m_isActive = true; //TODO: Warning in React 0.13
+        var initialModuleProps = this.getDefaultModuleProps();
+        initialModuleProps.m_isActive = true;
         return {
-            Modules: [initialModule],
+            Modules: [React.createElement(Module, initialModuleProps)],
             Stopwatch_active_index: 0
         };
     },
 
-    createDefaultModule: function () { //TODO: For React 0.13, make this use getDefaultModuleProps
+    createDefaultModule: function () {
         return (
-            React.createElement(Module, ({
-                id: Date.now().valueOf(),
-                autorun: false,
-                timerMax: 0,
-                countUp: true,
-                m_isActive: false,
-                m_moduleUpdate: this.moduleUpdate,
-                s_onLimit: this.next, //make sure to also update moduleUpdate with new function props
-                s_onNext: this.next,
-                s_onPrevious: this.previous
-            }))
+            React.createElement(Module, this.getDefaultModuleProps())
         )
+    },
+
+    getDefaultModuleProps: function () {
+        return ({
+            id: Date.now().valueOf(),
+            autorun: false,
+            timerMax: 0,
+            countUp: true,
+            m_isActive: false,
+            m_moduleUpdate: this.moduleUpdate,
+            s_onLimit: this.next, //make sure to also update moduleUpdate with new function props
+            s_onNext: this.next,
+            s_onPrevious: this.previous
+        })
     },
 
     moduleUpdate: function (newProps) {
