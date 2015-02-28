@@ -513,15 +513,15 @@ var Main = React.createClass({
         }
         console.log('Updating module ' + moduleID + '...with index ' + moduleIndex);
         var newModuleList = this.state.Modules;
-        var newModule = React.createElement(Module, newProps); //TODO: Warning in React 0.13
+        var newModuleProps = newProps;
 
         //update these with function props
-        newModule.props.m_moduleUpdate = this.moduleUpdate;
-        newModule.props.s_onLimit = this.next;
-        newModule.props.s_onNext = this.next;
-        newModule.props.s_onPrevious = this.previous;
+        newModuleProps.m_moduleUpdate = this.moduleUpdate;
+        newModuleProps.s_onLimit = this.next;
+        newModuleProps.s_onNext = this.next;
+        newModuleProps.s_onPrevious = this.previous;
 
-        newModuleList[moduleIndex] = newModule;
+        newModuleList[moduleIndex] = <Module {...newModuleProps} />;
         this.setState({
             Modules: newModuleList
         })
