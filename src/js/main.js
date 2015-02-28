@@ -533,9 +533,6 @@ var Main = React.createClass({
         if (nextIndex >= this.state.Modules.length)
             nextIndex = 0;
         this.cycleActive(this.state.Stopwatch_active_index, nextIndex);
-        this.setState({
-            Stopwatch_active_index: nextIndex
-        })
     },
 
     previous: function () {
@@ -544,9 +541,6 @@ var Main = React.createClass({
         if (nextIndex < 0)
             nextIndex = this.state.Modules.length - 1;
         this.cycleActive(this.state.Stopwatch_active_index, nextIndex);
-        this.setState({
-            Stopwatch_active_index: nextIndex
-        })
     },
 
     cycleActive: function (currentIndex, nextIndex) {
@@ -557,6 +551,9 @@ var Main = React.createClass({
             var nextActiveStopwatchProps = this.state.Modules[nextIndex].props;
             nextActiveStopwatchProps.m_isActive = true;
             this.moduleUpdate(nextActiveStopwatchProps);
+            this.setState({
+                Stopwatch_active_index: nextIndex
+            })
         }
     },
 
