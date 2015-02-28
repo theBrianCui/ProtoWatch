@@ -507,7 +507,7 @@ var Main = React.createClass({
         var moduleID = newProps.id;
         //console.log('Updating module ' + moduleID);
         var moduleIndex;
-        for (moduleIndex = 0; moduleIndex < this.state.Modules.length; moduleIndex++) {
+        for (moduleIndex = 0; moduleIndex < this.state.Modules.length; moduleIndex++) { //TODO: make this not so O(n)
             if (this.state.Modules[moduleIndex].props.id == moduleID)
                 break;
         }
@@ -551,10 +551,10 @@ var Main = React.createClass({
 
     cycleActive: function (currentIndex, nextIndex) {
         if (currentIndex != nextIndex) {
-            var currentActiveStopwatchProps = quickClone(this.state.Modules[currentIndex].props);
+            var currentActiveStopwatchProps = this.state.Modules[currentIndex].props;
             currentActiveStopwatchProps.m_isActive = false;
             this.moduleUpdate(currentActiveStopwatchProps);
-            var nextActiveStopwatchProps = quickClone(this.state.Modules[nextIndex].props);
+            var nextActiveStopwatchProps = this.state.Modules[nextIndex].props;
             nextActiveStopwatchProps.m_isActive = true;
             this.moduleUpdate(nextActiveStopwatchProps);
         }
