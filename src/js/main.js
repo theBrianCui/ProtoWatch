@@ -204,8 +204,8 @@ var Module = React.createClass({
             hrsField: pad2(fields.hrs),
             minField: pad2(fields.min),
             secField: pad2(fields.sec),
-            csField: pad2(fields.cs),
-            newPropsReceived: false
+            csField: pad2(fields.cs)
+            //newPropsReceived: false
         }
     },
 
@@ -291,37 +291,38 @@ var Module = React.createClass({
          */
     },
 
-    componentWillReceiveProps: function (newProps) {
+/*    componentWillReceiveProps: function (newProps) {
         this.setState({
             newPropsReceived: true
         });
-    },
+    },*/
 
     shouldComponentUpdate: function (nextProps, nextState) {
-        return !quickEqual(this.props, nextProps);
+        //this.log('Current state: ' + JSON.stringify(this.state));
+        //this.log('Next state: ' + JSON.stringify(nextState));
+        return !(quickEqual(this.props, nextProps) && quickEqual(this.state, nextState));
     },
 
     componentDidUpdate: function () {
         this.log('Module component updated!');
         /*
          Here we have a special case where the updated state don't precisely reflect the input.
-         Typically, updated state reflect the previous input, and this.setUpdateButton() will hide
-         the update button.
-
-         We use this.state.newPropsReceived to prevent this function from firing every time state
-         has been changed and the component was modified.
+         Typically, updated state reflects the previous input, and this.setUpdateButton() will hide
+         the update button. However, because we want to support inline conversion (say, 120 sec -> 2 min),
+         the new timerMax prop won't always exactly match the previous state. So, just to make sure,
+         we'll manually reset all the form fields.
          */
-        if (this.state.newPropsReceived) {
+        //if (this.state.newPropsReceived) {
             if (this.verifyTimerMaxFields(false)) {
                 var newTimerMax = this.computeNewTimerMax();
                 if (this.props.timerMax == newTimerMax) {
                     this.resetFormFields();
                 }
             }
-            this.setState({
+/*            this.setState({
                 newPropsReceived: false
-            });
-        }
+            });*/
+        //}
 
         this.setUpdateButton();
     },
