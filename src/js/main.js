@@ -225,8 +225,12 @@ var Module = React.createClass({
         this.setState(newState);
     },
 
+    log: function (message) {
+        console.log('id: ' + this.props.id + ' : ' + message);
+    },
+
     blankField: function (event) {
-        //console.log('className: ' + this.refs.confirmButton.getDOMNode().className);
+        //this.log('className: ' + this.refs.confirmButton.getDOMNode().className);
         event.target.value = '';
     },
 
@@ -240,14 +244,14 @@ var Module = React.createClass({
     /* Fields above the break are updated in real time. They get their own update functions. */
     updateAutorun: function (event) {
         var newAutorun = event.target.checked;
-        console.log('updateAutorun was called. value: ' + newAutorun);
+        this.log('updateAutorun was called. value: ' + newAutorun);
         var newProps = quickClone(this.props);
         newProps.autorun = newAutorun;
         this.handlePropUpdate(newProps);
     },
 
     updateCountUp: function (event) {
-        console.log('updateCountUp was called. value: ' + event.target.value);
+        this.log('updateCountUp was called. value: ' + event.target.value);
         var newCountUp = (event.target.value == 'true'); //convert to boolean
         if (this.props.countUp != newCountUp) {
             var newProps = quickClone(this.props);
@@ -263,7 +267,7 @@ var Module = React.createClass({
      */
     resetFormFields: function () {
         //We will consider prop data "old data".
-        console.log('resetFormFields was called.');
+        this.log('resetFormFields was called.');
         var fields = this.computeOldTimerMaxFields();
         this.setState({
             hrsField: pad2(fields.hrs),
@@ -277,12 +281,12 @@ var Module = React.createClass({
 
     /* Take the modified contents of form fields and update this module's props with them. */
     updateFormFields: function () {
-        console.log('updateTimerMax was called.');
+        this.log('updateTimerMax was called.');
         if (this.verifyTimerMaxFields(false)) {
             var newProps = quickClone(this.props);
             var newTimerMax = this.computeNewTimerMax();
 
-            console.log('newTimerMax: ' + newTimerMax);
+            this.log('newTimerMax: ' + newTimerMax);
             newProps.timerMax = newTimerMax;
 
             this.handlePropUpdate(newProps);
@@ -300,7 +304,7 @@ var Module = React.createClass({
     },
 
     componentDidUpdate: function () {
-        console.log('Component updated!');
+        this.log('Module component updated!');
         /*
          Here we have a special case where the updated state don't precisely reflect the input.
          Typically, updated state reflect the previous input, and this.setUpdateButton() will hide
@@ -354,9 +358,9 @@ var Module = React.createClass({
     },
 
     setUpdateButton: function () { //All fields must be verified for the update button to be untucked.
-        console.log('setUpdateButton was called.');
+        this.log('setUpdateButton was called.');
         if (this.verifyTimerMaxFields(false)) {
-            console.log('Revealing update button...');
+            this.log('Revealing update button...');
             this.refs.updateButtonWrapper.getDOMNode().className += ' untucked';
         } else {
             this.refs.updateButtonWrapper.getDOMNode().className = 'updateButtonWrapper';
@@ -523,7 +527,7 @@ var Main = React.createClass({
 
         newModuleList[moduleIndex] = <Module {...newModuleProps} />;
         this.setState({
-            Modules: newModuleList
+            Modules: newModuleList //TODO: make this not so O(n^2)
         })
     },
 
@@ -585,6 +589,14 @@ var Main = React.createClass({
                 <p>{currentActiveStopwatch.props.id}</p>
             </div>
         )
+    },
+
+    componentDidMount: function () {
+        console.log('Main component mounted!');
+    },
+
+    componentDidUpdate: function (prevProps, prevState) {
+        console.log('Main component updated!');
     }
 });
 
