@@ -89,17 +89,12 @@ var Stopwatch = React.createClass({
             var newTimerValue;
             if (this.props.countUp) {
                 newTimerValue = Date.now().valueOf() - this.state.startTime;
-                if (this.props.timerMax != 0 && newTimerValue >= this.props.timerMax) {
-                    this.setState({
-                        timerValue: this.props.timerMax,
-                        running: false
-                    });
-                    console.log('Calling this.props.s_onLimit');
-                    this.props.s_onLimit();
-                } else {
+                if (this.props.timerMax == 0 || newTimerValue < this.props.timerMax) {
                     this.setState({
                         timerValue: newTimerValue
                     })
+                } else {
+                    this.props.s_onLimit();
                 }
             } else {
                 newTimerValue = this.state.endTime - Date.now().valueOf();
@@ -110,11 +105,6 @@ var Stopwatch = React.createClass({
                         timerValue: newTimerValue
                     })
                 } else {
-                    this.setState({
-                        timerValue: 0,
-                        running: false
-                    });
-                    console.log('Calling this.props.s_onLimit');
                     this.props.s_onLimit();
                 }
             }
