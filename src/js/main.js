@@ -370,10 +370,10 @@ var Module = React.createClass({
     render: function () {
         //Highlight activeModule
         var cssClasses = 'Module';
-        if (this.props.m_isActive)
-            cssClasses += ' activeModule';
-        var upToDownFrom;
+        //if (this.props.m_isActive)
+        //    cssClasses += ' activeModule';
 
+        var upToDownFrom;
         //Set countUp/countDown limit text
         if (this.props.countUp)
             upToDownFrom = 'Up Towards:';
@@ -476,7 +476,7 @@ var Module = React.createClass({
 var Main = React.createClass({
     getInitialState: function () {
         var initialModuleProps = this.getDefaultModuleProps();
-        initialModuleProps.m_isActive = true;
+        //initialModuleProps.m_isActive = true;
         return {
             Modules: [<Module {...initialModuleProps} />],
             Stopwatch_active_index: 0
@@ -495,7 +495,7 @@ var Main = React.createClass({
             autorun: false,
             timerMax: 0,
             countUp: true,
-            m_isActive: false,
+            //m_isActive: false,
             m_moduleUpdate: this.moduleUpdate,
             s_onLimit: this.next, //make sure to also update moduleUpdate with new function props
             s_onNext: this.next,
@@ -545,12 +545,12 @@ var Main = React.createClass({
 
     cycleActive: function (currentIndex, nextIndex) {
         if (currentIndex != nextIndex) {
-            var currentActiveStopwatchProps = this.state.Modules[currentIndex].props;
+            /*var currentActiveStopwatchProps = this.state.Modules[currentIndex].props;
             currentActiveStopwatchProps.m_isActive = false;
             this.moduleUpdate(currentActiveStopwatchProps);
             var nextActiveStopwatchProps = this.state.Modules[nextIndex].props;
             nextActiveStopwatchProps.m_isActive = true;
-            this.moduleUpdate(nextActiveStopwatchProps);
+            this.moduleUpdate(nextActiveStopwatchProps);*/
             this.setState({
                 Stopwatch_active_index: nextIndex
             })
