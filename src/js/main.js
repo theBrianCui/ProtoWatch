@@ -9,6 +9,10 @@ function quickClone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
+function quickEqual(obj1, obj2) { //Might break in the future, but works for now.
+    return (JSON.stringify(obj1) == JSON.stringify(obj2));
+}
+
 var Stopwatch = React.createClass({
     getInitialState: function () {
         var gIS_endTime = 0;
@@ -291,6 +295,10 @@ var Module = React.createClass({
         this.setState({
             newPropsReceived: true
         });
+    },
+
+    shouldComponentUpdate: function (nextProps, nextState) {
+        return !quickEqual(this.props, nextProps);
     },
 
     componentDidUpdate: function () {
