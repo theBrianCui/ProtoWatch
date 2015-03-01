@@ -312,8 +312,8 @@ var Module = React.createClass({
 
          We use this.state.newPropsReceived to prevent this function from firing every time state
          has been changed and the component was modified.
-        */
-        if(this.state.newPropsReceived) {
+         */
+        if (this.state.newPropsReceived) {
             if (this.verifyTimerMaxFields(false)) {
                 var newTimerMax = this.computeNewTimerMax();
                 if (this.props.timerMax == newTimerMax) {
@@ -483,7 +483,8 @@ var Main = React.createClass({
         //initialModuleProps.m_isActive = true;
         return {
             Modules: [<Module {...initialModuleProps} />],
-            Stopwatch_active_index: 0
+            Stopwatch_active_index: 0,
+            Stopwatch_previous_active: -1
         };
     },
 
@@ -550,13 +551,14 @@ var Main = React.createClass({
     cycleActive: function (currentIndex, nextIndex) {
         if (currentIndex != nextIndex) {
             /*var currentActiveStopwatchProps = this.state.Modules[currentIndex].props;
-            currentActiveStopwatchProps.m_isActive = false;
-            this.moduleUpdate(currentActiveStopwatchProps);
-            var nextActiveStopwatchProps = this.state.Modules[nextIndex].props;
-            nextActiveStopwatchProps.m_isActive = true;
-            this.moduleUpdate(nextActiveStopwatchProps);*/
+             currentActiveStopwatchProps.m_isActive = false;
+             this.moduleUpdate(currentActiveStopwatchProps);
+             var nextActiveStopwatchProps = this.state.Modules[nextIndex].props;
+             nextActiveStopwatchProps.m_isActive = true;
+             this.moduleUpdate(nextActiveStopwatchProps);*/
             this.setState({
-                Stopwatch_active_index: nextIndex
+                Stopwatch_active_index: nextIndex,
+                Stopwatch_previous_active: currentIndex
             })
         }
     },
@@ -593,10 +595,16 @@ var Main = React.createClass({
 
     componentDidMount: function () {
         console.log('Main component mounted!');
+        this.componentDidUpdate(null, {Stopwatch_active_index: -1});
     },
 
     componentDidUpdate: function (prevProps, prevState) {
         console.log('Main component updated!');
+        if (this.state.Stopwatch_active_index != prevState.Stopwatch_active_index) {
+            if (this.state.Stopwatch_previous_active != -1)
+                document.getElementById(this.state.Modules[this.state.Stopwatch_previous_active].props.id).classList.toggle('activeModule');
+            document.getElementById(this.state.Modules[this.state.Stopwatch_active_index].props.id).classList.toggle('activeModule');
+        }
     }
 });
 
