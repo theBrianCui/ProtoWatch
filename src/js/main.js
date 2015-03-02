@@ -27,7 +27,6 @@ var Stopwatch = React.createClass({
             endTime: gIS_endTime,
             timerValue: gIS_timerValue,
             running: this.props.autorun
-            //countingUp: this.props.countUp
         };
     },
 
@@ -35,7 +34,6 @@ var Stopwatch = React.createClass({
         this.interval = setInterval(this.tick, 5);
     },
 
-    /* make sure to disable stopwatch upon removal */
     componentWillUnmount: function () {
         clearInterval(this.interval);
     },
@@ -103,8 +101,6 @@ var Stopwatch = React.createClass({
                 }
             } else {
                 newTimerValue = this.state.endTime - Date.now().valueOf();
-                /*if(this.props.timerMax > 0 && this.state.timerValue > this.props.timerMax)
-                 newTimerValue = this.props.timerMax;*/
                 if (newTimerValue >= 0) {
                     this.setState({
                         timerValue: newTimerValue
@@ -122,9 +118,7 @@ var Stopwatch = React.createClass({
         + ', this.props.countUp: ' + this.props.countUp);
         if (nextProps.countUp) { //switch counting down to up
             this.setState({
-                //countingUp: true,
                 startTime: Date.now().valueOf() - this.state.timerValue
-                //running: true
             })
         } else {
             var endTimeOffset = this.state.timerValue;
@@ -132,9 +126,7 @@ var Stopwatch = React.createClass({
                 endTimeOffset = nextProps.timerMax;
             }
             this.setState({
-                //countingUp: false,
                 endTime: Date.now().valueOf() + endTimeOffset
-                //running: true
             })
         }
     },
@@ -206,7 +198,6 @@ var Module = React.createClass({
             minField: pad2(fields.min),
             secField: pad2(fields.sec),
             csField: pad2(fields.cs)
-            //newPropsReceived: false
         }
     },
 
@@ -215,7 +206,7 @@ var Module = React.createClass({
     },
 
     handleChange: function (event) {
-        var newState = new Object();
+        var newState = {};
         newState[event.target.dataset.tag] = event.target.value;
         this.setState(newState);
     },
@@ -230,7 +221,7 @@ var Module = React.createClass({
     },
 
     restoreField: function (event) {
-        var newState = new Object();
+        var newState = {};
         newState[event.target.dataset.tag] = pad2(this.state[event.target.dataset.tag]);
         this.setState(newState);
         //this.forceUpdate();
@@ -255,11 +246,6 @@ var Module = React.createClass({
         }
     },
 
-    /*
-     We can't just use this.forceUpdate() here because React is a little too smart for its own good,
-     and won't update the form fields back to their default state. So instead, we manually reset the form fields
-     to their default state.
-     */
     resetFormFields: function () {
         //We will consider prop data "old data".
         this.log('resetFormFields was called.');
@@ -292,21 +278,13 @@ var Module = React.createClass({
          */
     },
 
-/*    componentWillReceiveProps: function (newProps) {
-        this.setState({
-            newPropsReceived: true
-        });
-    },*/
-
-    shouldComponentUpdate: function (nextProps, nextState) {
-        //this.log('Current state: ' + JSON.stringify(this.state));
-        //this.log('Next state: ' + JSON.stringify(nextState));
-        //return !(quickEqual(this.props, nextProps) && quickEqual(this.state, nextState));
+    shouldComponentUpdate: function () { //optional parameters nextProps, nextState
         return shouldModulesUpdate;
     },
 
     componentDidUpdate: function () {
         this.log('Module component updated!');
+
         /*
          Here we have a special case where the updated state don't precisely reflect the input.
          Typically, updated state reflects the previous input, and this.setUpdateButton() will hide
@@ -314,17 +292,13 @@ var Module = React.createClass({
          the new timerMax prop won't always exactly match the previous state. So, just to make sure,
          we'll manually reset all the form fields.
          */
-        //if (this.state.newPropsReceived) {
-            if (this.verifyTimerMaxFields(false)) {
-                var newTimerMax = this.computeNewTimerMax();
-                if (this.props.timerMax == newTimerMax) {
-                    this.resetFormFields();
-                }
+
+        if (this.verifyTimerMaxFields(false)) {
+            var newTimerMax = this.computeNewTimerMax();
+            if (this.props.timerMax == newTimerMax) {
+                this.resetFormFields();
             }
-/*            this.setState({
-                newPropsReceived: false
-            });*/
-        //}
+        }
 
         this.setUpdateButton();
     },
@@ -373,11 +347,6 @@ var Module = React.createClass({
     },
 
     render: function () {
-        //Highlight activeModule
-        var cssClasses = 'Module';
-        //if (this.props.m_isActive)
-        //    cssClasses += ' activeModule';
-
         var upToDownFrom;
         //Set countUp/countDown limit text
         if (this.props.countUp)
@@ -386,7 +355,7 @@ var Module = React.createClass({
             upToDownFrom = 'Down From:';
 
         return (
-            <div id={this.props.id} className={cssClasses}>
+            <div id={this.props.id} className="Module">
                 <div className="tabs">
                     <div className="tab">
                         <input type="radio" id={this.props.id + '-1'} name={this.props.id} defaultChecked={true} />
@@ -551,12 +520,6 @@ var Main = React.createClass({
 
     cycleActive: function (currentIndex, nextIndex) {
         if (currentIndex != nextIndex) {
-            /*var currentActiveStopwatchProps = this.state.Modules[currentIndex].props;
-             currentActiveStopwatchProps.m_isActive = false;
-             this.moduleUpdate(currentActiveStopwatchProps);
-             var nextActiveStopwatchProps = this.state.Modules[nextIndex].props;
-             nextActiveStopwatchProps.m_isActive = true;
-             this.moduleUpdate(nextActiveStopwatchProps);*/
             shouldModulesUpdate = false;
             this.setState({
                 Stopwatch_active_index: nextIndex,
