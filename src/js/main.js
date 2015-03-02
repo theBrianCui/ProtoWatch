@@ -1,4 +1,5 @@
 React.initializeTouchEvents(true);
+var shouldModulesUpdate = true;
 
 function pad2(str) {
     str = '' + str;
@@ -300,7 +301,8 @@ var Module = React.createClass({
     shouldComponentUpdate: function (nextProps, nextState) {
         //this.log('Current state: ' + JSON.stringify(this.state));
         //this.log('Next state: ' + JSON.stringify(nextState));
-        return !(quickEqual(this.props, nextProps) && quickEqual(this.state, nextState));
+        //return !(quickEqual(this.props, nextProps) && quickEqual(this.state, nextState));
+        return shouldModulesUpdate;
     },
 
     componentDidUpdate: function () {
@@ -555,6 +557,7 @@ var Main = React.createClass({
              var nextActiveStopwatchProps = this.state.Modules[nextIndex].props;
              nextActiveStopwatchProps.m_isActive = true;
              this.moduleUpdate(nextActiveStopwatchProps);*/
+            shouldModulesUpdate = false;
             this.setState({
                 Stopwatch_active_index: nextIndex,
                 Stopwatch_previous_active: currentIndex
@@ -599,6 +602,7 @@ var Main = React.createClass({
 
     componentDidUpdate: function (prevProps, prevState) {
         console.log('Main component updated!');
+        shouldModulesUpdate = true;
         if (this.state.Stopwatch_active_index != prevState.Stopwatch_active_index) {
             if (this.state.Stopwatch_previous_active != -1)
                 document.getElementById(this.state.Modules[this.state.Stopwatch_previous_active].props.id).classList.toggle('activeModule');
