@@ -47,6 +47,27 @@ var Stopwatch = React.createClass({
             console.log('Time to correctStartEndTimes! Counting down, should count up next');
             this.correctStartEndTimes(nextProps);
         }
+
+        if(!this.state.running) {
+            /* Some special cases: if the timer is paused, and a new timerMax is received, update the timerValue
+            as a user would reasonably expect. */
+            if (this.state.timerValue == 0 && !nextProps.countUp && nextProps.timerMax > 0) {
+                this.setState({
+                    timerValue: nextProps.timerMax
+                });
+            } else if (this.state.timerValue == this.props.timerMax && !this.props.countUp && nextProps.countUp){
+                this.setState({
+                    timerValue: 0
+                });
+            } else if (!this.props.countUp && !nextProps.countUp && nextProps.timerMax < this.state.timerValue){
+                this.setState({
+                    timerValue: nextProps.timerMax
+                });
+            }
+            /* A case we're not accounting for here is if the timer is paused, ticking down, and it gets updated
+            with a timerMax that's higher than the current timerValue. We'll preserve the current timer value in case
+            someone doesn't want it to be overridden. */
+        }
     },
 
     toggle: function (event) {
