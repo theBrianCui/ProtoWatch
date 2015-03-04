@@ -185,14 +185,14 @@ var Stopwatch = React.createClass({
                 <p className="mainLinks">
                     <span>
                         <span className="mainLinksWrapper">
-                            <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
+                            <a className="leftRightButton hvr-sweep-to-left" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
                                 <i className="fa fa-step-backward doubleArrow"></i>
                             </a>
-                            <a id="toggleButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
-                            <a id="resetButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>
-                                <i className="fa fa-undo fa-flip-horizontal" id="resetButton"></i>
+                            <a id="toggleButton" className="bigButton hvr-sweep-to-top" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
+                            <a id="resetButton" className="bigButton hvr-sweep-to-bottom" href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>
+                                <i className="fa fa-undo fa-flip-horizontal"></i>
                             </a>
-                            <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
+                            <a className="leftRightButton hvr-sweep-to-right" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
                                 <i className="fa fa-step-forward doubleArrow"></i>
                             </a>
                         </span>
