@@ -135,7 +135,7 @@ input[type=text]:focus, textarea:focus {
 
 .mainLinks {
     margin: 0;
-    background-color: #777;
+    background-color: #626262;
 }
 
 .mainLinks a {
@@ -160,12 +160,12 @@ input[type=text]:focus, textarea:focus {
 }
 
 .mainLinks #toggleButton {
-    background-color: #00B008;
+    background-color: #009907;
 }
 
 .mainLinks #resetButton {
     /*margin-left: -.05em;*/
-    background-color: #D00;
+    background-color: #B70000;
 }
 
 .mainLinks a.leftRightButton {
