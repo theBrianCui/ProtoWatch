@@ -110,6 +110,7 @@ body {
     bottom: 0;
     right: 0;
     font-size: 1.1em;
+    color: white;
 }
 
 input[type=text], textarea {
