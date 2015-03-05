@@ -135,7 +135,7 @@ input[type=text]:focus, textarea:focus {
 
 .mainLinks {
     margin: 0;
-    background-color: #3b3b3b;
+    background-color: #414141;
 }
 
 .mainLinks a {
@@ -144,7 +144,7 @@ input[type=text]:focus, textarea:focus {
     /*min-height: 80px;*/
     text-decoration: none;
     color: white;
-    background-color: #484848;
+    background-color: #0072b1;
 }
 
 .mainLinks a:focus {
@@ -153,7 +153,6 @@ input[type=text]:focus, textarea:focus {
 
 .mainLinks a.bigButton {
     width: 19vw;
-    /*min-width: 180px;*/
     vertical-align: middle;
     line-height: 8vw;
     font-size: 6.5vw;
@@ -164,7 +163,6 @@ input[type=text]:focus, textarea:focus {
 }
 
 .mainLinks #resetButton {
-    /*margin-left: -.05em;*/
     background-color: #B70000;
 }
 
@@ -197,7 +195,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 #moduleList {
-    padding: .5em 1em;
+    padding: .8em 1em;
 }
 
 .Module {
@@ -205,8 +203,8 @@ input[type=text]:focus, textarea:focus {
     margin: 1em .5em;
     display: inline-block;
     vertical-align: middle;
-    background-color: #ACD5F3;
-    border: 1px solid #d7d7d7;
+    background-color: #414141;
+    /*border: 1px solid #d7d7d7;*/
     /*min-height: 12em;*/
     /*min-width: 14em;*/
     padding: .1em 0 0 0;
@@ -238,29 +236,28 @@ input[type=text]:focus, textarea:focus {
 }
 
 .Module.activeModule {
-    animation: activeModuleGlow 1s ease 0s infinite alternate;
-    -webkit-animation: activeModuleGlow 1s ease 0s infinite alternate;
-    background-color: #266fff;
-    border: 1px solid #4090ff;
+    /*animation: activeModuleGlow 1s ease 0s infinite alternate;*/
+    /*-webkit-animation: activeModuleGlow 1s ease 0s infinite alternate;*/
+    background-color: #0072b1;
 }
 
-@-webkit-keyframes activeModuleGlow {
+/*@-webkit-keyframes activeModuleGlow {
     from {
-        background-color: #1b61ff;
+        background-color: #0069A4;
     }
     to {
-        background-color: #4090ff;
+        background-color: #007dc3;
     }
 }
 
 @keyframes activeModuleGlow {
     from {
-        background-color: #1b61ff;
+        background-color: #0069A4;
     }
     to {
-        background-color: #4090ff;
+        background-color: #007dc3;
     }
-}
+}*/
 
 .Module .tabs {
     position: relative;
@@ -456,7 +453,6 @@ input[type=text]:focus, textarea:focus {
 
     .Module {
         margin: 1em .8em;
-        border: none;
     }
 
     .Module.activeModule {
