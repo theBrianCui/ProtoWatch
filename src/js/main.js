@@ -184,7 +184,7 @@ var Stopwatch = React.createClass({
         else
             toggleButton = <i className="fa fa-play"></i>;
         return (
-            <div className="mainWrapper">
+            <div className="mainWrapper noSelect">
                 <p className="mainWatch">
                     <span id="hourDisplay">{pad2(hrs)}:</span>{display.join(':')}</p>
                 <p className="mainLinks">
