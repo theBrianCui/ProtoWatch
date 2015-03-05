@@ -126,6 +126,7 @@ input[type=text]:focus, textarea:focus {
     font-size: 1.2em;
     min-height: 2em;
     line-height: 2em;
+    background-color: #414141;
 }
 
 .mainWrapper {
