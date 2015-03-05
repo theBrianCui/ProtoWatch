@@ -95,7 +95,7 @@ textarea {
 
 body {
     /*margin: 0 .3em;*/
-    background-color: #f5f5f5;
+    background-color: #2b2b2b;
 }
 
 #loadingScreen {
@@ -135,7 +135,7 @@ input[type=text]:focus, textarea:focus {
 
 .mainLinks {
     margin: 0;
-    background-color: #626262;
+    background-color: #3b3b3b;
 }
 
 .mainLinks a {
@@ -189,7 +189,7 @@ input[type=text]:focus, textarea:focus {
 .mainWatch {
     font-size: 12.5vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
-    background-color: #323232;
+    background-color: #2b2b2b;
     color: white;
     margin: 0;
     padding-bottom: .25vw;
@@ -207,7 +207,6 @@ input[type=text]:focus, textarea:focus {
     vertical-align: middle;
     background-color: #ACD5F3;
     border: 1px solid #d7d7d7;
-    box-shadow: 0 5px 8px #d7d7d7;
     /*min-height: 12em;*/
     /*min-width: 14em;*/
     padding: .1em 0 0 0;
@@ -243,7 +242,6 @@ input[type=text]:focus, textarea:focus {
     -webkit-animation: activeModuleGlow 1s ease 0s infinite alternate;
     background-color: #266fff;
     border: 1px solid #4090ff;
-    box-shadow: 0 5px 8px #4090ff;
 }
 
 @-webkit-keyframes activeModuleGlow {
@@ -458,15 +456,12 @@ input[type=text]:focus, textarea:focus {
 
     .Module {
         margin: 1em .8em;
-        box-shadow: 0 3px 4px #d7d7d7;
-        /*border-radius: 0.6em;*/
         border: none;
     }
 
     .Module.activeModule {
         animation: none;
         -webkit-animation: none;
-        box-shadow: 0 3px 4px #4090ff;
     }
 
     .Module .tabs {
