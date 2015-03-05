@@ -16,6 +16,7 @@ function quickEqual(obj1, obj2) { //Might break in the future, but works for now
 
 var Stopwatch = React.createClass({
     getInitialState: function () {
+        console.log('getInitialState was called');
         var gIS_endTime = 0;
         var gIS_timerValue = 0;
         if (!this.props.countUp) {
@@ -31,14 +32,17 @@ var Stopwatch = React.createClass({
     },
 
     componentDidMount: function () {
+        console.log('componentDidMount was called');
         this.interval = setInterval(this.tick, 5);
     },
 
     componentWillUnmount: function () {
+        console.log('componentWillUnmount was called');
         clearInterval(this.interval);
     },
 
     componentWillReceiveProps: function (nextProps) {
+        console.log('componentWillReceiveProps was called');
         var newTimerValue = this.state.endTime - Date.now().valueOf();
         if (!nextProps.countUp && !(!this.props.countUp && (!(nextProps.timerMax > 0) || newTimerValue < nextProps.timerMax))) { //currently counting up, but count down next
             console.log('Time to correctStartEndTimes! Counting up, should count down next');
@@ -135,6 +139,7 @@ var Stopwatch = React.createClass({
 
     //reset the start/end times based on the current timerValue
     correctStartEndTimes: function (nextProps) {
+        console.log('correctStartEndTimes was called');
         console.log('Correcting StartEndTimes: nextProps.countUp: ' + nextProps.countUp
         + ', this.props.countUp: ' + this.props.countUp);
         if (nextProps.countUp) { //switch counting down to up
@@ -188,8 +193,8 @@ var Stopwatch = React.createClass({
                             <a className="leftRightButton hvr-sweep-to-left" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
                                 <i className="fa fa-step-backward doubleArrow"></i>
                             </a>
-                            <a id="toggleButton" className="bigButton hvr-sweep-to-top" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
-                            <a id="resetButton" className="bigButton hvr-sweep-to-bottom" href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>
+                            <a id="toggleButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
+                            <a id="resetButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>
                                 <i className="fa fa-undo fa-flip-horizontal"></i>
                             </a>
                             <a className="leftRightButton hvr-sweep-to-right" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
