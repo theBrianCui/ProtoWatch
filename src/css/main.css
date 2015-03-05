@@ -387,6 +387,11 @@ input[type=text]:focus, textarea:focus {
     padding: .1em .2em;
 }
 
+.Module .limitInputLabel {
+    font-weight: normal;
+    font-size: .7em;
+}
+
 @media (max-width: 1024px) {
     .mainLinks a {
         height: 80px;

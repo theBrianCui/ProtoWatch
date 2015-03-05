@@ -442,6 +442,7 @@ var Module = React.createClass({
                                     onChange={this.handleChange}
                                     data-tag="csField" ref="csField"
                                 />
+                                <p className="limitInputLabel">Hours : Minutes : Seconds : Centisecs </p>
                             </div>
                         </div>
                     </div>
