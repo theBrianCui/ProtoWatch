@@ -290,6 +290,12 @@ input[type=text]:focus, textarea:focus {
     margin-left: -1px;
     position: relative;
     left: 1px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .Module .tab [type=radio] {

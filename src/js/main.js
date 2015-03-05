@@ -576,7 +576,7 @@ var Main = React.createClass({
                 />
                 <div id="moduleList">
                 {this.state.Modules}
-                    <div id="addModuleButton" className="Module" onClick={this.add}>
+                    <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
                     </div>
                 </div>
