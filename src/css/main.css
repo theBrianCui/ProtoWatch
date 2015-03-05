@@ -95,7 +95,7 @@ textarea {
 
 body {
     /*margin: 0 .3em;*/
-    background-color: #2b2b2b;
+    background-color: #242424;
 }
 
 #loadingScreen {
@@ -187,7 +187,7 @@ input[type=text]:focus, textarea:focus {
 .mainWatch {
     font-size: 12.5vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
-    background-color: #2b2b2b;
+    background-color: #242424;
     color: white;
     margin: 0;
     padding-bottom: .25vw;
@@ -203,7 +203,7 @@ input[type=text]:focus, textarea:focus {
     margin: 1em .5em;
     display: inline-block;
     vertical-align: middle;
-    background-color: #414141;
+    background-color: #4b4b4b;
     /*border: 1px solid #d7d7d7;*/
     /*min-height: 12em;*/
     /*min-width: 14em;*/
@@ -218,13 +218,13 @@ input[type=text]:focus, textarea:focus {
     margin-left: 1.5em;
     min-height: 11em;
     min-width: 15em;
-    border: .3em dashed #549df3;
-    color: #549df3;
-    background-color: rgba(172, 213, 243, 0.50);
+    border: .3em dashed #323232;
+    color: #242424;
+    background-color: #414141;
 }
 
 .Module#addModuleButton:hover {
-    background-color: #ACD5F3;
+    background-color: #555555;
     cursor: pointer;
 }
 
@@ -343,7 +343,6 @@ input[type=text]:focus, textarea:focus {
 }
 
 .Module .updateButtonWrapper {
-    background-color: #ACD5F3;
     padding: .5em;
     text-align: center;
     margin-top: -2.85em;
