@@ -170,11 +170,11 @@ input[type=text]:focus, textarea:focus {
 }
 
 .mainLinks #toggleButton {
-    background-color: #009907;
+    background-color: #00a100;
 }
 
 .mainLinks #resetButton {
-    background-color: #B70000;
+    background-color: #bd0300;
 }
 
 .mainLinks a.leftRightButton {
