@@ -113,25 +113,27 @@ var Stopwatch = React.createClass({
     },
 
     tick: function () {
-        if (this.state.running) {
+        var currState = this.state;
+        if (currState.running) {
+            var currProps = this.props;
             var newTimerValue;
-            if (this.props.countUp) {
-                newTimerValue = Date.now().valueOf() - this.state.startTime;
-                if (this.props.timerMax == 0 || newTimerValue < this.props.timerMax) {
+            if (currProps.countUp) {
+                newTimerValue = Date.now().valueOf() - currState.startTime;
+                if (currProps.timerMax == 0 || newTimerValue < currProps.timerMax) {
                     this.setState({
                         timerValue: newTimerValue
                     })
                 } else {
-                    this.props.s_onLimit();
+                    currProps.s_onLimit();
                 }
             } else {
-                newTimerValue = this.state.endTime - Date.now().valueOf();
+                newTimerValue = currState.endTime - Date.now().valueOf();
                 if (newTimerValue >= 0) {
                     this.setState({
                         timerValue: newTimerValue
                     })
                 } else {
-                    this.props.s_onLimit();
+                    currProps.s_onLimit();
                 }
             }
         }
