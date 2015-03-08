@@ -416,7 +416,7 @@ var Module = React.createClass({
                             <div className="updatableWrapper">
                                 <table>
                                     <tr>
-                                        <td className="tableLeft">Alias:</td>
+                                        <td className="tableLeft">Label:</td>
                                         <td className="tableRight">
                                             <input type="text" />
                                         </td>
@@ -486,7 +486,7 @@ var Module = React.createClass({
 
 var Main = React.createClass({
     getInitialState: function () {
-        var initialModuleProps = this.getDefaultModuleProps();
+        var initialModuleProps = this.getDefaultModuleProps(true);
         //initialModuleProps.m_isActive = true;
         return {
             Modules: [<Module {...initialModuleProps} />],
@@ -497,12 +497,12 @@ var Main = React.createClass({
 
     createDefaultModule: function () {
         return (
-            <Module {...this.getDefaultModuleProps()} />
+            <Module {...this.getDefaultModuleProps(false)} />
         )
     },
 
-    getDefaultModuleProps: function () {
-        return ({
+    getDefaultModuleProps: function (firstModule) {
+        var props = {
             id: Date.now().valueOf(),
             autorun: false,
             timerMax: 0,
@@ -512,7 +512,12 @@ var Main = React.createClass({
             s_onLimit: this.next, //make sure to also update moduleUpdate with new function props
             s_onNext: this.next,
             s_onPrevious: this.previous
-        })
+        };
+        if(firstModule)
+            props.label = 'Stopwatch0';
+        else
+            props.label = 'Stopwatch' + this.state.Modules.length;
+        return props;
     },
 
     moduleUpdate: function (newProps) {
