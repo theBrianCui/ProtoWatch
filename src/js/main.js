@@ -244,7 +244,7 @@ var Module = React.createClass({
         event.target.value = '';
     },
 
-    restoreField: function (event) {
+    padOnBlur: function (event) {
         var newState = {};
         newState[event.target.dataset.tag] = pad2(this.state[event.target.dataset.tag]);
         this.setState(newState);
@@ -429,7 +429,7 @@ var Module = React.createClass({
                                 <input type="text"
                                     value={this.state.hrsField}
                                     onFocus={this.blankField}
-                                    onBlur={this.restoreField}
+                                    onBlur={this.padOnBlur}
                                     onChange={this.handleFieldChange}
                                     data-tag="hrsField" ref="hrsField"
                                 />
@@ -437,7 +437,7 @@ var Module = React.createClass({
                                 <input type="text"
                                     value={this.state.minField}
                                     onFocus={this.blankField}
-                                    onBlur={this.restoreField}
+                                    onBlur={this.padOnBlur}
                                     onChange={this.handleFieldChange}
                                     data-tag="minField" ref="minField"
                                 />
@@ -445,7 +445,7 @@ var Module = React.createClass({
                                 <input type="text"
                                     value={this.state.secField}
                                     onFocus={this.blankField}
-                                    onBlur={this.restoreField}
+                                    onBlur={this.padOnBlur}
                                     onChange={this.handleFieldChange}
                                     data-tag="secField" ref="secField"
                                 />
@@ -453,7 +453,7 @@ var Module = React.createClass({
                                 <input type="text"
                                     value={this.state.csField}
                                     onFocus={this.blankField}
-                                    onBlur={this.restoreField}
+                                    onBlur={this.padOnBlur}
                                     onChange={this.handleFieldChange}
                                     data-tag="csField" ref="csField"
                                 />
