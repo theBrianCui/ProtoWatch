@@ -272,7 +272,7 @@ input[type=text]:focus, textarea:focus {
 
 .Module .tabs {
     position: relative;
-    min-height: 14em; /* This part sucks */
+    min-height: 15em; /* This part sucks */
     min-width: 20em;
     clear: both;
     margin: 1.4em 0 0;
@@ -350,13 +350,14 @@ input[type=text]:focus, textarea:focus {
 }
 
 .Module .updatableDivider {
-    margin: .8em auto .5em;
+    margin: .8em auto .8em;
     width: 80%;
     height: 1px;
     background-color: #909090;
 }
 
 .Module .updatableWrapper {
+    margin-bottom: .4em;
 }
 
 .Module .updateButtonWrapper {
