@@ -27,7 +27,8 @@ var Stopwatch = React.createClass({
             startTime: Date.now().valueOf(),
             endTime: gIS_endTime,
             timerValue: gIS_timerValue,
-            running: this.props.autorun
+            running: this.props.autorun,
+            lastButtonEvent: "none"
         };
     },
 
@@ -98,7 +99,8 @@ var Stopwatch = React.createClass({
         })
     },
 
-    reset: function () { //optional: pass in an event parameter.
+    reset: function (event) { //optional: pass in an event parameter.
+        event.preventDefault();
         if (this.props.countUp) {
             this.setState({
                 timerValue: 0,
