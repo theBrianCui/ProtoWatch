@@ -374,9 +374,9 @@ var Module = React.createClass({
         }
     },
 
-    validateInput: function () { //TODO: fix case for blank label and modified timerMax fields
-        return (this.verifyTimerMaxFields(true) && this.state.labelField != this.props.label)
-        || (this.verifyTimerMaxFields(false) || this.state.labelField != this.props.label);
+    validateInput: function () { //Logic: "If at least one of them has changed, AND all of them are valid"
+        return (this.verifyTimerMaxFields(false) || this.state.labelField != this.props.label)
+        && (this.verifyTimerMaxFields(true) && this.state.labelField != '');
     },
 
     playAudioSample: function () {
