@@ -224,6 +224,7 @@ var Module = React.createClass({
     getInitialState: function () {
         var fields = this.computeOldTimerMaxFields();
         return {
+            labelField: this.props.label,
             hrsField: pad2(fields.hrs),
             minField: pad2(fields.min),
             secField: pad2(fields.sec),
@@ -253,7 +254,7 @@ var Module = React.createClass({
 
     handleFieldChange: function (event) {
         var newState = {};
-        newState[event.target.dataset.tag] = event.target.value;
+        newState[event.target.dataset.tag] = (event.target.value).trim();
         this.setState(newState);
     },
 
@@ -281,6 +282,7 @@ var Module = React.createClass({
         this.log('resetFormFields was called.');
         var fields = this.computeOldTimerMaxFields();
         this.setState({
+            labelField: this.props.label,
             hrsField: pad2(fields.hrs),
             minField: pad2(fields.min),
             secField: pad2(fields.sec),
@@ -293,12 +295,13 @@ var Module = React.createClass({
     /* Take the modified contents of form fields and update this module's props with them. */
     updateFormFields: function () {
         this.log('updateTimerMax was called.');
-        if (this.verifyTimerMaxFields(false)) {
+        if (this.validateInput()) {
             var newProps = quickClone(this.props);
             var newTimerMax = this.computeNewTimerMax();
 
             this.log('newTimerMax: ' + newTimerMax);
             newProps.timerMax = newTimerMax;
+            newProps.label = this.state.labelField;
 
             this.handlePropUpdate(newProps);
         }
@@ -329,7 +332,6 @@ var Module = React.createClass({
                 this.resetFormFields();
             }
         }
-
         this.setUpdateButton();
     },
 
@@ -364,12 +366,17 @@ var Module = React.createClass({
 
     setUpdateButton: function () { //All fields must be verified for the update button to be untucked.
         this.log('setUpdateButton was called.');
-        if (this.verifyTimerMaxFields(false)) {
+        if (this.validateInput()) {
             this.log('Revealing update button...');
             this.refs.updateButtonWrapper.getDOMNode().className += ' untucked';
         } else {
             this.refs.updateButtonWrapper.getDOMNode().className = 'updateButtonWrapper';
         }
+    },
+
+    validateInput: function () { //TODO: fix case for blank label and modified timerMax fields
+        return (this.verifyTimerMaxFields(true) && this.state.labelField != this.props.label)
+        || (this.verifyTimerMaxFields(false) || this.state.labelField != this.props.label);
     },
 
     playAudioSample: function () {
@@ -418,7 +425,11 @@ var Module = React.createClass({
                                     <tr>
                                         <td className="tableLeft">Label:</td>
                                         <td className="tableRight">
-                                            <input type="text" />
+                                            <input type="text"
+                                                value={this.state.labelField}
+                                                onChange={this.handleFieldChange}
+                                                data-tag="labelField" ref="labelField"
+                                            />
                                         </td>
                                     </tr>
                                 </table>
