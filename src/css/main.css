@@ -385,6 +385,11 @@ input[type=text]:focus, textarea:focus {
     margin: .1em;
 }
 
+.Module .updatableWrapper input {
+    text-align: right;
+    padding: .1em .2em;
+}
+
 .Module .limitInputWrapper button {
     margin-left: .15em;
     font-weight: normal;
@@ -396,7 +401,6 @@ input[type=text]:focus, textarea:focus {
     font-weight: normal;
     max-width: 2em;
     margin: .25em .3em;
-    padding: .1em .2em;
 }
 
 .Module .limitInputLabel {
