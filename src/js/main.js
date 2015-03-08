@@ -235,12 +235,6 @@ var Module = React.createClass({
         this.props.m_moduleUpdate(newProps);
     },
 
-    handleChange: function (event) {
-        var newState = {};
-        newState[event.target.dataset.tag] = event.target.value;
-        this.setState(newState);
-    },
-
     log: function (message) {
         console.log('id: ' + this.props.id + ' : ' + message);
     },
@@ -255,6 +249,12 @@ var Module = React.createClass({
         newState[event.target.dataset.tag] = pad2(this.state[event.target.dataset.tag]);
         this.setState(newState);
         //this.forceUpdate();
+    },
+
+    handleFieldChange: function (event) {
+        var newState = {};
+        newState[event.target.dataset.tag] = event.target.value;
+        this.setState(newState);
     },
 
     /* Fields above the break are updated in real time. They get their own update functions. */
@@ -430,7 +430,7 @@ var Module = React.createClass({
                                     value={this.state.hrsField}
                                     onFocus={this.blankField}
                                     onBlur={this.restoreField}
-                                    onChange={this.handleChange}
+                                    onChange={this.handleFieldChange}
                                     data-tag="hrsField" ref="hrsField"
                                 />
                                 :
@@ -438,7 +438,7 @@ var Module = React.createClass({
                                     value={this.state.minField}
                                     onFocus={this.blankField}
                                     onBlur={this.restoreField}
-                                    onChange={this.handleChange}
+                                    onChange={this.handleFieldChange}
                                     data-tag="minField" ref="minField"
                                 />
                                 :
@@ -446,7 +446,7 @@ var Module = React.createClass({
                                     value={this.state.secField}
                                     onFocus={this.blankField}
                                     onBlur={this.restoreField}
-                                    onChange={this.handleChange}
+                                    onChange={this.handleFieldChange}
                                     data-tag="secField" ref="secField"
                                 />
                                 :
@@ -454,7 +454,7 @@ var Module = React.createClass({
                                     value={this.state.csField}
                                     onFocus={this.blankField}
                                     onBlur={this.restoreField}
-                                    onChange={this.handleChange}
+                                    onChange={this.handleFieldChange}
                                     data-tag="csField" ref="csField"
                                 />
                                 <p className="limitInputLabel">Hours : Minutes : Seconds : Centisecs </p>
