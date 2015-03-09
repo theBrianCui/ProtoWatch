@@ -18,6 +18,23 @@ ProtoWatch relies primarily on the following files:
 Understanding the Source Code
 --------------------------
 
+**Stopwatch Lifecycle and Functions**
+The Stopwatch element houses the main stopwatch display of ProtoWatch. All of its properties are copied from the currently active module,
+while its state is managed internally and often modified when buttons are pressed.
+
+**Module Lifecycle and Functions**
+Modules house the properties for stopwatches and allow users to modify those properties. Module state and form state is derived from the properties passed by its parent Main;
+a module's passed-in properties are considered *currently active data* while a module's state is considered *properties staged for updating*. State data defaults as property data.
+When it is time to update a Module's properties from its state, Modules generate new props for themselves and pass them to parent Main through the function handlePropUpdate.
+
+The display value of Module input form fields (with the exception of some real-time updating forms, such as count direction) are binded to unique properties in a module's state. Form fields update state, and state updates form fields.
+
+* When an input form field is changed (the onChange event is fired), Module state is changed (see function handleFieldChange), and when the component is re-rendered, the form fields reflect the change.
+* Every time Module state is updated, the "Update" and "Revert" buttons (nested in updateButtonWrapper) are revealed or hidden depending on the updated state. If any state field does not match its equivalent property
+AND all input fields are valid, the "Update" and "Revert" buttons are revealed. Otherwise, they are hidden.
+* When a Module is *updated* via the Update button, the current form input is validated, and then the Module generates new properties for itself which are passed to parent Main through handlePropUpdate.
+* For some input fields, additional functionality is implemented for other events. In the timerMax fields, for example, the onBlur event pads the currently displayed value by updating the field's respective state.
+
 **What's with the repeated use of JSON.stringify and JSON.parse?**
 Often times when modifying the state or properties of an object in React, it is necessary to quickly clone the object itself to avoid modifying the existing object. Since properties are considered immutable, it is often safer to quickly clone properties and modify those to prevent internal contextual conflicts from occurring.
 
