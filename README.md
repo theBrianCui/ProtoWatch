@@ -18,11 +18,17 @@ ProtoWatch relies primarily on the following files:
 Understanding the Source Code
 --------------------------
 
+Before diving in, it is important to understand the distinction between an element's properties (commonly called props) and its state.
+An element's properties are passed to it by its parent and are considered immutable by the element. Elements dynamically update their own state depending on the circumstances.
+An element behaves internally and is rendered based on both its properties and state.
+
 **Stopwatch Lifecycle and Functions**
+
 The Stopwatch element houses the main stopwatch display of ProtoWatch. All of its properties are copied from the currently active module,
 while its state is managed internally and often modified when buttons are pressed.
 
 **Module Lifecycle and Functions**
+
 Modules house the properties for stopwatches and allow users to modify those properties. Module state and form state is derived from the properties passed by its parent Main;
 a module's passed-in properties are considered *currently active data* while a module's state is considered *properties staged for updating*. State data defaults as property data.
 When it is time to update a Module's properties from its state, Modules generate new props for themselves and pass them to parent Main through the function handlePropUpdate.
@@ -36,6 +42,7 @@ AND all input fields are valid, the "Update" and "Revert" buttons are revealed. 
 * For some input fields, additional functionality is implemented for other events. In the timerMax fields, for example, the onBlur event pads the currently displayed value by updating the field's respective state.
 
 **What's with the repeated use of JSON.stringify and JSON.parse?**
+
 Often times when modifying the state or properties of an object in React, it is necessary to quickly clone the object itself to avoid modifying the existing object. Since properties are considered immutable, it is often safer to quickly clone properties and modify those to prevent internal contextual conflicts from occurring.
 
 Deploying for Production/Release
