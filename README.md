@@ -13,14 +13,17 @@ ProtoWatch relies primarily on the following files:
 
  1. *js/main.js* controls everything about ProtoWatch and embeds the ProtoWatch app into *index.html*. Most of the work is done here.
  2. *index.html* modifies the page that holds the ProtoWatch app. Very little is done here.
+ After main.js has fully loaded and its initial execution has completed, the contents of the `<div id="container">...</div>` element is replaced with the Main React element.
  3. *css/main.css* makes everything look pretty.
 
 Understanding the Source Code
 --------------------------
 
 Before diving in, it is important to understand the distinction between an element's properties (commonly called props) and its state.
-An element's properties are passed to it by its parent and are considered immutable by the element. Elements dynamically update their own state depending on the circumstances.
+An element's properties are passed to it by its parent, and, from the perspective of the element, are considered immutable. Elements dynamically update their own state depending on the circumstances.
 An element behaves internally and is rendered based on both its properties and state.
+
+The React documentation goes into further detail on [how props and state apply for elements](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html).
 
 **Stopwatch Lifecycle and Functions**
 
@@ -29,11 +32,13 @@ while its state is managed internally and often modified when buttons are presse
 
 **Module Lifecycle and Functions**
 
-Modules house the properties for stopwatches and allow users to modify those properties. Module state and form state is derived from the properties passed by its parent Main;
+Modules house the properties for individual stopwatches, and allow users to modify those properties. Module state and form state is derived from the properties passed by its parent Main;
 a module's passed-in properties are considered *currently active data* while a module's state is considered *properties staged for updating*. State data defaults as property data.
 When it is time to update a Module's properties from its state, Modules generate new props for themselves and pass them to parent Main through the function handlePropUpdate.
 
-The display value of Module input form fields (with the exception of some real-time updating forms, such as count direction) are binded to unique properties in a module's state. Form fields update state, and state updates form fields.
+The display value of Module input form fields (with the exception of some real-time updating forms, such as count direction) are binded to unique properties in a module's state.
+Modifying the contents of form fields will update state, and in turn, update the form field contents. The form field contents, which are handled by state, do not have to always match exactly what the user inputs
+- when state is updated, input may be saved in a modified format (such as without certain characters or trailing whitespaces).
 
 * When an input form field is changed (the onChange event is fired), Module state is changed (see function handleFieldChange), and when the component is re-rendered, the form fields reflect the change.
 * Every time Module state is updated, the "Update" and "Revert" buttons (nested in updateButtonWrapper) are revealed or hidden depending on the updated state. If any state field does not match its equivalent property
