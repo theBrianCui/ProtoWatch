@@ -379,8 +379,11 @@ var Module = React.createClass({
         && (this.verifyTimerMaxFields(true) && this.state.labelField != '');
     },
 
-    playAudioSample: function () {
-        document.getElementById('sounds_bloop').play()
+    playSound_bloop_d: function () {
+        document.getElementById('sounds_bloop_d').play()
+    },
+    playSound_bloop_g: function () {
+        document.getElementById('sounds_bloop_g').play()
     },
 
     render: function () {
@@ -477,7 +480,8 @@ var Module = React.createClass({
                         <label htmlFor={this.props.id + '-2'}>
                             Sounds</label>
                         <div className="content">
-                            <button onClick={this.playAudioSample}>Play the Audio</button>
+                            <button onClick={this.playSound_bloop_g}>Play a Bloop G</button>
+                            <button onClick={this.playSound_bloop_d}>Play a Bloop D</button>
                             <div className="updatableDivider"></div>
                         </div>
                     </div>
