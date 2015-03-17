@@ -520,8 +520,11 @@ var Main = React.createClass({
     },
 
     createDefaultModule: function () {
+        var newDefaultModuleProps = this.getDefaultModuleProps();
+        // Set the new label value to map to the id (We'll assume all calls to createDefaultModule puts them into use)
+        labelToId[newDefaultModuleProps.label] = newDefaultModuleProps.id;
         return (
-            <Module {...this.getDefaultModuleProps(false)} />
+            <Module {...newDefaultModuleProps} />
         )
     },
 
@@ -594,13 +597,18 @@ var Main = React.createClass({
     },
 
     add: function () {
+        //TODO: Determine whether or not the following code mutates state, and if so, how to avoid doing so
         console.log('add was called.');
-        var newModules = this.state.modules;
-        console.log('newModules.length: ' + newModules.length);
-        var newStopwatchModule = this.createDefaultModule();
-        newModules.push(newStopwatchModule);
+        var newModuleList = this.state.modules;
+        console.log('newModuleList.length: ' + newModuleList.length);
+        var newModule = this.createDefaultModule();
+        // Push the new module onto the list of modules.
+        newModuleList.push(newModule);
+        var newIdToIndex = this.state.idToIndex;
+        newIdToIndex[newModule.id] = newModuleList.length - 1;
         this.setState({
-            modules: newModules
+            modules: newModuleList,
+            idToIndex: newIdToIndex
         })
     },
 
