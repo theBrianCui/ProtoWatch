@@ -1,11 +1,11 @@
 React.initializeTouchEvents(true);
 var shouldModulesUpdate = true;
 
-/* The labelDictionary maps labels to id properties.
-   Due to the large number of possible contexts with which labelDictionary can be
+/* The labelToId object maps labels to id properties.
+   Due to the large number of possible contexts with which labelToId can be
    referred to, it is one of the few designated global variables in ProtoWatch.
  */
-var labelDictionary = {};
+var labelToId = {};
 
 function pad2(str) {
     str = '' + str;
@@ -508,9 +508,12 @@ var Module = React.createClass({
 var Main = React.createClass({
     getInitialState: function () {
         var initialModuleProps = this.getDefaultModuleProps(true);
-        labelDictionary[initialModuleProps.label] = initialModuleProps.id;
+        labelToId[initialModuleProps.label] = initialModuleProps.id;
+        var initialIdToIndex = {};
+        initialIdToIndex[initialModuleProps.id] = 0;
         return {
             modules: [<Module {...initialModuleProps} />],
+            idToIndex: initialIdToIndex,
             activeIndex: 0,
             previousActiveIndex: -1
         };
