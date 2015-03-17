@@ -504,9 +504,9 @@ var Main = React.createClass({
         var initialModuleProps = this.getDefaultModuleProps(true);
         //initialModuleProps.m_isActive = true;
         return {
-            Modules: [<Module {...initialModuleProps} />],
-            Stopwatch_active_index: 0,
-            Stopwatch_previous_active: -1
+            modules: [<Module {...initialModuleProps} />],
+            activeIndex: 0,
+            previousActiveIndex: -1
         };
     },
 
@@ -531,7 +531,7 @@ var Main = React.createClass({
         if(firstModule)
             props.label = 'Stopwatch0';
         else
-            props.label = 'Stopwatch' + this.state.Modules.length;
+            props.label = 'Stopwatch' + this.state.modules.length;
         return props;
     },
 
@@ -539,12 +539,12 @@ var Main = React.createClass({
         var moduleID = newProps.id;
         //console.log('Updating module ' + moduleID);
         var moduleIndex;
-        for (moduleIndex = 0; moduleIndex < this.state.Modules.length; moduleIndex++) { //TODO: make this not so O(n)
-            if (this.state.Modules[moduleIndex].props.id == moduleID)
+        for (moduleIndex = 0; moduleIndex < this.state.modules.length; moduleIndex++) { //TODO: make this not so O(n)
+            if (this.state.modules[moduleIndex].props.id == moduleID)
                 break;
         }
         console.log('Updating module ' + moduleID + '...with index ' + moduleIndex);
-        var newModuleList = this.state.Modules;
+        var newModuleList = this.state.modules;
         var newModuleProps = newProps;
 
         //update these with function props
@@ -555,49 +555,49 @@ var Main = React.createClass({
 
         newModuleList[moduleIndex] = <Module {...newModuleProps} />;
         this.setState({
-            Modules: newModuleList //TODO: make this not so O(n^2)
+            modules: newModuleList //TODO: make this not so O(n^2)
         })
     },
 
     next: function () {
         console.log('next was called.');
-        var nextIndex = this.state.Stopwatch_active_index + 1;
-        if (nextIndex >= this.state.Modules.length)
+        var nextIndex = this.state.activeIndex + 1;
+        if (nextIndex >= this.state.modules.length)
             nextIndex = 0;
-        this.cycleActive(this.state.Stopwatch_active_index, nextIndex);
+        this.cycleActive(this.state.activeIndex, nextIndex);
     },
 
     previous: function () {
         console.log('previous was called.');
-        var nextIndex = this.state.Stopwatch_active_index - 1;
+        var nextIndex = this.state.activeIndex - 1;
         if (nextIndex < 0)
-            nextIndex = this.state.Modules.length - 1;
-        this.cycleActive(this.state.Stopwatch_active_index, nextIndex);
+            nextIndex = this.state.modules.length - 1;
+        this.cycleActive(this.state.activeIndex, nextIndex);
     },
 
     cycleActive: function (currentIndex, nextIndex) {
         if (currentIndex != nextIndex) {
             shouldModulesUpdate = false;
             this.setState({
-                Stopwatch_active_index: nextIndex,
-                Stopwatch_previous_active: currentIndex
+                activeIndex: nextIndex,
+                previousActiveIndex: currentIndex
             })
         }
     },
 
     add: function () {
         console.log('add was called.');
-        var newModules = this.state.Modules;
+        var newModules = this.state.modules;
         console.log('newModules.length: ' + newModules.length);
         var newStopwatchModule = this.createDefaultModule();
         newModules.push(newStopwatchModule);
         this.setState({
-            Modules: newModules
+            modules: newModules
         })
     },
 
     render: function () {
-        var currentActiveStopwatch = this.state.Modules[this.state.Stopwatch_active_index];
+        var currentActiveStopwatch = this.state.modules[this.state.activeIndex];
         return (
             <div>
                 <Stopwatch
@@ -605,7 +605,7 @@ var Main = React.createClass({
                     key={currentActiveStopwatch.props.id}
                 />
                 <div id="moduleList">
-                {this.state.Modules}
+                {this.state.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
                     </div>
@@ -617,16 +617,16 @@ var Main = React.createClass({
 
     componentDidMount: function () {
         console.log('Main component mounted!');
-        this.componentDidUpdate(null, {Stopwatch_active_index: -1});
+        this.componentDidUpdate(null, {activeIndex: -1});
     },
 
     componentDidUpdate: function (prevProps, prevState) {
         console.log('Main component updated!');
         shouldModulesUpdate = true;
-        if (this.state.Stopwatch_active_index != prevState.Stopwatch_active_index) {
-            if (this.state.Stopwatch_previous_active != -1)
-                document.getElementById(this.state.Modules[this.state.Stopwatch_previous_active].props.id).classList.toggle('activeModule');
-            document.getElementById(this.state.Modules[this.state.Stopwatch_active_index].props.id).classList.toggle('activeModule');
+        if (this.state.activeIndex != prevState.activeIndex) {
+            if (this.state.previousActiveIndex != -1)
+                document.getElementById(this.state.modules[this.state.previousActiveIndex].props.id).classList.toggle('activeModule');
+            document.getElementById(this.state.modules[this.state.activeIndex].props.id).classList.toggle('activeModule');
         }
     }
 });
