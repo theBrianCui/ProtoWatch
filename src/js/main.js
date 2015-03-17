@@ -1,6 +1,12 @@
 React.initializeTouchEvents(true);
 var shouldModulesUpdate = true;
 
+/* The labelDictionary maps labels to index values.
+   Due to the large number of possible contexts with which labelDictionary can be
+   referred to, it is one of the few designated global variables in ProtoWatch.
+ */
+var labelDictionary = {};
+
 function pad2(str) {
     str = '' + str;
     return str.length < 2 ? ('0' + str) : str;
@@ -502,7 +508,7 @@ var Module = React.createClass({
 var Main = React.createClass({
     getInitialState: function () {
         var initialModuleProps = this.getDefaultModuleProps(true);
-        //initialModuleProps.m_isActive = true;
+        labelDictionary[initialModuleProps.label] = 0;
         return {
             modules: [<Module {...initialModuleProps} />],
             activeIndex: 0,
@@ -522,7 +528,6 @@ var Main = React.createClass({
             autorun: false,
             timerMax: 0,
             countUp: true,
-            //m_isActive: false,
             m_moduleUpdate: this.moduleUpdate,
             s_onLimit: this.next, //make sure to also update moduleUpdate with new function props
             s_onNext: this.next,
