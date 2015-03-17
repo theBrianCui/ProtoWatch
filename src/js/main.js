@@ -551,7 +551,8 @@ var Main = React.createClass({
 
     moduleUpdate: function (newProps, oldProps) {
         var moduleID = newProps.id;
-        //console.log('Updating module ' + moduleID);
+        console.log('Updating module ' + moduleID);
+        console.log('Current idToIndex: ' + JSON.stringify(this.state.idToIndex));
         var moduleIndex = this.state.idToIndex[moduleID];
 
         /*for (moduleIndex = 0; moduleIndex < this.state.modules.length; moduleIndex++) {
@@ -610,7 +611,8 @@ var Main = React.createClass({
         // Push the new module onto the list of modules.
         newModuleList.push(newModule);
         var newIdToIndex = this.state.idToIndex;
-        newIdToIndex[newModule.id] = newModuleList.length - 1;
+        newIdToIndex[newModule.props.id] = newModuleList.length - 1;
+        console.log('newIdToIndex: ' + JSON.stringify(newIdToIndex));
         this.setState({
             modules: newModuleList,
             idToIndex: newIdToIndex
