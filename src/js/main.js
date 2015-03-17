@@ -4,6 +4,8 @@ var shouldModulesUpdate = true;
 /* The labelToId object maps labels to id properties.
    Due to the large number of possible contexts with which labelToId can be
    referred to, it is one of the few designated global variables in ProtoWatch.
+
+   The state property idToIndex allows us to bridge labels to module list array indices.
  */
 var labelToId = {};
 
@@ -509,6 +511,7 @@ var Main = React.createClass({
     getInitialState: function () {
         var initialModuleProps = this.getDefaultModuleProps(true);
         labelToId[initialModuleProps.label] = initialModuleProps.id;
+        // idToIndex maps id values to module list indices. Always assume id never changes, but indices are volatile.
         var initialIdToIndex = {};
         initialIdToIndex[initialModuleProps.id] = 0;
         return {
@@ -549,11 +552,13 @@ var Main = React.createClass({
     moduleUpdate: function (newProps, oldProps) {
         var moduleID = newProps.id;
         //console.log('Updating module ' + moduleID);
-        var moduleIndex;
-        for (moduleIndex = 0; moduleIndex < this.state.modules.length; moduleIndex++) { //TODO: make this not so O(n)
+        var moduleIndex = this.state.idToIndex[moduleID];
+
+        /*for (moduleIndex = 0; moduleIndex < this.state.modules.length; moduleIndex++) {
             if (this.state.modules[moduleIndex].props.id == moduleID)
                 break;
-        }
+        }*/
+
         console.log('Updating module ' + moduleID + '...with index ' + moduleIndex);
         var newModuleList = this.state.modules;
         var newModuleProps = newProps;
