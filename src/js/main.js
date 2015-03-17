@@ -1,7 +1,7 @@
 React.initializeTouchEvents(true);
 var shouldModulesUpdate = true;
 
-/* The labelDictionary maps labels to index values.
+/* The labelDictionary maps labels to id properties.
    Due to the large number of possible contexts with which labelDictionary can be
    referred to, it is one of the few designated global variables in ProtoWatch.
  */
@@ -239,7 +239,7 @@ var Module = React.createClass({
     },
 
     handlePropUpdate: function (newProps) {
-        this.props.m_moduleUpdate(newProps);
+        this.props.m_moduleUpdate(newProps, this.props);
     },
 
     log: function (message) {
@@ -508,7 +508,7 @@ var Module = React.createClass({
 var Main = React.createClass({
     getInitialState: function () {
         var initialModuleProps = this.getDefaultModuleProps(true);
-        labelDictionary[initialModuleProps.label] = 0;
+        labelDictionary[initialModuleProps.label] = initialModuleProps.id;
         return {
             modules: [<Module {...initialModuleProps} />],
             activeIndex: 0,
@@ -540,7 +540,7 @@ var Main = React.createClass({
         return props;
     },
 
-    moduleUpdate: function (newProps) {
+    moduleUpdate: function (newProps, oldProps) {
         var moduleID = newProps.id;
         //console.log('Updating module ' + moduleID);
         var moduleIndex;
