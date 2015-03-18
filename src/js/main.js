@@ -550,6 +550,7 @@ var Main = React.createClass({
     },
 
     moduleUpdate: function (newProps, oldProps) {
+        //TODO: update labelToId based on newProps, oldProps
         var moduleID = newProps.id;
         console.log('Updating module ' + moduleID);
         console.log('Current idToIndex: ' + JSON.stringify(this.state.idToIndex));
