@@ -537,7 +537,7 @@ var Main = React.createClass({
             timerMax: 0,
             countUp: true,
             m_moduleUpdate: this.moduleUpdate,
-            s_onLimit: this.next, //make sure to also update moduleUpdate with new function props
+            s_onLimit: this.next,
             s_onNext: this.next,
             s_onPrevious: this.previous
         };
@@ -549,25 +549,12 @@ var Main = React.createClass({
     },
 
     moduleUpdate: function (newProps, oldProps) {
-        //TODO: update labelToId based on newProps, oldProps
         var moduleId = newProps.id;
         var moduleIndex = this.state.idToIndex[moduleId];
 
-        /*for (moduleIndex = 0; moduleIndex < this.state.modules.length; moduleIndex++) {
-            if (this.state.modules[moduleIndex].props.id == moduleId)
-                break;
-        }*/
-
         console.log('Updating module ' + moduleId + '...with index ' + moduleIndex);
         var newModuleList = this.state.modules;
-        var newModuleProps = newProps;
-
-        // Update these with function props
-        newModuleProps.m_moduleUpdate = this.moduleUpdate;
-        newModuleProps.s_onLimit = this.next;
-        newModuleProps.s_onNext = this.next;
-        newModuleProps.s_onPrevious = this.previous;
-        newModuleList[moduleIndex] = <Module {...newModuleProps} />;
+        newModuleList[moduleIndex] = <Module {...newProps} />;
 
         // Update labelToId object property named with new label to map to the module Id
         labelToId[newProps.label] = moduleId;
