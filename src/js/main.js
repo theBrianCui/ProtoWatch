@@ -2,10 +2,10 @@ React.initializeTouchEvents(true);
 var shouldModulesUpdate = true;
 
 /* The labelToId object maps labels to id properties.
-   Due to the large number of possible contexts with which labelToId can be
-   referred to, it is one of the few designated global variables in ProtoWatch.
+ Due to the large number of possible contexts with which labelToId can be
+ referred to, it is one of the few designated global variables in ProtoWatch.
 
-   The state property idToIndex allows us to bridge labels to module list array indices.
+ The state property idToIndex allows us to bridge labels to module list array indices.
  */
 var labelToId = {};
 
@@ -383,7 +383,7 @@ var Module = React.createClass({
 
     validateInput: function () { //Logic: "If at least one of them has changed, AND all of them are valid"
         return (this.verifyTimerMaxFields(false) || this.state.labelField != this.props.label)
-        && (this.verifyTimerMaxFields(true) && this.state.labelField != '');
+            && (this.verifyTimerMaxFields(true) && this.state.labelField != '');
     },
 
     playSound_bloop_d: function () {
@@ -541,7 +541,7 @@ var Main = React.createClass({
             s_onNext: this.next,
             s_onPrevious: this.previous
         };
-        if(firstModule)
+        if (firstModule)
             props.label = 'Stopwatch0';
         else
             props.label = 'Stopwatch' + this.state.modules.length;
@@ -553,18 +553,22 @@ var Main = React.createClass({
         var moduleIndex = this.state.idToIndex[moduleId];
 
         console.log('Updating module ' + moduleId + '...with index ' + moduleIndex);
-        var newModuleList = this.state.modules;
-        newModuleList[moduleIndex] = <Module {...newProps} />;
+        var newModule = <Module {...newProps} />;
+        var newState = React.addons.update(this.state, {
+            modules: {
+                $splice: [[moduleIndex, 1, newModule]]
+            }
+        });
 
         // Update labelToId object property named with new label to map to the module Id
-        labelToId[newProps.label] = moduleId;
-        // Remove the mapping from the old label to the module Id
-        delete labelToId[oldProps.label];
+        if (newProps.label != oldProps.label) {
+            labelToId[newProps.label] = moduleId;
+            // Remove the mapping from the old label to the module Id
+            delete labelToId[oldProps.label];
+        }
         console.log('labelToId: ' + JSON.stringify(labelToId));
 
-        this.setState({
-            modules: newModuleList //TODO: make this not so O(n^2)
-        })
+        this.setState(newState);
     },
 
     next: function () {
