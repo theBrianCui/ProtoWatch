@@ -551,27 +551,31 @@ var Main = React.createClass({
 
     moduleUpdate: function (newProps, oldProps) {
         //TODO: update labelToId based on newProps, oldProps
-        var moduleID = newProps.id;
-        console.log('Updating module ' + moduleID);
-        console.log('Current idToIndex: ' + JSON.stringify(this.state.idToIndex));
-        var moduleIndex = this.state.idToIndex[moduleID];
+        var moduleId = newProps.id;
+        var moduleIndex = this.state.idToIndex[moduleId];
 
         /*for (moduleIndex = 0; moduleIndex < this.state.modules.length; moduleIndex++) {
-            if (this.state.modules[moduleIndex].props.id == moduleID)
+            if (this.state.modules[moduleIndex].props.id == moduleId)
                 break;
         }*/
 
-        console.log('Updating module ' + moduleID + '...with index ' + moduleIndex);
+        console.log('Updating module ' + moduleId + '...with index ' + moduleIndex);
         var newModuleList = this.state.modules;
         var newModuleProps = newProps;
 
-        //update these with function props
+        // Update these with function props
         newModuleProps.m_moduleUpdate = this.moduleUpdate;
         newModuleProps.s_onLimit = this.next;
         newModuleProps.s_onNext = this.next;
         newModuleProps.s_onPrevious = this.previous;
-
         newModuleList[moduleIndex] = <Module {...newModuleProps} />;
+
+        // Update labelToId object property named with new label to map to the module Id
+        labelToId[newProps.label] = moduleId;
+        // Remove the mapping from the old label to the module Id
+        delete labelToId[oldProps.label];
+        console.log('labelToId: ' + JSON.stringify(labelToId));
+
         this.setState({
             modules: newModuleList //TODO: make this not so O(n^2)
         })
