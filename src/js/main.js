@@ -18,7 +18,7 @@ function quickClone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
-function quickEqual(obj1, obj2) { //Might break in the future, but works for now.
+function quickEqual(obj1, obj2) {
     return (JSON.stringify(obj1) == JSON.stringify(obj2));
 }
 
@@ -270,8 +270,10 @@ var Module = React.createClass({
     updateAutorun: function (event) {
         var newAutorun = event.target.checked;
         this.log('updateAutorun was called. value: ' + newAutorun);
-        var newProps = quickClone(this.props);
-        newProps.autorun = newAutorun;
+        // Use the React immutability helper to avoid mutating/deep cloning this component's props
+        var newProps = React.addons.update(this.props, {
+            autorun: {$set: newAutorun}
+        });
         this.handlePropUpdate(newProps);
     },
 
@@ -279,8 +281,9 @@ var Module = React.createClass({
         this.log('updateCountUp was called. value: ' + event.target.value);
         var newCountUp = (event.target.value == 'true'); //convert to boolean
         if (this.props.countUp != newCountUp) {
-            var newProps = quickClone(this.props);
-            newProps.countUp = newCountUp;
+            var newProps = React.addons.update(this.props, {
+                countUp: {$set: newCountUp}
+            });
             this.handlePropUpdate(newProps);
         }
     },
@@ -302,15 +305,11 @@ var Module = React.createClass({
 
     /* Take the modified contents of form fields and update this module's props with them. */
     updateFormFields: function () {
-        this.log('updateTimerMax was called.');
         if (this.validateInput()) {
-            var newProps = quickClone(this.props);
-            var newTimerMax = this.computeNewTimerMax();
-
-            this.log('newTimerMax: ' + newTimerMax);
-            newProps.timerMax = newTimerMax;
-            newProps.label = this.state.labelField;
-
+            var newProps = React.addons.update(this.props, {
+                timerMax: {$set: this.computeNewTimerMax()},
+                label: {$set: this.state.labelField}
+            });
             this.handlePropUpdate(newProps);
         }
         /*
