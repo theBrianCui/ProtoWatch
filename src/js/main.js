@@ -598,23 +598,19 @@ var Main = React.createClass({
     },
 
     add: function () {
-        //TODO: Determine whether or not the following code mutates state, and if so, how to avoid doing so
         console.log('add was called.');
-        var newModuleList = this.state.modules;
-        console.log('newModuleList.length: ' + newModuleList.length);
         var newModule = this.createDefaultModule();
-        // Push the new module onto the list of modules.
-        newModuleList.push(newModule);
-        var newIdToIndex = this.state.idToIndex;
-        newIdToIndex[newModule.props.id] = newModuleList.length - 1;
-        console.log('newIdToIndex: ' + JSON.stringify(newIdToIndex));
-        this.setState({
-            modules: newModuleList,
-            idToIndex: newIdToIndex
-        })
+        var newIdToIndex = {};
+        newIdToIndex[newModule.props.id] = this.state.modules.length;
+        var newState = React.addons.update(this.state, {
+            modules: {$push: [newModule]},
+            idToIndex: {$merge: newIdToIndex}
+        });
+        this.setState(newState);
     },
 
     render: function () {
+        console.log('idToIndex: ' + JSON.stringify(this.state.idToIndex));
         var currentActiveStopwatch = this.state.modules[this.state.activeIndex];
         return (
             <div>
