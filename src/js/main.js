@@ -14,14 +14,6 @@ function pad2(str) {
     return str.length < 2 ? ('0' + str) : str;
 }
 
-function quickClone(obj) {
-    return JSON.parse(JSON.stringify(obj));
-}
-
-function quickEqual(obj1, obj2) {
-    return (JSON.stringify(obj1) == JSON.stringify(obj2));
-}
-
 var Stopwatch = React.createClass({
     getInitialState: function () {
         console.log('getInitialState was called');
