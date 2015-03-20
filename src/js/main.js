@@ -378,9 +378,10 @@ var Module = React.createClass({
            For the labelField, the return value of labelToId must either match this module's id,
            or match null/undefined (indicating the label is available).
         */
-        return (this.verifyTimerMaxFields(false) || this.state.labelField != this.props.label)
-            && (this.verifyTimerMaxFields(true) && this.state.labelField != ''
-            && (labelToId[this.state.labelField] == this.props.id || !labelToId[this.state.labelField]));
+        var label = this.state.labelField;
+        return (this.verifyTimerMaxFields(false) || label != this.props.label)
+            && (this.verifyTimerMaxFields(true) && label != ''
+            && (labelToId[label] == this.props.id || !labelToId[label]));
     },
 
     playSound_bloop_d: function () {
