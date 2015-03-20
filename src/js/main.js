@@ -375,9 +375,9 @@ var Module = React.createClass({
 
     validateInput: function () {
         /* Logic: "If at least one of them has changed, AND all of them are valid"
-           For the labelField, the return value of labelToId must either match this module's id,
-           or match null/undefined (indicating the label is available).
-        */
+         For the labelField, the return value of labelToId must either match this module's id,
+         or match null/undefined (indicating the label is available).
+         */
         var label = this.state.labelField;
         return (this.verifyTimerMaxFields(false) || label != this.props.label)
             && (this.verifyTimerMaxFields(true) && label != ''
@@ -522,6 +522,9 @@ var Main = React.createClass({
     createDefaultModule: function () {
         var newDefaultModuleProps = this.getDefaultModuleProps();
         // Set the new label value to map to the id (We'll assume all calls to createDefaultModule puts them into use)
+        // If the label already maps to an existing value, append a special marker to the end
+        if (labelToId[newDefaultModuleProps.label])
+            newDefaultModuleProps.label = newDefaultModuleProps.label + '.1';
         labelToId[newDefaultModuleProps.label] = newDefaultModuleProps.id;
         return (
             <Module {...newDefaultModuleProps} />
