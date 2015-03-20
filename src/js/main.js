@@ -373,9 +373,14 @@ var Module = React.createClass({
         }
     },
 
-    validateInput: function () { //Logic: "If at least one of them has changed, AND all of them are valid"
+    validateInput: function () {
+        /* Logic: "If at least one of them has changed, AND all of them are valid"
+           For the labelField, the return value of labelToId must either match this module's id,
+           or match null/undefined (indicating the label is available).
+        */
         return (this.verifyTimerMaxFields(false) || this.state.labelField != this.props.label)
-            && (this.verifyTimerMaxFields(true) && this.state.labelField != '');
+            && (this.verifyTimerMaxFields(true) && this.state.labelField != ''
+            && (labelToId[this.state.labelField] == this.props.id || !labelToId[this.state.labelField]));
     },
 
     playSound_bloop_d: function () {
