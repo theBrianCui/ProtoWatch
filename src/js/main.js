@@ -520,15 +520,15 @@ var Main = React.createClass({
         };
     },
 
-    createDefaultModule: function () {
-        var newDefaultModuleProps = this.getDefaultModuleProps();
-        // Set the new label value to map to the id (We'll assume all calls to createDefaultModule puts them into use)
+    createNewModule: function () {
+        var newModuleProps = this.getDefaultModuleProps();
+        // Set the new label value to map to the id (We'll assume all calls to createNewModule puts them into use)
         // If the label already maps to an existing value, append a special marker to the end
-        if (labelToId[newDefaultModuleProps.label])
-            newDefaultModuleProps.label = newDefaultModuleProps.label + '.1';
-        labelToId[newDefaultModuleProps.label] = newDefaultModuleProps.id;
+        if (labelToId[newModuleProps.label])
+            newModuleProps.label = newModuleProps.label + '.1';
+        labelToId[newModuleProps.label] = newModuleProps.id;
         return (
-            <Module {...newDefaultModuleProps} />
+            <Module {...newModuleProps} />
         )
     },
 
@@ -599,9 +599,9 @@ var Main = React.createClass({
         }
     },
 
-    add: function () {
+    add: function (event) {
         console.log('add was called.');
-        var newModule = this.createDefaultModule();
+        var newModule = this.createNewModule();
         var newIdToIndex = {};
         newIdToIndex[newModule.props.id] = this.state.modules.length;
         var newState = React.addons.update(this.state, {
