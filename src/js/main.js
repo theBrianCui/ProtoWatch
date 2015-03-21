@@ -1,5 +1,6 @@
 React.initializeTouchEvents(true);
 var shouldModulesUpdate = true;
+var ignoreNestedClick = false;
 
 /* The labelToId object maps labels to id properties.
  Due to the large number of possible contexts with which labelToId can be
@@ -601,14 +602,24 @@ var Main = React.createClass({
 
     add: function (event) {
         console.log('add was called.');
-        var newModule = this.createNewModule();
-        var newIdToIndex = {};
-        newIdToIndex[newModule.props.id] = this.state.modules.length;
-        var newState = React.addons.update(this.state, {
-            modules: {$push: [newModule]},
-            idToIndex: {$merge: newIdToIndex}
-        });
-        this.setState(newState);
+        console.log('ignoreNestedClick is: ' + ignoreNestedClick);
+        if(!ignoreNestedClick) {
+            var newModule = this.createNewModule();
+            var newIdToIndex = {};
+            newIdToIndex[newModule.props.id] = this.state.modules.length;
+            var newState = React.addons.update(this.state, {
+                modules: {$push: [newModule]},
+                idToIndex: {$merge: newIdToIndex}
+            });
+            this.setState(newState);
+        } else {
+            ignoreNestedClick = false;
+        }
+    },
+
+    ignoreClick: function(event) {
+        console.log('ignoreClick was called.');
+        ignoreNestedClick = true;
     },
 
     render: function () {
@@ -624,6 +635,12 @@ var Main = React.createClass({
                 {this.state.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
+                        <p>
+                            <select value="west" onClick={this.ignoreClick}>
+                                <option value="test">test</option>
+                                <option value="west">west</option>
+                            </select>
+                        </p>
                     </div>
                 </div>
                 <p>{currentActiveStopwatch.props.id}</p>

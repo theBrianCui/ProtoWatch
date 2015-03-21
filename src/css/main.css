@@ -239,7 +239,7 @@ input[type=text]:focus, textarea:focus {
     cursor: pointer;
 }
 
-.Module#addModuleButton p{
+.Module#addModuleButton p{ /* TODO: make these properties apply only to the first p (child) of addModuleButton */
     font-size: 5em;
     line-height: 50%;
     font-weight: bold;
