@@ -46,6 +46,13 @@ AND all input fields are valid, the "Update" and "Revert" buttons are revealed. 
 * When a Module is *updated* via the Update button, the current form input is validated, and then the Module generates new properties for itself which are passed to parent Main through handlePropUpdate.
 * For some input fields, additional functionality is implemented for other events. In the timerMax fields, for example, the onBlur event pads the currently displayed value by updating the field's respective state.
 
+**When is it appropriate to use global variables over state?**
+
+State is generally preferred to be the location of any properties which are used in the process of rendering content to the user.
+Global variables are used when elements share a value and it is too complicated to update state for elements individually,
+and/or it is impossible to use state to update the context of elements or functions (such as when two functions fire from the same event
+ - they will both run in same state context as the event which fired it, regardless of whether or not state is changed before the function runs).
+
 Deploying for Production/Release
 --------------------------
 
