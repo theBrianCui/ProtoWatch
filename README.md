@@ -46,10 +46,6 @@ AND all input fields are valid, the "Update" and "Revert" buttons are revealed. 
 * When a Module is *updated* via the Update button, the current form input is validated, and then the Module generates new properties for itself which are passed to parent Main through handlePropUpdate.
 * For some input fields, additional functionality is implemented for other events. In the timerMax fields, for example, the onBlur event pads the currently displayed value by updating the field's respective state.
 
-**What's with the repeated use of JSON.stringify and JSON.parse?**
-
-Often times when modifying the state or properties of an object in React, it is necessary to quickly clone the object itself to avoid modifying the existing object. Since properties are considered immutable, it is often safer to quickly clone properties and modify those to prevent internal contextual conflicts from occurring.
-
 Deploying for Production/Release
 --------------------------
 
