@@ -604,7 +604,7 @@ var Main = React.createClass({
     add: function () {
         console.log('add was called.');
         console.log('ignoreNestedClick is: ' + ignoreNestedClick);
-        if(!ignoreNestedClick) {
+        if (!ignoreNestedClick) {
             var newModule = this.createNewModule();
             var newIdToIndex = {};
             newIdToIndex[newModule.props.id] = this.state.modules.length;
@@ -625,7 +625,7 @@ var Main = React.createClass({
         });
     },
 
-    ignoreClick: function(event) {
+    ignoreClick: function (event) {
         event.preventDefault();
         console.log('ignoreClick was called.');
         ignoreNestedClick = true;
@@ -634,6 +634,11 @@ var Main = React.createClass({
     render: function () {
         console.log('idToIndex: ' + JSON.stringify(this.state.idToIndex));
         var currentActiveStopwatch = this.state.modules[this.state.activeIndex];
+        var defaultModuleSelectOptions = [];
+        for (var i = 0; i < this.state.modules.length; i++) { //TODO: optimize this to run only when necessary
+            var iteratedLabel = this.state.modules[i].props.label;
+            defaultModuleSelectOptions.push(<option value={iteratedLabel}>{iteratedLabel}</option>);
+        }
         return (
             <div>
                 <Stopwatch
@@ -647,7 +652,7 @@ var Main = React.createClass({
                         <p>
                             <select value={'' + this.state.defaultModuleLabel} onClick={this.ignoreClick} onChange={this.setDefaultModule}>
                                 <option value="null">(default)</option>
-                                <option value="west">west</option>
+                            {defaultModuleSelectOptions}
                             </select>
                         </p>
                     </div>
