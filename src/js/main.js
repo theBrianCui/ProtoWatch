@@ -517,7 +517,8 @@ var Main = React.createClass({
             modules: [<Module {...initialModuleProps} />],
             idToIndex: initialIdToIndex,
             activeIndex: 0,
-            previousActiveIndex: -1
+            previousActiveIndex: -1,
+            defaultModuleLabel: null
         };
     },
 
@@ -600,7 +601,7 @@ var Main = React.createClass({
         }
     },
 
-    add: function (event) {
+    add: function () {
         console.log('add was called.');
         console.log('ignoreNestedClick is: ' + ignoreNestedClick);
         if(!ignoreNestedClick) {
@@ -617,7 +618,15 @@ var Main = React.createClass({
         }
     },
 
+    setDefaultModule: function (event) {
+        var newDefaultModuleLabel = event.target.value;
+        this.setState({
+            defaultModuleLabel: newDefaultModuleLabel
+        });
+    },
+
     ignoreClick: function(event) {
+        event.preventDefault();
         console.log('ignoreClick was called.');
         ignoreNestedClick = true;
     },
@@ -636,8 +645,8 @@ var Main = React.createClass({
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
                         <p>
-                            <select value="west" onClick={this.ignoreClick}>
-                                <option value="test">test</option>
+                            <select value={'' + this.state.defaultModuleLabel} onClick={this.ignoreClick} onChange={this.setDefaultModule}>
+                                <option value="null">(default)</option>
                                 <option value="west">west</option>
                             </select>
                         </p>
