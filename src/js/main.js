@@ -526,9 +526,10 @@ var Main = React.createClass({
         // Just-in-case code for when newModuleProps argument is not passed
         if(newModuleProps == undefined)
             newModuleProps = this.getDefaultModuleProps();
-        // Set the new label value to map to the id (We'll assume all calls to createNewModule puts them into use)
-        // If the label already maps to an existing value, append a special marker to the end
-        if (labelToId[newModuleProps.label])
+        /* Set the new label value to map to the id (We'll assume all calls to createNewModule puts them into use)
+           If the label already maps to an existing value, append a special marker to the end
+           TODO: make the numbering scheme more intuitive and less O(n) */
+        while(labelToId[newModuleProps.label])
             newModuleProps.label = newModuleProps.label + '.1';
         labelToId[newModuleProps.label] = newModuleProps.id;
         return (
@@ -572,7 +573,6 @@ var Main = React.createClass({
             // Remove the mapping from the old label to the module Id
             delete labelToId[oldProps.label];
         }
-        console.log('labelToId: ' + JSON.stringify(labelToId));
 
         this.setState(newState);
     },
