@@ -606,10 +606,11 @@ var Main = React.createClass({
     add: function () {
         console.log('add was called.');
         if (!ignoreNestedClick) {
+            var currState = this.state;
             var newModule;
             var newModuleProps = this.getDefaultModuleProps();
-            if(this.state.defaultModuleLabel != null) {
-                var clonedModuleProps = this.state.modules[this.state.idToIndex[labelToId[this.state.defaultModuleLabel]]].props;
+            if(currState.defaultModuleLabel != null) {
+                var clonedModuleProps = currState.modules[currState.idToIndex[labelToId[currState.defaultModuleLabel]]].props;
                 newModuleProps = React.addons.update(clonedModuleProps, {
                     id: {$set: newModuleProps.id}
                 });
@@ -617,7 +618,7 @@ var Main = React.createClass({
             newModule = this.createNewModule(newModuleProps);
 
             var newIdToIndex = {};
-            newIdToIndex[newModule.props.id] = this.state.modules.length;
+            newIdToIndex[newModule.props.id] = currState.modules.length;
             var newState = React.addons.update(this.state, {
                 modules: {$push: [newModule]},
                 idToIndex: {$merge: newIdToIndex}
