@@ -522,8 +522,10 @@ var Main = React.createClass({
         };
     },
 
-    createNewModule: function () {
-        var newModuleProps = this.getDefaultModuleProps();
+    createNewModule: function (newModuleProps) {
+        // Just-in-case code for when newModuleProps argument is not passed
+        if(newModuleProps == undefined)
+            newModuleProps = this.getDefaultModuleProps();
         // Set the new label value to map to the id (We'll assume all calls to createNewModule puts them into use)
         // If the label already maps to an existing value, append a special marker to the end
         if (labelToId[newModuleProps.label])
@@ -603,9 +605,17 @@ var Main = React.createClass({
 
     add: function () {
         console.log('add was called.');
-        console.log('ignoreNestedClick is: ' + ignoreNestedClick);
         if (!ignoreNestedClick) {
-            var newModule = this.createNewModule();
+            var newModule;
+            var newModuleProps = this.getDefaultModuleProps();
+            if(this.state.defaultModuleLabel != null) {
+                var clonedModuleProps = this.state.modules[this.state.idToIndex[labelToId[this.state.defaultModuleLabel]]].props;
+                newModuleProps = React.addons.update(clonedModuleProps, {
+                    id: {$set: newModuleProps.id}
+                });
+            }
+            newModule = this.createNewModule(newModuleProps);
+
             var newIdToIndex = {};
             newIdToIndex[newModule.props.id] = this.state.modules.length;
             var newState = React.addons.update(this.state, {
