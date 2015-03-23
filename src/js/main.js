@@ -405,9 +405,10 @@ var Module = React.createClass({
             <div id={this.props.id} className="Module">
                 <div className="tabs">
                     <div className="tab">
+                    {/* We'll manually index input id and label htmlFor based on module id */}
                         <input type="radio" id={this.props.id + '-1'} name={this.props.id} defaultChecked={true} />
                         <label htmlFor={this.props.id + '-1'}>
-                            Main Settings</label>
+                            General</label>
                         <div className="content">
                             <table>
                                 <tr>
@@ -543,6 +544,7 @@ var Main = React.createClass({
             autorun: false,
             timerMax: 0,
             countUp: true,
+            soundEnabled: true,
             m_moduleUpdate: this.moduleUpdate,
             s_onLimit: this.next,
             s_onNext: this.next,
