@@ -488,9 +488,20 @@ var Module = React.createClass({
                         <label htmlFor={this.props.id + '-2'}>
                             Sounds</label>
                         <div className="content">
+                            <table>
+                                <tr>
+                                    <td className="tableLeft">Sound Enabled:</td>
+                                    <td className="tableRight">
+                                        <input type="checkbox"
+                                            defaultChecked={this.props.soundEnabled}
+                                            onChange={this.updateSoundEnabled}
+                                        />
+                                    </td>
+                                </tr>
+                            </table>
+                            <div className="updatableDivider"></div>
                             <button onClick={this.playSound_bloop_g}>Play a Bloop G</button>
                             <button onClick={this.playSound_bloop_d}>Play a Bloop D</button>
-                            <div className="updatableDivider"></div>
                         </div>
                     </div>
                 </div>
