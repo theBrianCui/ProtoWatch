@@ -396,11 +396,14 @@ var Module = React.createClass({
             && (labelToId[label] == this.props.id || !labelToId[label]));
     },
 
-    playSound_bloop_d: function () {
-        document.getElementById('sounds_bloop_d').play()
+    playSound_bloop_d: function () { //Optional: pass in an event parameter
+        if(this.props.soundEnabled)
+            document.getElementById('sounds_bloop_d').play()
     },
+    
     playSound_bloop_g: function () {
-        document.getElementById('sounds_bloop_g').play()
+        if(this.props.soundEnabled)
+            document.getElementById('sounds_bloop_g').play()
     },
 
     render: function () {
