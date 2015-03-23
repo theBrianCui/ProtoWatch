@@ -274,12 +274,22 @@ var Module = React.createClass({
     updateCountUp: function (event) {
         this.log('updateCountUp was called. value: ' + event.target.value);
         var newCountUp = (event.target.value == 'true'); //convert to boolean
+        //Unlike checkboxes, dropdown forms can "change" without the selected value being different.
         if (this.props.countUp != newCountUp) {
             var newProps = React.addons.update(this.props, {
                 countUp: {$set: newCountUp}
             });
             this.handlePropUpdate(newProps);
         }
+    },
+
+    updateSoundEnabled: function (event) {
+        this.log('updateSoundEnabled was called. value: ' + event.target.checked);
+        var newSoundEnabled = event.target.checked;
+        var newProps = React.addons.update(this.props, {
+            soundEnabled: {$set: newSoundEnabled}
+        });
+        this.handlePropUpdate(newProps);
     },
 
     resetFormFields: function () {
@@ -536,12 +546,12 @@ var Main = React.createClass({
 
     createNewModule: function (newModuleProps) {
         // Just-in-case code for when newModuleProps argument is not passed
-        if(newModuleProps == undefined)
+        if (newModuleProps == undefined)
             newModuleProps = this.getDefaultModuleProps();
         /* Set the new label value to map to the id (We'll assume all calls to createNewModule puts them into use)
-           If the label already maps to an existing value, append a special marker to the end
-           TODO: make the numbering scheme more intuitive and less O(n) */
-        while(labelToId[newModuleProps.label])
+         If the label already maps to an existing value, append a special marker to the end
+         TODO: make the numbering scheme more intuitive and less O(n) */
+        while (labelToId[newModuleProps.label])
             newModuleProps.label = newModuleProps.label + '.1';
         labelToId[newModuleProps.label] = newModuleProps.id;
         return (
@@ -622,7 +632,7 @@ var Main = React.createClass({
             var currState = this.state;
             var newModule;
             var newModuleProps = this.getDefaultModuleProps();
-            if(currState.defaultModuleLabel != null) {
+            if (currState.defaultModuleLabel != null) {
                 var clonedModuleProps = currState.modules[currState.idToIndex[labelToId[currState.defaultModuleLabel]]].props;
                 newModuleProps = React.addons.update(clonedModuleProps, {
                     id: {$set: newModuleProps.id}
