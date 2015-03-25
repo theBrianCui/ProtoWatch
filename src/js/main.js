@@ -45,27 +45,29 @@ var Stopwatch = React.createClass({
 
     componentWillReceiveProps: function (nextProps) {
         console.log('componentWillReceiveProps was called');
-        var newTimerValue = this.state.endTime - Date.now().valueOf();
-        if (!nextProps.countUp && !(!this.props.countUp && (!(nextProps.timerMax > 0) || newTimerValue < nextProps.timerMax))) { //currently counting up, but count down next
+        var currState = this.state;
+        var currProps = this.props;
+        var newTimerValue = currState.endTime - Date.now().valueOf();
+        if (!nextProps.countUp && !(!currProps.countUp && (!(nextProps.timerMax > 0) || newTimerValue < nextProps.timerMax))) { //currently counting up, but count down next
             console.log('Time to correctStartEndTimes! Counting up, should count down next');
             this.correctStartEndTimes(nextProps);
-        } else if (nextProps.countUp && !this.props.countUp) { //currently counting down, but count up next
+        } else if (nextProps.countUp && !currProps.countUp) { //currently counting down, but count up next
             console.log('Time to correctStartEndTimes! Counting down, should count up next');
             this.correctStartEndTimes(nextProps);
         }
 
-        if (!this.state.running) {
+        if (!currState.running) {
             /* Some special cases: if the timer is paused, and a new timerMax is received, update the timerValue
              as a user would reasonably expect. */
-            if (this.state.timerValue == 0 && !nextProps.countUp && nextProps.timerMax > 0) {
+            if (currState.timerValue == 0 && !nextProps.countUp && nextProps.timerMax > 0) {
                 this.setState({
                     timerValue: nextProps.timerMax
                 });
-            } else if (this.state.timerValue == this.props.timerMax && !this.props.countUp && nextProps.countUp) {
+            } else if (currState.timerValue == currProps.timerMax && !currProps.countUp && nextProps.countUp) {
                 this.setState({
                     timerValue: 0
                 });
-            } else if (!this.props.countUp && !nextProps.countUp && nextProps.timerMax < this.state.timerValue) {
+            } else if (!currProps.countUp && !nextProps.countUp && nextProps.timerMax < currState.timerValue) {
                 this.setState({
                     timerValue: nextProps.timerMax
                 });
