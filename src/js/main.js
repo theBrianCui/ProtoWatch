@@ -674,11 +674,12 @@ var Main = React.createClass({
     },
 
     render: function () {
-        console.log('idToIndex: ' + JSON.stringify(this.state.idToIndex));
-        var currentActiveStopwatch = this.state.modules[this.state.activeIndex];
+        var currState = this.state;
+        console.log('idToIndex: ' + JSON.stringify(currState.idToIndex));
+        var currentActiveStopwatch = currState.modules[currState.activeIndex];
         var defaultModuleSelectOptions = [];
-        for (var i = 0; i < this.state.modules.length; i++) { //TODO: optimize this to run only when necessary
-            var iteratedLabel = this.state.modules[i].props.label;
+        for (var i = 0; i < currState.modules.length; i++) { //TODO: optimize this to run only when necessary
+            var iteratedLabel = currState.modules[i].props.label;
             defaultModuleSelectOptions.push(<option value={iteratedLabel}>{iteratedLabel}</option>);
         }
         return (
@@ -688,11 +689,11 @@ var Main = React.createClass({
                     key={currentActiveStopwatch.props.id}
                 />
                 <div id="moduleList">
-                {this.state.modules}
+                {currState.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
                         <p>
-                            <select value={'' + this.state.defaultModuleLabel} onClick={this.ignoreClick} onChange={this.setDefaultModule}>
+                            <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick} onChange={this.setDefaultModule}>
                                 <option value="null">(default)</option>
                             {defaultModuleSelectOptions}
                             </select>
