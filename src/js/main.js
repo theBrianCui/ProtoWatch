@@ -370,11 +370,12 @@ var Module = React.createClass({
 
     verifyTimerMaxFields: function (canMatchExistingValues) {
         var original = this.computeOldTimerMaxFields();
+        var currState = this.state;
         var update = {};
-        update.hrs = parseInt(this.state.hrsField, 10);
-        update.min = parseInt(this.state.minField, 10);
-        update.sec = parseInt(this.state.secField, 10);
-        update.cs = parseInt(this.state.csField, 10);
+        update.hrs = parseInt(currState.hrsField, 10);
+        update.min = parseInt(currState.minField, 10);
+        update.sec = parseInt(currState.secField, 10);
+        update.cs = parseInt(currState.csField, 10);
         return ((update.hrs >= 0 && update.min >= 0 && update.sec >= 0 && update.cs >= 0)
         && (canMatchExistingValues || original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs));
     },
