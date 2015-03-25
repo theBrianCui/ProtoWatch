@@ -172,7 +172,8 @@ var Stopwatch = React.createClass({
 
     render: function () {
         //compute display timer values
-        var tValue = this.state.timerValue;
+        var currState = this.state;
+        var tValue = currState.timerValue;
         var cs = Math.floor(tValue % 1000 / 10);
         var sec = Math.floor(tValue / 1000) % 60;
         var min = Math.floor(tValue / 60000) % 60;
@@ -184,7 +185,7 @@ var Stopwatch = React.createClass({
 
         //determine toggleButton state
         var toggleButton;
-        if (this.state.running)
+        if (currState.running)
             toggleButton = <i className="fa fa-pause"></i>;
         else
             toggleButton = <i className="fa fa-play"></i>;
