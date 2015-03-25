@@ -360,10 +360,11 @@ var Module = React.createClass({
     },
 
     computeNewTimerMax: function () {
-        var newTimerMax = (parseInt(this.state.hrsField, 10) * 3600000);
-        newTimerMax += (parseInt(this.state.minField, 10) * 60000);
-        newTimerMax += (parseInt(this.state.secField, 10) * 1000);
-        newTimerMax += (parseInt(this.state.csField, 10) * 10);
+        var currState = this.state;
+        var newTimerMax = (parseInt(currState.hrsField, 10) * 3600000);
+        newTimerMax += (parseInt(currState.minField, 10) * 60000);
+        newTimerMax += (parseInt(currState.secField, 10) * 1000);
+        newTimerMax += (parseInt(currState.csField, 10) * 10);
         return newTimerMax;
     },
 
