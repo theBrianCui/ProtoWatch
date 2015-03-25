@@ -712,10 +712,11 @@ var Main = React.createClass({
     componentDidUpdate: function (prevProps, prevState) {
         console.log('Main component updated!');
         shouldModulesUpdate = true;
-        if (this.state.activeIndex != prevState.activeIndex) {
-            if (this.state.previousActiveIndex != -1)
-                document.getElementById(this.state.modules[this.state.previousActiveIndex].props.id).classList.toggle('activeModule');
-            document.getElementById(this.state.modules[this.state.activeIndex].props.id).classList.toggle('activeModule');
+        var currState = this.state;
+        if (currState.activeIndex != prevState.activeIndex) {
+            if (currState.previousActiveIndex != -1)
+                document.getElementById(currState.modules[currState.previousActiveIndex].props.id).classList.toggle('activeModule');
+            document.getElementById(currState.modules[currState.activeIndex].props.id).classList.toggle('activeModule');
         }
     }
 });
