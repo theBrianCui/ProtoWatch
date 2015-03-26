@@ -53,6 +53,11 @@ Global variables are used when elements share a value and it is too complicated 
 and/or it is impossible to use state to update the context of elements or functions (such as when two functions fire from the same event
  - they will both run in same state context as the event which fired it, regardless of whether or not state is changed before the function runs).
 
+**Why/When is currState/currProps used instead of this.state/this.props?**
+
+When this.state/this.props is being referenced multiple times, we can slightly reduce the scope chain of variable lookups (and improve overall performance) by first
+storing this.state/this.props in a local variable. currState/currProps is usually used after the implementation of a function is complete.
+
 Deploying for Production/Release
 --------------------------
 
