@@ -259,8 +259,18 @@ var Module = React.createClass({
     handleFieldChange: function (event) {
         var newState = {};
         var eventTarget = event.target;
+        var eventTargetValue = event.target.value;
+        var eventTargetDatasetTag = eventTarget.dataset.tag;
         //TODO: Indicate when invalid characters are entered
-        newState[eventTarget.dataset.tag] = (eventTarget.value).replace(/\W/g, '').trim();
+        //TODO: Make this more efficient
+        if(eventTargetDatasetTag != 'hrsField'
+        && eventTargetDatasetTag != 'minField'
+        && eventTargetDatasetTag != 'secField'
+        && eventTargetDatasetTag != 'csField')
+            newState[eventTargetDatasetTag] = (eventTargetValue).replace(/\W/g, '');
+        else
+            newState[eventTargetDatasetTag] = (eventTargetValue).replace(/([^0-9])/g,'');
+        newState[eventTargetDatasetTag] = newState[eventTargetDatasetTag].trim();
         this.setState(newState);
     },
 
