@@ -258,8 +258,9 @@ var Module = React.createClass({
 
     handleFieldChange: function (event) {
         var newState = {};
+        var eventTarget = event.target;
         //TODO: Indicate when invalid characters are entered
-        newState[event.target.dataset.tag] = (event.target.value).replace(/\W/g, '').trim();
+        newState[eventTarget.dataset.tag] = (eventTarget.value).replace(/\W/g, '').trim();
         this.setState(newState);
     },
 
