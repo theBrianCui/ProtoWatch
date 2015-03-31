@@ -27,6 +27,7 @@ var Stopwatch = React.createClass({
         return {
             startTime: Date.now().valueOf(),
             endTime: gIS_endTime,
+            expectedEndTime: Date.now().valueOf() + this.props.timerMax,
             timerValue: gIS_timerValue,
             running: this.props.autorun,
             lastButtonEvent: "none"
@@ -147,8 +148,7 @@ var Stopwatch = React.createClass({
     //reset the start/end times based on the current timerValue
     correctStartEndTimes: function (nextProps) {
         console.log('correctStartEndTimes was called');
-        console.log('Correcting StartEndTimes: nextProps.countUp: ' + nextProps.countUp
-        + ', this.props.countUp: ' + this.props.countUp);
+        console.log('Correcting StartEndTimes: nextProps.countUp: ' + nextProps.countUp);
         if (nextProps.countUp) { //switch counting down to up
             this.setState({
                 startTime: Date.now().valueOf() - this.state.timerValue
