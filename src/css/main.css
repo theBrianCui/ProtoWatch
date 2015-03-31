@@ -124,6 +124,14 @@ input[type=text]:focus, textarea:focus {
     background-color: #414141;
 }
 
+#topbar #menuWrapper {
+    text-transform: uppercase;
+    color: white;
+    padding: 0 2em;
+    margin: 0 auto;
+    max-width: 960px;
+}
+
 .mainWrapper {
     margin: 0 auto;
     text-align: center;
