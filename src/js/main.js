@@ -36,6 +36,7 @@ var Stopwatch = React.createClass({
 
     componentDidMount: function () {
         console.log('componentDidMount was called');
+        console.log('expectedEndTime: ' + this.state.expectedEndTime);
         this.interval = setInterval(this.tick, 5);
     },
 
@@ -119,6 +120,7 @@ var Stopwatch = React.createClass({
     },
 
     tick: function () {
+        console.log('expectedEndTime: ' + this.state.expectedEndTime);
         var currState = this.state;
         if (currState.running) {
             var currProps = this.props;
@@ -152,7 +154,7 @@ var Stopwatch = React.createClass({
         if (nextProps.countUp) { //switch counting down to up
             this.setState({
                 startTime: Date.now().valueOf() - this.state.timerValue,
-                expectedEndTime: Date.now().valueOf() + (this.state.timerMax - this.state.timerValue)
+                expectedEndTime: Date.now().valueOf() + (this.props.timerMax - this.state.timerValue)
             })
         } else {
             var endTimeOffset = this.state.timerValue;
@@ -162,7 +164,7 @@ var Stopwatch = React.createClass({
             this.setState({
                 endTime: Date.now().valueOf() + endTimeOffset,
                 expectedEndTime: Date.now().valueOf() + endTimeOffset
-            }) 
+            })
         }
     },
 
