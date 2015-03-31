@@ -151,7 +151,8 @@ var Stopwatch = React.createClass({
         console.log('Correcting StartEndTimes: nextProps.countUp: ' + nextProps.countUp);
         if (nextProps.countUp) { //switch counting down to up
             this.setState({
-                startTime: Date.now().valueOf() - this.state.timerValue
+                startTime: Date.now().valueOf() - this.state.timerValue,
+                expectedEndTime: Date.now().valueOf() + (this.state.timerMax - this.state.timerValue)
             })
         } else {
             var endTimeOffset = this.state.timerValue;
@@ -159,8 +160,9 @@ var Stopwatch = React.createClass({
                 endTimeOffset = nextProps.timerMax;
             }
             this.setState({
-                endTime: Date.now().valueOf() + endTimeOffset
-            })
+                endTime: Date.now().valueOf() + endTimeOffset,
+                expectedEndTime: Date.now().valueOf() + endTimeOffset
+            }) 
         }
     },
 
