@@ -30,8 +30,11 @@ var Stopwatch = React.createClass({
                 gIS_expectedEndTime = this.props.prevEndTime + this.props.timerMax;
             else
                 gIS_expectedEndTime = Date.now().valueOf() + this.props.timerMax;
-        else
-            gIS_expectedEndTime = null;
+        else //timerMax is 0
+            if(this.props.countUp)
+                gIS_expectedEndTime = null; //null signifies infinity/never ends/meaningless value
+            else
+                gIS_expectedEndTime = (this.props.prevEndTime || Date.now().valueOf());
         return {
             startTime: Date.now().valueOf(),
             endTime: gIS_endTime,
