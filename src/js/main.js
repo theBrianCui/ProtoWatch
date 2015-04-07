@@ -56,13 +56,13 @@ var Stopwatch = React.createClass({
         console.log('componentWillReceiveProps was called');
         var currState = this.state;
         var currProps = this.props;
-        if (!nextProps.countUp && (currProps.countUp || nextProps.timerMax > 0)) { //currently counting up, but count down next
+        if ((nextProps.countUp != currProps.countUp) || (nextProps.timerMax != currProps.countUp)) { //currently counting up, but count down next
             console.log('Time to correctStartEndTimes! Counting up, should count down next');
             this.correctStartEndTimes(nextProps);
-        } else if (nextProps.countUp && !currProps.countUp) { //currently counting down, but count up next
+        }/* else if (nextProps.countUp && !currProps.countUp) { //currently counting down, but count up next
             console.log('Time to correctStartEndTimes! Counting down, should count up next');
             this.correctStartEndTimes(nextProps);
-        }
+        }*/
 
         if (!currState.running) {
             /* Some special cases: if the timer is paused, and a new timerMax is received, update the timerValue
@@ -137,7 +137,7 @@ var Stopwatch = React.createClass({
                         timerValue: newTimerValue
                     })
                 } else {
-                    currProps.s_onLimit();
+                    this.next();
                 }
             } else {
                 newTimerValue = currState.endTime - Date.now().valueOf();
@@ -146,7 +146,7 @@ var Stopwatch = React.createClass({
                         timerValue: newTimerValue
                     })
                 } else {
-                    currProps.s_onLimit();
+                    this.next();
                 }
             }
             //if(this.props.timerMax > 0)
@@ -181,6 +181,12 @@ var Stopwatch = React.createClass({
 
     next: function () { //optional: pass in an event parameter.
         this.props.s_onNext();
+        //The following only runs if there the next module happens to be this same one
+        //This might break a jump to the same module; we'll see.
+        this.setState({
+            timerValue: this.props.timerMax,
+            running: false
+        })
     },
 
     render: function () {
@@ -597,7 +603,7 @@ var Main = React.createClass({
             countUp: true,
             soundEnabled: true,
             m_moduleUpdate: this.moduleUpdate,
-            s_onLimit: this.next,
+            //s_onLimit: this.next,
             s_onNext: this.next,
             s_onPrevious: this.previous
         };
