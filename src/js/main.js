@@ -179,9 +179,9 @@ var Stopwatch = React.createClass({
     },
 
     next: function () { //optional: pass in an event parameter.
-        this.props.s_onNext();
+        this.props.s_onNext(this.state.expectedEndTime);
         //The following only runs if there the next module happens to be this same one
-        //This might break a jump to the same module; we'll see.
+        //This might break a jump to the same module; we'll see. React throws a warning in the Console for this.
         this.setState({
             timerValue: this.props.timerMax,
             running: false
@@ -610,6 +610,7 @@ var Main = React.createClass({
             timerMax: 0,
             countUp: true,
             soundEnabled: true,
+            prevEndTime: null,
             m_moduleUpdate: this.moduleUpdate,
             //s_onLimit: this.next,
             s_onNext: this.next,
@@ -647,10 +648,10 @@ var Main = React.createClass({
     next: function (previousModuleEndTime) {
         console.log('next was called.');
         var nextIndex = this.computeNextModule();
-        this.cycleActive(this.state.activeIndex, nextIndex);
+        this.cycleActive(this.state.activeIndex, nextIndex, previousModuleEndTime);
     },
 
-    computeNextModule: function (previousModuleEndTime) {
+    computeNextModule: function () {
         console.log('Computing the next module... current activeIndex: ' + this.state.activeIndex);
         var nextIndex = this.state.activeIndex + 1;
         if (nextIndex >= this.state.modules.length)
@@ -663,16 +664,26 @@ var Main = React.createClass({
         var nextIndex = this.state.activeIndex - 1;
         if (nextIndex < 0)
             nextIndex = this.state.modules.length - 1;
-        this.cycleActive(this.state.activeIndex, nextIndex);
+        this.cycleActive(this.state.activeIndex, nextIndex, null);
     },
 
-    cycleActive: function (currentIndex, nextIndex) {
+    cycleActive: function (currentIndex, nextIndex, prevModuleEndTime) {
         if (currentIndex != nextIndex) {
             shouldModulesUpdate = false;
-            this.setState({
-                activeIndex: nextIndex,
-                previousActiveIndex: currentIndex
-            })
+            console.log('Cycling active modules: ' + currentIndex + ' to ' + nextIndex);
+            var nextModuleNewProps = React.addons.update(this.state.modules[nextIndex].props, {
+                prevEndTime: { $set: prevModuleEndTime }
+            });
+            var nextModule = <Module {...nextModuleNewProps} />;
+            console.log('nextModule props: ' + JSON.stringify(nextModule.props));
+            var nextState = React.addons.update(this.state, {
+                modules: {
+                    $splice: [[nextIndex, 1, nextModule]]
+                },
+                activeIndex: { $set: nextIndex },
+                previousActiveIndex: { $set: currentIndex }
+            });
+            this.setState(nextState);
         }
     },
 
