@@ -640,12 +640,18 @@ var Main = React.createClass({
         this.setState(newState);
     },
 
-    next: function () {
+    next: function (previousModuleEndTime) {
         console.log('next was called.');
+        var nextIndex = this.computeNextModule();
+        this.cycleActive(this.state.activeIndex, nextIndex);
+    },
+
+    computeNextModule: function (previousModuleEndTime) {
+        console.log('Computing the next module... current activeIndex: ' + this.state.activeIndex);
         var nextIndex = this.state.activeIndex + 1;
         if (nextIndex >= this.state.modules.length)
             nextIndex = 0;
-        this.cycleActive(this.state.activeIndex, nextIndex);
+        return nextIndex;
     },
 
     previous: function () {
