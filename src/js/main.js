@@ -152,8 +152,6 @@ var Stopwatch = React.createClass({
                     this.next();
                 }
             }
-            //if(this.props.timerMax > 0)
-            //    console.log('expectedEndTime: ' + currState.expectedEndTime + ', then - now = ' + (currState.expectedEndTime - Date.now().valueOf()));
         }
     },
 
@@ -162,9 +160,12 @@ var Stopwatch = React.createClass({
         console.log('correctStartEndTimes was called');
         console.log('Correcting StartEndTimes: nextProps.countUp: ' + nextProps.countUp);
         if (nextProps.countUp) { //switch counting down to up
+            var nextExpectedEndTime = null;
+            if(this.props.timerMax > 0)
+                nextExpectedEndTime = Date.now().valueOf() + (this.props.timerMax - this.state.timerValue);
             this.setState({
                 startTime: Date.now().valueOf() - this.state.timerValue,
-                expectedEndTime: Date.now().valueOf() + (this.props.timerMax - this.state.timerValue)
+                expectedEndTime: nextExpectedEndTime
             })
         } else {
             var endTimeOffset = this.state.timerValue;
