@@ -24,10 +24,18 @@ var Stopwatch = React.createClass({
             gIS_endTime = Date.now().valueOf() + this.props.timerMax;
             gIS_timerValue = this.props.timerMax;
         }
+        var gIS_expectedEndTime;
+        if (this.props.timerMax > 0)
+            if(this.props.autorun && this.props.prevEndTime)
+                gIS_expectedEndTime = this.props.prevEndTime + this.props.timerMax;
+            else
+                gIS_expectedEndTime = Date.now().valueOf() + this.props.timerMax;
+        else
+            gIS_expectedEndTime = null;
         return {
             startTime: Date.now().valueOf(),
             endTime: gIS_endTime,
-            expectedEndTime: Date.now().valueOf() + this.props.timerMax,
+            expectedEndTime: gIS_expectedEndTime,
             timerValue: gIS_timerValue,
             running: this.props.autorun,
             lastButtonEvent: "none"
@@ -36,7 +44,6 @@ var Stopwatch = React.createClass({
 
     componentDidMount: function () {
         console.log('componentDidMount was called');
-        console.log('expectedEndTime: ' + this.state.expectedEndTime);
         this.interval = setInterval(this.tick, 5);
     },
 
@@ -120,7 +127,6 @@ var Stopwatch = React.createClass({
     },
 
     tick: function () {
-        console.log('expectedEndTime: ' + this.state.expectedEndTime);
         var currState = this.state;
         if (currState.running) {
             var currProps = this.props;
@@ -144,6 +150,8 @@ var Stopwatch = React.createClass({
                     currProps.s_onLimit();
                 }
             }
+            //if(this.props.timerMax > 0)
+            //    console.log('expectedEndTime: ' + currState.expectedEndTime + ', then - now = ' + (currState.expectedEndTime - Date.now().valueOf()));
         }
     },
 
