@@ -59,13 +59,11 @@ var Stopwatch = React.createClass({
         console.log('componentWillReceiveProps was called');
         var currState = this.state;
         var currProps = this.props;
-        if ((nextProps.countUp != currProps.countUp) || (nextProps.timerMax != currProps.countUp)) { //currently counting up, but count down next
+        if ((nextProps.countUp != currProps.countUp) || (nextProps.timerMax != currProps.timerMax)) {
+            //Either the count direction has switched, or the timerMax has changed
             console.log('Time to correctStartEndTimes! Counting up, should count down next');
             this.correctStartEndTimes(nextProps);
-        }/* else if (nextProps.countUp && !currProps.countUp) { //currently counting down, but count up next
-            console.log('Time to correctStartEndTimes! Counting down, should count up next');
-            this.correctStartEndTimes(nextProps);
-        }*/
+        }
 
         if (!currState.running) {
             /* Some special cases: if the timer is paused, and a new timerMax is received, update the timerValue
