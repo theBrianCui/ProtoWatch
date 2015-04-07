@@ -26,15 +26,15 @@ var Stopwatch = React.createClass({
         }
         var gIS_expectedEndTime;
         if (this.props.timerMax > 0)
-            if(this.props.autorun && this.props.prevEndTime)
+            if (this.props.autorun && this.props.prevEndTime)
                 gIS_expectedEndTime = this.props.prevEndTime + this.props.timerMax;
             else
                 gIS_expectedEndTime = Date.now().valueOf() + this.props.timerMax;
         else //timerMax is 0
-            if(this.props.countUp)
-                gIS_expectedEndTime = null; //null signifies infinity/never ends/meaningless value
-            else
-                gIS_expectedEndTime = (this.props.prevEndTime || Date.now().valueOf());
+        if (this.props.countUp)
+            gIS_expectedEndTime = null; //null signifies infinity/never ends/meaningless value
+        else
+            gIS_expectedEndTime = (this.props.prevEndTime || Date.now().valueOf());
         return {
             startTime: Date.now().valueOf(),
             endTime: gIS_endTime,
@@ -47,7 +47,7 @@ var Stopwatch = React.createClass({
 
     componentDidMount: function () {
         console.log('componentDidMount was called');
-        this.interval = setInterval(this.tick, 5);
+        this.interval = setInterval(this.tick, 90);
     },
 
     componentWillUnmount: function () {
@@ -131,23 +131,20 @@ var Stopwatch = React.createClass({
         if (currState.running) {
             var currProps = this.props;
             var newTimerValue;
-            if (currProps.countUp) {
-                newTimerValue = Date.now().valueOf() - currState.startTime;
-                if (currProps.timerMax == 0 || newTimerValue < currProps.timerMax) {
-                    this.setState({
-                        timerValue: newTimerValue
-                    })
-                } else {
-                    this.next();
-                }
+            console.log('expectedEndTime: ' + currState.expectedEndTime + ', then - now: ' + (currState.expectedEndTime - Date.now().valueOf()));
+            if (currState.expectedEndTime && Date.now().valueOf() >= currState.expectedEndTime) {
+                this.next();
             } else {
-                newTimerValue = currState.endTime - Date.now().valueOf();
-                if (newTimerValue >= 0) {
+                if (currProps.countUp) {
+                    newTimerValue = Date.now().valueOf() - currState.startTime;
                     this.setState({
                         timerValue: newTimerValue
                     })
                 } else {
-                    this.next();
+                    newTimerValue = currState.endTime - Date.now().valueOf();
+                    this.setState({
+                        timerValue: newTimerValue
+                    })
                 }
             }
         }
@@ -159,8 +156,8 @@ var Stopwatch = React.createClass({
         console.log('Correcting StartEndTimes: nextProps.countUp: ' + nextProps.countUp);
         if (nextProps.countUp) { //switch counting down to up
             var nextExpectedEndTime = null;
-            if(this.props.timerMax > 0)
-                nextExpectedEndTime = Date.now().valueOf() + (this.props.timerMax - this.state.timerValue);
+            if (nextProps.timerMax > 0)
+                nextExpectedEndTime = Date.now().valueOf() + (nextProps.timerMax - this.state.timerValue);
             this.setState({
                 startTime: Date.now().valueOf() - this.state.timerValue,
                 expectedEndTime: nextExpectedEndTime
@@ -217,25 +214,29 @@ var Stopwatch = React.createClass({
                 <p className="mainLinks">
                     <span>
                         <span className="mainLinksWrapper">
-                            <a className="leftRightButton hvr-sweep-to-left" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
+                            <a className="leftRightButton hvr-sweep-to-left" href="javascript:void(0)"
+                               onTouchStart={this.previous} onMouseDown={this.previous}>
                                 <i className="fa fa-step-backward doubleArrow"></i>
                             </a>
-                            <a id="toggleButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
-                            <a id="resetButton" className="bigButton" href="javascript:void(0)" onTouchStart={this.reset} onMouseDown={this.reset}>
+                            <a id="toggleButton" className="bigButton" href="javascript:void(0)"
+                               onTouchStart={this.toggle} onMouseDown={this.toggle}>{toggleButton}</a>
+                            <a id="resetButton" className="bigButton" href="javascript:void(0)"
+                               onTouchStart={this.reset} onMouseDown={this.reset}>
                                 <i className="fa fa-undo fa-flip-horizontal"></i>
                             </a>
-                            <a className="leftRightButton hvr-sweep-to-right" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
+                            <a className="leftRightButton hvr-sweep-to-right" href="javascript:void(0)"
+                               onTouchStart={this.next} onMouseDown={this.next}>
                                 <i className="fa fa-step-forward doubleArrow"></i>
                             </a>
                         </span>
-                    { /* <span className="lowerLinksWrapper">
-                     <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
-                     <i className="fa fa-step-backward doubleArrow"></i>
-                     </a>
-                     <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
-                     <i className="fa fa-step-forward doubleArrow"></i>
-                     </a>
-                     </span> */ }
+                        { /* <span className="lowerLinksWrapper">
+                         <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.previous} onMouseDown={this.previous}>
+                         <i className="fa fa-step-backward doubleArrow"></i>
+                         </a>
+                         <a className="leftRightButton" href="javascript:void(0)" onTouchStart={this.next} onMouseDown={this.next}>
+                         <i className="fa fa-step-forward doubleArrow"></i>
+                         </a>
+                         </span> */ }
                     </span>
                 </p>
             </div>
@@ -282,13 +283,13 @@ var Module = React.createClass({
         var eventTargetDatasetTag = eventTarget.dataset.tag;
         //TODO: Indicate when invalid characters are entered
         //TODO: Make this more efficient
-        if(eventTargetDatasetTag != 'hrsField'
-        && eventTargetDatasetTag != 'minField'
-        && eventTargetDatasetTag != 'secField'
-        && eventTargetDatasetTag != 'csField')
+        if (eventTargetDatasetTag != 'hrsField'
+            && eventTargetDatasetTag != 'minField'
+            && eventTargetDatasetTag != 'secField'
+            && eventTargetDatasetTag != 'csField')
             newState[eventTargetDatasetTag] = (eventTargetValue).replace(/\W/g, '');
         else
-            newState[eventTargetDatasetTag] = (eventTargetValue).replace(/([^0-9])/g,'');
+            newState[eventTargetDatasetTag] = (eventTargetValue).replace(/([^0-9])/g, '');
         newState[eventTargetDatasetTag] = newState[eventTargetDatasetTag].trim();
         this.setState(newState);
     },
@@ -432,12 +433,12 @@ var Module = React.createClass({
     },
 
     playSound_bloop_d: function () { //Optional: pass in an event parameter
-        if(this.props.soundEnabled)
+        if (this.props.soundEnabled)
             document.getElementById('sounds_bloop_d').play()
     },
 
     playSound_bloop_g: function () {
-        if(this.props.soundEnabled)
+        if (this.props.soundEnabled)
             document.getElementById('sounds_bloop_g').play()
     },
 
@@ -453,19 +454,20 @@ var Module = React.createClass({
             <div id={this.props.id} className="Module">
                 <div className="tabs">
                     <div className="tab">
-                    {/* We'll manually index input id and label htmlFor based on module id */}
-                        <input type="radio" id={this.props.id + '-1'} name={this.props.id} defaultChecked={true} />
+                        {/* We'll manually index input id and label htmlFor based on module id */}
+                        <input type="radio" id={this.props.id + '-1'} name={this.props.id} defaultChecked={true}/>
                         <label htmlFor={this.props.id + '-1'}>
                             General</label>
+
                         <div className="content">
                             <table>
                                 <tr>
                                     <td className="tableLeft">Run Automatically:</td>
                                     <td className="tableRight">
                                         <input type="checkbox"
-                                            defaultChecked={this.props.autorun}
-                                            onChange={this.updateAutorun}
-                                        />
+                                               defaultChecked={this.props.autorun}
+                                               onChange={this.updateAutorun}
+                                            />
                                     </td>
                                 </tr>
                                 <tr>
@@ -485,10 +487,10 @@ var Module = React.createClass({
                                         <td className="tableLeft">Label:</td>
                                         <td className="tableRight">
                                             <input type="text"
-                                                value={this.state.labelField}
-                                                onChange={this.handleFieldChange}
-                                                data-tag="labelField" ref="labelField"
-                                            />
+                                                   value={this.state.labelField}
+                                                   onChange={this.handleFieldChange}
+                                                   data-tag="labelField" ref="labelField"
+                                                />
                                         </td>
                                     </tr>
                                 </table>
@@ -497,53 +499,55 @@ var Module = React.createClass({
                                 <p>Count {upToDownFrom}</p>
                                 {/* We use data-tag to identify elements and ref to select them */}
                                 <input type="text"
-                                    value={this.state.hrsField}
-                                    onFocus={this.blankField}
-                                    onBlur={this.padOnBlur}
-                                    onChange={this.handleFieldChange}
-                                    data-tag="hrsField" ref="hrsField"
-                                />
+                                       value={this.state.hrsField}
+                                       onFocus={this.blankField}
+                                       onBlur={this.padOnBlur}
+                                       onChange={this.handleFieldChange}
+                                       data-tag="hrsField" ref="hrsField"
+                                    />
                                 :
                                 <input type="text"
-                                    value={this.state.minField}
-                                    onFocus={this.blankField}
-                                    onBlur={this.padOnBlur}
-                                    onChange={this.handleFieldChange}
-                                    data-tag="minField" ref="minField"
-                                />
+                                       value={this.state.minField}
+                                       onFocus={this.blankField}
+                                       onBlur={this.padOnBlur}
+                                       onChange={this.handleFieldChange}
+                                       data-tag="minField" ref="minField"
+                                    />
                                 :
                                 <input type="text"
-                                    value={this.state.secField}
-                                    onFocus={this.blankField}
-                                    onBlur={this.padOnBlur}
-                                    onChange={this.handleFieldChange}
-                                    data-tag="secField" ref="secField"
-                                />
+                                       value={this.state.secField}
+                                       onFocus={this.blankField}
+                                       onBlur={this.padOnBlur}
+                                       onChange={this.handleFieldChange}
+                                       data-tag="secField" ref="secField"
+                                    />
                                 :
                                 <input type="text"
-                                    value={this.state.csField}
-                                    onFocus={this.blankField}
-                                    onBlur={this.padOnBlur}
-                                    onChange={this.handleFieldChange}
-                                    data-tag="csField" ref="csField"
-                                />
+                                       value={this.state.csField}
+                                       onFocus={this.blankField}
+                                       onBlur={this.padOnBlur}
+                                       onChange={this.handleFieldChange}
+                                       data-tag="csField" ref="csField"
+                                    />
+
                                 <p className="limitInputLabel">Hours : Minutes : Seconds : Centisecs </p>
                             </div>
                         </div>
                     </div>
                     <div className="tab">
-                        <input type="radio" id={this.props.id + '-2'} name={this.props.id} />
+                        <input type="radio" id={this.props.id + '-2'} name={this.props.id}/>
                         <label htmlFor={this.props.id + '-2'}>
                             Sounds</label>
+
                         <div className="content">
                             <table>
                                 <tr>
                                     <td className="tableLeft">Sound Enabled:</td>
                                     <td className="tableRight">
                                         <input type="checkbox"
-                                            defaultChecked={this.props.soundEnabled}
-                                            onChange={this.updateSoundEnabled}
-                                        />
+                                               defaultChecked={this.props.soundEnabled}
+                                               onChange={this.updateSoundEnabled}
+                                            />
                                     </td>
                                 </tr>
                             </table>
@@ -555,11 +559,13 @@ var Module = React.createClass({
                 </div>
                 <div className="updateButtonWrapper" ref="updateButtonWrapper">
                     <button type="button"
-                        ref="moduleLimitButton"
-                        onClick={this.updateFormFields}>Update</button>
+                            ref="moduleLimitButton"
+                            onClick={this.updateFormFields}>Update
+                    </button>
                     <button type="button"
-                        ref="moduleLimitButton"
-                        onClick={this.resetFormFields} data-tag="resetButton">Revert</button>
+                            ref="moduleLimitButton"
+                            onClick={this.resetFormFields} data-tag="resetButton">Revert
+                    </button>
                 </div>
             </div>
         );
@@ -721,17 +727,20 @@ var Main = React.createClass({
         return (
             <div>
                 <Stopwatch
-                {...currentActiveStopwatch.props}
+                    {...currentActiveStopwatch.props}
                     key={currentActiveStopwatch.props.id}
-                />
+                    />
+
                 <div id="moduleList">
-                {currState.modules}
+                    {currState.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
+
                         <p>
-                            <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick} onChange={this.setDefaultModule}>
+                            <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
+                                    onChange={this.setDefaultModule}>
                                 <option value="null">(default)</option>
-                            {defaultModuleSelectOptions}
+                                {defaultModuleSelectOptions}
                             </select>
                         </p>
                     </div>
