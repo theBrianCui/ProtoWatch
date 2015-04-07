@@ -20,23 +20,25 @@ var Stopwatch = React.createClass({
         console.log('getInitialState was called');
         var gIS_endTime = 0;
         var gIS_timerValue = 0;
+        var baseTime = (this.props.prevEndTime || Date.now().valueOf()); //if the previous module end time was set, use that, otherwise, use Date.now()
         if (!this.props.countUp) {
-            gIS_endTime = Date.now().valueOf() + this.props.timerMax;
+            gIS_endTime = baseTime + this.props.timerMax;
             gIS_timerValue = this.props.timerMax;
         }
+
         var gIS_expectedEndTime;
-        if (this.props.timerMax > 0)
-            if (this.props.autorun && this.props.prevEndTime)
-                gIS_expectedEndTime = this.props.prevEndTime + this.props.timerMax;
+        if (this.props.timerMax > 0) {
+            if (this.props.autorun)
+                gIS_expectedEndTime = baseTime + this.props.timerMax;
+        } else { //timerMax is 0
+            if (this.props.countUp)
+                gIS_expectedEndTime = null; //null signifies infinity/never ends/meaningless value
             else
-                gIS_expectedEndTime = Date.now().valueOf() + this.props.timerMax;
-        else //timerMax is 0
-        if (this.props.countUp)
-            gIS_expectedEndTime = null; //null signifies infinity/never ends/meaningless value
-        else
-            gIS_expectedEndTime = (this.props.prevEndTime || Date.now().valueOf());
+                gIS_expectedEndTime = baseTime; //counting down with a timerMax of 0 means instant completion
+        }
+
         return {
-            startTime: Date.now().valueOf(),
+            startTime: (this.props.prevEndTime || Date.now().valueOf()),
             endTime: gIS_endTime,
             expectedEndTime: gIS_expectedEndTime,
             timerValue: gIS_timerValue,
@@ -47,7 +49,7 @@ var Stopwatch = React.createClass({
 
     componentDidMount: function () {
         console.log('componentDidMount was called');
-        this.interval = setInterval(this.tick, 90);
+        this.interval = setInterval(this.tick, 45);
     },
 
     componentWillUnmount: function () {
@@ -211,6 +213,7 @@ var Stopwatch = React.createClass({
             <div className="mainWrapper noSelect">
                 <p className="mainWatch">
                     <span id="hourDisplay">{pad2(hrs)}:</span>{display.join(':')}</p>
+
                 <p className="mainLinks">
                     <span>
                         <span className="mainLinksWrapper">
@@ -672,16 +675,15 @@ var Main = React.createClass({
             shouldModulesUpdate = false;
             console.log('Cycling active modules: ' + currentIndex + ' to ' + nextIndex);
             var nextModuleNewProps = React.addons.update(this.state.modules[nextIndex].props, {
-                prevEndTime: { $set: prevModuleEndTime }
+                prevEndTime: {$set: prevModuleEndTime}
             });
             var nextModule = <Module {...nextModuleNewProps} />;
-            console.log('nextModule props: ' + JSON.stringify(nextModule.props));
             var nextState = React.addons.update(this.state, {
                 modules: {
                     $splice: [[nextIndex, 1, nextModule]]
                 },
-                activeIndex: { $set: nextIndex },
-                previousActiveIndex: { $set: currentIndex }
+                activeIndex: {$set: nextIndex},
+                previousActiveIndex: {$set: currentIndex}
             });
             this.setState(nextState);
         }
@@ -746,7 +748,6 @@ var Main = React.createClass({
                     {currState.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
-
                         <p>
                             <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
                                     onChange={this.setDefaultModule}>
