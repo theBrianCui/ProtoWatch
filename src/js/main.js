@@ -17,7 +17,6 @@ function pad2(str) {
 
 var Stopwatch = React.createClass({
     getInitialState: function () {
-        console.log('getInitialState was called');
         var gIS_endTime = 0;
         var gIS_timerValue = 0;
         var baseTime = (this.props.prevEndTime || Date.now().valueOf()); //if the previous module end time was set, use that, otherwise, use Date.now()
@@ -48,13 +47,11 @@ var Stopwatch = React.createClass({
     },
 
     componentDidMount: function () {
-        console.log('componentDidMount was called');
         console.log('Component Mounted on: ' + Date.now().valueOf());
         this.interval = setInterval(this.tick, 5);
     },
 
     componentWillUnmount: function () {
-        console.log('componentWillUnmount was called');
         clearInterval(this.interval);
     },
 
@@ -658,7 +655,6 @@ var Main = React.createClass({
     },
 
     computeNextModule: function () {
-        console.log('Computing the next module... current activeIndex: ' + this.state.activeIndex);
         var nextIndex = this.state.activeIndex + 1;
         if (nextIndex >= this.state.modules.length)
             nextIndex = 0;
