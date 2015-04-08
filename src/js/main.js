@@ -133,7 +133,6 @@ var Stopwatch = React.createClass({
         if (currState.running) {
             var currProps = this.props;
             var newTimerValue;
-            console.log('expectedEndTime: ' + currState.expectedEndTime + ', then - now: ' + (currState.expectedEndTime - Date.now().valueOf()));
             if (currState.expectedEndTime && Date.now().valueOf() >= currState.expectedEndTime) {
                 this.next();
             } else {
@@ -180,8 +179,11 @@ var Stopwatch = React.createClass({
         this.props.s_onPrevious();
     },
 
-    next: function () { //optional: pass in an event parameter.
-        this.props.s_onNext(this.state.expectedEndTime);
+    next: function (event) { //optional: pass in an event parameter.
+        if(event) //the button was pressed
+            this.props.s_onNext(null);
+        else //the limit was reached
+            this.props.s_onNext(this.state.expectedEndTime);
         //The following only runs if there the next module happens to be this same one
         //This might break a jump to the same module; we'll see. React throws a warning in the Console for this.
         this.setState({
