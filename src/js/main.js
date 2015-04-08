@@ -49,7 +49,8 @@ var Stopwatch = React.createClass({
 
     componentDidMount: function () {
         console.log('componentDidMount was called');
-        this.interval = setInterval(this.tick, 45);
+        console.log('Component Mounted on: ' + Date.now().valueOf());
+        this.interval = setInterval(this.tick, 5);
     },
 
     componentWillUnmount: function () {
