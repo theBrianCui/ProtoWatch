@@ -695,7 +695,7 @@ var Main = React.createClass({
             var currState = this.state;
             var newModule;
             var newModuleProps = this.getDefaultModuleProps();
-            if (currState.defaultModuleLabel != null) {
+            if (('' + currState.defaultModuleLabel) != 'null') {
                 var clonedModuleProps = currState.modules[currState.idToIndex[labelToId[currState.defaultModuleLabel]]].props;
                 newModuleProps = React.addons.update(clonedModuleProps, {
                     id: {$set: newModuleProps.id}
