@@ -25,16 +25,18 @@ var Stopwatch = React.createClass({
             gIS_timerValue = this.props.timerMax;
         }
 
-        var gIS_expectedEndTime;
+        var gIS_expectedEndTime = null;
         if (this.props.timerMax > 0) {
             if (this.props.autorun)
                 gIS_expectedEndTime = baseTime + this.props.timerMax;
         } else { //timerMax is 0
-            if (this.props.countUp)
-                gIS_expectedEndTime = null; //null signifies infinity/never ends/meaningless value
-            else
+            if (!this.props.countUp)
                 gIS_expectedEndTime = baseTime; //counting down with a timerMax of 0 means instant completion
         }
+        /* Cases where null:
+           - the timerMax is 0 and counting up
+           - the timerMax is >0, but autorun is disabled
+        */
 
         return {
             startTime: (this.props.prevEndTime || Date.now().valueOf()),
