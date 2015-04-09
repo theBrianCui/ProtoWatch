@@ -17,20 +17,21 @@ function pad2(str) {
 
 var Stopwatch = React.createClass({
     getInitialState: function () {
+        var currProps = this.props;
         var gIS_endTime = 0;
         var gIS_timerValue = 0;
-        var baseTime = (this.props.prevEndTime || Date.now().valueOf()); //if the previous module end time was set, use that, otherwise, use Date.now()
-        if (!this.props.countUp) {
-            gIS_endTime = baseTime + this.props.timerMax;
-            gIS_timerValue = this.props.timerMax;
+        var baseTime = (currProps.prevEndTime || Date.now().valueOf()); //if the previous module end time was set, use that, otherwise, use Date.now()
+        if (!currProps.countUp) {
+            gIS_endTime = baseTime + currProps.timerMax;
+            gIS_timerValue = currProps.timerMax;
         }
 
         var gIS_expectedEndTime = null;
-        if (this.props.timerMax > 0) {
-            if (this.props.autorun)
-                gIS_expectedEndTime = baseTime + this.props.timerMax;
+        if (currProps.timerMax > 0) {
+            if (currProps.autorun)
+                gIS_expectedEndTime = baseTime + currProps.timerMax;
         } else { //timerMax is 0
-            if (!this.props.countUp)
+            if (!currProps.countUp)
                 gIS_expectedEndTime = baseTime; //counting down with a timerMax of 0 means instant completion
         }
         /* Cases where null:
@@ -39,11 +40,11 @@ var Stopwatch = React.createClass({
         */
 
         return {
-            startTime: (this.props.prevEndTime || Date.now().valueOf()),
+            startTime: (currProps.prevEndTime || Date.now().valueOf()),
             endTime: gIS_endTime,
             expectedEndTime: gIS_expectedEndTime,
             timerValue: gIS_timerValue,
-            running: this.props.autorun,
+            running: currProps.autorun,
             lastButtonEvent: "none"
         };
     },
