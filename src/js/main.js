@@ -11,11 +11,14 @@ var ignoreNestedClick = false;
 var labelToId = {};
 
 /* The prevEndTime value designates the expected end time of the previous module.
-  Null signifies "ignore this value" and use Date.now() instead.
+  Null signifies "ignore this value and use Date.now() instead".
+  prevEndTime is always null if highPrecisionTiming is false (disabled).
 
   Originally, prevEndTime was a Stopwatch property, but complications quickly arose when
-  it came to enabling/disabling highPrecisionTiming. It was decided that it was too costly
-  to manage prevEndTime as a prop, so it is declared as a global variable instead.
+  it came to enabling/disabling highPrecisionTiming, and updating it between Stopwatches
+  further slowed the transition time due to the need to clone, then update the properties
+  of the next Stopwatch (Module). It was decided that it was too costly to manage prevEndTime
+  as a prop, so it is declared as a global variable instead.
  */
 var prevEndTime = null;
 
@@ -685,6 +688,7 @@ var Main = React.createClass({
         if (currentIndex != nextIndex) {
             shouldModulesUpdate = false;
             console.log('Cycling active modules: ' + currentIndex + ' to ' + nextIndex);
+            //This code is from when prevEndTime was a Stopwatch property.
             /*if (this.state.highPrecisionTiming) {
                 var nextModuleNewProps = React.addons.update(this.state.modules[nextIndex].props, {
                     prevEndTime: {$set: prevModuleEndTime}
