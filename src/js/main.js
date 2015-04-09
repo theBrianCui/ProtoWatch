@@ -725,6 +725,12 @@ var Main = React.createClass({
         }
     },
 
+    setHighPrecision: function (event) {
+        this.setState({
+            highPrecisionTiming: event.target.checked
+        });
+    },
+
     setDefaultModule: function (event) {
         var newDefaultModuleLabel = event.target.value;
         this.setState({
@@ -753,7 +759,6 @@ var Main = React.createClass({
                     {...currentActiveStopwatch.props}
                     key={currentActiveStopwatch.props.id}
                     />
-
                 <div id="moduleList">
                     {currState.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
@@ -768,6 +773,12 @@ var Main = React.createClass({
                         </p>
                     </div>
                 </div>
+                <p><input type="checkbox"
+                       defaultChecked={this.state.highPrecisionTiming}
+                       onChange={this.setHighPrecision}
+                    />
+                    Enable High Precision Timing?
+                </p>
                 <p>{currentActiveStopwatch.props.id}</p>
             </div>
         )
