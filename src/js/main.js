@@ -774,7 +774,7 @@ var Main = React.createClass({
             defaultModuleSelectOptions.push(<option value={iteratedLabel}>{iteratedLabel}</option>);
         }
         return (
-            <div>
+            <div className="appWrapper">
                 <Stopwatch
                     {...currentActiveStopwatch.props}
                     key={currentActiveStopwatch.props.id}

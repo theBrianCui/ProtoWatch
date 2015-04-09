@@ -136,9 +136,13 @@ input[type=text]:focus, textarea:focus {
     margin: 0;
 }
 
-#topbar #menuWrapper ul li{
+#topbar #menuWrapper ul li {
     display: inline-block;
     padding: .2em .5em;
+}
+
+.appWrapper > p {
+    color: white;
 }
 
 .mainWrapper {
@@ -246,7 +250,7 @@ input[type=text]:focus, textarea:focus {
     margin-bottom: 2.8em;
 }
 
-.Module#addModuleButton > p:first-child{
+.Module#addModuleButton > p:first-child {
     font-size: 5em;
     line-height: 0;
     margin-top: 1.1em;
@@ -524,13 +528,12 @@ input[type=text]:focus, textarea:focus {
     }
 }
 
-a, button, input, label, select
-{
+a, button, input, label, select {
     -ms-touch-action: manipulation; /* IE10  */
-    touch-action: manipulation;     /* IE11+ */
-    -ms-touch-select:none;
-    -ms-user-select:none;
-    user-select:none;
+    touch-action: manipulation; /* IE11+ */
+    -ms-touch-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* Hover.css */
@@ -551,6 +554,7 @@ a, button, input, label, select
     -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
 }
+
 .hvr-sweep-to-right:before {
     content: "";
     position: absolute;
@@ -571,9 +575,11 @@ a, button, input, label, select
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
+
 .hvr-sweep-to-right:hover, .hvr-sweep-to-right:active {
     color: white;
 }
+
 .hvr-sweep-to-right:hover:before, .hvr-sweep-to-right:active:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
@@ -595,6 +601,7 @@ a, button, input, label, select
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
 }
+
 .hvr-sweep-to-left:before {
     content: "";
     position: absolute;
@@ -615,9 +622,11 @@ a, button, input, label, select
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
+
 .hvr-sweep-to-left:hover, .hvr-sweep-to-left:active {
     color: white;
 }
+
 .hvr-sweep-to-left:hover:before, .hvr-sweep-to-left:active:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
@@ -639,6 +648,7 @@ a, button, input, label, select
     -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
 }
+
 .hvr-sweep-to-bottom:before {
     content: "";
     position: absolute;
@@ -659,9 +669,11 @@ a, button, input, label, select
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
+
 .hvr-sweep-to-bottom:hover, .hvr-sweep-to-bottom:active {
     color: white;
 }
+
 .hvr-sweep-to-bottom:hover:before, .hvr-sweep-to-bottom:active:before {
     -webkit-transform: scaleY(1);
     transform: scaleY(1);
@@ -683,6 +695,7 @@ a, button, input, label, select
     -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
 }
+
 .hvr-sweep-to-top:before {
     content: "";
     position: absolute;
@@ -703,9 +716,11 @@ a, button, input, label, select
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
+
 .hvr-sweep-to-top:hover, .hvr-sweep-to-top:active {
     color: white;
 }
+
 .hvr-sweep-to-top:hover:before, .hvr-sweep-to-top:active:before {
     -webkit-transform: scaleY(1);
     transform: scaleY(1);
