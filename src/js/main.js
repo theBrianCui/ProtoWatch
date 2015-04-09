@@ -10,6 +10,15 @@ var ignoreNestedClick = false;
  */
 var labelToId = {};
 
+/* The prevEndTime value designates the expected end time of the previous module.
+  Null signifies "ignore this value" and use Date.now() instead.
+
+  Originally, prevEndTime was a Stopwatch property, but complications quickly arose when
+  it came to enabling/disabling highPrecisionTiming. It was decided that it was too costly
+  to manage prevEndTime as a prop, so it is declared as a global variable instead.
+ */
+var prevEndTime = null;
+
 function pad2(str) {
     str = '' + str;
     return str.length < 2 ? ('0' + str) : str;
@@ -20,7 +29,7 @@ var Stopwatch = React.createClass({
         var currProps = this.props;
         var gIS_endTime = 0;
         var gIS_timerValue = 0;
-        var baseTime = (currProps.prevEndTime || Date.now().valueOf()); //if the previous module end time was set, use that, otherwise, use Date.now()
+        var baseTime = (prevEndTime || Date.now().valueOf()); //if the previous module end time was set, use that, otherwise, use Date.now()
         if (!currProps.countUp) {
             gIS_endTime = baseTime + currProps.timerMax;
             gIS_timerValue = currProps.timerMax;
@@ -617,7 +626,6 @@ var Main = React.createClass({
             timerMax: 0,
             countUp: true,
             soundEnabled: true,
-            prevEndTime: null,
             m_moduleUpdate: this.moduleUpdate,
             //s_onLimit: this.next,
             s_onNext: this.next,
@@ -677,7 +685,7 @@ var Main = React.createClass({
         if (currentIndex != nextIndex) {
             shouldModulesUpdate = false;
             console.log('Cycling active modules: ' + currentIndex + ' to ' + nextIndex);
-            if (this.state.highPrecisionTiming) {
+            /*if (this.state.highPrecisionTiming) {
                 var nextModuleNewProps = React.addons.update(this.state.modules[nextIndex].props, {
                     prevEndTime: {$set: prevModuleEndTime}
                 });
@@ -695,7 +703,15 @@ var Main = React.createClass({
                     activeIndex: nextIndex,
                     previousActiveIndex: currentIndex
                 });
-            }
+            }*/
+            if (this.state.highPrecisionTiming)
+                prevEndTime = prevModuleEndTime;
+            else
+                prevEndTime = null;
+            this.setState({
+                activeIndex: nextIndex,
+                previousActiveIndex: currentIndex
+            });
         }
     },
 
