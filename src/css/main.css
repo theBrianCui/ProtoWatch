@@ -118,7 +118,8 @@ input[type=text]:focus, textarea:focus {
 }
 
 #topbar {
-    font-size: 1.2em;
+    font-size: 1.1em;
+    text-transform: uppercase;
     min-height: 2em;
     line-height: 2em;
     background-color: #414141;
