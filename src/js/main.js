@@ -35,9 +35,9 @@ var Stopwatch = React.createClass({
                 gIS_expectedEndTime = baseTime; //counting down with a timerMax of 0 means instant completion
         }
         /* Cases where null:
-           - the timerMax is 0 and counting up
-           - the timerMax is >0, but autorun is disabled
-        */
+         - the timerMax is 0 and counting up
+         - the timerMax is >0, but autorun is disabled
+         */
 
         return {
             startTime: (currProps.prevEndTime || Date.now().valueOf()),
@@ -50,7 +50,7 @@ var Stopwatch = React.createClass({
     },
 
     componentDidMount: function () {
-        console.log('Component Mounted on: ' + Date.now().valueOf());
+        console.log('Module started on: ' + this.state.startTime);
         this.interval = setInterval(this.tick, 5);
     },
 
@@ -181,7 +181,7 @@ var Stopwatch = React.createClass({
     },
 
     next: function (event) { //optional: pass in an event parameter.
-        if(event) //the button was pressed
+        if (event) //the button was pressed
             this.props.s_onNext(null);
         else //the limit was reached
             this.props.s_onNext(this.state.expectedEndTime);
@@ -590,6 +590,7 @@ var Main = React.createClass({
             idToIndex: initialIdToIndex,
             activeIndex: 0,
             previousActiveIndex: -1,
+            highPrecisionTiming: true,
             defaultModuleLabel: null
         };
     },
@@ -676,18 +677,25 @@ var Main = React.createClass({
         if (currentIndex != nextIndex) {
             shouldModulesUpdate = false;
             console.log('Cycling active modules: ' + currentIndex + ' to ' + nextIndex);
-            var nextModuleNewProps = React.addons.update(this.state.modules[nextIndex].props, {
-                prevEndTime: {$set: prevModuleEndTime}
-            });
-            var nextModule = <Module {...nextModuleNewProps} />;
-            var nextState = React.addons.update(this.state, {
-                modules: {
-                    $splice: [[nextIndex, 1, nextModule]]
-                },
-                activeIndex: {$set: nextIndex},
-                previousActiveIndex: {$set: currentIndex}
-            });
-            this.setState(nextState);
+            if (this.state.highPrecisionTiming) {
+                var nextModuleNewProps = React.addons.update(this.state.modules[nextIndex].props, {
+                    prevEndTime: {$set: prevModuleEndTime}
+                });
+                var nextModule = <Module {...nextModuleNewProps} />;
+                var nextState = React.addons.update(this.state, {
+                    modules: {
+                        $splice: [[nextIndex, 1, nextModule]]
+                    },
+                    activeIndex: {$set: nextIndex},
+                    previousActiveIndex: {$set: currentIndex}
+                });
+                this.setState(nextState);
+            } else {
+                this.setState({
+                    activeIndex: nextIndex,
+                    previousActiveIndex: currentIndex
+                });
+            }
         }
     },
 
@@ -750,6 +758,7 @@ var Main = React.createClass({
                     {currState.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
+
                         <p>
                             <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
                                     onChange={this.setDefaultModule}>
