@@ -40,7 +40,7 @@ var Stopwatch = React.createClass({
          */
 
         return {
-            startTime: (currProps.prevEndTime || Date.now().valueOf()),
+            startTime: baseTime,
             endTime: gIS_endTime,
             expectedEndTime: gIS_expectedEndTime,
             timerValue: gIS_timerValue,
