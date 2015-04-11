@@ -148,6 +148,11 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     border-top: .3em solid #242424;
 }
 
+#topbar #menuWrapper ul li:hover {
+    cursor: pointer;
+    border-top: .3em solid #0072B1;
+}
+
 .appWrapper > p {
     color: white;
 }
