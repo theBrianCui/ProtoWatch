@@ -221,6 +221,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     margin: 0;
     padding-bottom: .25vw;
     line-height: 13vw;
+    overflow: hidden;
 }
 
 #moduleList {
