@@ -121,7 +121,7 @@ input[type=text]:focus, textarea:focus {
     font-size: 1.1em;
     text-transform: uppercase;
     min-height: 2em;
-    line-height: 2.4em;
+    line-height: 2.1em;
     background-color: #414141;
 }
 
@@ -137,10 +137,15 @@ input[type=text]:focus, textarea:focus {
     margin: 0;
 }
 
+body.links_main #topbar #menuWrapper ul li.links_main {
+    border-top: .3em solid #0072B1;
+}
+
 #topbar #menuWrapper ul li {
     display: inline-block;
     padding: .2em .8em;
     background-color: #242424;
+    border-top: .3em solid #242424;
 }
 
 .appWrapper > p {
