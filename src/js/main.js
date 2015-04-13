@@ -1,5 +1,4 @@
 React.initializeTouchEvents(true);
-var shouldModulesUpdate = true;
 var ignoreNestedClick = false;
 
 /* The labelToId object maps labels to id properties.
@@ -374,8 +373,8 @@ var Module = React.createClass({
          */
     },
 
-    shouldComponentUpdate: function () { //optional parameters nextProps, nextState
-        return shouldModulesUpdate;
+    shouldComponentUpdate: function (nextProps, nextState) {
+        return (this.props !== nextProps || this.state !== nextState)
     },
 
     componentDidUpdate: function () {
@@ -686,7 +685,6 @@ var Main = React.createClass({
 
     cycleActive: function (currentIndex, nextIndex, prevModuleEndTime) {
         if (currentIndex != nextIndex) {
-            shouldModulesUpdate = false;
             console.log('Cycling active modules: ' + currentIndex + ' to ' + nextIndex);
             //This code is from when prevEndTime was a Stopwatch property.
             /*if (this.state.highPrecisionTiming) {
@@ -811,7 +809,6 @@ var Main = React.createClass({
 
     componentDidUpdate: function (prevProps, prevState) {
         console.log('Main component updated!');
-        shouldModulesUpdate = true;
         var currState = this.state;
         if (currState.activeIndex != prevState.activeIndex) {
             if (currState.previousActiveIndex != -1)
