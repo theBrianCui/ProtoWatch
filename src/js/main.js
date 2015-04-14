@@ -662,6 +662,15 @@ var Main = React.createClass({
         this.setState(newState);
     },
 
+    toggleRunningAnim: function (running) {
+        var currState = this.state;
+        if(running) {
+            document.getElementById(currState.modules[currState.activeIndex].props.id).classList.add('running');
+        } else {
+            document.getElementById(currState.modules[currState.activeIndex].props.id).classList.remove('running');
+        }
+    },
+
     next: function (previousModuleEndTime) {
         console.log('next was called.');
         var nextIndex = this.computeNextModule();
