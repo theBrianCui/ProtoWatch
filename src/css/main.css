@@ -272,28 +272,31 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 }
 
 .Module.activeModule {
-    /*animation: activeModuleGlow 1s ease 0s infinite alternate;*/
-    /*-webkit-animation: activeModuleGlow 1s ease 0s infinite alternate;*/
     background-color: #0072b1;
 }
 
-/*@-webkit-keyframes activeModuleGlow {
+.Module.activeModule.running {
+    animation: runningModuleGlow .5s ease 0s infinite alternate;
+    webkit-animation: runningModuleGlow .5s ease 0s infinite alternate;
+}
+
+@-webkit-keyframes runningModuleGlow {
     from {
-        background-color: #0069A4;
+        background-color: #0072B1;
     }
     to {
-        background-color: #007dc3;
+        background-color: #26a3de;
     }
 }
 
-@keyframes activeModuleGlow {
+@keyframes runningModuleGlow {
     from {
-        background-color: #0069A4;
+        background-color: #0072B1;
     }
     to {
-        background-color: #007dc3;
+        background-color: #26a3de;
     }
-}*/
+}
 
 .Module .tabs {
     position: relative;
