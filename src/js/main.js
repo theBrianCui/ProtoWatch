@@ -107,6 +107,7 @@ var Stopwatch = React.createClass({
             this.pause();
         else
             this.resume();
+        this.props.s_onToggle(!this.state.running);
     },
 
     pause: function () {
@@ -631,7 +632,8 @@ var Main = React.createClass({
             m_moduleUpdate: this.moduleUpdate,
             //s_onLimit: this.next,
             s_onNext: this.next,
-            s_onPrevious: this.previous
+            s_onPrevious: this.previous,
+            s_onToggle: this.toggleRunningAnim
         };
         if (firstModule)
             props.label = 'Stopwatch0';
