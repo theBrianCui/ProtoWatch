@@ -576,7 +576,7 @@ a, button, input, label, select {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #2098d1;
+    background: #26a3de;
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
     -webkit-transform-origin: 0 50%;
@@ -623,7 +623,7 @@ a, button, input, label, select {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #2098d1;
+    background: #26a3de;
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
     -webkit-transform-origin: 100% 50%;
@@ -670,7 +670,7 @@ a, button, input, label, select {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #2098d1;
+    background: #26a3de;
     -webkit-transform: scaleY(0);
     transform: scaleY(0);
     -webkit-transform-origin: 50% 0;
@@ -717,7 +717,7 @@ a, button, input, label, select {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #2098d1;
+    background: #26a3de;
     -webkit-transform: scaleY(0);
     transform: scaleY(0);
     -webkit-transform-origin: 50% 100%;
