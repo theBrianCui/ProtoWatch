@@ -150,7 +150,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 
 #topbar #menuWrapper ul li:hover {
     cursor: pointer;
-    border-top: .3em solid #0072B1;
+    border-top: .3em solid #26a3de !important;
 }
 
 .appWrapper > p {
