@@ -63,7 +63,8 @@ var Stopwatch = React.createClass({
     componentDidMount: function () {
         console.log('Module started on: ' + this.state.startTime);
         this.interval = setInterval(this.tick, 5);
-        this.props.s_onToggle(this.state.running);
+        if(this.state.running)
+            document.getElementById(this.props.id).classList.add('running');
     },
 
     componentWillUnmount: function () {
