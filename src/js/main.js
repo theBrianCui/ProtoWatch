@@ -69,6 +69,7 @@ var Stopwatch = React.createClass({
 
     componentWillUnmount: function () {
         clearInterval(this.interval);
+        document.getElementById(this.props.id).classList.remove('running');
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -105,11 +106,14 @@ var Stopwatch = React.createClass({
 
     toggle: function (event) {
         event.preventDefault();
-        if (this.state.running)
+        if (this.state.running) {
             this.pause();
-        else
+            document.getElementById(this.props.id).classList.remove('running');
+        }
+        else {
             this.resume();
-        this.props.s_onToggle(!this.state.running);
+            document.getElementById(this.props.id).classList.add('running');
+        }
     },
 
     pause: function () {
@@ -141,7 +145,7 @@ var Stopwatch = React.createClass({
                 running: false
             })
         }
-        this.props.s_onToggle(false);
+        document.getElementById(this.props.id).classList.remove('running');
     },
 
     tick: function () {
