@@ -65,6 +65,8 @@ var Stopwatch = React.createClass({
         this.interval = setInterval(this.tick, 5);
         if(this.state.running)
             document.getElementById(this.props.id).classList.add('running');
+        else
+            document.getElementById(this.props.id).classList.remove('running');
     },
 
     componentWillUnmount: function () {
