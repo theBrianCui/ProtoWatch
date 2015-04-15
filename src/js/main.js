@@ -639,8 +639,7 @@ var Main = React.createClass({
             m_moduleUpdate: this.moduleUpdate,
             //s_onLimit: this.next,
             s_onNext: this.next,
-            s_onPrevious: this.previous,
-            s_onToggle: this.toggleRunningAnim
+            s_onPrevious: this.previous
         };
         if (firstModule)
             props.label = 'Stopwatch0';
@@ -669,15 +668,6 @@ var Main = React.createClass({
         }
 
         this.setState(newState);
-    },
-
-    toggleRunningAnim: function (running) {
-        var currState = this.state;
-        if(running) {
-            document.getElementById(currState.modules[currState.activeIndex].props.id).classList.add('running');
-        } else {
-            document.getElementById(currState.modules[currState.activeIndex].props.id).classList.remove('running');
-        }
     },
 
     next: function (previousModuleEndTime) {
