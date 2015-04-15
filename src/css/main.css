@@ -276,8 +276,8 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 }
 
 .Module.activeModule.running {
-    animation: runningModuleGlow .5s ease 0s infinite alternate;
-    webkit-animation: runningModuleGlow .5s ease 0s infinite alternate;
+    animation: runningModuleGlow .3s ease 0s infinite alternate;
+    webkit-animation: runningModuleGlow .3s ease 0s infinite alternate;
 }
 
 @-webkit-keyframes runningModuleGlow {
