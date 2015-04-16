@@ -92,6 +92,19 @@ body {
     user-select: none;
 }
 
+.noAnimate {
+    animation: none !important;
+    -webkit-animation: none !important;
+}
+
+a, button, input, label, select {
+    -ms-touch-action: manipulation; /* IE10  */
+    touch-action: manipulation; /* IE11+ */
+    -ms-touch-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 #loadingScreen {
     max-height: 16em;
     max-width: 40em;
@@ -277,7 +290,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 
 .Module.activeModule.running {
     animation: runningModuleGlow .3s ease 0s infinite alternate;
-    webkit-animation: runningModuleGlow .3s ease 0s infinite alternate;
+    -webkit-animation: runningModuleGlow .3s ease 0s infinite alternate;
 }
 
 @-webkit-keyframes runningModuleGlow {
@@ -542,14 +555,6 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     #hourDisplay {
         display: none;
     }
-}
-
-a, button, input, label, select {
-    -ms-touch-action: manipulation; /* IE10  */
-    touch-action: manipulation; /* IE11+ */
-    -ms-touch-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 /* Hover.css */
