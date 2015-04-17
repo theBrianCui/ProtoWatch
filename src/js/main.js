@@ -312,7 +312,6 @@ var Module = React.createClass({
         var eventTarget = event.target;
         var eventTargetValue = event.target.value;
         var eventTargetDatasetTag = eventTarget.dataset.tag;
-        //TODO: Indicate when invalid characters are entered
         //TODO: Make this more efficient
         if (eventTargetDatasetTag != 'hrsField'
             && eventTargetDatasetTag != 'minField'
@@ -327,6 +326,9 @@ var Module = React.createClass({
         newState[eventTargetDatasetTag] = newState[eventTargetDatasetTag].trim();
         if(newState[eventTargetDatasetTag] != eventTargetValue) {
             this.log('Invalid characters entered for ' + eventTargetDatasetTag + ', ignoring update...');
+            eventTarget.classList.remove('invalidInput');
+            eventTarget.offsetWidth = eventTarget.offsetWidth; //Force element reflow
+            eventTarget.classList.add('invalidInput');
         } else {
             this.setState(newState);
         }
