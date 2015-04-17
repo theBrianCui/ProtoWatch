@@ -327,6 +327,9 @@ var Module = React.createClass({
         newState[eventTargetDatasetTag] = newState[eventTargetDatasetTag].trim();
         if(newState[eventTargetDatasetTag] != eventTargetValue) {
             this.log('Invalid characters entered for ' + eventTargetDatasetTag + ', ignoring update...');
+            eventTarget.classList.remove('invalidInput');
+            eventTarget.offsetWidth = eventTarget.offsetWidth; //Force element reflow
+            eventTarget.classList.add('invalidInput');
         } else {
             this.setState(newState);
         }

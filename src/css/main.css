@@ -131,8 +131,8 @@ input[type=text]:focus, textarea:focus {
 }
 
 .invalidInput {
-    animation: invalidInputAnimation .3s ease 0s 2 alternate;
-    -webkit-animation: invalidInputAnimation .3s ease 0s 2 alternate;
+    animation: invalidInputAnimation .1s ease 0s 2 alternate;
+    -webkit-animation: invalidInputAnimation .1s ease 0s 2 alternate;
 }
 
 @-webkit-keyframes invalidInputAnimation {
