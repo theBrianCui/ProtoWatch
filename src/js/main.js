@@ -120,8 +120,12 @@ var Stopwatch = React.createClass({
 
     pause: function () {
         this.setState({
+            timerValue: this.state.timerValue,
             running: false
-        })
+        });
+        /* While it may seem redundant to set timerValue to itself through setState,
+           it is used to ensure the value displayed is that of when the toggle button was pressed
+           (as a tick that fires during setState would cause an small, but improper delay) */
     },
 
     resume: function () {
