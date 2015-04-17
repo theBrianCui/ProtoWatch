@@ -215,7 +215,8 @@ var Stopwatch = React.createClass({
         this.setState({
             timerValue: this.props.timerMax,
             running: false
-        })
+        });
+        document.getElementById(this.props.id).classList.remove('running');
     },
 
     render: function () {
