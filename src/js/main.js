@@ -760,6 +760,12 @@ var Main = React.createClass({
         });
     },
 
+    setAnimationsEnabled: function (event){
+        this.setState({
+            animationsEnabled: event.target.checked
+        });
+    },
+
     setDefaultModule: function (event) {
         var newDefaultModuleLabel = event.target.value;
         this.setState({
@@ -810,6 +816,12 @@ var Main = React.createClass({
                        onChange={this.setHighPrecision}
                     />
                     Enable High Precision Timing?
+                </p>
+                <p><input type="checkbox"
+                          defaultChecked={this.state.animationsEnabled}
+                          onChange={this.setAnimationsEnabled}
+                    />
+                    Enable CSS Animations?
                 </p>
                 <p>{currentActiveStopwatch.props.id}</p>
             </div>
