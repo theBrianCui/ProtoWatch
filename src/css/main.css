@@ -137,8 +137,7 @@ input[type=text]:focus, textarea:focus {
 
 @-webkit-keyframes invalidInputAnimation {
     from {
-        box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-        border: 1px solid rgba(81, 203, 238, 1);
+
     }
     to {
         box-shadow: 0 0 5px rgb(238, 28, 25);
@@ -148,8 +147,7 @@ input[type=text]:focus, textarea:focus {
 
 @keyframes invalidInputAnimation {
     from {
-        box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-        border: 1px solid rgba(81, 203, 238, 1);
+
     }
     to {
         box-shadow: 0 0 5px rgb(238, 28, 25);
