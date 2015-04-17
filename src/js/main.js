@@ -10,14 +10,14 @@ var ignoreNestedClick = false;
 var labelToId = {};
 
 /* The prevEndTime value designates the expected end time of the previous module.
-  Null signifies "ignore this value and use Date.now() instead".
-  prevEndTime is always null if highPrecisionTiming is false (disabled).
+ Null signifies "ignore this value and use Date.now() instead".
+ prevEndTime is always null if highPrecisionTiming is false (disabled).
 
-  Originally, prevEndTime was a Stopwatch property, but complications quickly arose when
-  it came to enabling/disabling highPrecisionTiming, and updating it between Stopwatches
-  further slowed the transition time due to the need to clone, then update the properties
-  of the next Stopwatch (Module). It was decided that it was too costly to manage prevEndTime
-  as a prop, so it is declared as a global variable instead.
+ Originally, prevEndTime was a Stopwatch property, but complications quickly arose when
+ it came to enabling/disabling highPrecisionTiming, and updating it between Stopwatches
+ further slowed the transition time due to the need to clone, then update the properties
+ of the next Stopwatch (Module). It was decided that it was too costly to manage prevEndTime
+ as a prop, so it is declared as a global variable instead.
  */
 var prevEndTime = null;
 
@@ -63,7 +63,7 @@ var Stopwatch = React.createClass({
     componentDidMount: function () {
         console.log('Module started on: ' + this.state.startTime);
         this.interval = setInterval(this.tick, 5);
-        if(this.state.running)
+        if (this.state.running)
             document.getElementById(this.props.id).classList.add('running');
         else
             document.getElementById(this.props.id).classList.remove('running');
@@ -124,8 +124,8 @@ var Stopwatch = React.createClass({
             running: false
         });
         /* While it may seem redundant to set timerValue to itself through setState,
-           it is used to ensure the value displayed is that of when the toggle button was pressed
-           (as a tick that fires during setState would cause an small, but improper delay) */
+         it is used to ensure the value displayed is that of when the toggle button was pressed
+         (as a tick that fires during setState would cause an small, but improper delay) */
     },
 
     resume: function () {
@@ -317,12 +317,19 @@ var Module = React.createClass({
         if (eventTargetDatasetTag != 'hrsField'
             && eventTargetDatasetTag != 'minField'
             && eventTargetDatasetTag != 'secField'
-            && eventTargetDatasetTag != 'csField')
+            && eventTargetDatasetTag != 'csField') {
+            // Replace non-alphanumeric characters for the label field
             newState[eventTargetDatasetTag] = (eventTargetValue).replace(/\W/g, '');
-        else
+        } else {
+            // Replace non-numerical characters for the timerMax fields
             newState[eventTargetDatasetTag] = (eventTargetValue).replace(/([^0-9])/g, '');
+        }
         newState[eventTargetDatasetTag] = newState[eventTargetDatasetTag].trim();
-        this.setState(newState);
+        if(newState[eventTargetDatasetTag] != eventTargetValue) {
+            this.log('Invalid characters entered for ' + eventTargetDatasetTag + ', ignoring update...');
+        } else {
+            this.setState(newState);
+        }
     },
 
     /* Fields above the break are updated in real time. They get their own update functions. */
@@ -703,24 +710,24 @@ var Main = React.createClass({
             console.log('Cycling active modules: ' + currentIndex + ' to ' + nextIndex);
             //This code is from when prevEndTime was a Stopwatch property.
             /*if (this.state.highPrecisionTiming) {
-                var nextModuleNewProps = React.addons.update(this.state.modules[nextIndex].props, {
-                    prevEndTime: {$set: prevModuleEndTime}
-                });
-                var nextModule = <Module {...nextModuleNewProps} />;
-                var nextState = React.addons.update(this.state, {
-                    modules: {
-                        $splice: [[nextIndex, 1, nextModule]]
-                    },
-                    activeIndex: {$set: nextIndex},
-                    previousActiveIndex: {$set: currentIndex}
-                });
-                this.setState(nextState);
-            } else {
-                this.setState({
-                    activeIndex: nextIndex,
-                    previousActiveIndex: currentIndex
-                });
-            }*/
+             var nextModuleNewProps = React.addons.update(this.state.modules[nextIndex].props, {
+             prevEndTime: {$set: prevModuleEndTime}
+             });
+             var nextModule = <Module {...nextModuleNewProps} />;
+             var nextState = React.addons.update(this.state, {
+             modules: {
+             $splice: [[nextIndex, 1, nextModule]]
+             },
+             activeIndex: {$set: nextIndex},
+             previousActiveIndex: {$set: currentIndex}
+             });
+             this.setState(nextState);
+             } else {
+             this.setState({
+             activeIndex: nextIndex,
+             previousActiveIndex: currentIndex
+             });
+             }*/
             if (this.state.highPrecisionTiming)
                 prevEndTime = prevModuleEndTime;
             else
@@ -764,7 +771,7 @@ var Main = React.createClass({
         });
     },
 
-    setAnimationsEnabled: function (event){
+    setAnimationsEnabled: function (event) {
         this.setState({
             animationsEnabled: event.target.checked
         });
@@ -793,7 +800,7 @@ var Main = React.createClass({
             defaultModuleSelectOptions.push(<option value={iteratedLabel}>{iteratedLabel}</option>);
         }
         var appWrapperClasses = 'appWrapper';
-        if(!this.state.animationsEnabled)
+        if (!this.state.animationsEnabled)
             appWrapperClasses += ' noAnimate';
         return (
             <div className={appWrapperClasses}>
@@ -801,6 +808,7 @@ var Main = React.createClass({
                     {...currentActiveStopwatch.props}
                     key={currentActiveStopwatch.props.id}
                     />
+
                 <div id="moduleList">
                     {currState.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
@@ -816,17 +824,19 @@ var Main = React.createClass({
                     </div>
                 </div>
                 <p><input type="checkbox"
-                       defaultChecked={this.state.highPrecisionTiming}
-                       onChange={this.setHighPrecision}
+                          defaultChecked={this.state.highPrecisionTiming}
+                          onChange={this.setHighPrecision}
                     />
                     Enable High Precision Timing?
                 </p>
+
                 <p><input type="checkbox"
                           defaultChecked={this.state.animationsEnabled}
                           onChange={this.setAnimationsEnabled}
                     />
                     Enable CSS Animations?
                 </p>
+
                 <p>{currentActiveStopwatch.props.id}</p>
             </div>
         )
