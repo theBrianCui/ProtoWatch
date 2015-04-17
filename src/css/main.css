@@ -140,7 +140,7 @@ input[type=text]:focus, textarea:focus {
 
 #topbar #menuWrapper {
     color: white;
-    padding: 0 2em;
+    padding: 0;
     margin: 0 auto;
     max-width: 960px;
 }
@@ -148,6 +148,7 @@ input[type=text]:focus, textarea:focus {
 #topbar #menuWrapper ul {
     list-style: none;
     margin: 0;
+    padding: 0;
 }
 
 body.links_main #topbar #menuWrapper ul li.links_main {
