@@ -230,6 +230,29 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     background-color: #00a100;
 }
 
+.mainLinks #toggleButton.pressed {
+    animation: toggleButtonPress .2s ease 0s 1 reverse;
+    -webkit-animation: toggleButtonPress .2s ease 0s 1 reverse;
+}
+
+@-webkit-keyframes toggleButtonPress {
+    from {
+
+    }
+    to {
+        background-color: rgb(0, 212, 0);
+    }
+}
+
+@keyframes toggleButtonPress {
+    from {
+
+    }
+    to {
+        background-color: rgb(0, 212, 0);
+    }
+}
+
 .mainLinks #resetButton {
     background-color: #bd0300;
 }
