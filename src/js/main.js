@@ -612,6 +612,7 @@ var Main = React.createClass({
             activeIndex: 0,
             previousActiveIndex: -1,
             highPrecisionTiming: true,
+            animationsEnabled: true,
             defaultModuleLabel: null
         };
     },
@@ -781,8 +782,11 @@ var Main = React.createClass({
             var iteratedLabel = currState.modules[i].props.label;
             defaultModuleSelectOptions.push(<option value={iteratedLabel}>{iteratedLabel}</option>);
         }
+        var appWrapperClasses = 'appWrapper';
+        if(!this.state.animationsEnabled)
+            appWrapperClasses += ' noAnimate';
         return (
-            <div className="appWrapper">
+            <div className={appWrapperClasses}>
                 <Stopwatch
                     {...currentActiveStopwatch.props}
                     key={currentActiveStopwatch.props.id}
