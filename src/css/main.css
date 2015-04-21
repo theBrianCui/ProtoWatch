@@ -257,6 +257,29 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     background-color: #bd0300;
 }
 
+.mainLinks #resetButton.pressed {
+    animation: resetButtonPress .5s ease 0s 1 normal;
+    -webkit-animation: resetButtonPress .5s ease 0s 1 normal;
+}
+
+@-webkit-keyframes resetButtonPress {
+    from {
+        background-color: #bd0300;
+    }
+    to {
+        background-color: #ed2502;
+    }
+}
+
+@keyframes resetButtonPress {
+    from {
+        background-color: #bd0300;
+    }
+    to {
+        background-color: #ed2502;
+    }
+}
+
 .mainLinks a.leftRightButton {
     width: 9vw;
     /*min-width: 80px;*/
