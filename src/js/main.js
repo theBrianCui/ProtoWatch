@@ -228,6 +228,12 @@ var Stopwatch = React.createClass({
         var min = Math.floor(tValue / 60000) % 60;
         var hrs = Math.floor(tValue / 3600000);
         var display = [];
+
+        function pad2(str) {
+            str = '' + str;
+            return str.length < 2 ? ('0' + str) : str;
+        }
+
         display.push(pad2(min));
         display.push(pad2(sec));
         display.push(pad2(cs));
