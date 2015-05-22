@@ -474,13 +474,17 @@ var Module = React.createClass({
     },
 
     playSound_bloop_d: function () { //Optional: pass in an event parameter
-        if (this.props.soundEnabled)
-            document.getElementById('sounds_bloop_d').play()
+        if (this.props.soundEnabled) {
+            //document.getElementById('sounds_bloop_d').play()
+            createjs.Sound.play('bloop_d');
+        }
     },
 
     playSound_bloop_g: function () {
-        if (this.props.soundEnabled)
-            document.getElementById('sounds_bloop_g').play()
+        if (this.props.soundEnabled) {
+            //document.getElementById('sounds_bloop_g').play()
+            createjs.Sound.play('bloop_g');
+        }
     },
 
     render: function () {
