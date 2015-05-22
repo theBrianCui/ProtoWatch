@@ -509,6 +509,12 @@ var Module = React.createClass({
         else
             upToDownFrom = 'Down From:';
 
+        var soundOptionsList = []; // Generate an options list containing all available sounds
+        var soundListLocal = soundList; // Create pointer to soundList for faster access
+        for(var i = 0; i < soundListLocal.length; i++) {
+            soundOptionsList.push(<option value={soundListLocal[i].id}>{soundListLocal[i].id}</option>);
+        }
+
         return (
             <div id={this.props.id} className="Module">
                 <div className="tabs">
@@ -556,7 +562,8 @@ var Module = React.createClass({
                             </div>
                             <div className="updatableWrapper limitInputWrapper">
                                 <p>Count {upToDownFrom}</p>
-                                {/* We use data-tag to identify elements and ref to select them */}
+                                {/* We use data-tag to identify elements and ref to select them
+                                    You can then access them with someDOMNode.dataset.tag */}
                                 <input type="text"
                                        value={this.state.hrsField}
                                        onFocus={this.blankField}
@@ -597,7 +604,6 @@ var Module = React.createClass({
                         <input type="radio" id={this.props.id + '-2'} name={this.props.id}/>
                         <label htmlFor={this.props.id + '-2'}>
                             Sounds</label>
-
                         <div className="content">
                             <table>
                                 <tr>
@@ -618,6 +624,7 @@ var Module = React.createClass({
                                         <td className="tableRight">
                                             <select value="null" onChange={null}>
                                                 <option value="null">(none)</option>
+                                                {soundOptionsList}
                                             </select>
                                         </td>
                                     </tr>
@@ -626,6 +633,7 @@ var Module = React.createClass({
                                         <td className="tableRight">
                                             <select value="null" onChange={null}>
                                                 <option value="null">(none)</option>
+                                                {soundOptionsList}
                                             </select>
                                         </td>
                                     </tr>
@@ -805,6 +813,7 @@ var Main = React.createClass({
 
     setDefaultModule: function (event) {
         var newDefaultModuleLabel = event.target.value;
+        //console.log(JSON.stringify(event.target.nodeName)); //prints "SELECT"
         this.setState({
             defaultModuleLabel: newDefaultModuleLabel
         });
