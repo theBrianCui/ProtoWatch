@@ -711,26 +711,6 @@ var Main = React.createClass({
     cycleActive: function (currentIndex, nextIndex, prevModuleEndTime) {
         if (currentIndex != nextIndex) {
             console.log('Cycling active modules: ' + currentIndex + ' to ' + nextIndex);
-            //This code is from when prevEndTime was a Stopwatch property.
-            /*if (this.state.highPrecisionTiming) {
-             var nextModuleNewProps = React.addons.update(this.state.modules[nextIndex].props, {
-             prevEndTime: {$set: prevModuleEndTime}
-             });
-             var nextModule = <Module {...nextModuleNewProps} />;
-             var nextState = React.addons.update(this.state, {
-             modules: {
-             $splice: [[nextIndex, 1, nextModule]]
-             },
-             activeIndex: {$set: nextIndex},
-             previousActiveIndex: {$set: currentIndex}
-             });
-             this.setState(nextState);
-             } else {
-             this.setState({
-             activeIndex: nextIndex,
-             previousActiveIndex: currentIndex
-             });
-             }*/
             if (this.state.highPrecisionTiming)
                 prevEndTime = prevModuleEndTime;
             else
@@ -847,6 +827,7 @@ var Main = React.createClass({
 
     componentDidMount: function () {
         console.log('Main component mounted!');
+        //Set active module highlight (componentDidUpdate does not run on initial mount)
         this.componentDidUpdate(null, {activeIndex: -1});
     },
 
