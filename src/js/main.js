@@ -21,6 +21,14 @@ var labelToId = {};
  */
 var prevEndTime = null;
 
+/* SoundJS Settings */
+var soundPath = 'sounds/';
+var soundList = [
+    { id: 'bloop_d', src:'bloop_d.ogg' },
+    { id: 'bloop_g', src:'bloop_g.ogg' }
+];
+createjs.Sound.alternateExtensions = ["mp3"];
+
 function pad2(str) {
     str = '' + str;
     return str.length < 2 ? ('0' + str) : str;
@@ -864,15 +872,8 @@ var Main = React.createClass({
         console.log('Main component mounted!');
 
         // Initialize SoundJS
-        /* SoundJS Settings */
-        var soundPath = 'sounds/';
-        var sounds = [
-            { id: 'bloop_d', src:'bloop_d.ogg' },
-            { id: 'bloop_g', src:'bloop_g.ogg' }
-        ];
-        createjs.Sound.alternateExtensions = ["mp3"];
         //createjs.Sound.addEventListener("fileload", handleLoad);
-        createjs.Sound.registerSounds(sounds, soundPath);
+        createjs.Sound.registerSounds(soundList, soundPath);
 
         //Set active module highlight (componentDidUpdate does not run on initial mount)
         this.componentDidUpdate(null, {activeIndex: -1});
