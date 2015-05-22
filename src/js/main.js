@@ -603,6 +603,26 @@ var Module = React.createClass({
                                 </tr>
                             </table>
                             <div className="updatableDivider"></div>
+                            <div className="updatableWrapper">
+                                <table>
+                                    <tr>
+                                        <td className="tableLeft">On Play:</td>
+                                        <td className="tableRight">
+                                            <select value="null" onChange={null}>
+                                                <option value="null">(none)</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="tableLeft">On End:</td>
+                                        <td className="tableRight">
+                                            <select value="null" onChange={null}>
+                                                <option value="null">(none)</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                             <button onClick={this.playSound_bloop_g}>Play a Bloop G</button>
                             <button onClick={this.playSound_bloop_d}>Play a Bloop D</button>
                         </div>
@@ -662,7 +682,12 @@ var Main = React.createClass({
             autorun: false,
             timerMax: 0,
             countUp: true,
+
+            /* Sound settings go here. */
             soundEnabled: true,
+            onPlaySound: null,
+            onEndSound: null,
+
             m_moduleUpdate: this.moduleUpdate,
             //s_onLimit: this.next,
             s_onNext: this.next,
