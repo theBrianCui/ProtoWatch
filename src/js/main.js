@@ -21,7 +21,7 @@ var labelToId = {};
  */
 var prevEndTime = null;
 
-/* SoundJS Settings */
+/* SoundJS Settings: SoundJS itself is initialized after Main has been mounted. */
 var soundPath = 'sounds/';
 var soundList = [
     { id: 'bloop_d', src:'bloop_d.ogg' },
@@ -295,6 +295,10 @@ var Module = React.createClass({
         return this.getResetState();
     },
 
+    /*
+    We consider prop data "old data" and state data "new data".
+    To revert a Module to its previous state, re-load the state properties directly from props.
+    */
     getResetState: function () {
         var fields = this.computeOldTimerMaxFields();
         return {
@@ -396,7 +400,6 @@ var Module = React.createClass({
     },
 
     resetModuleState: function () {
-        //We will consider prop data "old data".
         //this.log('resetModuleState was called.');
         this.setState(this.getResetState());
         this.setUpdateButton();
