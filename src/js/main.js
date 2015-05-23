@@ -298,7 +298,11 @@ var Module = React.createClass({
             hrsField: pad2(fields.hrs),
             minField: pad2(fields.min),
             secField: pad2(fields.sec),
-            csField: pad2(fields.cs)
+            csField: pad2(fields.cs),
+
+            //Sound selection fields
+            onPlaySelectedSound: this.props.onPlaySound,
+            onEndSelectedSound: this.props.onEndSound
         }
     },
 
@@ -347,6 +351,12 @@ var Module = React.createClass({
         } else {
             this.setState(newState);
         }
+    },
+
+    handleSoundChange: function (event) {
+        var newState = {};
+        newState[event.target.dataset.tag] = event.target.value;
+        this.setState(newState);
     },
 
     /* Fields above the break are updated in real time. They get their own update functions. */
@@ -482,9 +492,8 @@ var Module = React.createClass({
          or match null/undefined (indicating the label is available).
          */
         var label = this.state.labelField;
-        return (this.verifyTimerMaxFields(false) || label != this.props.label)
-            && (this.verifyTimerMaxFields(true) && label != ''
-            && (labelToId[label] == this.props.id || !labelToId[label]));
+        return (this.verifyTimerMaxFields(false) || label != this.props.label) //check if one changed
+            && (this.verifyTimerMaxFields(true) && label != '' && (labelToId[label] == this.props.id || !labelToId[label])); //check if all valid
     },
 
     playSound_bloop_d: function () { //Optional: pass in an event parameter
@@ -622,7 +631,7 @@ var Module = React.createClass({
                                     <tr>
                                         <td className="tableLeft">On Play:</td>
                                         <td className="tableRight">
-                                            <select value={'' + this.props.onPlaySound} data-tag="onPlaySound" onChange={null}>
+                                            <select value={'' + this.state.onPlaySelectedSound} data-tag="onPlaySelectedSound" onChange={this.handleSoundChange}>
                                                 <option value="null">(none)</option>
                                                 {soundOptionsList}
                                             </select>
@@ -631,7 +640,7 @@ var Module = React.createClass({
                                     <tr>
                                         <td className="tableLeft">On End:</td>
                                         <td className="tableRight">
-                                            <select value={'' + this.props.onEndSound} data-tag="onEndSound" onChange={null}>
+                                            <select value={'' + this.state.onEndSelectedSound} data-tag="onEndSelectedSound" onChange={this.handleSoundChange}>
                                                 <option value="null">(none)</option>
                                                 {soundOptionsList}
                                             </select>
