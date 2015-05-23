@@ -396,7 +396,7 @@ var Module = React.createClass({
         this.setUpdateButton();
     },
 
-    /* Take the modified contents of form fields and update this module's props with them. */
+    /* Take the modified contents of real time updated form fields and update this module's props with them. */
     updateFormFields: function () {
         if (this.validateInput()) {
             var newProps = React.addons.update(this.props, {
@@ -622,7 +622,7 @@ var Module = React.createClass({
                                     <tr>
                                         <td className="tableLeft">On Play:</td>
                                         <td className="tableRight">
-                                            <select value="null" onChange={null}>
+                                            <select value={'' + this.props.onPlaySound} data-tag="onPlaySound" onChange={null}>
                                                 <option value="null">(none)</option>
                                                 {soundOptionsList}
                                             </select>
@@ -631,7 +631,7 @@ var Module = React.createClass({
                                     <tr>
                                         <td className="tableLeft">On End:</td>
                                         <td className="tableRight">
-                                            <select value="null" onChange={null}>
+                                            <select value={'' + this.props.onEndSound} data-tag="onEndSound" onChange={null}>
                                                 <option value="null">(none)</option>
                                                 {soundOptionsList}
                                             </select>
