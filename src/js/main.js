@@ -292,6 +292,10 @@ var Stopwatch = React.createClass({
 
 var Module = React.createClass({
     getInitialState: function () {
+        return this.getResetState();
+    },
+
+    getResetState: function () {
         var fields = this.computeOldTimerMaxFields();
         return {
             labelField: this.props.label,
@@ -303,7 +307,7 @@ var Module = React.createClass({
             //Sound selection fields
             onPlaySelectedSound: this.props.onPlaySound,
             onEndSelectedSound: this.props.onEndSound
-        }
+        };
     },
 
     handlePropUpdate: function (newProps) {
@@ -391,18 +395,10 @@ var Module = React.createClass({
         this.handlePropUpdate(newProps);
     },
 
-    resetFormFields: function () {
+    resetModuleState: function () {
         //We will consider prop data "old data".
-        this.log('resetFormFields was called.');
-        var fields = this.computeOldTimerMaxFields();
-        this.setState({
-            labelField: this.props.label,
-            hrsField: pad2(fields.hrs),
-            minField: pad2(fields.min),
-            secField: pad2(fields.sec),
-            csField: pad2(fields.cs)
-        });
-
+        //this.log('resetModuleState was called.');
+        this.setState(this.getResetState());
         this.setUpdateButton();
     },
 
@@ -439,7 +435,7 @@ var Module = React.createClass({
         if (this.verifyTimerMaxFields(false)) {
             var newTimerMax = this.computeNewTimerMax();
             if (this.props.timerMax == newTimerMax) {
-                this.resetFormFields();
+                this.resetModuleState();
             }
         }
         this.setUpdateButton();
@@ -660,7 +656,7 @@ var Module = React.createClass({
                     </button>
                     <button type="button"
                             ref="moduleLimitButton"
-                            onClick={this.resetFormFields} data-tag="resetButton">Revert
+                            onClick={this.resetModuleState} data-tag="resetButton">Revert
                     </button>
                 </div>
             </div>
