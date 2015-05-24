@@ -71,10 +71,14 @@ var Stopwatch = React.createClass({
     componentDidMount: function () {
         console.log('Module started on: ' + this.state.startTime);
         this.interval = setInterval(this.tick, 5);
-        if (this.state.running)
+        if (this.state.running) {
             document.getElementById(this.props.id).classList.add('running');
-        else
+            if(this.props.onPlaySound)
+                createjs.Sound.play(this.props.onPlaySound);
+        }
+        else {
             document.getElementById(this.props.id).classList.remove('running');
+        }
     },
 
     componentWillUnmount: function () {
@@ -122,6 +126,8 @@ var Stopwatch = React.createClass({
         }
         else {
             this.resume();
+            if(this.props.onPlaySound)
+                createjs.Sound.play(this.props.onPlaySound);
             document.getElementById(this.props.id).classList.add('running');
         }
     },
