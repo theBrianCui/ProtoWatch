@@ -354,6 +354,7 @@ var Module = React.createClass({
         if(newState[eventTargetDatasetTag] != eventTargetValue) {
             this.log('Invalid characters entered for ' + eventTargetDatasetTag + ', ignoring update...');
             eventTarget.classList.remove('invalidInput');
+            //noinspection SillyAssignmentJS
             eventTarget.offsetWidth = eventTarget.offsetWidth; //Force element reflow
             eventTarget.classList.add('invalidInput');
         } else {
@@ -424,6 +425,9 @@ var Module = React.createClass({
         return (this.props !== nextProps || this.state !== nextState)
     },
 
+    /* componentDidUpdate runs whenever setState() is finished, or when new props are passed down to it .
+    Whenever this happens, open or close the update button. */
+
     componentDidUpdate: function () {
         this.log('Module component updated!');
 
@@ -491,8 +495,10 @@ var Module = React.createClass({
          or match null/undefined (indicating the label is available).
          */
         var label = this.state.labelField;
-        return (this.verifyTimerMaxFields(false) || label != this.props.label) //check if one changed
-            && (this.verifyTimerMaxFields(true) && label != '' && (labelToId[label] == this.props.id || !labelToId[label])); //check if all valid
+        return (this.verifyTimerMaxFields(false) || label != this.props.label ||
+            this.state.onPlaySelectedSound != this.props.onPlaySound || this.state.onEndSelectedSound != this.props.onEndSound) //check if one changed
+            &&
+            (this.verifyTimerMaxFields(true) && label != '' && (labelToId[label] == this.props.id || !labelToId[label])); //check if all valid
     },
 
     playSound_bloop_d: function () { //Optional: pass in an event parameter
