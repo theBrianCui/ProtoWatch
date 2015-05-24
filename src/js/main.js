@@ -73,7 +73,7 @@ var Stopwatch = React.createClass({
         this.interval = setInterval(this.tick, 5);
         if (this.state.running) {
             document.getElementById(this.props.id).classList.add('running');
-            if(this.props.onPlaySound)
+            if(this.props.soundEnabled && this.props.onPlaySound)
                 createjs.Sound.play(this.props.onPlaySound);
         }
         else {
@@ -223,7 +223,7 @@ var Stopwatch = React.createClass({
         if (event) {// The button was pressed. Ignore the expected end time.
             this.props.s_onNext(null);
         } else { // The limit was reached: Forward the expected end time to the next Module for high-precision timing.
-            if(this.props.onEndSound) //TODO: clarify the meaning of onEndSound
+            if(this.props.soundEnabled && this.props.onEndSound) //TODO: clarify the meaning of onEndSound
                 createjs.Sound.play(this.props.onEndSound);
             this.props.s_onNext(this.state.expectedEndTime);
         }
