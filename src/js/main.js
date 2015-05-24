@@ -24,8 +24,8 @@ var prevEndTime = null;
 /* SoundJS Settings: SoundJS itself is initialized after Main has been mounted. */
 var soundPath = 'sounds/';
 var soundList = [
-    { id: 'bloop_d', src:'bloop_d.ogg' },
-    { id: 'bloop_g', src:'bloop_g.ogg' }
+    {id: 'bloop_d', src: 'bloop_d.ogg'},
+    {id: 'bloop_g', src: 'bloop_g.ogg'}
 ];
 createjs.Sound.alternateExtensions = ["mp3"];
 
@@ -296,9 +296,9 @@ var Module = React.createClass({
     },
 
     /*
-    We consider prop data "old data" and state data "new data".
-    To revert a Module to its previous state, re-load the state properties directly from props.
-    */
+     We consider prop data "old data" and state data "new data".
+     To revert a Module to its previous state, re-load the state properties directly from props.
+     */
     getResetState: function () {
         var fields = this.computeOldTimerMaxFields();
         return {
@@ -351,7 +351,7 @@ var Module = React.createClass({
             newState[eventTargetDatasetTag] = (eventTargetValue).replace(/([^0-9])/g, '');
         }
         newState[eventTargetDatasetTag] = newState[eventTargetDatasetTag].trim();
-        if(newState[eventTargetDatasetTag] != eventTargetValue) {
+        if (newState[eventTargetDatasetTag] != eventTargetValue) {
             this.log('Invalid characters entered for ' + eventTargetDatasetTag + ', ignoring update...');
             eventTarget.classList.remove('invalidInput');
             //noinspection SillyAssignmentJS
@@ -407,11 +407,13 @@ var Module = React.createClass({
     },
 
     /* Take the modified contents of real time updated form fields and update this module's props with them. */
-    updateFormFields: function () {
+    updatePropsWithState: function () {
         if (this.validateInput()) {
             var newProps = React.addons.update(this.props, {
                 timerMax: {$set: this.computeNewTimerMax()},
-                label: {$set: this.state.labelField}
+                label: {$set: this.state.labelField},
+                onPlaySound: {$set: this.state.onPlaySelectedSound},
+                onEndSound: {$set: this.state.onEndSelectedSound}
             });
             this.handlePropUpdate(newProps);
         }
@@ -426,7 +428,7 @@ var Module = React.createClass({
     },
 
     /* componentDidUpdate runs whenever setState() is finished, or when new props are passed down to it .
-    Whenever this happens, open or close the update button. */
+     Whenever this happens, open or close the update button. */
 
     componentDidUpdate: function () {
         this.log('Module component updated!');
@@ -525,7 +527,7 @@ var Module = React.createClass({
 
         var soundOptionsList = []; // Generate an options list containing all available sounds
         var soundListLocal = soundList; // Create pointer to soundList for faster access
-        for(var i = 0; i < soundListLocal.length; i++) {
+        for (var i = 0; i < soundListLocal.length; i++) {
             soundOptionsList.push(<option value={soundListLocal[i].id}>{soundListLocal[i].id}</option>);
         }
 
@@ -577,7 +579,7 @@ var Module = React.createClass({
                             <div className="updatableWrapper limitInputWrapper">
                                 <p>Count {upToDownFrom}</p>
                                 {/* We use data-tag to identify elements and ref to select them
-                                    You can then access them with someDOMNode.dataset.tag */}
+                                 You can then access them with someDOMNode.dataset.tag */}
                                 <input type="text"
                                        value={this.state.hrsField}
                                        onFocus={this.blankField}
@@ -618,6 +620,7 @@ var Module = React.createClass({
                         <input type="radio" id={this.props.id + '-2'} name={this.props.id}/>
                         <label htmlFor={this.props.id + '-2'}>
                             Sounds</label>
+
                         <div className="content">
                             <table>
                                 <tr>
@@ -636,7 +639,8 @@ var Module = React.createClass({
                                     <tr>
                                         <td className="tableLeft">On Play:</td>
                                         <td className="tableRight">
-                                            <select value={'' + this.state.onPlaySelectedSound} data-tag="onPlaySelectedSound" onChange={this.handleSoundChange}>
+                                            <select value={'' + this.state.onPlaySelectedSound}
+                                                    data-tag="onPlaySelectedSound" onChange={this.handleSoundChange}>
                                                 <option value="null">(none)</option>
                                                 {soundOptionsList}
                                             </select>
@@ -645,7 +649,8 @@ var Module = React.createClass({
                                     <tr>
                                         <td className="tableLeft">On End:</td>
                                         <td className="tableRight">
-                                            <select value={'' + this.state.onEndSelectedSound} data-tag="onEndSelectedSound" onChange={this.handleSoundChange}>
+                                            <select value={'' + this.state.onEndSelectedSound}
+                                                    data-tag="onEndSelectedSound" onChange={this.handleSoundChange}>
                                                 <option value="null">(none)</option>
                                                 {soundOptionsList}
                                             </select>
@@ -661,7 +666,7 @@ var Module = React.createClass({
                 <div className="updateButtonWrapper" ref="updateButtonWrapper">
                     <button type="button"
                             ref="moduleLimitButton"
-                            onClick={this.updateFormFields}>Update
+                            onClick={this.updatePropsWithState}>Update
                     </button>
                     <button type="button"
                             ref="moduleLimitButton"
@@ -813,6 +818,7 @@ var Main = React.createClass({
         }
     },
 
+    //TODO: Generalize these settings functions by labeling them with dataset-tag
     setHighPrecision: function (event) {
         this.setState({
             highPrecisionTiming: event.target.checked
