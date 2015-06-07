@@ -582,6 +582,11 @@ body.links_main #topbar #menuWrapper ul li.links_main {
         font-size: .9em;
     }
 
+    #topbar {
+        font-size: 1em;
+        line-height: 1.6em;
+    }
+
     .mainLinks a.bigButton {
         line-height: 82px;
         font-size: 64px;
