@@ -53,7 +53,8 @@ var Stopwatch = React.createClass({
             if (!currProps.countUp)
                 gIS_expectedEndTime = baseTime; //counting down with a timerMax of 0 means instant completion
         }
-        /* Cases where null:
+        /* Note: gIS stands for "getInitialState". These variables are applied once.
+           Cases where gIS_expectedEndTime is null:
          - the timerMax is 0 and counting up
          - the timerMax is >0, but autorun is disabled
          */
