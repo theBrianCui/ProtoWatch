@@ -513,6 +513,11 @@ var Module = React.createClass({
             (this.verifyTimerMaxFields(true) && label != '' && (labelToId[label] == this.props.id || !labelToId[label])); //check if all valid
     },
 
+    enterKeyUpdate: function (event) {
+        if(event.charCode == 13)
+            this.updatePropsWithState();
+    },
+
     render: function () {
         var upToDownFrom;
         //Set countUp/countDown limit text
@@ -566,6 +571,7 @@ var Module = React.createClass({
                                             <input type="text"
                                                    value={this.state.labelField}
                                                    onChange={this.handleFieldChange}
+                                                   onKeyPress={this.enterKeyUpdate}
                                                    data-tag="labelField" ref="labelField"
                                                 />
                                         </td>
@@ -581,6 +587,7 @@ var Module = React.createClass({
                                        onFocus={this.blankField}
                                        onBlur={this.padOnBlur}
                                        onChange={this.handleFieldChange}
+                                       onKeyPress={this.enterKeyUpdate}
                                        data-tag="hrsField" ref="hrsField"
                                     />
                                 :
@@ -589,6 +596,7 @@ var Module = React.createClass({
                                        onFocus={this.blankField}
                                        onBlur={this.padOnBlur}
                                        onChange={this.handleFieldChange}
+                                       onKeyPress={this.enterKeyUpdate}
                                        data-tag="minField" ref="minField"
                                     />
                                 :
@@ -597,6 +605,7 @@ var Module = React.createClass({
                                        onFocus={this.blankField}
                                        onBlur={this.padOnBlur}
                                        onChange={this.handleFieldChange}
+                                       onKeyPress={this.enterKeyUpdate}
                                        data-tag="secField" ref="secField"
                                     />
                                 :
@@ -605,6 +614,7 @@ var Module = React.createClass({
                                        onFocus={this.blankField}
                                        onBlur={this.padOnBlur}
                                        onChange={this.handleFieldChange}
+                                       onKeyPress={this.enterKeyUpdate}
                                        data-tag="csField" ref="csField"
                                     />
 
