@@ -1,3 +1,5 @@
+# You will need git and nodejs with jsx installed to run this script
+
 git branch -f staging
 git checkout staging
 rm .\build\* -Recurse
@@ -13,7 +15,7 @@ Foreach-Object {$_ -replace 'react-with-addons-0.13.0.js','react-with-addons-0.1
 Foreach-Object {$_ -replace ' type="text/jsx"',''}  | 
 Out-File .\build\index_temp.html
 $currentdir = (pwd).path
-[System.IO.File]::WriteAllLines($currentdir + '\build\index.html', (get-content ($currentdir + '\build\index_temp.html')))
+[System.IO.File]::WriteAllLines($currentdir + '\build\index.html', (Get-Content ($currentdir + '\build\index_temp.html')))
 rm .\build\index_temp.html
 git add .
 git commit -a -m "Build commit for $(get-date -format s)"
