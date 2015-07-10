@@ -13,7 +13,7 @@ Foreach-Object {$_ -replace 'react-with-addons-0.13.0.js','react-with-addons-0.1
 Foreach-Object {$_ -replace ' type="text/jsx"',''}  | 
 Out-File .\build\index_temp.html
 rm .\build\index.html
-[System.IO.File]::WriteAllLines(.\build\index_temp.html, .\build\index.html)
+[System.IO.File]::WriteAllLines('.\build\index_temp.html', '.\build\index.html')
 rm .\build\index_temp.html
 git add .
 git commit -a -m "Build commit for $(get-date -format s)"
