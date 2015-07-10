@@ -1,4 +1,5 @@
 git branch -f staging
+git checkout staging
 rm .\build\*
 cp -r .\src\* .\build\
 rm .\build\js -Recurse
