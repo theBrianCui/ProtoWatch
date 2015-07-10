@@ -13,3 +13,5 @@ Out-File .\build\js\main.js
 git add .
 git commit -a -m "Build commit for $(get-date -format s)"
 git checkout master
+rm .\build\* -Recurse
+git reset --hard
