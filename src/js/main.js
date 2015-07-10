@@ -1,5 +1,4 @@
 React.initializeTouchEvents(true);
-var ignoreNestedClick = false;
 
 /* The labelToId object maps labels to id properties.
  Due to the large number of possible contexts with which labelToId can be
@@ -54,7 +53,7 @@ var Stopwatch = React.createClass({
                 gIS_expectedEndTime = baseTime; //counting down with a timerMax of 0 means instant completion
         }
         /* Note: gIS stands for "getInitialState". These variables are applied once.
-           Cases where gIS_expectedEndTime is null:
+         Cases where gIS_expectedEndTime is null:
          - the timerMax is 0 and counting up
          - the timerMax is >0, but autorun is disabled
          */
@@ -74,7 +73,7 @@ var Stopwatch = React.createClass({
         this.interval = setInterval(this.tick, 5);
         if (this.state.running) {
             document.getElementById(this.props.id).classList.add('running');
-            if(this.props.soundEnabled && this.props.onPlaySound)
+            if (this.props.soundEnabled && this.props.onPlaySound)
                 createjs.Sound.play(this.props.onPlaySound);
         }
         else {
@@ -127,7 +126,7 @@ var Stopwatch = React.createClass({
         }
         else {
             this.resume();
-            if(this.props.onPlaySound)
+            if (this.props.onPlaySound)
                 createjs.Sound.play(this.props.onPlaySound);
             document.getElementById(this.props.id).classList.add('running');
         }
@@ -224,7 +223,7 @@ var Stopwatch = React.createClass({
         if (event) {// The button was pressed. Ignore the expected end time.
             this.props.s_onNext(null);
         } else { // The limit was reached: Forward the expected end time to the next Module for high-precision timing.
-            if(this.props.soundEnabled && this.props.onEndSound) //TODO: clarify the meaning of onEndSound
+            if (this.props.soundEnabled && this.props.onEndSound) //TODO: clarify the meaning of onEndSound
                 createjs.Sound.play(this.props.onEndSound);
             this.props.s_onNext(this.state.expectedEndTime);
         }
@@ -515,7 +514,7 @@ var Module = React.createClass({
     },
 
     enterKeyUpdate: function (event) {
-        if(event.charCode == 13)
+        if (event.charCode == 13)
             this.updatePropsWithState();
     },
 
@@ -799,28 +798,24 @@ var Main = React.createClass({
 
     add: function () {
         console.log('add was called.');
-        if (!ignoreNestedClick) {
-            var currState = this.state;
-            var newModule;
-            var newModuleProps = this.getDefaultModuleProps();
-            if (('' + currState.defaultModuleLabel) != 'null') {
-                var clonedModuleProps = currState.modules[currState.idToIndex[labelToId[currState.defaultModuleLabel]]].props;
-                newModuleProps = React.addons.update(clonedModuleProps, {
-                    id: {$set: newModuleProps.id}
-                });
-            }
-            newModule = this.createNewModule(newModuleProps);
-
-            var newIdToIndex = {};
-            newIdToIndex[newModule.props.id] = currState.modules.length;
-            var newState = React.addons.update(this.state, {
-                modules: {$push: [newModule]},
-                idToIndex: {$merge: newIdToIndex}
+        var currState = this.state;
+        var newModule;
+        var newModuleProps = this.getDefaultModuleProps();
+        if (('' + currState.defaultModuleLabel) != 'null') {
+            var clonedModuleProps = currState.modules[currState.idToIndex[labelToId[currState.defaultModuleLabel]]].props;
+            newModuleProps = React.addons.update(clonedModuleProps, {
+                id: {$set: newModuleProps.id}
             });
-            this.setState(newState);
-        } else {
-            ignoreNestedClick = false;
         }
+        newModule = this.createNewModule(newModuleProps);
+
+        var newIdToIndex = {};
+        newIdToIndex[newModule.props.id] = currState.modules.length;
+        var newState = React.addons.update(this.state, {
+            modules: {$push: [newModule]},
+            idToIndex: {$merge: newIdToIndex}
+        });
+        this.setState(newState);
     },
 
     //TODO: Generalize these settings functions by labeling them with dataset-tag
@@ -846,8 +841,7 @@ var Main = React.createClass({
 
     ignoreClick: function (event) {
         event.preventDefault();
-        console.log('ignoreClick was called.');
-        ignoreNestedClick = true;
+        event.stopPropagation();
     },
 
     render: function () {
@@ -873,7 +867,6 @@ var Main = React.createClass({
                     {currState.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
-
                         <p>
                             <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
                                     onChange={this.setDefaultModule}>
