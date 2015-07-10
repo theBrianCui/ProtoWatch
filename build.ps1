@@ -12,7 +12,7 @@ Where-Object {$_ -notmatch 'JSXTransformer'} |
 Foreach-Object {$_ -replace 'react-with-addons-0.13.0.js','react-with-addons-0.13.0-production.js'}  | 
 Foreach-Object {$_ -replace ' type="text/jsx"',''}  | 
 set-variable output $_
-Out-File $output
+$output | Out-File .\build\index.html
 git add .
 git commit -a -m "Build commit for $(get-date -format s)"
 git checkout master
