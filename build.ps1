@@ -1,5 +1,5 @@
-rm .\build\ -Recurse
 git branch -f staging
+rm .\build\*
 cp -r .\src\* .\build\
 rm .\build\js -Recurse
 jsx src\js\ build\js\
@@ -9,4 +9,3 @@ rm .\build\js\.module-cache -Recurse
 (Get-Content .\build\index.html) | 
 Foreach-Object {$_ -replace 'react-with-addons-0.13.0.js','react-with-addons-0.13.0-production.js'}  | 
 Out-File .\build\js\main.js
-rm .\build\ -Recurse
