@@ -20,6 +20,9 @@ $currentdir = (pwd).path
 rm .\build\index_temp.html
 git add .
 git commit -a -m "Build commit for $(get-date -format s)"
+git branch -f gh-pages
+git push origin gh-pages -f
 git checkout master
+git branch -D gh-pages
 rm .\build\* -Recurse
 git reset --hard
