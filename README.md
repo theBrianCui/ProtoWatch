@@ -49,9 +49,9 @@ AND all input fields are valid, the "Update" and "Revert" buttons are revealed. 
 **When is it appropriate to use global variables over state?**
 
 State is generally preferred to be the location of any properties which are used in the process of rendering content to the user.
-Global variables are used when elements share a value and it is too complicated to update state for elements individually,
-and/or it is impossible to use state to update the context of elements or functions (such as when two functions fire from the same event
- - they will both run in same state context as the event which fired it, regardless of whether or not state is changed before the function runs).
+Global variables are used when it is too complicated to update state for elements individually,
+and/or it is impossible to use state to update the context of elements or functions (such as when two functions fire from the same event, as
+they will both run in same state context as the event which fired it, regardless of whether or not state is changed before the function runs).
 
 **Why/When is currState/currProps used instead of this.state/this.props?**
 
@@ -61,17 +61,8 @@ storing this.state/this.props in a local variable. currState/currProps is usuall
 Deploying for Production/Release
 --------------------------
 
-The master source code for ProtoWatch is written with [JSX](http://facebook.github.io/react/docs/jsx-in-depth.html), which is automatically transformed into JavaScript by your browser via *js/JSXTransformer.js*. This is fine for development purposes, but needlessly slow for release. Read more about the [JSX transformation process here](http://facebook.github.io/react/docs/tooling-integration.html#jsx).
+A PowerShell script is available to build and deploy to gh-pages. Git, NodeJS and JSX must be installed for it to work. 
+From the master branch, simply run the script and it will run the necessary steps to deploy to gh-pages.
+The general process is creating a temporary branch for staging, converting JSX to Javascript, switching to the production version of React, and committing/pushing the changes to gh-pages.
 
-**Never** directly merge the master branch into gh-pages (production), as the master branch uses JSX. Instead, create a temporary middleman branch which has been properly converted to pure JavaScript, and then merge the middleman branch into gh-pages.
-
- 1. Create a new middleman branch.
- 2. [Precompile](http://facebook.github.io/react/docs/tooling-integration.html#jsx) any JSX into JavaScript. An [online tool can be found here](http://facebook.github.io/react/jsx-compiler.html).
- 3. Modify the pages which refer to JSX code to properly refer to them as JavaScript. For example, in *index.html*, the following:
-    `<script type="text/jsx" src="js/main.js"></script>`
-    should be changed to
-    `<script src="js/main.js"></script>`
- 4. Modify the pages which refer to the React library to refer to the production (minified) version.
-
-Now, when the middleman branch is merged into gh-pages, gh-pages receives pure JavaScript.
-
+TODO: write a Unix shell script equivalent.
