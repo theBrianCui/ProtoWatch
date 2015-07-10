@@ -12,7 +12,6 @@ Where-Object {$_ -notmatch 'JSXTransformer'} |
 Foreach-Object {$_ -replace 'react-with-addons-0.13.0.js','react-with-addons-0.13.0-production.js'}  | 
 Foreach-Object {$_ -replace ' type="text/jsx"',''}  | 
 Out-File .\build\index_temp.html
-rm .\build\index.html
 $currentdir = (pwd).path
 [System.IO.File]::WriteAllLines($currentdir + '\build\index_temp.html', $currentdir + '\build\index.html')
 rm .\build\index_temp.html
