@@ -11,7 +11,7 @@ rm .\build\js\.module-cache -Recurse
 Where-Object {$_ -notmatch 'JSXTransformer'} |
 Foreach-Object {$_ -replace 'react-with-addons-0.13.0.js','react-with-addons-0.13.0-production.js'}  | 
 Foreach-Object {$_ -replace ' type="text/jsx"',''}  | 
-$output = $_
+set-variable output $_
 Out-File $output
 git add .
 git commit -a -m "Build commit for $(get-date -format s)"
