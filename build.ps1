@@ -11,7 +11,10 @@ rm .\build\js\.module-cache -Recurse
 Where-Object {$_ -notmatch 'JSXTransformer'} |
 Foreach-Object {$_ -replace 'react-with-addons-0.13.0.js','react-with-addons-0.13.0-production.js'}  | 
 Foreach-Object {$_ -replace ' type="text/jsx"',''}  | 
-Out-File .\build\index.html
+Out-File .\build\index_temp.html
+rm .\build\index.html
+[System.IO.File]::WriteAllLines(.\build\index_temp.html, .\build\index.html)
+rm .\build\index_temp.html
 git add .
 git commit -a -m "Build commit for $(get-date -format s)"
 git checkout master
