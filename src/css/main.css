@@ -328,7 +328,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     padding: .1em 0 0 0;
     font-size: .9em;
     /*border-radius: .8em;*/
-    overflow: hidden;
+    /*overflow: hidden;*/
     transition: background-color .25s;
 }
 
@@ -361,6 +361,22 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 
 .Module.activeModule {
     background-color: #0072b1;
+    position: relative;
+}
+
+.Module.activeModule:after {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 114, 177, 0);
+    border-bottom-color: #0072B1;
+    border-width: 18px;
+    margin-left: -18px;
 }
 
 .Module.activeModule.running {
@@ -389,9 +405,9 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 .Module .tabs {
     position: relative;
     min-height: 15em; /* This part sucks */
-    min-width: 20em;
+    min-width: 18.5em;
     clear: both;
-    margin: 1.4em 0 0;
+    margin: 1.2em 0 0;
 }
 
 .Module .tab {
