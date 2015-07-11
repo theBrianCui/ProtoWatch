@@ -495,7 +495,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 .Module .updateButtonWrapper {
     padding: .5em;
     text-align: center;
-    margin-top: -2.85em;
+    margin-top: -3em;
     transition: margin 0.25s;
 }
 
