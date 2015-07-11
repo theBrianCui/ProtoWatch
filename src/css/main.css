@@ -538,6 +538,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 .Module .limitInputLabel {
     font-weight: normal;
     font-size: .7em;
+    display: none;
 }
 
 @media (max-width: 1024px) {

@@ -335,13 +335,14 @@ var Module = React.createClass({
     blankField: function (event) {
         //this.log('className: ' + this.refs.confirmButton.getDOMNode().className);
         event.target.value = '';
+        Sizzle('#' + this.props.id + ' .limitInputLabel')[0].style.display = 'block';
     },
 
     padOnBlur: function (event) {
         var newState = {};
         newState[event.target.dataset.tag] = pad2(this.state[event.target.dataset.tag]);
         this.setState(newState);
-        //this.forceUpdate();
+        Sizzle('#' + this.props.id + ' .limitInputLabel')[0].style.display = 'none';
     },
 
     handleFieldChange: function (event) {
@@ -695,7 +696,7 @@ var Main = React.createClass({
             activeIndex: 0,
             previousActiveIndex: -1,
             highPrecisionTiming: true,
-            animationsEnabled: true,
+            playbackAnimationEnabled: false,
             defaultModuleLabel: null
         };
     },
@@ -827,7 +828,7 @@ var Main = React.createClass({
 
     setAnimationsEnabled: function (event) {
         this.setState({
-            animationsEnabled: event.target.checked
+            playbackAnimationEnabled: event.target.checked
         });
     },
 
@@ -854,7 +855,7 @@ var Main = React.createClass({
             defaultModuleSelectOptions.push(<option value={iteratedLabel}>{iteratedLabel}</option>);
         }
         var appWrapperClasses = 'appWrapper';
-        if (!this.state.animationsEnabled)
+        if (!this.state.playbackAnimationEnabled)
             appWrapperClasses += ' noAnimate';
         return (
             <div className={appWrapperClasses}>
@@ -884,7 +885,7 @@ var Main = React.createClass({
                 </p>
 
                 <p><input type="checkbox"
-                          defaultChecked={this.state.animationsEnabled}
+                          defaultChecked={this.state.playbackAnimationEnabled}
                           onChange={this.setAnimationsEnabled}
                     />
                     Enable CSS Animations?
