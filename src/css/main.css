@@ -404,7 +404,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 
 .Module .tabs {
     position: relative;
-    min-height: 15em; /* This part sucks */
+    min-height: 14.5em; /* This part sucks */
     min-width: 18.5em;
     clear: both;
     margin: 1.2em 0 0;
@@ -593,6 +593,10 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 
     .Module .tabs {
         min-width: unset;
+    }
+
+    .Module.activeModule:after {
+        display: none;
     }
 
     .Module#addModuleButton {
