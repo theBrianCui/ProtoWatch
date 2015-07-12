@@ -906,7 +906,7 @@ var Main = React.createClass({
         Ps.initialize(document.getElementById('moduleList'), { useBothWheelAxes: true, swipePropagation: true, wheelPropagation: true });
 
         //Set active module highlight (componentDidUpdate does not run on initial mount)
-        this.componentDidUpdate(null, {activeIndex: -1, swipePropagation: true, wheelPropagation: true});
+        this.componentDidUpdate(null, {activeIndex: -1});
 
         //Not a native property
         React.ready = true;
