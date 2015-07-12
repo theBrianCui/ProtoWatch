@@ -868,6 +868,7 @@ var Main = React.createClass({
                     {currState.modules}
                     <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                         <p>+</p>
+
                         <p>
                             <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
                                     onChange={this.setDefaultModule}>
@@ -903,8 +904,15 @@ var Main = React.createClass({
         //createjs.Sound.addEventListener("fileload", handleLoad);
         createjs.Sound.registerSounds(soundList, soundPath);
 
-        Ps.initialize(document.getElementById('moduleList'), { useBothWheelAxes: true, swipePropagation: true, wheelPropagation: true });
-        Ps.ready = true;
+        if (window.innerWidth > 640) {
+            console.log("Initializing scrollbar...");
+            Ps.initialize(document.getElementById('moduleList'), {
+                useBothWheelAxes: true,
+                swipePropagation: true,
+                wheelPropagation: true
+            });
+            Ps.ready = true;
+        }
 
         //Set active module highlight (componentDidUpdate does not run on initial mount)
         this.componentDidUpdate(null, {activeIndex: -1});
@@ -921,7 +929,8 @@ var Main = React.createClass({
                 document.getElementById(currState.modules[currState.previousActiveIndex].props.id).classList.toggle('activeModule');
             document.getElementById(currState.modules[currState.activeIndex].props.id).classList.toggle('activeModule');
         }
-        Ps.update(document.getElementById('moduleList'));
+        if(Ps.ready)
+            Ps.update(document.getElementById('moduleList'));
     }
 });
 
@@ -932,16 +941,24 @@ React.render(
 );
 
 //Fixes a minor window resize bug if scrolled. Not sure if worth the extra event listener or if there's an easier fix.
-window.addEventListener('resize', function(event) {
-    if(React.ready) {
-        if(window.innerWidth <= 640 && Ps.ready) {
-            Ps.destroy(document.getElementById('moduleList'));
-            Ps.ready = false;
-        } else if (Ps.ready) {
-            Ps.update(document.getElementById('moduleList'));
+window.addEventListener('resize', function (event) {
+    if (React.ready) {
+        if (window.innerWidth <= 640) {
+            if (Ps.ready) {
+                Ps.destroy(document.getElementById('moduleList'));
+                Ps.ready = false;
+            }
         } else {
-            Ps.initialize(document.getElementById('moduleList'), { useBothWheelAxes: true, swipePropagation: true, wheelPropagation: true });
-            Ps.ready = true;
+            if (Ps.ready) {
+                Ps.update(document.getElementById('moduleList'));
+            } else {
+                Ps.initialize(document.getElementById('moduleList'), {
+                    useBothWheelAxes: true,
+                    swipePropagation: true,
+                    wheelPropagation: true
+                });
+                Ps.ready = true;
+            }
         }
     }
 });
