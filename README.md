@@ -61,7 +61,7 @@ storing this.state/this.props in a local variable. currState/currProps is usuall
 Deploying for Production/Release
 --------------------------
 
-A PowerShell script is available to build and deploy to gh-pages. Git, NodeJS and JSX must be installed for it to work. 
+A PowerShell script is available to build and deploy to gh-pages. Git, NodeJS, JSX, and UglifyJS2 must be installed for it to work. 
 From the master branch, simply run the script and it will run the necessary steps to deploy to gh-pages.
 The general process is creating a temporary branch for staging, converting JSX to Javascript, switching to the production version of React, and committing/pushing the changes to gh-pages.
 
