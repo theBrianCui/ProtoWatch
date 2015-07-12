@@ -855,7 +855,7 @@ var Main = React.createClass({
             defaultModuleSelectOptions.push(<option value={iteratedLabel}>{iteratedLabel}</option>);
         }
         var appWrapperClasses = 'appWrapper';
-        if (!this.state.playbackAnimationEnabled)
+        if (!currState.playbackAnimationEnabled)
             appWrapperClasses += ' noAnimate';
         return (
             <div className={appWrapperClasses}>
@@ -881,14 +881,14 @@ var Main = React.createClass({
                     </div>
                 </div>
                 <p><input type="checkbox"
-                          defaultChecked={this.state.highPrecisionTiming}
+                          defaultChecked={currState.highPrecisionTiming}
                           onChange={this.setHighPrecision}
                     />
                     Enable High Precision Timing?
                 </p>
 
                 <p><input type="checkbox"
-                          defaultChecked={this.state.playbackAnimationEnabled}
+                          defaultChecked={currState.playbackAnimationEnabled}
                           onChange={this.setAnimationsEnabled}
                     />
                     Enable CSS Animations?

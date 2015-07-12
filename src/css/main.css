@@ -286,10 +286,12 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     vertical-align: middle;
     line-height: 8vw;
     font-size: 4.5vw;
+    transition: opacity .25s;
 }
 
 .hideLeftRightButtons a.leftRightButton {
     visibility: hidden;
+    opacity: 0;
 }
 
 .mainLinks .doubleArrow {
