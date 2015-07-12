@@ -310,6 +310,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 }
 
 #moduleList {
+    position: relative;
     padding: .8em 1em;
     overflow-x: scroll;
     overflow-y: hidden;

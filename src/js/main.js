@@ -903,8 +903,13 @@ var Main = React.createClass({
         //createjs.Sound.addEventListener("fileload", handleLoad);
         createjs.Sound.registerSounds(soundList, soundPath);
 
+        Ps.initialize(document.getElementById('moduleList'), { useBothWheelAxes: true });
+
         //Set active module highlight (componentDidUpdate does not run on initial mount)
         this.componentDidUpdate(null, {activeIndex: -1});
+
+        //Not a native property
+        React.ready = true;
     },
 
     componentDidUpdate: function (prevProps, prevState) {
@@ -915,6 +920,7 @@ var Main = React.createClass({
                 document.getElementById(currState.modules[currState.previousActiveIndex].props.id).classList.toggle('activeModule');
             document.getElementById(currState.modules[currState.activeIndex].props.id).classList.toggle('activeModule');
         }
+        Ps.update(document.getElementById('moduleList'));
     }
 });
 
@@ -923,3 +929,9 @@ React.render(
     ,
     document.getElementById('container')
 );
+
+//Fixes a minor window resize bug if scrolled. Not sure if worth the extra event listener or if there's an easier fix.
+window.addEventListener('resize', function(event) {
+    if(React.ready)
+        Ps.update(document.getElementById('moduleList'));
+});
