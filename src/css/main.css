@@ -340,10 +340,11 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     border: .3em dashed #323232;
     color: #242424;
     background-color: #414141;
+    transition: none;
 }
 
 .Module#addModuleButton:hover {
-    background-color: #555555;
+    background-color: #737373;
     cursor: pointer;
 }
 

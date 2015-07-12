@@ -16,6 +16,14 @@ rm ".\build\js\JSXTransformer-$react_version.js"
 rm ".\build\js\react-with-addons-$react_version.js"
 rm .\build\js\.module-cache -Recurse
 
+# Minify files
+uglifyjs .\build\js\main.js | Out-File .\build\js\main_temp.js
+[System.IO.File]::WriteAllLines($currentdir + '\build\js\main.js', (Get-Content ($currentdir + '\build\js\main_temp.js')))
+rm .\build\js\main_temp.js
+
+# Concatenate files
+
+
 # Rename files
 (Get-Content .\build\index.html) | 
 Where-Object {$_ -notmatch 'JSXTransformer'} |
@@ -25,11 +33,6 @@ Out-File .\build\index_temp.html
 $currentdir = (pwd).path
 [System.IO.File]::WriteAllLines($currentdir + '\build\index.html', (Get-Content ($currentdir + '\build\index_temp.html')))
 rm .\build\index_temp.html
-
-# Minify files
-uglifyjs .\build\js\main.js | Out-File .\build\js\main_temp.js
-[System.IO.File]::WriteAllLines($currentdir + '\build\js\main.js', (Get-Content ($currentdir + '\build\js\main_temp.js')))
-rm .\build\js\main_temp.js
 
 # Push changes
 git add .
