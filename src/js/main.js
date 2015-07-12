@@ -903,7 +903,7 @@ var Main = React.createClass({
         //createjs.Sound.addEventListener("fileload", handleLoad);
         createjs.Sound.registerSounds(soundList, soundPath);
 
-        Ps.initialize(document.getElementById('moduleList'), { useBothWheelAxes: true });
+        Ps.initialize(document.getElementById('moduleList'), { useBothWheelAxes: true, swipePropagation: true, wheelPropagation: true });
 
         //Set active module highlight (componentDidUpdate does not run on initial mount)
         this.componentDidUpdate(null, {activeIndex: -1});
