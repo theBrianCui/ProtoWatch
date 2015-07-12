@@ -859,10 +859,12 @@ var Main = React.createClass({
             appWrapperClasses += ' noAnimate';
         return (
             <div className={appWrapperClasses}>
-                <Stopwatch
-                    {...currentActiveStopwatch.props}
-                    key={currentActiveStopwatch.props.id}
-                    />
+                <div className={(currState.modules.length == 1) ? 'hideLeftRightButtons' : ''}>
+                    <Stopwatch
+                        {...currentActiveStopwatch.props}
+                        key={currentActiveStopwatch.props.id}
+                        />
+                </div>
 
                 <div id="moduleList">
                     {currState.modules}
@@ -929,7 +931,7 @@ var Main = React.createClass({
                 document.getElementById(currState.modules[currState.previousActiveIndex].props.id).classList.toggle('activeModule');
             document.getElementById(currState.modules[currState.activeIndex].props.id).classList.toggle('activeModule');
         }
-        if(Ps.ready)
+        if (Ps.ready)
             Ps.update(document.getElementById('moduleList'));
     }
 });

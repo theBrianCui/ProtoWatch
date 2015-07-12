@@ -288,6 +288,10 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     font-size: 4.5vw;
 }
 
+.hideLeftRightButtons a.leftRightButton {
+    visibility: hidden;
+}
+
 .mainLinks .doubleArrow {
     margin-top: .1em;
 }
