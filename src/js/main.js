@@ -139,7 +139,10 @@ var Stopwatch = React.createClass({
         });
         /* While it may seem redundant to set timerValue to itself through setState,
          it is used to ensure the value displayed is that of when the toggle button was pressed
-         (as a tick that fires during setState would cause an small, but improper delay) */
+         (as a tick that fires during setState would cause an small, but improper delay)
+
+         An even more accurate measurement would be to determine the time difference between
+         when the timer started and when the button press event was fired. TODO: implement someday. */
     },
 
     resume: function () {
@@ -847,16 +850,19 @@ var Main = React.createClass({
 
     render: function () {
         var currState = this.state;
-        console.log('idToIndex: ' + JSON.stringify(currState.idToIndex));
+        //console.log('idToIndex: ' + JSON.stringify(currState.idToIndex));
+
         var currentActiveStopwatch = currState.modules[currState.activeIndex];
         var defaultModuleSelectOptions = [];
         for (var i = 0; i < currState.modules.length; i++) { //TODO: optimize this to run only when necessary
             var iteratedLabel = currState.modules[i].props.label;
             defaultModuleSelectOptions.push(<option value={iteratedLabel}>{iteratedLabel}</option>);
         }
+
         var appWrapperClasses = 'appWrapper';
         if (!currState.playbackAnimationEnabled)
             appWrapperClasses += ' noAnimate';
+
         return (
             <div className={appWrapperClasses}>
                 <div className={(currState.modules.length == 1) ? 'hideLeftRightButtons' : ''}>
