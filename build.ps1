@@ -16,6 +16,8 @@ rm ".\build\js\JSXTransformer-$react_version.js"
 rm ".\build\js\react-with-addons-$react_version.js"
 rm .\build\js\.module-cache -Recurse
 
+$currentdir = (pwd).path
+
 # Minify files
 uglifyjs .\build\js\main.js | Out-File .\build\js\main_temp.js
 [System.IO.File]::WriteAllLines($currentdir + '\build\js\main.js', (Get-Content ($currentdir + '\build\js\main_temp.js')))
@@ -30,7 +32,6 @@ Where-Object {$_ -notmatch 'JSXTransformer'} |
 Foreach-Object {$_ -replace "react-with-addons-$react_version.js","react-with-addons-$react_version-production.js"}  | 
 Foreach-Object {$_ -replace ' type="text/jsx"',''}  | 
 Out-File .\build\index_temp.html
-$currentdir = (pwd).path
 [System.IO.File]::WriteAllLines($currentdir + '\build\index.html', (Get-Content ($currentdir + '\build\index_temp.html')))
 rm .\build\index_temp.html
 
