@@ -904,6 +904,7 @@ var Main = React.createClass({
         createjs.Sound.registerSounds(soundList, soundPath);
 
         Ps.initialize(document.getElementById('moduleList'), { useBothWheelAxes: true, swipePropagation: true, wheelPropagation: true });
+        Ps.ready = true;
 
         //Set active module highlight (componentDidUpdate does not run on initial mount)
         this.componentDidUpdate(null, {activeIndex: -1});
@@ -932,6 +933,15 @@ React.render(
 
 //Fixes a minor window resize bug if scrolled. Not sure if worth the extra event listener or if there's an easier fix.
 window.addEventListener('resize', function(event) {
-    if(React.ready)
-        Ps.update(document.getElementById('moduleList'));
+    if(React.ready) {
+        if(window.innerWidth <= 640 && Ps.ready) {
+            Ps.destroy(document.getElementById('moduleList'));
+            Ps.ready = false;
+        } else if (Ps.ready) {
+            Ps.update(document.getElementById('moduleList'));
+        } else {
+            Ps.initialize(document.getElementById('moduleList'), { useBothWheelAxes: true, swipePropagation: true, wheelPropagation: true });
+            Ps.ready = true;
+        }
+    }
 });
