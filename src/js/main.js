@@ -687,6 +687,9 @@ var Module = React.createClass({
 });
 
 var Main = React.createClass({
+    // https://facebook.github.io/react/docs/two-way-binding-helpers.html
+    mixins: [React.addons.LinkedStateMixin],
+
     getInitialState: function () {
         var initialModuleProps = this.getDefaultModuleProps(true);
         labelToId[initialModuleProps.label] = initialModuleProps.id;
@@ -789,6 +792,7 @@ var Main = React.createClass({
     cycleActive: function (currentIndex, nextIndex, prevModuleEndTime) {
         if (currentIndex != nextIndex) {
             console.log('Cycling active modules: ' + currentIndex + ' to ' + nextIndex);
+            console.log('highPrecisionTiming is: ' + this.state.highPrecisionTiming);
             if (this.state.highPrecisionTiming)
                 prevEndTime = prevModuleEndTime;
             else
@@ -820,19 +824,6 @@ var Main = React.createClass({
             idToIndex: {$merge: newIdToIndex}
         });
         this.setState(newState);
-    },
-
-    //TODO: Generalize these settings functions by labeling them with dataset-tag
-    setHighPrecision: function (event) {
-        this.setState({
-            highPrecisionTiming: event.target.checked
-        });
-    },
-
-    setAnimationsEnabled: function (event) {
-        this.setState({
-            playbackAnimationEnabled: event.target.checked
-        });
     },
 
     setDefaultModule: function (event) {
@@ -888,14 +879,14 @@ var Main = React.createClass({
                 </div>
                 <p><input type="checkbox"
                           defaultChecked={currState.highPrecisionTiming}
-                          onChange={this.setHighPrecision}
+                          checkedLink={this.linkState('highPrecisionTiming')}
                     />
                     Enable High Precision Timing?
                 </p>
 
                 <p><input type="checkbox"
                           defaultChecked={currState.playbackAnimationEnabled}
-                          onChange={this.setAnimationsEnabled}
+                          checkedLink={this.linkState('playbackAnimationEnabled')}
                     />
                     Enable CSS Animations?
                 </p>
