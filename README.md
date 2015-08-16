@@ -1,7 +1,14 @@
 ProtoWatch
 ==========
 
-ProtoWatch is a programmable stopwatch webapp developed using the React.js framework. ProtoWatch features the ability to program multiple, individual stopwatches in order, each with unique properties such as time limit or audio feedback, which will activate on-demand or when the previous stopwatch completes. 
+ProtoWatch is a programmable stopwatch webapp developed using the React.js framework. ProtoWatch enables users  to program multiple, individual stopwatches in order, each with unique properties such as time limit or audio feedback, which will activate on-demand or when the previous stopwatch completes. [Use and play with **the latest build here**](https://analytalica.github.io/ProtoWatch/build/index.html), which runs completely in the browser. 
+
+Features:
+
+ - **A programmable stopwatch** composed of multiple stopwatches, each feature complete with play/pause, time limits (optional), and count direction. 
+ - **High precision timing,** enabling no loss of time precision when transitioning between stopwatches chained together with automatic playback.
+ - **Audio feedback** using [SoundJS](http://www.createjs.com/soundjs) indicating when stopwatches are played and completed (more audio cues planned!).
+ - **Mobile and desktop support** with an adaptive design for small and high resolution displays alike.
 
 React documentation can be found [here](http://facebook.github.io/react/docs/getting-started.html).
 
