@@ -1,10 +1,16 @@
 ProtoWatch
 ==========
 
-ProtoWatch is a programmable stopwatch webapp developed using the React JavaScript framework.
+ProtoWatch is a programmable stopwatch webapp developed using the React.js framework. ProtoWatch enables users  to program multiple, individual stopwatches in order, each with unique properties such as time limit or audio feedback, which will activate on-demand or when the previous stopwatch completes. [Use and play with **the latest build here**](https://analytalica.github.io/ProtoWatch/build/index.html), which runs completely in the browser. 
 
-- React documentation can be found [here](http://facebook.github.io/react/docs/getting-started.html).
-- The WebStorm IDE can be downloaded [here](https://www.jetbrains.com/webstorm/).
+Features:
+
+ - **A programmable stopwatch** composed of multiple stopwatches, each feature complete with play/pause, time limits (optional), and count direction. 
+ - **High precision timing,** enabling no loss of time precision when transitioning between stopwatches chained together with automatic playback.
+ - **Audio feedback** using [SoundJS](http://www.createjs.com/soundjs) indicating when stopwatches are played and completed (more audio cues planned!).
+ - **Mobile and desktop support** with an adaptive design for small and high resolution displays alike.
+
+React documentation can be found [here](http://facebook.github.io/react/docs/getting-started.html).
 
 Navigating the Source Code
 --------------------------
@@ -45,13 +51,6 @@ Modifying the contents of form fields will update state, and in turn, update the
 AND all input fields are valid, the "Update" and "Revert" buttons are revealed. Otherwise, they are hidden.
 * When a Module is *updated* via the Update button, the current form input is validated, and then the Module generates new properties for itself which are passed to parent Main through handlePropUpdate.
 * For some input fields, additional functionality is implemented for other events. In the timerMax fields, for example, the onBlur event pads the currently displayed value by updating the field's respective state.
-
-**When is it appropriate to use global variables over state?**
-
-State is generally preferred to be the location of any properties which are used in the process of rendering content to the user.
-Global variables are used when it is too complicated to update state for elements individually,
-and/or it is impossible to use state to update the context of elements or functions (such as when two functions fire from the same event, as
-they will both run in same state context as the event which fired it, regardless of whether or not state is changed before the function runs).
 
 **Why/When is currState/currProps used instead of this.state/this.props?**
 
