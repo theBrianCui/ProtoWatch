@@ -338,14 +338,14 @@ var Module = React.createClass({
     blankField: function (event) {
         //this.log('className: ' + this.refs.confirmButton.getDOMNode().className);
         event.target.value = '';
-        Sizzle('#' + this.props.id + ' .limitInputLabel')[0].style.display = 'block';
+        this.refs.unitLabel.getDOMNode().style.display = 'block';
     },
 
     padOnBlur: function (event) {
         var newState = {};
         newState[event.target.dataset.tag] = pad2(this.state[event.target.dataset.tag]);
         this.setState(newState);
-        Sizzle('#' + this.props.id + ' .limitInputLabel')[0].style.display = 'none';
+        this.refs.unitLabel.getDOMNode().style.display = 'none';
     },
 
     handleFieldChange: function (event) {
@@ -622,7 +622,7 @@ var Module = React.createClass({
                                        data-tag="csField" ref="csField"
                                     />
 
-                                <p className="limitInputLabel">Hours : Minutes : Seconds : Centisecs </p>
+                                <p className="limitInputLabel" ref="unitLabel">Hours : Minutes : Seconds : Centisecs </p>
                             </div>
                         </div>
                     </div>
