@@ -7,7 +7,7 @@ Features:
 
  - **A programmable stopwatch** composed of multiple stopwatches, each feature complete with play/pause, time limits (optional), and count direction. 
  - **High precision timing,** enabling no loss of time precision when transitioning between stopwatches chained together with automatic playback.
- - **Audio feedback** using [SoundJS](http://www.createjs.com/soundjs) indicating when stopwatches are played and completed (more audio cues planned!).
+ - **Audio feedback** using [SoundJS](http://www.createjs.com/soundjs) indicating when stopwatches are played paused, and/or completed.
  - **Mobile and desktop support** with an adaptive design for small and high resolution displays alike.
 
 React documentation can be found [here](http://facebook.github.io/react/docs/getting-started.html).
@@ -51,11 +51,6 @@ Modifying the contents of form fields will update state, and in turn, update the
 AND all input fields are valid, the "Update" and "Revert" buttons are revealed. Otherwise, they are hidden.
 * When a Module is *updated* via the Update button, the current form input is validated, and then the Module generates new properties for itself which are passed to parent Main through handlePropUpdate.
 * For some input fields, additional functionality is implemented for other events. In the timerMax fields, for example, the onBlur event pads the currently displayed value by updating the field's respective state.
-
-**Why/When is currState/currProps used instead of this.state/this.props?**
-
-When this.state/this.props is being referenced multiple times, we can slightly reduce the scope chain of variable lookups (and improve overall performance) by first
-storing this.state/this.props in a local variable. currState/currProps is usually used after the implementation of a function is complete.
 
 Deploying for Production/Release
 --------------------------
