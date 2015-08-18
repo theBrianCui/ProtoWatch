@@ -323,6 +323,7 @@ var Module = React.createClass({
 
             //Sound selection fields
             onPlaySelectedSound: this.props.onPlaySound,
+            onPauseSelectedSound: this.props.onPauseSound,
             onEndSelectedSound: this.props.onEndSound
         };
     },
@@ -427,6 +428,7 @@ var Module = React.createClass({
                 timerMax: {$set: this.computeNewTimerMax()},
                 label: {$set: this.state.labelField},
                 onPlaySound: {$set: this.state.onPlaySelectedSound},
+                onPauseSound: {$set: this.state.onPauseSelectedSound},
                 onEndSound: {$set: this.state.onEndSelectedSound}
             });
             this.handlePropUpdate(newProps);
@@ -512,7 +514,9 @@ var Module = React.createClass({
          */
         var label = this.state.labelField;
         return (this.verifyTimerMaxFields(false) || label != this.props.label ||
-            this.state.onPlaySelectedSound != this.props.onPlaySound || this.state.onEndSelectedSound != this.props.onEndSound) //check if one changed
+            this.state.onPlaySelectedSound != this.props.onPlaySound
+            || this.state.onEndSelectedSound != this.props.onEndSound
+            || this.state.onPauseSelectedSound != this.props.onPauseSound) //check if one changed
             &&
             (this.verifyTimerMaxFields(true) && label != '' && (labelToId[label] == this.props.id || !labelToId[label])); //check if all valid
     },
@@ -531,7 +535,7 @@ var Module = React.createClass({
             upToDownFrom = 'Down From:';
 
         var soundOptionsList = []; // Generate an options list containing all available sounds
-        var soundListLocal = soundList; // Create pointer to soundList for faster access
+        var soundListLocal = soundList;
         for (var i = 0; i < soundListLocal.length; i++) {
             soundOptionsList.push(<option value={soundListLocal[i].id}>{soundListLocal[i].id}</option>);
         }
@@ -657,6 +661,16 @@ var Module = React.createClass({
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td className="tableLeft">On Pause:</td>
+                                        <td className="tableRight">
+                                            <select value={'' + this.state.onPauseSelectedSound}
+                                                    data-tag="onPauseSelectedSound" onChange={this.handleSoundChange}>
+                                                <option value="null">(none)</option>
+                                                {soundOptionsList}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td className="tableLeft">On End:</td>
                                         <td className="tableRight">
                                             <select value={'' + this.state.onEndSelectedSound}
@@ -732,6 +746,7 @@ var Main = React.createClass({
             /* Sound settings go here. */
             soundEnabled: true,
             onPlaySound: null,
+            onPauseSound: null,
             onEndSound: null,
 
             m_moduleUpdate: this.moduleUpdate,
