@@ -957,7 +957,8 @@ React.render(
 );
 
 //Fixes a minor window resize bug if scrolled. Not sure if worth the extra event listener or if there's an easier fix.
-window.addEventListener('resize', function (event) {
+//Optional: event parameter in callback function
+window.addEventListener('resize', function () {
     if (React.ready) {
         if (window.innerWidth <= 640) {
             if (Ps.ready) {
