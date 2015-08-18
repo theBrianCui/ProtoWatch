@@ -87,12 +87,12 @@ var Stopwatch = React.createClass({
     },
 
     componentWillReceiveProps: function (nextProps) {
-        console.log('componentWillReceiveProps was called');
+        //console.log('componentWillReceiveProps was called');
         var currState = this.state;
         var currProps = this.props;
         if ((nextProps.countUp != currProps.countUp) || (nextProps.timerMax != currProps.timerMax)) {
             //Either the count direction has switched, or the timerMax has changed
-            console.log('Time to correctStartEndTimes! Counting up, should count down next');
+            //console.log('Time to correctStartEndTimes! Counting up, should count down next');
             this.correctStartEndTimes(nextProps);
         }
 
@@ -196,8 +196,8 @@ var Stopwatch = React.createClass({
 
     //reset the start/end times based on the current timerValue
     correctStartEndTimes: function (nextProps) {
-        console.log('correctStartEndTimes was called');
-        console.log('Correcting StartEndTimes: nextProps.countUp: ' + nextProps.countUp);
+        //console.log('correctStartEndTimes was called');
+        //console.log('Correcting StartEndTimes: nextProps.countUp: ' + nextProps.countUp);
         if (nextProps.countUp) { //switch counting down to up
             var nextExpectedEndTime = null;
             if (nextProps.timerMax > 0)
@@ -881,14 +881,14 @@ var Main = React.createClass({
                           defaultChecked={currState.highPrecisionTiming}
                           checkedLink={this.linkState('highPrecisionTiming')}
                     />
-                    Enable High Precision Timing?
+                    High Precision Timing
                 </p>
 
                 <p><input type="checkbox"
                           defaultChecked={currState.playbackAnimationEnabled}
                           checkedLink={this.linkState('playbackAnimationEnabled')}
                     />
-                    Enable CSS Animations?
+                    Active CSS Animations
                 </p>
 
                 <p>{currentActiveStopwatch.props.id}</p>
