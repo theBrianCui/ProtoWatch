@@ -126,7 +126,7 @@ var Stopwatch = React.createClass({
         }
         else {
             this.resume();
-            if (this.props.onPlaySound)
+            if (this.props.soundEnabled && this.props.onPlaySound)
                 createjs.Sound.play(this.props.onPlaySound);
             document.getElementById(this.props.id).classList.add('running');
         }
