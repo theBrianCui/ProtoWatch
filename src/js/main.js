@@ -238,6 +238,8 @@ var Stopwatch = React.createClass({
         document.getElementById(this.props.id).classList.remove('running');
     },
 
+    //Play back a sound file using soundjs, according to its soundjs id
+    //See sound declarations at the top in the SoundList array
     playbackSound: function (sound) {
         this.props.soundEnabled && createjs.Sound.play(sound);
     },
