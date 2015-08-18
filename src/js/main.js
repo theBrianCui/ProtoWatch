@@ -73,8 +73,7 @@ var Stopwatch = React.createClass({
         this.interval = setInterval(this.tick, 5);
         if (this.state.running) {
             document.getElementById(this.props.id).classList.add('running');
-            if (this.props.soundEnabled && this.props.onPlaySound)
-                createjs.Sound.play(this.props.onPlaySound);
+            this.playbackSound(this.props.onPlaySound);
         }
         else {
             document.getElementById(this.props.id).classList.remove('running');
@@ -122,14 +121,12 @@ var Stopwatch = React.createClass({
         event.preventDefault();
         if (this.state.running) {
             this.pause();
-            if (this.props.soundEnabled && this.props.onPauseSound)
-                createjs.Sound.play(this.props.onPauseSound);
+            this.playbackSound(this.props.onPauseSound);
             document.getElementById(this.props.id).classList.remove('running');
         }
         else {
             this.resume();
-            if (this.props.soundEnabled && this.props.onPlaySound)
-                createjs.Sound.play(this.props.onPlaySound);
+            this.playbackSound(this.props.onPlaySound);
             document.getElementById(this.props.id).classList.add('running');
         }
     },
@@ -228,8 +225,7 @@ var Stopwatch = React.createClass({
         if (event) {// The button was pressed. Ignore the expected end time.
             this.props.s_onNext(null);
         } else { // The limit was reached: Forward the expected end time to the next Module for high-precision timing.
-            if (this.props.soundEnabled && this.props.onEndSound) //TODO: clarify the meaning of onEndSound
-                createjs.Sound.play(this.props.onEndSound);
+            this.playbackSound(this.props.onEndSound);
             this.props.s_onNext(this.state.expectedEndTime);
         }
 
@@ -240,6 +236,10 @@ var Stopwatch = React.createClass({
             running: false
         });
         document.getElementById(this.props.id).classList.remove('running');
+    },
+
+    playbackSound: function (sound) {
+        this.props.soundEnabled && createjs.Sound.play(sound);
     },
 
     render: function () {
@@ -409,7 +409,7 @@ var Module = React.createClass({
     },
 
     updateSoundEnabled: function (event) {
-        this.log('updateSoundEnabled was called. value: ' + event.target.checked);
+        //this.log('updateSoundEnabled was called. value: ' + event.target.checked);
         var newSoundEnabled = event.target.checked;
         var newProps = React.addons.update(this.props, {
             soundEnabled: {$set: newSoundEnabled}
