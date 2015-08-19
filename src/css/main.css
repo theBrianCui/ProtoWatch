@@ -427,8 +427,16 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 
 .Module .deleteButton {
     float: right;
-    margin-right: .8em;
+    margin-right: .45em;
     margin-top: -.15em;
+    min-width: 1.5em;
+    min-height: 1.5em;
+    text-align: center;
+}
+
+.Module .deleteButton:hover {
+    color: #ffffff;
+    cursor: pointer;
 }
 
 .Module .tab {

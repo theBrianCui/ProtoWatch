@@ -554,7 +554,7 @@ var Module = React.createClass({
         return (
             <div id={this.props.id} className="Module">
                 <div className="tabs">
-                    <div className="deleteButton" onTouchStart={this.deleteSelf} onClick={this.deleteSelf}>
+                    <div className="deleteButton noSelect" onTouchStart={this.deleteSelf} onClick={this.deleteSelf}>
                         <i className="fa fa-times"></i>
                     </div>
                     <div className="tab">
