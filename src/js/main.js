@@ -547,6 +547,9 @@ var Module = React.createClass({
         return (
             <div id={this.props.id} className="Module">
                 <div className="tabs">
+                    <div id="deleteButton">
+                        <i className="fa fa-times"></i>
+                    </div>
                     <div className="tab">
                         {/* We'll manually index input id and label htmlFor based on module id */}
                         <input type="radio" id={this.props.id + '-1'} name={this.props.id} defaultChecked={true}/>
