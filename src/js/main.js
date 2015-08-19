@@ -69,7 +69,6 @@ var Stopwatch = React.createClass({
     },
 
     componentDidMount: function () {
-        console.log('Module started on: ' + this.state.startTime);
         this.interval = setInterval(this.tick, 5);
         if (this.state.running) {
             document.getElementById(this.props.id).classList.add('running');
@@ -534,6 +533,12 @@ var Module = React.createClass({
             this.updatePropsWithState();
     },
 
+    deleteSelf: function (event) {
+        event.preventDefault();
+        console.log('deleteSelf was called');
+        this.props.m_delete(this.props.id);
+    },
+
     render: function () {
         var upToDownFrom;
         //Set countUp/countDown limit text
@@ -551,7 +556,7 @@ var Module = React.createClass({
         return (
             <div id={this.props.id} className="Module">
                 <div className="tabs">
-                    <div className="deleteButton">
+                    <div className="deleteButton" onTouchStart={this.deleteSelf} onClick={this.deleteSelf}>
                         <i className="fa fa-times"></i>
                     </div>
                     <div className="tab">
@@ -748,8 +753,10 @@ var Main = React.createClass({
     },
 
     getDefaultModuleProps: function (firstModule) {
+        var nextId = Date.now().valueOf();
         var props = {
-            id: Date.now().valueOf(),
+            id: nextId,
+            key: nextId,
             autorun: false,
             timerMax: 0,
             countUp: true,
@@ -761,7 +768,7 @@ var Main = React.createClass({
             onEndSound: null,
 
             m_moduleUpdate: this.moduleUpdate,
-            //s_onLimit: this.next,
+            m_delete: this.delete,
             s_onNext: this.next,
             s_onPrevious: this.previous
         };
@@ -838,7 +845,8 @@ var Main = React.createClass({
         if (('' + currState.defaultModuleLabel) != 'null') {
             var clonedModuleProps = currState.modules[currState.idToIndex[labelToId[currState.defaultModuleLabel]]].props;
             newModuleProps = React.addons.update(clonedModuleProps, {
-                id: {$set: newModuleProps.id}
+                id: {$set: newModuleProps.id},
+                key: {$set: newModuleProps.id}
             });
         }
         newModule = this.createNewModule(newModuleProps);
@@ -868,11 +876,10 @@ var Main = React.createClass({
         for(var i = 0; i < newState.modules.length; i++) {
             var selectedModuleProps = newState.modules[i].props;
             newIdToIndex[selectedModuleProps.id] = i;
-            newLabelToId = [selectedModuleProps.labl] = selectedModuleProps.id;
+            newLabelToId[selectedModuleProps.label] = selectedModuleProps.id;
         }
 
         console.log('new idToIndex: ' + JSON.stringify(newIdToIndex));
-
         console.log('old labelToId: ' + JSON.stringify(labelToId));
         console.log('new labelToId: ' + JSON.stringify(newLabelToId));
 
@@ -882,6 +889,8 @@ var Main = React.createClass({
         if(targetIndex < this.state.activeIndex) {
             newState.activeIndex = this.state.activeIndex - 1;
             newState.previousActiveIndex = this.state.activeIndex;
+        } else {
+            newState.previousActiveIndex = -1;
         }
         this.setState(newState);
     },
@@ -964,7 +973,6 @@ var Main = React.createClass({
         createjs.Sound.registerSounds(soundList, soundPath);
 
         if (window.innerWidth > 640) {
-            console.log("Initializing scrollbar...");
             Ps.initialize(document.getElementById('moduleList'), {
                 useBothWheelAxes: true,
                 swipePropagation: true,
@@ -985,17 +993,16 @@ var Main = React.createClass({
     //reach out to the exact DOM nodes themselves
     componentDidUpdate: function (prevProps, prevState) {
         var currState = this.state;
+        var nextModule = document.getElementById(currState.modules[currState.activeIndex].props.id);
+        if(nextModule) nextModule.classList.add('activeModule');
 
         if (currState.activeIndex != prevState.activeIndex) {
             var previousModule = null;
             if (currState.previousActiveIndex != -1)
                 previousModule = document.getElementById(currState.modules[currState.previousActiveIndex].props.id);
 
-            var nextModule = document.getElementById(currState.modules[currState.activeIndex].props.id);
-
-            if (currState.previousActiveIndex != -1 && previousModule)
+            if (previousModule)
                 previousModule.classList.remove('activeModule');
-            if(nextModule) nextModule.classList.add('activeModule');
         }
 
         if(currState.modules.length === 1) {
