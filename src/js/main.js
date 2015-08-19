@@ -948,11 +948,19 @@ var Main = React.createClass({
     componentDidUpdate: function (prevProps, prevState) {
         console.log('Main component updated!');
         var currState = this.state;
+
         if (currState.activeIndex != prevState.activeIndex) {
             if (currState.previousActiveIndex != -1)
                 document.getElementById(currState.modules[currState.previousActiveIndex].props.id).classList.toggle('activeModule');
             document.getElementById(currState.modules[currState.activeIndex].props.id).classList.toggle('activeModule');
         }
+
+        if(currState.modules.length === 1) {
+            //Cheesy, but avoids using another library. Maybe there's a native & more elegant way?
+            //Workaround for CSS ID as number
+            document.querySelector("[id='" + currState.modules[0].props.id + "'] .deleteButton").style.display = "none";
+        }
+
         if (Ps.ready)
             Ps.update(document.getElementById('moduleList'));
     }
