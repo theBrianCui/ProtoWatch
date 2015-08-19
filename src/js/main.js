@@ -547,7 +547,7 @@ var Module = React.createClass({
         return (
             <div id={this.props.id} className="Module">
                 <div className="tabs">
-                    <div id="deleteButton">
+                    <div className="deleteButton">
                         <i className="fa fa-times"></i>
                     </div>
                     <div className="tab">
@@ -942,6 +942,9 @@ var Main = React.createClass({
         React.ready = true;
     },
 
+    //Use componentDidUpdate to "clean up" after Modules change, usually for styling
+    //Since Modules cannot directly view the state of Main, it's sometimes easier/faster to simply
+    //reach out to the exact DOM nodes themselves
     componentDidUpdate: function (prevProps, prevState) {
         console.log('Main component updated!');
         var currState = this.state;

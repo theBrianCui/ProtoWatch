@@ -372,7 +372,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     position: relative;
 }
 
-.Module.activeModule #deleteButton {
+.Module.activeModule .deleteButton {
     color: #d1d1d1;
 }
 
@@ -422,7 +422,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     margin: 1.2em 0 0;
 }
 
-.Module #deleteButton {
+.Module .deleteButton {
     float: right;
     margin-right: .8em;
     margin-top: -.15em;
