@@ -120,14 +120,18 @@ var Stopwatch = React.createClass({
     toggle: function (event) {
         event.preventDefault();
         if (this.state.running) {
-            this.pause();
             this.playbackSound(this.props.onPauseSound);
+            console.log("Finished sound playback");
             document.getElementById(this.props.id).classList.remove('running');
+
+            this.pause();
         }
         else {
-            this.resume();
             this.playbackSound(this.props.onPlaySound);
+            console.log("Finished sound playback");
             document.getElementById(this.props.id).classList.add('running');
+
+            this.resume();
         }
     },
 
@@ -241,7 +245,7 @@ var Stopwatch = React.createClass({
     //Play back a sound file using soundjs, according to its soundjs id
     //See sound declarations at the top in the SoundList array
     playbackSound: function (sound) {
-        this.props.soundEnabled && createjs.Sound.play(sound);
+        if (this.props.soundEnabled && sound) createjs.Sound.play(sound);
     },
 
     render: function () {
