@@ -863,7 +863,20 @@ var Main = React.createClass({
             modules: {$splice: [[targetIndex, 1]] }
         });
 
-        console.log('old IdToIndex: ' + JSON.stringify(this.state.idToIndex));
+        //Clean up removal side effects
+        if(this.state.defaultModuleLabel === this.state.modules[targetIndex].props.label) newState.defaultModuleLabel = null;
+        //Targeted module is before current active module
+        if(targetIndex < this.state.activeIndex) {
+            newState.activeIndex = this.state.activeIndex - 1;
+            newState.previousActiveIndex = (this.state.activeIndex >= newState.modules.length ? -1 : this.state.activeIndex);
+            //Targeted module is current active module, and it is also the last module
+        } else if(targetIndex === this.state.activeIndex && targetIndex === this.state.modules.length - 1) {
+            newState.activeIndex = this.state.activeIndex - 1;
+            newState.previousActiveIndex = -1;
+        } else {
+            //Targeted module is active and surrounded
+            newState.previousActiveIndex = -1;
+        }
 
         //Restore mappings
         var newIdToIndex = {};
@@ -873,20 +886,9 @@ var Main = React.createClass({
             newIdToIndex[selectedModuleProps.id] = i;
             newLabelToId[selectedModuleProps.label] = selectedModuleProps.id;
         }
-
-        console.log('new idToIndex: ' + JSON.stringify(newIdToIndex));
-        console.log('old labelToId: ' + JSON.stringify(labelToId));
-        console.log('new labelToId: ' + JSON.stringify(newLabelToId));
-
         newState.idToIndex = newIdToIndex;
         labelToId = newLabelToId;
 
-        if(targetIndex < this.state.activeIndex) {
-            newState.activeIndex = this.state.activeIndex - 1;
-            newState.previousActiveIndex = this.state.activeIndex;
-        } else {
-            newState.previousActiveIndex = -1;
-        }
         this.setState(newState);
     },
 
