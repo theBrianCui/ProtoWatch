@@ -959,6 +959,8 @@ var Main = React.createClass({
             //Cheesy, but avoids using another library. Maybe there's a native & more elegant way?
             //Workaround for CSS ID as number
             document.querySelector("[id='" + currState.modules[0].props.id + "'] .deleteButton").style.display = "none";
+        } else {
+            document.querySelector("[id='" + currState.modules[0].props.id + "'] .deleteButton").style.display = "block";
         }
 
         if (Ps.ready)
