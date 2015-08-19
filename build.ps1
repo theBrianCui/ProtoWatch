@@ -1,6 +1,10 @@
 # You will need git and nodejs with jsx installed to run this script
 $react_version = '0.13.0'
 
+git checkout master
+git pull origin master
+git push origin master
+
 # Checkout new staging branch
 git branch -f staging
 git checkout staging
