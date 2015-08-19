@@ -852,6 +852,35 @@ var Main = React.createClass({
         this.setState(newState);
     },
 
+    delete: function(deleteId) {
+        console.log('delete was called. parameter: ' + deleteId);
+
+        var targetIndex = this.state.idToIndex[deleteId];
+        var newState = React.addons.update(this.state, {
+            modules: {$splice: [[targetIndex, 1]] }
+        });
+
+        console.log('old IdToIndex: ' + JSON.stringify(this.state.idToIndex));
+
+        //Restore mappings
+        var newIdToIndex = {};
+        var newLabelToId = {};
+        for(var i = 0; i < newState.modules.length; i++) {
+            var selectedModuleProps = newState.modules[i].props;
+            newIdToIndex[selectedModuleProps.id] = i;
+            newLabelToId = [selectedModuleProps.labl] = selectedModuleProps.id;
+        }
+
+        console.log('new idToIndex: ' + JSON.stringify(newIdToIndex));
+
+        console.log('old labelToId: ' + JSON.stringify(labelToId));
+        console.log('new labelToId: ' + JSON.stringify(newLabelToId));
+
+        newState.idToIndex = newIdToIndex;
+        labelToId = newLabelToId;
+        this.setState(newState);
+    },
+
     setDefaultModule: function (event) {
         var newDefaultModuleLabel = event.target.value;
         //console.log(JSON.stringify(event.target.nodeName)); //prints "SELECT"
