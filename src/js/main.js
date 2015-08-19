@@ -878,6 +878,11 @@ var Main = React.createClass({
 
         newState.idToIndex = newIdToIndex;
         labelToId = newLabelToId;
+
+        if(targetIndex < this.state.activeIndex) {
+            newState.activeIndex = this.state.activeIndex - 1;
+            newState.previousActiveIndex = this.state.activeIndex;
+        }
         this.setState(newState);
     },
 
@@ -979,13 +984,18 @@ var Main = React.createClass({
     //Since Modules cannot directly view the state of Main, it's sometimes easier/faster to simply
     //reach out to the exact DOM nodes themselves
     componentDidUpdate: function (prevProps, prevState) {
-        console.log('Main component updated!');
         var currState = this.state;
 
         if (currState.activeIndex != prevState.activeIndex) {
+            var previousModule = null;
             if (currState.previousActiveIndex != -1)
-                document.getElementById(currState.modules[currState.previousActiveIndex].props.id).classList.toggle('activeModule');
-            document.getElementById(currState.modules[currState.activeIndex].props.id).classList.toggle('activeModule');
+                previousModule = document.getElementById(currState.modules[currState.previousActiveIndex].props.id);
+
+            var nextModule = document.getElementById(currState.modules[currState.activeIndex].props.id);
+
+            if (currState.previousActiveIndex != -1 && previousModule)
+                previousModule.classList.remove('activeModule');
+            if(nextModule) nextModule.classList.add('activeModule');
         }
 
         if(currState.modules.length === 1) {
