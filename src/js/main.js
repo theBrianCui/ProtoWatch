@@ -727,7 +727,7 @@ var Main = React.createClass({
         var initialIdToIndex = {};
         initialIdToIndex[initialModuleProps.id] = 0;
         return {
-            modules: [<Module {...initialModuleProps} />],
+            modules: [<Module {...initialModuleProps} key={initialModuleProps.id}/>],
             idToIndex: initialIdToIndex,
             activeIndex: 0,
             previousActiveIndex: -1,
@@ -748,15 +748,13 @@ var Main = React.createClass({
             newModuleProps.label = newModuleProps.label + '.1';
         labelToId[newModuleProps.label] = newModuleProps.id;
         return (
-            <Module {...newModuleProps} />
+            <Module {...newModuleProps} key={newModuleProps.id}/>
         )
     },
 
     getDefaultModuleProps: function (firstModule) {
-        var nextId = Date.now().valueOf();
         var props = {
-            id: nextId,
-            key: nextId,
+            id: Date.now().valueOf(),
             autorun: false,
             timerMax: 0,
             countUp: true,
@@ -845,8 +843,7 @@ var Main = React.createClass({
         if (('' + currState.defaultModuleLabel) != 'null') {
             var clonedModuleProps = currState.modules[currState.idToIndex[labelToId[currState.defaultModuleLabel]]].props;
             newModuleProps = React.addons.update(clonedModuleProps, {
-                id: {$set: newModuleProps.id},
-                key: {$set: newModuleProps.id}
+                id: {$set: newModuleProps.id}
             });
         }
         newModule = this.createNewModule(newModuleProps);
