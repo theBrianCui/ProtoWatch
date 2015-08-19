@@ -120,14 +120,12 @@ var Stopwatch = React.createClass({
         event.preventDefault();
         if (this.state.running) {
             this.playbackSound(this.props.onPauseSound);
-            console.log("Finished sound playback");
             document.getElementById(this.props.id).classList.remove('running');
 
             this.pause();
         }
         else {
             this.playbackSound(this.props.onPlaySound);
-            console.log("Finished sound playback");
             document.getElementById(this.props.id).classList.add('running');
 
             this.resume();
@@ -782,7 +780,7 @@ var Main = React.createClass({
         var moduleIndex = this.state.idToIndex[moduleId];
 
         console.log('Updating module ' + moduleId + '...with index ' + moduleIndex);
-        var newModule = <Module {...newProps} />;
+        var newModule = <Module {...newProps} key={moduleId}/>;
         var newState = React.addons.update(this.state, {
             modules: {
                 $splice: [[moduleIndex, 1, newModule]]
@@ -995,7 +993,7 @@ var Main = React.createClass({
 
         if (currState.activeIndex != prevState.activeIndex) {
             var previousModule = null;
-            if (currState.previousActiveIndex != -1)
+            if (currState.previousActiveIndex != null && currState.previousActiveIndex != -1)
                 previousModule = document.getElementById(currState.modules[currState.previousActiveIndex].props.id);
 
             if (previousModule)
