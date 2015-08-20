@@ -200,6 +200,15 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     border-top: .3em solid #26a3de !important;
 }
 
+#logo {
+    background-image: url("../img/logo_color_small.png");
+    width: 200px;
+    height: 2em;
+    float: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .appWrapper > p {
     color: white;
 }
