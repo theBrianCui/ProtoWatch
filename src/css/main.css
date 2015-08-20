@@ -159,7 +159,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 #topbar {
-    font-size: 1.1em;
+    font-size: 1.05em;
     text-transform: uppercase;
     min-height: 2em;
     line-height: 2.1em;
@@ -642,6 +642,10 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     #topbar {
         font-size: 1em;
         line-height: 1.6em;
+    }
+
+    #topbar #menuWrapper ul li {
+        padding: .2em .6em;
     }
 
     .mainLinks a.bigButton {
