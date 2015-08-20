@@ -24,7 +24,8 @@ var prevEndTime = null;
 var soundPath = 'sounds/';
 var soundList = [
     {id: 'bloop_d', src: 'bloop_d.ogg'},
-    {id: 'bloop_g', src: 'bloop_g.ogg'}
+    {id: 'bloop_g', src: 'bloop_g.ogg'},
+    {id: 'bell_1', src: 'bell_1.ogg'}
 ];
 createjs.Sound.alternateExtensions = ["mp3"];
 
