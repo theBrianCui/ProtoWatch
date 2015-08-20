@@ -226,6 +226,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 .mainLinks a {
     display: inline-block;
     height: 8vw;
+    max-height: 10em;
     /*min-height: 80px;*/
     text-decoration: none;
     color: white;
@@ -582,6 +583,27 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     font-weight: normal;
     font-size: .7em;
     display: none;
+}
+
+/* Prevent the button size from being too large on hi-def screens
+TODO: refine sizing */
+
+@media (min-width: 1920px) {
+    .mainLinks a {
+        height: 140px;
+    }
+
+    .mainLinks a.bigButton {
+        width: 320px;
+        line-height: 144px;
+        font-size: 110px;
+    }
+
+    .mainLinks a.leftRightButton {
+        width: 150px;
+        line-height: 140px;
+        font-size: 60px;
+    }
 }
 
 @media (max-width: 1024px) {
