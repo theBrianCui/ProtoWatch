@@ -119,16 +119,16 @@ var Stopwatch = React.createClass({
     toggle: function (event) {
         event.preventDefault();
         if (this.state.running) {
+            this.pause();
+
             this.playbackSound(this.props.onPauseSound);
             document.getElementById(this.props.id).classList.remove('running');
-
-            this.pause();
         }
         else {
+            this.resume();
+
             this.playbackSound(this.props.onPlaySound);
             document.getElementById(this.props.id).classList.add('running');
-
-            this.resume();
         }
     },
 
