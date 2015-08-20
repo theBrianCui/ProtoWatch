@@ -427,10 +427,10 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 
 .Module .deleteButton {
     float: right;
-    margin-right: .45em;
-    margin-top: -.15em;
-    min-width: 1.5em;
-    min-height: 1.5em;
+    margin-top: -.3em;
+    min-width: 2.4em;
+    min-height: 1.8em;
+    padding-top: .1em;
     text-align: center;
 }
 
