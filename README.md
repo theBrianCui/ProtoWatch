@@ -17,10 +17,12 @@ Navigating the Source Code
 
 ProtoWatch relies primarily on the following files, found in the `src` directory:
 
- 1. *js/main.js* controls everything about ProtoWatch and embeds the ProtoWatch app into *index.html*. Most of the work is done here.
- 2. *index.html* modifies the page that holds the ProtoWatch app. Very little is done here.
+ 1. `js/main.js` controls everything about ProtoWatch and embeds the ProtoWatch app into *index.html*. Most of the work is done here.
+ 2. `index.html` modifies the page that holds the ProtoWatch app. Very little is done here.
  After main.js has fully loaded and its initial execution has completed, the contents of the `<div id="container">...</div>` element is replaced with the Main React element.
- 3. *css/main.css* makes everything look pretty.
+ 3. `css/main.css` makes everything look pretty.
+ 4. `sounds/\*` contains all the sound files registered [SoundJS](http://www.createjs.com/soundjs) for use in ProtoWatch. 
+ More details regarding sound implementation can be found in `sounds/sounds.md`.
  
 To run ProtoWatch locally, open `index.html` in your browser. 
 Check out the **Deploying for Production** section below for details regarding optimizing ProtoWatch
