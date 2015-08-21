@@ -384,6 +384,8 @@ var Module = React.createClass({
         var fieldValue = (event.target.value || "").trim();
         var fieldName = eventTarget.dataset.tag;
 
+        this.log('Processing field change: ' + fieldName + ': ' + fieldValue);
+
         if (fieldName === 'labelField') {
             // Replace non-alphanumeric characters for the label field
             newState[fieldName] = (fieldValue).replace(/\W/g, '');
