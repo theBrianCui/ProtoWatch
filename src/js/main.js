@@ -70,7 +70,7 @@ var Stopwatch = React.createClass({
     },
 
     componentDidMount: function () {
-        this.interval = setInterval(this.tick, 5);
+        this.interval = setInterval(this.tick, 10);
         if (this.state.running) {
             document.getElementById(this.props.id).classList.add('running');
             this.playbackSound(this.props.onPlaySound);
