@@ -381,7 +381,7 @@ var Module = React.createClass({
     },
 
     handleFieldChange: function (event) {
-        this.log('Processing field change: ' + event.target.value);
+        this.log('Processing field change: ' + event.target + ': ' + event.target.value);
 
         var newState = {};
         var eventTarget = event.target;
