@@ -361,20 +361,17 @@ var Module = React.createClass({
     handleFieldChange: function (event) {
         var newState = {};
         var eventTarget = event.target;
-        var eventTargetValue = event.target.value;
+        var eventTargetValue = (event.target.value || "").trim();
         var eventTargetDatasetTag = eventTarget.dataset.tag;
-        //TODO: Make this more efficient
-        if (eventTargetDatasetTag != 'hrsField'
-            && eventTargetDatasetTag != 'minField'
-            && eventTargetDatasetTag != 'secField'
-            && eventTargetDatasetTag != 'csField') {
+
+        if (eventTargetDatasetTag === 'labelField') {
             // Replace non-alphanumeric characters for the label field
             newState[eventTargetDatasetTag] = (eventTargetValue).replace(/\W/g, '');
         } else {
             // Replace non-numerical characters for the timerMax fields
             newState[eventTargetDatasetTag] = (eventTargetValue).replace(/([^0-9])/g, '');
         }
-        newState[eventTargetDatasetTag] = newState[eventTargetDatasetTag].trim();
+
         if (newState[eventTargetDatasetTag] != eventTargetValue) {
             this.log('Invalid characters entered for ' + eventTargetDatasetTag + ', ignoring update...');
             eventTarget.classList.remove('invalidInput');
@@ -522,14 +519,14 @@ var Module = React.createClass({
          For the labelField, the return value of labelToId must either match this module's id,
          or match null/undefined (indicating the label is available).
          */
-        var label = this.state.labelField;
+        var label = this.state.labelField || '';
         return (this.verifyTimerMaxFields(false) || label != this.props.label ||
             this.state.onPlaySelectedSound != this.props.onPlaySound
             || this.state.onEndSelectedSound != this.props.onEndSound
             || this.state.onPauseSelectedSound != this.props.onPauseSound
             || this.state.onResetSelectedSound != this.props.onResetSound) //check if one changed
             &&
-            (this.verifyTimerMaxFields(true) && label != '' && (labelToId[label] == this.props.id || !labelToId[label])); //check if all valid
+            (this.verifyTimerMaxFields(true) && label.trim() != '' && (labelToId[label] == this.props.id || !labelToId[label])); //check if all valid
     },
 
     enterKeyUpdate: function (event) {
@@ -855,7 +852,7 @@ var Main = React.createClass({
         var currState = this.state;
         var newModule;
         var newModuleProps = this.getDefaultModuleProps();
-        if (('' + currState.defaultModuleLabel) != 'null') {
+        if (currState.defaultModuleLabel) {
             var clonedModuleProps = currState.modules[currState.idToIndex[labelToId[currState.defaultModuleLabel]]].props;
             newModuleProps = React.addons.update(clonedModuleProps, {
                 id: {$set: newModuleProps.id}
@@ -954,7 +951,7 @@ var Main = React.createClass({
                         <p>
                             <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
                                     onChange={this.setDefaultModule}>
-                                <option value="null">(default)</option>
+                                <option value="">(default)</option>
                                 {defaultModuleSelectOptions}
                             </select>
                         </p>

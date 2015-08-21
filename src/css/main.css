@@ -92,7 +92,7 @@ body {
     user-select: none;
 }
 
-.noAnimate * {
+.noAnimate .Module.activeModule.running {
     animation: none !important;
     -webkit-animation: none !important;
 }
