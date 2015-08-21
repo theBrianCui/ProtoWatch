@@ -349,7 +349,7 @@ var Module = React.createClass({
     },
 
     blankField: function (event) {
-        //this.log('className: ' + this.refs.confirmButton.getDOMNode().className);
+        this.log('blanking field: ' + event.target.dataset.tag);
         var newState = {
             preBlankFieldValue: this.state[event.target.dataset.tag]
         };
@@ -359,6 +359,8 @@ var Module = React.createClass({
     },
 
     restoreOnBlur: function (event) {
+        this.log('restoring field: ' + event.target.dataset.tag);
+
         var fieldName = event.target.dataset.tag;
         var newState = {
             preBlankFieldValue: null
@@ -379,12 +381,12 @@ var Module = React.createClass({
     },
 
     handleFieldChange: function (event) {
+        this.log('Processing field change: ' + event.target + ': ' + event.target.value);
+
         var newState = {};
         var eventTarget = event.target;
         var fieldValue = (event.target.value || "").trim();
         var fieldName = eventTarget.dataset.tag;
-
-        this.log('Processing field change: ' + fieldName + ': ' + fieldValue);
 
         if (fieldName === 'labelField') {
             // Replace non-alphanumeric characters for the label field
@@ -556,6 +558,7 @@ var Module = React.createClass({
     },
 
     enterKeyUpdate: function (event) {
+        this.log('Key was pressed: ' + event.charCode);
         if (event.charCode == 13)
             this.updatePropsWithState();
     },
