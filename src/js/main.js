@@ -320,10 +320,17 @@ var Module = React.createClass({
         var fields = this.computeOldTimerMaxFields();
         return {
             labelField: this.props.label,
-            hrsField: pad2(fields.hrs),
-            minField: pad2(fields.min),
-            secField: pad2(fields.sec),
-            csField: pad2(fields.cs),
+            hrsField: pad2(fields.hrsField),
+            minField: pad2(fields.minField),
+            secField: pad2(fields.secField),
+            csField: pad2(fields.csField),
+
+            /* The preBlankFieldValue stores the value of the field that is to be blanked on focus
+            (see the method blankField). Since only one field can be focused at a time, the old values
+            call all be stored in the same state variable. Just remember to reset it to null
+            (and not the empty string, which could be a real value) once done.
+             */
+            preBlankFieldValue: null,
 
             //Sound selection fields
             onPlaySelectedSound: this.props.onPlaySound,
@@ -343,13 +350,30 @@ var Module = React.createClass({
 
     blankField: function (event) {
         //this.log('className: ' + this.refs.confirmButton.getDOMNode().className);
-        event.target.value = '';
+        var newState = {
+            preBlankFieldValue: this.state[event.target.dataset.tag]
+        };
+        newState[event.target.dataset.tag] = '';
+        this.setState(newState);
         this.refs.unitLabel.getDOMNode().style.display = 'block';
     },
 
-    padOnBlur: function (event) {
-        var newState = {};
-        newState[event.target.dataset.tag] = pad2(this.state[event.target.dataset.tag]);
+    restoreOnBlur: function (event) {
+        var fieldName = event.target.dataset.tag;
+        var newState = {
+            preBlankFieldValue: null
+        };
+        var newFieldValue = this.state[event.target.dataset.tag];
+        if(!newFieldValue.trim()) {
+            if(this.state.preBlankFieldValue != null) {
+                newFieldValue = this.state.preBlankFieldValue;
+            } else {
+                var oldFields = this.computeOldTimerMaxFields();
+                newFieldValue = oldFields[event.target.dataset.tag];
+            }
+        }
+        newFieldValue = pad2(newFieldValue);
+        newState[event.target.dataset.tag] = newFieldValue;
         this.setState(newState);
         this.refs.unitLabel.getDOMNode().style.display = 'none';
     },
@@ -472,10 +496,10 @@ var Module = React.createClass({
     computeOldTimerMaxFields: function () {
         var tMax = this.props.timerMax;
         var fields = {};
-        fields.cs = Math.floor(tMax % 1000 / 10);
-        fields.sec = Math.floor(tMax / 1000) % 60;
-        fields.min = Math.floor(tMax / 60000) % 60;
-        fields.hrs = Math.floor(tMax / 3600000);
+        fields.csField = Math.floor(tMax % 1000 / 10);
+        fields.secField = Math.floor(tMax / 1000) % 60;
+        fields.minField = Math.floor(tMax / 60000) % 60;
+        fields.hrsField = Math.floor(tMax / 3600000);
         return fields;
     },
 
@@ -497,7 +521,10 @@ var Module = React.createClass({
         update.sec = parseInt(currState.secField, 10);
         update.cs = parseInt(currState.csField, 10);
         return ((update.hrs >= 0 && update.min >= 0 && update.sec >= 0 && update.cs >= 0)
-        && (canMatchExistingValues || original.hrs != update.hrs || original.min != update.min || original.sec != update.sec || original.cs != update.cs));
+        && (canMatchExistingValues || original.hrsField != update.hrs
+        || original.minField != update.min
+        || original.secField != update.sec
+        || original.csField != update.cs));
     },
 
     setUpdateButton: function () { //All fields must be verified for the update button to be untucked.
@@ -606,7 +633,7 @@ var Module = React.createClass({
                                 <input type="text"
                                        value={this.state.hrsField}
                                        onFocus={this.blankField}
-                                       onBlur={this.padOnBlur}
+                                       onBlur={this.restoreOnBlur}
                                        onChange={this.handleFieldChange}
                                        onKeyPress={this.enterKeyUpdate}
                                        data-tag="hrsField" ref="hrsField"
@@ -615,7 +642,7 @@ var Module = React.createClass({
                                 <input type="text"
                                        value={this.state.minField}
                                        onFocus={this.blankField}
-                                       onBlur={this.padOnBlur}
+                                       onBlur={this.restoreOnBlur}
                                        onChange={this.handleFieldChange}
                                        onKeyPress={this.enterKeyUpdate}
                                        data-tag="minField" ref="minField"
@@ -624,7 +651,7 @@ var Module = React.createClass({
                                 <input type="text"
                                        value={this.state.secField}
                                        onFocus={this.blankField}
-                                       onBlur={this.padOnBlur}
+                                       onBlur={this.restoreOnBlur}
                                        onChange={this.handleFieldChange}
                                        onKeyPress={this.enterKeyUpdate}
                                        data-tag="secField" ref="secField"
@@ -633,7 +660,7 @@ var Module = React.createClass({
                                 <input type="text"
                                        value={this.state.csField}
                                        onFocus={this.blankField}
-                                       onBlur={this.padOnBlur}
+                                       onBlur={this.restoreOnBlur}
                                        onChange={this.handleFieldChange}
                                        onKeyPress={this.enterKeyUpdate}
                                        data-tag="csField" ref="csField"
