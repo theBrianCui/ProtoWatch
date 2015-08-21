@@ -202,8 +202,9 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 
 #logo {
     background-image: url("../img/logo_color_small.png");
-    width: 200px;
-    height: 2em;
+    width: 9.4em;
+    height: 1.85em;
+    margin-top: .5em;
     float: right;
     background-size: contain;
     background-repeat: no-repeat;
@@ -671,6 +672,13 @@ TODO: refine sizing */
 
 /* Smartphones (portrait and landscape) ----------- */
 @media (max-width: 480px) {
+    #logo {
+        background-image: url("../img/logo_mini.png");
+        width: 2.4em;
+        height: 1.6em;
+        margin-top: .35em;
+    }
+
     #loadingScreen {
         font-size: .9em;
     }
