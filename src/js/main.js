@@ -245,7 +245,7 @@ var Stopwatch = React.createClass({
     //Play back a sound file using soundjs, according to its soundjs id
     //See sound declarations at the top in the SoundList array
     playbackSound: function (sound) {
-        if (this.props.soundEnabled && sound) createjs.Sound.play(sound);
+        if (sound && this.props.soundEnabled) createjs.Sound.play(sound);
     },
 
     render: function () {
@@ -675,7 +675,7 @@ var Module = React.createClass({
                                         <td className="tableRight">
                                             <select value={'' + this.state.onPlaySelectedSound}
                                                     data-tag="onPlaySelectedSound" onChange={this.handleSoundChange}>
-                                                <option value="null">(none)</option>
+                                                <option value="">(none)</option>
                                                 {soundOptionsList}
                                             </select>
                                         </td>
@@ -685,7 +685,7 @@ var Module = React.createClass({
                                         <td className="tableRight">
                                             <select value={'' + this.state.onPauseSelectedSound}
                                                     data-tag="onPauseSelectedSound" onChange={this.handleSoundChange}>
-                                                <option value="null">(none)</option>
+                                                <option value="">(none)</option>
                                                 {soundOptionsList}
                                             </select>
                                         </td>
@@ -695,7 +695,7 @@ var Module = React.createClass({
                                         <td className="tableRight">
                                             <select value={'' + this.state.onResetSelectedSound}
                                                     data-tag="onResetSelectedSound" onChange={this.handleSoundChange}>
-                                                <option value="null">(none)</option>
+                                                <option value="">(none)</option>
                                                 {soundOptionsList}
                                             </select>
                                         </td>
@@ -705,7 +705,7 @@ var Module = React.createClass({
                                         <td className="tableRight">
                                             <select value={'' + this.state.onEndSelectedSound}
                                                     data-tag="onEndSelectedSound" onChange={this.handleSoundChange}>
-                                                <option value="null">(none)</option>
+                                                <option value="">(none)</option>
                                                 {soundOptionsList}
                                             </select>
                                         </td>
@@ -775,10 +775,10 @@ var Main = React.createClass({
 
             /* Sound settings go here. */
             soundEnabled: true,
-            onPlaySound: null,
-            onPauseSound: null,
-            onResetSound: null,
-            onEndSound: null,
+            onPlaySound: "",
+            onPauseSound: "",
+            onResetSound: "",
+            onEndSound: "",
 
             m_moduleUpdate: this.moduleUpdate,
             m_delete: this.delete,
