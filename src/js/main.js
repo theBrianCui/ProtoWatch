@@ -399,6 +399,7 @@ var Module = React.createClass({
             eventTarget.offsetWidth = eventTarget.offsetWidth; //Force element reflow
             eventTarget.classList.add('invalidInput');
         } else {
+            this.log('Setting ' + fieldName + ' to ' + fieldValue);
             this.setState(newState);
         }
     },
