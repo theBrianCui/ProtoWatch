@@ -556,11 +556,8 @@ var Module = React.createClass({
     },
 
     enterKeyUpdate: function (event) {
-        this.log("Key was pressed: " + event.charCode);
         if (event.charCode == 13)
             this.updatePropsWithState();
-        else
-            this.handleFieldChange(event);
     },
 
     deleteSelf: function (event) {
