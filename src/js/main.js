@@ -357,19 +357,19 @@ var Module = React.createClass({
     handleFieldChange: function (event) {
         var newState = {};
         var eventTarget = event.target;
-        var eventTargetValue = (event.target.value || "").trim();
-        var eventTargetDatasetTag = eventTarget.dataset.tag;
+        var fieldValue = (event.target.value || "").trim();
+        var fieldName = eventTarget.dataset.tag;
 
-        if (eventTargetDatasetTag === 'labelField') {
+        if (fieldName === 'labelField') {
             // Replace non-alphanumeric characters for the label field
-            newState[eventTargetDatasetTag] = (eventTargetValue).replace(/\W/g, '');
+            newState[fieldName] = (fieldValue).replace(/\W/g, '');
         } else {
             // Replace non-numerical characters for the timerMax fields
-            newState[eventTargetDatasetTag] = (eventTargetValue).replace(/([^0-9])/g, '');
+            newState[fieldName] = (fieldValue).replace(/([^0-9])/g, '');
         }
 
-        if (newState[eventTargetDatasetTag] != eventTargetValue) {
-            this.log('Invalid characters entered for ' + eventTargetDatasetTag + ', ignoring update...');
+        if (newState[fieldName] != fieldValue) {
+            this.log('Invalid characters entered for ' + fieldName + ', ignoring update...');
             eventTarget.classList.remove('invalidInput');
             //noinspection SillyAssignmentJS
             eventTarget.offsetWidth = eventTarget.offsetWidth; //Force element reflow
