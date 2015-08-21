@@ -97,7 +97,7 @@ body {
     -webkit-animation: none !important;
 }
 
-a, button, input, label, select {
+a, button, input[type="checkbox"], input[type="radio"], label, select {
     -ms-touch-action: manipulation; /* IE10  */
     touch-action: manipulation; /* IE11+ */
     -webkit-touch-callout: none;
