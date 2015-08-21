@@ -221,24 +221,20 @@ var Stopwatch = React.createClass({
         }
     },
 
-    previous: function () { //optional: pass in an event parameter.
+    previous: function (event) { //optional: pass in an event parameter.
+        event.preventDefault();
         this.props.s_onPrevious();
+        document.getElementById(this.props.id).classList.remove('running');
     },
 
     next: function (event) { //optional: pass in an event parameter.
+        event.preventDefault();
         if (event) {// The button was pressed. Ignore the expected end time.
             this.props.s_onNext(null);
         } else { // The limit was reached: Forward the expected end time to the next Module for high-precision timing.
             this.playbackSound(this.props.onEndSound);
             this.props.s_onNext(this.state.expectedEndTime);
         }
-
-        // The following only runs if there the next module happens to be this same one
-        // This might break a jump to the same module; we'll see. React throws a warning in the Console for this.
-        this.setState({
-            timerValue: this.props.timerMax,
-            running: false
-        });
         document.getElementById(this.props.id).classList.remove('running');
     },
 
