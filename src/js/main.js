@@ -625,7 +625,7 @@ var Module = React.createClass({
                                             <input type="text"
                                                    value={this.state.labelField}
                                                    onChange={this.handleFieldChange}
-                                                   onKeyPress={this.enterKeyUpdate}
+                                                   /* onKeyPress={this.enterKeyUpdate}*/
                                                    data-tag="labelField" ref="labelField"
                                                 />
                                         </td>
