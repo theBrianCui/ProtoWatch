@@ -228,8 +228,8 @@ var Stopwatch = React.createClass({
     },
 
     next: function (event) { //optional: pass in an event parameter.
-        event.preventDefault();
         if (event) {// The button was pressed. Ignore the expected end time.
+            event.preventDefault();
             this.props.s_onNext(null);
         } else { // The limit was reached: Forward the expected end time to the next Module for high-precision timing.
             this.playbackSound(this.props.onEndSound);
