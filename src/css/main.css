@@ -631,6 +631,11 @@ TODO: refine sizing */
 }
 
 @media (max-width: 640px) {
+    /* IntroJS has odd behavior on mobile, so make the tutorial inaccessible" */
+    #topbar #menuWrapper ul li[data-tag='tutorial'] {
+        display: none;
+    }
+
     .mainWatch {
         font-size: 16vw;
         line-height: 16vw;
