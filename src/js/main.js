@@ -946,6 +946,22 @@ var Main = React.createClass({
         event.stopPropagation();
     },
 
+    navigateLink: function (event) {
+        var target = event.target.dataset.tag;
+        var newState = null;
+        switch(target) {
+            case 'main':
+            case 'about':
+            case 'tutorial':
+                newState = {};
+                newState.activeLink = target;
+                break;
+            case 'github': //TODO: refactor this link into an a tag
+                window.open('https://github.com/analytalica/ProtoWatch');
+        }
+        if (newState) this.setState(newState);
+    },
+
     render: function () {
         var currState = this.state;
         //console.log('idToIndex: ' + JSON.stringify(currState.idToIndex));
@@ -968,11 +984,16 @@ var Main = React.createClass({
                         <div id="menuWrapper">
                             <ul>
                                 <li className={this.state.activeLink == 'main' ? "active" : null}
+                                    onClick={this.navigateLink}
                                     data-tag="main">main</li>
                                 <li className={this.state.activeLink == 'about' ? "active" : null}
+                                    onClick={this.navigateLink}
                                     data-tag="about">about</li>
-                                <li data-tag="tutorial">tutorial</li>
-                                <li data-tag="github">github</li>
+                                <li className={this.state.activeLink == 'tutorial' ? "active" : null}
+                                    onClick={this.navigateLink}
+                                    data-tag="tutorial">tutorial</li>
+                                <li onClick={this.navigateLink}
+                                    data-tag="github">github</li>
                             </ul>
                         </div>
                         <div id="logo"></div>
