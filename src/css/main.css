@@ -182,10 +182,11 @@ input[type=text]:focus, textarea:focus {
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-body.links_main #topbar #menuWrapper ul li.links_main {
-    border-top: .3em solid #0072B1;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 }
 
 #topbar #menuWrapper ul li {
