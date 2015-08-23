@@ -967,10 +967,12 @@ var Main = React.createClass({
                     <div id="topbar" className="noSelect">
                         <div id="menuWrapper">
                             <ul>
-                                <li className={this.state.activeLink == 'main' ? "active" : null} data-tag="main">main</li>
-                                <li className={this.state.activeLink == 'about' ? "active" : null} data-tag="about">about</li>
-                                <li className={this.state.activeLink == 'tutorial' ? "active" : null} data-tag="tutorial">tutorial</li>
-                                <li data-tag="github">GitHub</li>
+                                <li className={this.state.activeLink == 'main' ? "active" : null}
+                                    data-tag="main">main</li>
+                                <li className={this.state.activeLink == 'about' ? "active" : null}
+                                    data-tag="about">about</li>
+                                <li data-tag="tutorial">tutorial</li>
+                                <li data-tag="github">github</li>
                             </ul>
                         </div>
                         <div id="logo"></div>
