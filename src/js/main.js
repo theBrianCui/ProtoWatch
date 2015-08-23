@@ -761,7 +761,10 @@ var Main = React.createClass({
         // idToIndex maps id values to module list indices. Always assume id never changes, but indices are volatile.
         var initialIdToIndex = {};
         initialIdToIndex[initialModuleProps.id] = 0;
+
         return {
+            activeLink: 'main',
+
             modules: [<Module {...initialModuleProps} key={initialModuleProps.id}/>],
             idToIndex: initialIdToIndex,
             activeIndex: 0,
@@ -964,8 +967,9 @@ var Main = React.createClass({
                     <div id="topbar" className="noSelect">
                         <div id="menuWrapper">
                             <ul>
-                                <li className="active" data-tag="main">Main</li>
-                                <li data-tag="tutorial">Tutorial</li>
+                                <li className={this.state.activeLink == 'main' ? "active" : null} data-tag="main">main</li>
+                                <li className={this.state.activeLink == 'about' ? "active" : null} data-tag="about">about</li>
+                                <li className={this.state.activeLink == 'tutorial' ? "active" : null} data-tag="tutorial">tutorial</li>
                                 <li data-tag="github">GitHub</li>
                             </ul>
                         </div>
