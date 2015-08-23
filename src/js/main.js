@@ -964,7 +964,7 @@ var Main = React.createClass({
                     <div id="topbar" className="noSelect">
                         <div id="menuWrapper">
                             <ul>
-                                <li data-tag="main">Main</li>
+                                <li className="active" data-tag="main">Main</li>
                                 <li data-tag="tutorial">Tutorial</li>
                                 <li data-tag="github">GitHub</li>
                             </ul>

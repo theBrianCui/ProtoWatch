@@ -201,6 +201,10 @@ input[type=text]:focus, textarea:focus {
     border-top: .3em solid #26a3de !important;
 }
 
+#topbar #menuWrapper ul li.active {
+    border-top: .3em solid #0072b1;
+}
+
 #logo {
     background-image: url("../img/logo_color_small.png");
     width: 9.4em;
