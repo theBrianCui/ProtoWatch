@@ -219,17 +219,17 @@ input[type=text]:focus, textarea:focus {
     color: white;
 }
 
-.mainWrapper {
+.stopwatchWrapper {
     margin: 0 auto;
     text-align: center;
 }
 
-.mainLinks {
+.stopwatchLinks {
     margin: 0;
     background-color: #4d4d4d;
 }
 
-.mainLinks a {
+.stopwatchLinks a {
     display: inline-block;
     height: 8vw;
     max-height: 10em;
@@ -239,22 +239,22 @@ input[type=text]:focus, textarea:focus {
     background-color: #0072b1;
 }
 
-.mainLinks a:focus {
+.stopwatchLinks a:focus {
     outline: none;
 }
 
-.mainLinks a.bigButton {
+.stopwatchLinks a.bigButton {
     width: 19vw;
     vertical-align: middle;
     line-height: 8vw;
     font-size: 6.5vw;
 }
 
-.mainLinks #toggleButton {
+.stopwatchLinks #toggleButton {
     background-color: #00a100;
 }
 
-.mainLinks #toggleButton.pressed {
+.stopwatchLinks #toggleButton.pressed {
     animation: toggleButtonPress .2s ease 0s 1 reverse;
     -webkit-animation: toggleButtonPress .2s ease 0s 1 reverse;
 }
@@ -277,11 +277,11 @@ input[type=text]:focus, textarea:focus {
     }
 }
 
-.mainLinks #resetButton {
+.stopwatchLinks #resetButton {
     background-color: #bd0300;
 }
 
-.mainLinks #resetButton.pressed {
+.stopwatchLinks #resetButton.pressed {
     animation: resetButtonPress .5s ease 0s 1 normal;
     -webkit-animation: resetButtonPress .5s ease 0s 1 normal;
 }
@@ -304,7 +304,7 @@ input[type=text]:focus, textarea:focus {
     }
 }
 
-.mainLinks a.leftRightButton {
+.stopwatchLinks a.leftRightButton {
     width: 9vw;
     /*min-width: 80px;*/
     vertical-align: middle;
@@ -318,7 +318,7 @@ input[type=text]:focus, textarea:focus {
     opacity: 0;
 }
 
-.mainLinks .doubleArrow {
+.stopwatchLinks .doubleArrow {
     margin-top: .1em;
 }
 
@@ -328,7 +328,7 @@ input[type=text]:focus, textarea:focus {
 }
 */
 
-.mainWatch {
+.stopwatchDisplay {
     font-size: 12.5vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
     background-color: #242424;
@@ -595,17 +595,17 @@ input[type=text]:focus, textarea:focus {
 TODO: refine sizing */
 
 @media (min-width: 1920px) {
-    .mainLinks a {
+    .stopwatchLinks a {
         height: 140px;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         width: 320px;
         line-height: 144px;
         font-size: 110px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         width: 150px;
         line-height: 140px;
         font-size: 60px;
@@ -613,17 +613,17 @@ TODO: refine sizing */
 }
 
 @media (max-width: 1024px) {
-    .mainLinks a {
+    .stopwatchLinks a {
         height: 80px;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         width: 190px;
         line-height: 80px;
         font-size: 66px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         width: 90px;
         line-height: 80px;
         font-size: 38px;
@@ -636,22 +636,22 @@ TODO: refine sizing */
         display: none;
     }
 
-    .mainWatch {
+    .stopwatchDisplay {
         font-size: 16vw;
         line-height: 16vw;
     }
 
-    .mainLinks a {
+    .stopwatchLinks a {
         height: 80px;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         width: 34%;
         line-height: 82px;
         font-size: 70px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         width: 16%;
         /*min-width: 80px;*/
         vertical-align: middle;
@@ -702,12 +702,12 @@ TODO: refine sizing */
         padding: .2em .6em;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         line-height: 82px;
         font-size: 64px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         font-size: 42px;
     }
 
@@ -730,18 +730,18 @@ TODO: refine sizing */
 }
 
 @media (max-width: 360px) {
-    .mainWatch {
+    .stopwatchDisplay {
         font-size: 4.75em;
         line-height: 1.25em;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         width: 50%;
         line-height: 82px;
         font-size: 70px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         display: none;
     }
 

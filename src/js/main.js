@@ -270,13 +270,14 @@ var Stopwatch = React.createClass({
         else
             toggleButton = <i className="fa fa-play"></i>;
         return (
-            <div className="mainWrapper noSelect">
-                <p className="mainWatch">
-                    <span id="hourDisplay">{pad2(hrs)}:</span>{display.join(':')}</p>
+            <div className="stopwatchWrapper noSelect">
+                <p className="stopwatchDisplay">
+                    <span id="hourDisplay">{pad2(hrs)}:</span>{display.join(':')}
+                </p>
 
-                <p className="mainLinks">
+                <p className="stopwatchLinks">
                     <span>
-                        <span className="mainLinksWrapper">
+                        <span className="stopwatchLinksWrapper">
                             <a className="leftRightButton hvr-sweep-to-left" href="javascript:void(0)"
                                onTouchStart={this.previous} onMouseDown={this.previous}>
                                 <i className="fa fa-step-backward doubleArrow"></i>
