@@ -978,6 +978,10 @@ var Main = React.createClass({
         if (!currState.playbackAnimationEnabled)
             appWrapperClasses += ' noAnimate';
 
+        var moduleWrapperClasses = '';
+        if (currState.activeLink !== 'main')
+            moduleWrapperClasses += 'visuallyhidden';
+
         return (
             <div>
                 <div id="topbar_wrapper">
@@ -1009,7 +1013,7 @@ var Main = React.createClass({
                             />
                     </div>
 
-                    <div id="moduleList">
+                    <div className={moduleWrapperClasses} id="moduleList">
                         {currState.modules}
                         <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
                             <p>+</p>
@@ -1091,8 +1095,18 @@ var Main = React.createClass({
             document.querySelector("[id='" + currState.modules[0].props.id + "'] .deleteButton").style.display = "block";
         }
 
-        if (Ps.ready)
+        if (Ps.ready) {
+            if (prevState.activeLink !== currState.activeLink) {
+                Ps.destroy(document.getElementById('moduleList'));
+                Ps.initialize(document.getElementById('moduleList'), {
+                    useBothWheelAxes: true,
+                    swipePropagation: true,
+                    wheelPropagation: true
+                });
+            }
+
             Ps.update(document.getElementById('moduleList'));
+        }
     }
 });
 
