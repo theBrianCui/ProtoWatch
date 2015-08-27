@@ -591,6 +591,36 @@ input[type=text]:focus, textarea:focus {
     display: none;
 }
 
+#settings {
+    color: white;
+    margin: 0 1.5em;
+    padding: 0 1em;
+    background-color: #4d4d4d;
+    display: inline-block;
+    text-align: left;
+}
+
+#settings_icon {
+    display: inline-block;
+    font-size: 2em;
+    padding: .75em 0;
+    cursor: default;
+}
+
+#settings_options {
+    float: right;
+    font-size: .8em;
+    margin: .5em 0 .5em 1em;
+}
+
+#settings input {
+    margin-right: .4em;
+}
+
+#settings p {
+    margin: .25em 0;
+}
+
 /* Prevent the button size from being too large on hi-def screens
 TODO: refine sizing */
 
@@ -677,6 +707,10 @@ TODO: refine sizing */
 
     .Module#addModuleButton {
         margin: 1.75em;
+    }
+
+    #settings_wrapper {
+        text-align: center;
     }
 }
 

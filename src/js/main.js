@@ -950,7 +950,7 @@ var Main = React.createClass({
     navigateLink: function (event) {
         var target = event.target.dataset.tag;
         var newState = null;
-        switch(target) {
+        switch (target) {
             case 'main':
             case 'about':
             case 'tutorial':
@@ -990,15 +990,19 @@ var Main = React.createClass({
                             <ul>
                                 <li className={this.state.activeLink == 'main' ? "active" : null}
                                     onClick={this.navigateLink}
-                                    data-tag="main">main</li>
+                                    data-tag="main">main
+                                </li>
                                 <li className={this.state.activeLink == 'about' ? "active" : null}
                                     onClick={this.navigateLink}
-                                    data-tag="about">about</li>
+                                    data-tag="about">about
+                                </li>
                                 <li className={this.state.activeLink == 'tutorial' ? "active" : null}
                                     onClick={this.navigateLink}
-                                    data-tag="tutorial">tutorial</li>
+                                    data-tag="tutorial">tutorial
+                                </li>
                                 <li onClick={this.navigateLink}
-                                    data-tag="github">github</li>
+                                    data-tag="github">github
+                                </li>
                             </ul>
                         </div>
                         <div id="logo"></div>
@@ -1027,21 +1031,29 @@ var Main = React.createClass({
                             </p>
                         </div>
                     </div>
-                    <p><input type="checkbox"
-                              defaultChecked={currState.highPrecisionTiming}
-                              checkedLink={this.linkState('highPrecisionTiming')}
-                        />
-                        High Precision Timing
-                    </p>
+                    <div id="settings_wrapper">
+                        <div id="settings">
+                            <i id="settings_icon" className="fa fa-cog"></i>
 
-                    <p><input type="checkbox"
-                              defaultChecked={currState.playbackAnimationEnabled}
-                              checkedLink={this.linkState('playbackAnimationEnabled')}
-                        />
-                        Active CSS Animations
-                    </p>
+                            <div id="settings_options">
+                                <p><input type="checkbox"
+                                          defaultChecked={currState.highPrecisionTiming}
+                                          checkedLink={this.linkState('highPrecisionTiming')}
+                                    />
+                                    High Precision Timing
+                                </p>
 
-                    <p>{currentActiveStopwatch.props.id}</p>
+                                <p><input type="checkbox"
+                                          defaultChecked={currState.playbackAnimationEnabled}
+                                          checkedLink={this.linkState('playbackAnimationEnabled')}
+                                    />
+                                    Active CSS Animations
+                                </p>
+
+                                <p>{currentActiveStopwatch.props.id}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
