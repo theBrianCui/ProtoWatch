@@ -982,6 +982,10 @@ var Main = React.createClass({
         if (currState.activeLink !== 'main')
             main_lowerClasses += 'hidden';
 
+        var aboutClasses = 'hidden';
+        if (currState.activeLink === 'about')
+            aboutClasses = '';
+
         return (
             <div>
                 <div id="topbar_wrapper">
@@ -1009,6 +1013,7 @@ var Main = React.createClass({
                         <div className="clearfix"></div>
                     </div>
                 </div>
+
                 <div className={appWrapperClasses}>
                     <div className={(currState.modules.length == 1) ? 'hideLeftRightButtons' : ''}>
                         <Stopwatch
@@ -1056,6 +1061,13 @@ var Main = React.createClass({
                         </div>
                     </div>
                 </div>
+
+                <div id="aboutWrapper" className={aboutClasses}>
+                    <div id="about">
+                        Hello!
+                    </div>
+                </div>
+
             </div>
         )
     },

@@ -621,6 +621,16 @@ input[type=text]:focus, textarea:focus {
     margin: .25em 0;
 }
 
+#aboutWrapper {
+    color: white;
+    padding: 1.8em 1.5em;
+}
+
+#about {
+    padding: 1em;
+    background-color: #4d4d4d;
+}
+
 /* Prevent the button size from being too large on hi-def screens
 TODO: refine sizing */
 
