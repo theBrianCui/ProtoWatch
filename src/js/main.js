@@ -978,9 +978,9 @@ var Main = React.createClass({
         if (!currState.playbackAnimationEnabled)
             appWrapperClasses += ' noAnimate';
 
-        var moduleWrapperClasses = '';
+        var main_lowerClasses = '';
         if (currState.activeLink !== 'main')
-            moduleWrapperClasses += 'visuallyhidden';
+            main_lowerClasses += 'visuallyhidden';
 
         return (
             <div>
@@ -1016,41 +1016,42 @@ var Main = React.createClass({
                             key={currentActiveStopwatch.props.id}
                             />
                     </div>
+                    <div id="main_lower" className={main_lowerClasses}>
+                        <div id="moduleList">
+                            {currState.modules}
+                            <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
+                                <p>+</p>
 
-                    <div className={moduleWrapperClasses} id="moduleList">
-                        {currState.modules}
-                        <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
-                            <p>+</p>
-
-                            <p>
-                                <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
-                                        onChange={this.setDefaultModule}>
-                                    <option value="">(default)</option>
-                                    {defaultModuleSelectOptions}
-                                </select>
-                            </p>
+                                <p>
+                                    <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
+                                            onChange={this.setDefaultModule}>
+                                        <option value="">(default)</option>
+                                        {defaultModuleSelectOptions}
+                                    </select>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div id="settings_wrapper">
-                        <div id="settings">
-                            <i id="settings_icon" className="fa fa-cog"></i>
+                        <div id="settings_wrapper">
+                            <div id="settings">
+                                <i id="settings_icon" className="fa fa-cog"></i>
 
-                            <div id="settings_options">
-                                <p><input type="checkbox"
-                                          defaultChecked={currState.highPrecisionTiming}
-                                          checkedLink={this.linkState('highPrecisionTiming')}
-                                    />
-                                    High Precision Timing
-                                </p>
+                                <div id="settings_options">
+                                    <p><input type="checkbox"
+                                              defaultChecked={currState.highPrecisionTiming}
+                                              checkedLink={this.linkState('highPrecisionTiming')}
+                                        />
+                                        High Precision Timing
+                                    </p>
 
-                                <p><input type="checkbox"
-                                          defaultChecked={currState.playbackAnimationEnabled}
-                                          checkedLink={this.linkState('playbackAnimationEnabled')}
-                                    />
-                                    Active CSS Animations
-                                </p>
+                                    <p><input type="checkbox"
+                                              defaultChecked={currState.playbackAnimationEnabled}
+                                              checkedLink={this.linkState('playbackAnimationEnabled')}
+                                        />
+                                        Active CSS Animations
+                                    </p>
 
-                                <p>{currentActiveStopwatch.props.id}</p>
+                                    <p>{currentActiveStopwatch.props.id}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
