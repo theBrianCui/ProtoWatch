@@ -182,10 +182,11 @@ input[type=text]:focus, textarea:focus {
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-body.links_main #topbar #menuWrapper ul li.links_main {
-    border-top: .3em solid #0072B1;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 }
 
 #topbar #menuWrapper ul li {
@@ -198,6 +199,10 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 #topbar #menuWrapper ul li:hover {
     cursor: pointer;
     border-top: .3em solid #26a3de !important;
+}
+
+#topbar #menuWrapper ul li.active {
+    border-top: .3em solid #0072b1;
 }
 
 #logo {
@@ -214,17 +219,17 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     color: white;
 }
 
-.mainWrapper {
+.stopwatchWrapper {
     margin: 0 auto;
     text-align: center;
 }
 
-.mainLinks {
+.stopwatchLinks {
     margin: 0;
     background-color: #4d4d4d;
 }
 
-.mainLinks a {
+.stopwatchLinks a {
     display: inline-block;
     height: 8vw;
     max-height: 10em;
@@ -234,22 +239,22 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     background-color: #0072b1;
 }
 
-.mainLinks a:focus {
+.stopwatchLinks a:focus {
     outline: none;
 }
 
-.mainLinks a.bigButton {
+.stopwatchLinks a.bigButton {
     width: 19vw;
     vertical-align: middle;
     line-height: 8vw;
     font-size: 6.5vw;
 }
 
-.mainLinks #toggleButton {
+.stopwatchLinks #toggleButton {
     background-color: #00a100;
 }
 
-.mainLinks #toggleButton.pressed {
+.stopwatchLinks #toggleButton.pressed {
     animation: toggleButtonPress .2s ease 0s 1 reverse;
     -webkit-animation: toggleButtonPress .2s ease 0s 1 reverse;
 }
@@ -272,11 +277,11 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     }
 }
 
-.mainLinks #resetButton {
+.stopwatchLinks #resetButton {
     background-color: #bd0300;
 }
 
-.mainLinks #resetButton.pressed {
+.stopwatchLinks #resetButton.pressed {
     animation: resetButtonPress .5s ease 0s 1 normal;
     -webkit-animation: resetButtonPress .5s ease 0s 1 normal;
 }
@@ -299,7 +304,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     }
 }
 
-.mainLinks a.leftRightButton {
+.stopwatchLinks a.leftRightButton {
     width: 9vw;
     /*min-width: 80px;*/
     vertical-align: middle;
@@ -313,7 +318,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     opacity: 0;
 }
 
-.mainLinks .doubleArrow {
+.stopwatchLinks .doubleArrow {
     margin-top: .1em;
 }
 
@@ -323,7 +328,7 @@ body.links_main #topbar #menuWrapper ul li.links_main {
 }
 */
 
-.mainWatch {
+.stopwatchDisplay {
     font-size: 12.5vw;
     font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
     background-color: #242424;
@@ -586,21 +591,61 @@ body.links_main #topbar #menuWrapper ul li.links_main {
     display: none;
 }
 
+#settings {
+    color: white;
+    margin: 0 1.5em;
+    padding: 0 1em;
+    background-color: #4d4d4d;
+    display: inline-block;
+    text-align: left;
+}
+
+#settings_icon {
+    display: inline-block;
+    font-size: 2em;
+    padding: .75em 0;
+    cursor: default;
+}
+
+#settings_options {
+    float: right;
+    font-size: .8em;
+    margin: .5em 0 .5em 1em;
+}
+
+#settings input {
+    margin-right: .4em;
+}
+
+#settings p {
+    margin: .25em 0;
+}
+
+#aboutWrapper {
+    color: white;
+    padding: 1.8em 1.5em;
+}
+
+#about {
+    padding: 1em;
+    background-color: #4d4d4d;
+}
+
 /* Prevent the button size from being too large on hi-def screens
 TODO: refine sizing */
 
 @media (min-width: 1920px) {
-    .mainLinks a {
+    .stopwatchLinks a {
         height: 140px;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         width: 320px;
         line-height: 144px;
         font-size: 110px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         width: 150px;
         line-height: 140px;
         font-size: 60px;
@@ -608,17 +653,17 @@ TODO: refine sizing */
 }
 
 @media (max-width: 1024px) {
-    .mainLinks a {
+    .stopwatchLinks a {
         height: 80px;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         width: 190px;
         line-height: 80px;
         font-size: 66px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         width: 90px;
         line-height: 80px;
         font-size: 38px;
@@ -626,22 +671,27 @@ TODO: refine sizing */
 }
 
 @media (max-width: 640px) {
-    .mainWatch {
+    /* IntroJS has odd behavior on mobile, so make the tutorial inaccessible" */
+    #topbar #menuWrapper ul li[data-tag='tutorial'] {
+        display: none;
+    }
+
+    .stopwatchDisplay {
         font-size: 16vw;
         line-height: 16vw;
     }
 
-    .mainLinks a {
+    .stopwatchLinks a {
         height: 80px;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         width: 34%;
         line-height: 82px;
         font-size: 70px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         width: 16%;
         /*min-width: 80px;*/
         vertical-align: middle;
@@ -668,6 +718,10 @@ TODO: refine sizing */
     .Module#addModuleButton {
         margin: 1.75em;
     }
+
+    #settings_wrapper {
+        text-align: center;
+    }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -692,12 +746,12 @@ TODO: refine sizing */
         padding: .2em .6em;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         line-height: 82px;
         font-size: 64px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         font-size: 42px;
     }
 
@@ -720,18 +774,18 @@ TODO: refine sizing */
 }
 
 @media (max-width: 360px) {
-    .mainWatch {
+    .stopwatchDisplay {
         font-size: 4.75em;
         line-height: 1.25em;
     }
 
-    .mainLinks a.bigButton {
+    .stopwatchLinks a.bigButton {
         width: 50%;
         line-height: 82px;
         font-size: 70px;
     }
 
-    .mainLinks a.leftRightButton {
+    .stopwatchLinks a.leftRightButton {
         display: none;
     }
 

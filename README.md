@@ -56,11 +56,13 @@ The display value of Module input form fields (with the exception of some real-t
 Modifying the contents of form fields will update state, and in turn, update the form field contents. The form field contents do not have to always match exactly what the user inputs
 - when state is updated, as input may be saved in a modified format (such as without certain characters or trailing whitespaces).
 
-* When an input form field is changed (the onChange event is fired), Module state is changed (see function handleFieldChange), and when the component is re-rendered, the form fields reflect the change.
+* When an input form field is changed (the onChange event is fired), Module state is changed (see function `handleFieldChange`), and when the component is re-rendered, the form fields reflect the change.
 * Every time Module state is updated, the "Update" and "Revert" buttons (nested in updateButtonWrapper) are revealed or hidden depending on the updated state. If any state field does not match its equivalent property
 AND all input fields are valid, the "Update" and "Revert" buttons are revealed. Otherwise, they are hidden.
-* When a Module is *updated* via the Update button, the current form input is validated, and then the Module generates new properties for itself which are passed to parent Main through handlePropUpdate.
-* For some input fields, additional functionality is implemented for other events. In the timerMax fields, for example, the onBlur event pads the currently displayed value by updating the field's respective state.
+* When a Module is *updated* via the Update button, the current form input is validated, and then the Module generates new properties for itself which are passed to parent Main through `handlePropUpdate`.
+
+The advantage of storing Module settings inside props is that those props become reusable in the Stopwatch. As Main element is responsible for rendering both 
+the Stopwatch and the Modules list, the props for the currently active module are always matched to the props for the Stopwatch.
 
 Deploying for Production
 --------------------------

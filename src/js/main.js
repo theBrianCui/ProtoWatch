@@ -270,13 +270,14 @@ var Stopwatch = React.createClass({
         else
             toggleButton = <i className="fa fa-play"></i>;
         return (
-            <div className="mainWrapper noSelect">
-                <p className="mainWatch">
-                    <span id="hourDisplay">{pad2(hrs)}:</span>{display.join(':')}</p>
+            <div className="stopwatchWrapper noSelect">
+                <p className="stopwatchDisplay">
+                    <span id="hourDisplay">{pad2(hrs)}:</span>{display.join(':')}
+                </p>
 
-                <p className="mainLinks">
+                <p className="stopwatchLinks">
                     <span>
-                        <span className="mainLinksWrapper">
+                        <span className="stopwatchLinksWrapper">
                             <a className="leftRightButton hvr-sweep-to-left" href="javascript:void(0)"
                                onTouchStart={this.previous} onMouseDown={this.previous}>
                                 <i className="fa fa-step-backward doubleArrow"></i>
@@ -326,9 +327,9 @@ var Module = React.createClass({
             csField: pad2(fields.csField),
 
             /* The preBlankFieldValue stores the value of the field that is to be blanked on focus
-            (see the method blankField). Since only one field can be focused at a time, the old values
-            call all be stored in the same state variable. Just remember to reset it to null
-            (and not the empty string, which could be a real value) once done.
+             (see the method blankField). Since only one field can be focused at a time, the old values
+             call all be stored in the same state variable. Just remember to reset it to null
+             (and not the empty string, which could be a real value) once done.
              */
             preBlankFieldValue: null,
 
@@ -364,8 +365,8 @@ var Module = React.createClass({
             preBlankFieldValue: null
         };
         var newFieldValue = this.state[event.target.dataset.tag];
-        if(!newFieldValue.trim()) {
-            if(this.state.preBlankFieldValue != null) {
+        if (!newFieldValue.trim()) {
+            if (this.state.preBlankFieldValue != null) {
                 newFieldValue = this.state.preBlankFieldValue;
             } else {
                 var oldFields = this.computeOldTimerMaxFields();
@@ -666,7 +667,8 @@ var Module = React.createClass({
                                        data-tag="csField" ref="csField"
                                     />
 
-                                <p className="limitInputLabel" ref="unitLabel">Hours : Minutes : Seconds : Centisecs </p>
+                                <p className="limitInputLabel" ref="unitLabel">Hours : Minutes : Seconds :
+                                    Centisecs </p>
                             </div>
                         </div>
                     </div>
@@ -760,7 +762,10 @@ var Main = React.createClass({
         // idToIndex maps id values to module list indices. Always assume id never changes, but indices are volatile.
         var initialIdToIndex = {};
         initialIdToIndex[initialModuleProps.id] = 0;
+
         return {
+            activeLink: 'main',
+
             modules: [<Module {...initialModuleProps} key={initialModuleProps.id}/>],
             idToIndex: initialIdToIndex,
             activeIndex: 0,
@@ -892,22 +897,22 @@ var Main = React.createClass({
         this.setState(newState);
     },
 
-    delete: function(deleteId) {
+    delete: function (deleteId) {
         console.log('delete was called. parameter: ' + deleteId);
 
         var targetIndex = this.state.idToIndex[deleteId];
         var newState = React.addons.update(this.state, {
-            modules: {$splice: [[targetIndex, 1]] }
+            modules: {$splice: [[targetIndex, 1]]}
         });
 
         //Clean up removal side effects
-        if(this.state.defaultModuleLabel === this.state.modules[targetIndex].props.label) newState.defaultModuleLabel = null;
+        if (this.state.defaultModuleLabel === this.state.modules[targetIndex].props.label) newState.defaultModuleLabel = null;
         //Targeted module is before current active module
-        if(targetIndex < this.state.activeIndex) {
+        if (targetIndex < this.state.activeIndex) {
             newState.activeIndex = this.state.activeIndex - 1;
             newState.previousActiveIndex = (this.state.activeIndex >= newState.modules.length ? -1 : this.state.activeIndex);
             //Targeted module is current active module, and it is also the last module
-        } else if(targetIndex === this.state.activeIndex && targetIndex === this.state.modules.length - 1) {
+        } else if (targetIndex === this.state.activeIndex && targetIndex === this.state.modules.length - 1) {
             newState.activeIndex = this.state.activeIndex - 1;
             newState.previousActiveIndex = -1;
         } else {
@@ -918,7 +923,7 @@ var Main = React.createClass({
         //Restore mappings
         var newIdToIndex = {};
         var newLabelToId = {};
-        for(var i = 0; i < newState.modules.length; i++) {
+        for (var i = 0; i < newState.modules.length; i++) {
             var selectedModuleProps = newState.modules[i].props;
             newIdToIndex[selectedModuleProps.id] = i;
             newLabelToId[selectedModuleProps.label] = selectedModuleProps.id;
@@ -942,6 +947,22 @@ var Main = React.createClass({
         event.stopPropagation();
     },
 
+    navigateLink: function (event) {
+        var target = event.target.dataset.tag;
+        var newState = null;
+        switch (target) {
+            case 'main':
+            case 'about':
+            case 'tutorial':
+                newState = {};
+                newState.activeLink = target;
+                break;
+            case 'github': //TODO: refactor this link into an a tag
+                window.open('https://github.com/analytalica/ProtoWatch');
+        }
+        if (newState) this.setState(newState);
+    },
+
     render: function () {
         var currState = this.state;
         //console.log('idToIndex: ' + JSON.stringify(currState.idToIndex));
@@ -957,44 +978,96 @@ var Main = React.createClass({
         if (!currState.playbackAnimationEnabled)
             appWrapperClasses += ' noAnimate';
 
+        var main_lowerClasses = '';
+        if (currState.activeLink !== 'main')
+            main_lowerClasses += 'hidden';
+
+        var aboutClasses = 'hidden';
+        if (currState.activeLink === 'about')
+            aboutClasses = '';
+
         return (
-            <div className={appWrapperClasses}>
-                <div className={(currState.modules.length == 1) ? 'hideLeftRightButtons' : ''}>
-                    <Stopwatch
-                        {...currentActiveStopwatch.props}
-                        key={currentActiveStopwatch.props.id}
-                        />
-                </div>
-
-                <div id="moduleList">
-                    {currState.modules}
-                    <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
-                        <p>+</p>
-
-                        <p>
-                            <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
-                                    onChange={this.setDefaultModule}>
-                                <option value="">(default)</option>
-                                {defaultModuleSelectOptions}
-                            </select>
-                        </p>
+            <div>
+                <div id="topbar_wrapper">
+                    <div id="topbar" className="noSelect">
+                        <div id="menuWrapper">
+                            <ul>
+                                <li className={this.state.activeLink == 'main' ? "active" : null}
+                                    onClick={this.navigateLink}
+                                    data-tag="main">main
+                                </li>
+                                <li className={this.state.activeLink == 'about' ? "active" : null}
+                                    onClick={this.navigateLink}
+                                    data-tag="about">about
+                                </li>
+                                <li className={this.state.activeLink == 'tutorial' ? "active" : null}
+                                    onClick={this.navigateLink}
+                                    data-tag="tutorial">tutorial
+                                </li>
+                                <li onClick={this.navigateLink}
+                                    data-tag="github">github
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="logo"></div>
+                        <div className="clearfix"></div>
                     </div>
                 </div>
-                <p><input type="checkbox"
-                          defaultChecked={currState.highPrecisionTiming}
-                          checkedLink={this.linkState('highPrecisionTiming')}
-                    />
-                    High Precision Timing
-                </p>
 
-                <p><input type="checkbox"
-                          defaultChecked={currState.playbackAnimationEnabled}
-                          checkedLink={this.linkState('playbackAnimationEnabled')}
-                    />
-                    Active CSS Animations
-                </p>
+                <div className={appWrapperClasses}>
+                    <div className={(currState.modules.length == 1) ? 'hideLeftRightButtons' : ''}>
+                        <Stopwatch
+                            {...currentActiveStopwatch.props}
+                            key={currentActiveStopwatch.props.id}
+                            />
+                    </div>
+                    <div id="main_lower" className={main_lowerClasses}>
+                        <div id="moduleList">
+                            {currState.modules}
+                            <div id="addModuleButton" className="Module noSelect" onClick={this.add}>
+                                <p>+</p>
 
-                <p>{currentActiveStopwatch.props.id}</p>
+                                <p>
+                                    <select value={'' + currState.defaultModuleLabel} onClick={this.ignoreClick}
+                                            onChange={this.setDefaultModule}>
+                                        <option value="">(default)</option>
+                                        {defaultModuleSelectOptions}
+                                    </select>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="settings_wrapper">
+                            <div id="settings">
+                                <i id="settings_icon" className="fa fa-cog"></i>
+
+                                <div id="settings_options">
+                                    <p><input type="checkbox"
+                                              defaultChecked={currState.highPrecisionTiming}
+                                              checkedLink={this.linkState('highPrecisionTiming')}
+                                        />
+                                        High Precision Timing
+                                    </p>
+
+                                    <p><input type="checkbox"
+                                              defaultChecked={currState.playbackAnimationEnabled}
+                                              checkedLink={this.linkState('playbackAnimationEnabled')}
+                                        />
+                                        Active CSS Animations
+                                    </p>
+
+                                    <p>{currentActiveStopwatch.props.id}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="aboutWrapper" className={aboutClasses}>
+                    <div id="about">
+                        Hello!
+                    </div>
+                </div>
+
             </div>
         )
     },
@@ -1028,7 +1101,7 @@ var Main = React.createClass({
     componentDidUpdate: function (prevProps, prevState) {
         var currState = this.state;
         var nextModule = document.getElementById(currState.modules[currState.activeIndex].props.id);
-        if(nextModule) nextModule.classList.add('activeModule');
+        if (nextModule) nextModule.classList.add('activeModule');
 
         if (currState.activeIndex != prevState.activeIndex) {
             var previousModule = null;
@@ -1039,7 +1112,7 @@ var Main = React.createClass({
                 previousModule.classList.remove('activeModule');
         }
 
-        if(currState.modules.length === 1) {
+        if (currState.modules.length === 1) {
             //Cheesy, but avoids using another library. Maybe there's a native & more elegant way?
             //Workaround for CSS ID as number
             document.querySelector("[id='" + currState.modules[0].props.id + "'] .deleteButton").style.display = "none";
@@ -1047,8 +1120,18 @@ var Main = React.createClass({
             document.querySelector("[id='" + currState.modules[0].props.id + "'] .deleteButton").style.display = "block";
         }
 
-        if (Ps.ready)
+        if (Ps.ready) {
+            if (prevState.activeLink !== currState.activeLink) {
+                Ps.destroy(document.getElementById('moduleList'));
+                Ps.initialize(document.getElementById('moduleList'), {
+                    useBothWheelAxes: true,
+                    swipePropagation: true,
+                    wheelPropagation: true
+                });
+            }
+
             Ps.update(document.getElementById('moduleList'));
+        }
     }
 });
 
