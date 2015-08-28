@@ -980,7 +980,7 @@ var Main = React.createClass({
 
         var main_lowerClasses = '';
         if (currState.activeLink !== 'main')
-            main_lowerClasses += 'visuallyhidden';
+            main_lowerClasses += 'hidden';
 
         return (
             <div>
