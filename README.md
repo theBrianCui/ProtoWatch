@@ -1,4 +1,4 @@
-ProtoWatch
+![ProtoWatch](https://raw.githubusercontent.com/analytalica/ProtoWatch/master/github_readme_logo.png)
 ==========
 
 ProtoWatch is a programmable stopwatch webapp developed using the React.js framework. ProtoWatch enables users  to program multiple, individual stopwatches in order, each with unique properties such as time limit or audio feedback, which will activate on-demand or when the previous stopwatch completes. [Use and play with **the latest build here**](https://analytalica.github.io/ProtoWatch/build/index.html), which runs completely in the browser. 
