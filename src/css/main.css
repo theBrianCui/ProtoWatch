@@ -722,6 +722,18 @@ TODO: refine sizing */
     #settings_wrapper {
         text-align: center;
     }
+
+    #aboutWrapper {
+        color: white;
+        padding: 1.5em 0 0 0;
+    }
+
+    #about {
+        padding: .75em;
+        background-color: #4d4d4d;
+        font-size: .9em;
+    }
+
 }
 
 /* Smartphones (portrait and landscape) ----------- */
