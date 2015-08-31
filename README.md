@@ -7,7 +7,7 @@ Features:
 
  - **A programmable stopwatch** composed of multiple stopwatches, each feature complete with play/pause, time limits (optional), and count direction. 
  - **High precision timing,** enabling no loss of time precision when transitioning between stopwatches chained together with automatic playback.
- - **Audio feedback** using [SoundJS](http://www.createjs.com/soundjs) indicating when stopwatches are played, paused, and/or completed.
+ - **Audio feedback** using [SoundJS](http://www.createjs.com/soundjs) indicating when stopwatches are played, paused, reset, and/or completed.
  - **Mobile and desktop support** with an adaptive design for small and high resolution displays alike.
 
 React and JSX documentation can be found [here](http://facebook.github.io/react/docs/getting-started.html).
