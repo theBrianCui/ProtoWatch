@@ -1064,12 +1064,10 @@ var Main = React.createClass({
 
                 <div id="aboutWrapper" className={aboutClasses}>
                     <div id="about">
-                        <p>ProtoWatch is a programmable stopwatch webapp that enables you to program multiple, individual
-                        stopwatches in order which will activate on-demand or when the previous stopwatch completes.
-                        It's perfect for pre-planning timed events, such as while working out, using the built-in audio
-                        feedback to alert you when it's time to start or stop. Or, use it like an ordinary stopwatch
-                        with superpowers, like the ability to switch the count direction in real time and audio cues for
-                        when you interact with the stopwatch controls.</p>
+                        <p>ProtoWatch is a programmable stopwatch webapp that enables you to program multiple,
+                            individually configurable stopwatches in order. Each stopwatch can be controlled manually
+                            when it becomes active, or set to run automatically when the previous stopwatch completes.
+                        </p>
 
                         <p>Featuring:</p>
 
@@ -1087,6 +1085,13 @@ var Main = React.createClass({
                                 resolution displays alike.
                             </li>
                         </ul>
+
+                        <p>
+                            It's perfect for pre-planning timed events, such as while working out, using the built-in audio
+                            feedback to alert you when it's time to start or stop. Or, use it like an ordinary stopwatch
+                            with superpowers, like the ability to switch the count direction in real time and audio cues for
+                            when you interact with the stopwatch controls.
+                        </p>
 
                         <p>ProtoWatch is in active development and is <a href="https://github.com/analytalica/ProtoWatch">open
                         source,</a> meaning you can take it, contribute to it, build it, and make it your own.
