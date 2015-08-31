@@ -1055,7 +1055,7 @@ var Main = React.createClass({
                                         Active CSS Animations
                                     </p>
 
-                                    <p>{currentActiveStopwatch.props.id}</p>
+                                    <p>{currentActiveStopwatch.props.id} | v1.0.0</p>
                                 </div>
                             </div>
                         </div>
@@ -1064,7 +1064,34 @@ var Main = React.createClass({
 
                 <div id="aboutWrapper" className={aboutClasses}>
                     <div id="about">
-                        Hello!
+                        <p>ProtoWatch is a programmable stopwatch webapp that enables you to program multiple, individual
+                        stopwatches in order which will activate on-demand or when the previous stopwatch completes.
+                        It's perfect for pre-planning timed events, such as while working out, using the built-in audio
+                        feedback to alert you when it's time to start or stop. Or, use it like an ordinary stopwatch
+                        with superpowers, like the ability to switch the count direction in real time and audio cues for
+                        when you interact with the stopwatch controls.</p>
+
+                        <p>Featuring:</p>
+
+                        <ul>
+                            <li><strong>A programmable stopwatch</strong> composed of multiple stopwatches, each feature
+                                complete with play/pause, optional time limits, and modifiable count direction.
+                            </li>
+                            <li><strong>High precision timing,</strong> enabling no loss of time precision when
+                                transitioning between stopwatches chained together with automatic playback.
+                            </li>
+                            <li><strong>Audio feedback</strong> using the <a href="http://www.createjs.com/soundjs">SoundJS
+                                library</a> indicating when stopwatches are played, paused, and/or completed.
+                            </li>
+                            <li><strong>Mobile and desktop support</strong> with an adaptive design for small and high
+                                resolution displays alike.
+                            </li>
+                        </ul>
+
+                        <p>ProtoWatch is in active development and is <a href="https://github.com/analytalica/ProtoWatch">open
+                        source,</a> meaning you can take it, contribute to it, build it, and make it your own.
+                        <strong> Feature requests</strong> are made through the <a href="https://github.com/analytalica/ProtoWatch/issues">Issues page</a>
+                        on GitHub.</p>
                     </div>
                 </div>
 
