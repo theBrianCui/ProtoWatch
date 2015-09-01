@@ -640,6 +640,13 @@ input[type=text]:focus, textarea:focus {
     background-color: #4d4d4d;
 }
 
+#about_logo {
+    width: 540px;
+    height: auto;
+    display: block;
+    margin: .5em auto 1em;
+}
+
 /* Prevent the button size from being too large on hi-def screens
 TODO: refine sizing */
 

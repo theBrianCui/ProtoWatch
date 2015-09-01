@@ -1064,6 +1064,8 @@ var Main = React.createClass({
 
                 <div id="aboutWrapper" className={aboutClasses}>
                     <div id="about">
+                        <img src="img/logo_about.png" id="about_logo"></img>
+
                         <p>ProtoWatch is a programmable stopwatch webapp that enables you to program multiple,
                             individually configurable stopwatches in order. Each stopwatch can be controlled manually
                             when it becomes active, or set to run automatically when the previous stopwatch completes.
