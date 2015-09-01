@@ -725,15 +725,19 @@ TODO: refine sizing */
 
     #aboutWrapper {
         color: white;
-        padding: 1.5em 0 0 0;
+        padding: 0 0 0 0;
     }
 
     #about {
         padding: .75em;
+        padding-top: .25em;
         background-color: #4d4d4d;
         font-size: .9em;
     }
 
+    #about ul li {
+        margin-bottom: .25em;
+    }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
