@@ -78,6 +78,15 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+a,
+a:link,
+a:active,
+a:visited,
+a:hover {
+    color:           #26a3de;
+    text-decoration: underline;
+}
+
 body {
     /*margin: 0 .3em;*/
     background-color: #242424;
@@ -667,6 +676,11 @@ TODO: refine sizing */
         width: 90px;
         line-height: 80px;
         font-size: 38px;
+    }
+
+    #aboutWrapper {
+        padding-left: 1em;
+        padding-right: 1em;
     }
 }
 
