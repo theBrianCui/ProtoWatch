@@ -1095,10 +1095,12 @@ var Main = React.createClass({
                             when you interact with the stopwatch controls.
                         </p>
 
-                        <p>ProtoWatch is in active development and is <a href="https://github.com/analytalica/ProtoWatch">open
-                        source,</a> meaning you can take it, contribute to it, build it, and make it your own.
-                        <strong> Feature requests</strong> are made through the <a href="https://github.com/analytalica/ProtoWatch/issues">Issues page</a>
-                        on GitHub.</p>
+                        <p>ProtoWatch is in active development and is <a
+                            href="https://github.com/analytalica/ProtoWatch">open
+                            source,</a> meaning you can take it, contribute to it, build it, and make it your own.
+                            <strong> Feature requests</strong> are
+                            made through the <a href="https://github.com/analytalica/ProtoWatch/issues">Issues page</a> on GitHub.
+                        </p>
                     </div>
                 </div>
 
