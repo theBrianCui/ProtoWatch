@@ -1,0 +1,1122 @@
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+    overflow-y: scroll;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/* A better looking default horizontal rule */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/* Remove default fieldset styles. */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Allow only vertical resizing of textareas. */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+a,
+a:link,
+a:active,
+a:visited,
+a:hover {
+    color:           #26a3de;
+    text-decoration: underline;
+}
+
+body {
+    /*margin: 0 .3em;*/
+    background-color: #242424;
+}
+
+.noSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.noAnimate .Module.activeModule.running {
+    animation: none !important;
+    -webkit-animation: none !important;
+}
+
+a, button, input[type="checkbox"], input[type="radio"], label, select {
+    -ms-touch-action: manipulation; /* IE10  */
+    touch-action: manipulation; /* IE11+ */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#loadingScreen {
+    max-height: 16em;
+    max-width: 40em;
+    text-align: center;
+    padding: 1.5em;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-size: 1.1em;
+    color: white;
+}
+
+input[type=text], textarea {
+    outline: none;
+    border: 1px solid #DDDDDD;
+}
+
+input[type=text]:focus, textarea:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.invalidInput {
+    animation: invalidInputAnimation .1s ease 0s 2 alternate;
+    -webkit-animation: invalidInputAnimation .1s ease 0s 2 alternate;
+}
+
+@-webkit-keyframes invalidInputAnimation {
+    from {
+
+    }
+    to {
+        box-shadow: 0 0 5px rgb(238, 28, 25);
+        border: 1px solid rgb(238, 28, 25);
+    }
+}
+
+@keyframes invalidInputAnimation {
+    from {
+
+    }
+    to {
+        box-shadow: 0 0 5px rgb(238, 28, 25);
+        border: 1px solid rgb(238, 28, 25);
+    }
+}
+#topbar_wrapper {
+    background-color: #4d4d4d;
+}
+
+#topbar {
+    font-size: 1.05em;
+    text-transform: uppercase;
+    min-height: 2em;
+    line-height: 2.1em;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+#topbar #menuWrapper {
+    color: white;
+    padding: 0;
+    margin: 0 auto;
+
+    float: left;
+}
+
+#topbar #menuWrapper ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+#topbar #menuWrapper ul li {
+    display: inline-block;
+    padding: .2em .8em;
+    background-color: #242424;
+    border-top: .3em solid #242424;
+}
+
+#topbar #menuWrapper ul li:hover {
+    cursor: pointer;
+    border-top: .3em solid #26a3de !important;
+}
+
+#topbar #menuWrapper ul li.active {
+    border-top: .3em solid #0072b1;
+}
+
+#logo {
+    background-image: url("../img/logo_color_small.png");
+    width: 9.4em;
+    height: 1.85em;
+    margin-top: .5em;
+    float: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.appWrapper > p {
+    color: white;
+}
+
+.stopwatchWrapper {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.stopwatchLinks {
+    margin: 0;
+    background-color: #4d4d4d;
+}
+
+.stopwatchLinks a {
+    display: inline-block;
+    height: 8vw;
+    max-height: 10em;
+    /*min-height: 80px;*/
+    text-decoration: none;
+    color: white;
+    background-color: #0072b1;
+}
+
+.stopwatchLinks a:focus {
+    outline: none;
+}
+
+.stopwatchLinks a.bigButton {
+    width: 19vw;
+    vertical-align: middle;
+    line-height: 8vw;
+    font-size: 6.5vw;
+}
+
+.stopwatchLinks #toggleButton {
+    background-color: #00a100;
+}
+
+.stopwatchLinks #toggleButton.pressed {
+    animation: toggleButtonPress .2s ease 0s 1 reverse;
+    -webkit-animation: toggleButtonPress .2s ease 0s 1 reverse;
+}
+
+@-webkit-keyframes toggleButtonPress {
+    from {
+
+    }
+    to {
+        background-color: rgb(0, 212, 0);
+    }
+}
+
+@keyframes toggleButtonPress {
+    from {
+
+    }
+    to {
+        background-color: rgb(0, 212, 0);
+    }
+}
+
+.stopwatchLinks #resetButton {
+    background-color: #bd0300;
+}
+
+.stopwatchLinks #resetButton.pressed {
+    animation: resetButtonPress .5s ease 0s 1 normal;
+    -webkit-animation: resetButtonPress .5s ease 0s 1 normal;
+}
+
+@-webkit-keyframes resetButtonPress {
+    from {
+        background-color: #bd0300;
+    }
+    to {
+        background-color: #ed2502;
+    }
+}
+
+@keyframes resetButtonPress {
+    from {
+        background-color: #bd0300;
+    }
+    to {
+        background-color: #ed2502;
+    }
+}
+
+.stopwatchLinks a.leftRightButton {
+    width: 9vw;
+    /*min-width: 80px;*/
+    vertical-align: middle;
+    line-height: 8vw;
+    font-size: 4.5vw;
+    transition: opacity .25s;
+}
+
+.hideLeftRightButtons a.leftRightButton {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.stopwatchLinks .doubleArrow {
+    margin-top: .1em;
+}
+
+/*
+.lowerLinksWrapper {
+    display: none;
+}
+*/
+
+.stopwatchDisplay {
+    font-size: 12.5vw;
+    font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
+    background-color: #242424;
+    color: white;
+    margin: 0;
+    padding-bottom: .25vw;
+    line-height: 13vw;
+    overflow: hidden;
+}
+
+#moduleList {
+    position: relative;
+    padding: .8em 1em;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.Module {
+    padding-top: 1px;
+    margin: 1em .5em;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #5a5a5a; //Optical illusion makes Modules appear slightly darker
+    /*border: 1px solid #d7d7d7;*/
+    /*min-height: 12em;*/
+    /*min-width: 14em;*/
+    padding: .1em 0 0 0;
+    font-size: .9em;
+    /*border-radius: .8em;*/
+    /*overflow: hidden;*/
+    transition: background-color .25s;
+}
+
+.Module#addModuleButton {
+    margin-left: 1.5em;
+    min-height: 11em;
+    min-width: 15em;
+    border: .3em dashed #323232;
+    color: #242424;
+    background-color: #4d4d4d;
+    transition: none;
+}
+
+.Module#addModuleButton:hover {
+    background-color: #737373;
+    cursor: pointer;
+}
+
+.Module#addModuleButton > p {
+    text-align: center;
+    margin-bottom: 2.8em;
+}
+
+.Module#addModuleButton > p:first-child {
+    font-size: 5em;
+    line-height: 0;
+    margin-top: 1.1em;
+    margin-bottom: .45em;
+    font-weight: bold;
+}
+
+.Module.activeModule {
+    background-color: #0072b1;
+    position: relative;
+}
+
+.Module.activeModule .deleteButton {
+    color: #d1d1d1;
+}
+
+.Module.activeModule:after {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 114, 177, 0);
+    border-bottom-color: #0072B1;
+    border-width: 18px;
+    margin-left: -18px;
+}
+
+.Module.activeModule.running {
+    animation: runningModuleGlow .3s ease 0s infinite alternate;
+    -webkit-animation: runningModuleGlow .3s ease 0s infinite alternate;
+}
+
+@-webkit-keyframes runningModuleGlow {
+    from {
+        background-color: #0072B1;
+    }
+    to {
+        background-color: #26a3de;
+    }
+}
+
+@keyframes runningModuleGlow {
+    from {
+        background-color: #0072B1;
+    }
+    to {
+        background-color: #26a3de;
+    }
+}
+
+.Module .tabs {
+    position: relative;
+    min-height: 14.5em; /* This part sucks */
+    min-width: 18.5em;
+    clear: both;
+    margin: 1.2em 0 0;
+}
+
+.Module .deleteButton {
+    float: right;
+    margin-top: -.8em;
+    min-width: 2.4em;
+    min-height: 1.6em;
+    padding-top: .25em;
+    text-align: center;
+}
+
+.Module .deleteButton:hover {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.Module .tab {
+    float: left;
+}
+
+.Module .tab label {
+    background: #e1e1e1;
+    padding: .3em .5em .25em;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.Module .tab [type=radio] {
+    display: none;
+}
+
+.Module .content {
+    position: absolute;
+    top: 1.45em;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: .5em .75em;
+    border-top: 1px solid #ccc;
+}
+
+.Module [type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+}
+
+.Module [type=radio]:checked ~ label ~ .content {
+    z-index: 1;
+}
+
+.Module select {
+    margin: 0;
+}
+
+.Module table {
+    width: 100%;
+}
+
+.Module td {
+    padding: .1em 0;
+}
+
+.Module td.tableLeft {
+    /*background-color: #f0f0f0;*/
+    font-weight: bold;
+    width: 80%;
+    text-align: left;
+}
+
+.Module td.tableRight {
+    /*background-color: #aaaaaa;*/
+    font-weight: normal;
+    text-align: right;
+    width: 20%;
+}
+
+.Module .updatableDivider {
+    margin: .8em auto .8em;
+    width: 80%;
+    height: 1px;
+    background-color: #909090;
+}
+
+.Module .updatableWrapper {
+    margin-bottom: .4em;
+}
+
+.Module .updateButtonWrapper {
+    padding: .5em;
+    text-align: center;
+    margin-top: -3em;
+    transition: margin 0.25s;
+}
+
+.Module .updateButtonWrapper.untucked {
+    margin-top: 0;
+}
+
+.Module .updateButtonWrapper button {
+    margin: 0 .2em;
+}
+
+.Module .updatableWrapper {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.Module .updatableWrapper p {
+    margin: .1em;
+}
+
+.Module .updatableWrapper input {
+    text-align: right;
+    padding: .1em .2em;
+}
+
+.Module .limitInputWrapper button {
+    margin-left: .15em;
+    font-weight: normal;
+}
+
+.Module .limitInputWrapper input {
+    display: inline-block;
+    text-align: center;
+    font-weight: normal;
+    max-width: 2em;
+    margin: .25em .3em;
+}
+
+.Module .limitInputLabel {
+    font-weight: normal;
+    font-size: .7em;
+    display: none;
+}
+
+#settings {
+    color: white;
+    margin: 0 1.5em;
+    padding: 0 1em;
+    background-color: #4d4d4d;
+    display: inline-block;
+    text-align: left;
+}
+
+#settings_icon {
+    display: inline-block;
+    font-size: 2em;
+    padding: .75em 0;
+    cursor: default;
+}
+
+#settings_options {
+    float: right;
+    font-size: .8em;
+    margin: .5em 0 .5em 1em;
+}
+
+#settings input {
+    margin-right: .4em;
+}
+
+#settings p {
+    margin: .25em 0;
+}
+
+#aboutWrapper {
+    color: white;
+    padding: 1.8em 1.5em;
+}
+
+#about {
+    padding: 1em;
+    background-color: #4d4d4d;
+}
+
+#about_logo {
+    width: 540px;
+    height: auto;
+    display: block;
+    margin: .5em auto 1em;
+}
+
+/* Prevent the button size from being too large on hi-def screens
+TODO: refine sizing */
+
+@media (min-width: 1920px) {
+    .stopwatchLinks a {
+        height: 140px;
+    }
+
+    .stopwatchLinks a.bigButton {
+        width: 320px;
+        line-height: 144px;
+        font-size: 110px;
+    }
+
+    .stopwatchLinks a.leftRightButton {
+        width: 150px;
+        line-height: 140px;
+        font-size: 60px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .stopwatchLinks a {
+        height: 80px;
+    }
+
+    .stopwatchLinks a.bigButton {
+        width: 190px;
+        line-height: 80px;
+        font-size: 66px;
+    }
+
+    .stopwatchLinks a.leftRightButton {
+        width: 90px;
+        line-height: 80px;
+        font-size: 38px;
+    }
+
+    #aboutWrapper {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    #about_logo {
+        width: 480px;
+        margin: .5em auto 1em;
+    }
+}
+
+@media (max-width: 640px) {
+    /* IntroJS has odd behavior on mobile, so make the tutorial inaccessible" */
+    #topbar #menuWrapper ul li[data-tag='tutorial'] {
+        display: none;
+    }
+
+    .stopwatchDisplay {
+        font-size: 16vw;
+        line-height: 16vw;
+    }
+
+    .stopwatchLinks a {
+        height: 80px;
+    }
+
+    .stopwatchLinks a.bigButton {
+        width: 34%;
+        line-height: 82px;
+        font-size: 70px;
+    }
+
+    .stopwatchLinks a.leftRightButton {
+        width: 16%;
+        /*min-width: 80px;*/
+        vertical-align: middle;
+        line-height: 80px;
+        font-size: 50px;
+    }
+
+    #moduleList {
+        overflow-x: hidden;
+    }
+
+    .Module {
+        display: block;
+    }
+
+    .Module .tabs {
+        min-width: unset;
+    }
+
+    .Module.activeModule:after {
+        display: none;
+    }
+
+    .Module#addModuleButton {
+        margin: 1.75em;
+    }
+
+    #settings_wrapper {
+        text-align: center;
+    }
+
+    #aboutWrapper {
+        color: white;
+        padding: 0 0 0 0;
+    }
+
+    #about {
+        padding: .75em;
+        padding-top: .25em;
+        background-color: #4d4d4d;
+        font-size: .9em;
+    }
+
+    #about ul li {
+        margin-bottom: .25em;
+    }
+
+
+    #about_logo {
+        width: 380px;
+        margin: 1.25em auto 1em;
+    }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media (max-width: 480px) {
+    #logo {
+        background-image: url("../img/logo_mini.png");
+        width: 2.4em;
+        height: 1.6em;
+        margin-top: .35em;
+    }
+
+    #loadingScreen {
+        font-size: .9em;
+    }
+
+    #topbar {
+        font-size: 1em;
+        line-height: 1.6em;
+    }
+
+    #topbar #menuWrapper ul li {
+        padding: .2em .6em;
+    }
+
+    .stopwatchLinks a.bigButton {
+        line-height: 82px;
+        font-size: 64px;
+    }
+
+    .stopwatchLinks a.leftRightButton {
+        font-size: 42px;
+    }
+
+    #moduleList {
+        padding: 0;
+    }
+
+    .Module {
+        margin: 1em .8em;
+    }
+
+    .Module.activeModule {
+        animation: none;
+        -webkit-animation: none;
+    }
+
+    .Module .tabs {
+        margin-top: 1.4em;
+    }
+
+    #about_logo {
+        width: 280px;
+    }
+}
+
+@media (max-width: 360px) {
+    .stopwatchDisplay {
+        font-size: 4.75em;
+        line-height: 1.25em;
+    }
+
+    .stopwatchLinks a.bigButton {
+        width: 50%;
+        line-height: 82px;
+        font-size: 70px;
+    }
+
+    .stopwatchLinks a.leftRightButton {
+        display: none;
+    }
+
+    /*
+        .lowerLinksWrapper {
+            display: block;
+        }
+
+        .lowerLinksWrapper a.leftRightButton{
+            width: 50%;
+            display: inline-block;
+        }*/
+    #hourDisplay {
+        display: none;
+    }
+}
+
+/* Hover.css */
+
+/* Sweep To Right */
+.hvr-sweep-to-right {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.hvr-sweep-to-right:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #26a3de;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.hvr-sweep-to-right:hover, .hvr-sweep-to-right:active {
+    color: white;
+}
+
+.hvr-sweep-to-right:hover:before, .hvr-sweep-to-right:active:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+/* Sweep To Left */
+.hvr-sweep-to-left {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.hvr-sweep-to-left:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #26a3de;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.hvr-sweep-to-left:hover, .hvr-sweep-to-left:active {
+    color: white;
+}
+
+.hvr-sweep-to-left:hover:before, .hvr-sweep-to-left:active:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+/* Sweep To Bottom */
+.hvr-sweep-to-bottom {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.hvr-sweep-to-bottom:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #26a3de;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.hvr-sweep-to-bottom:hover, .hvr-sweep-to-bottom:active {
+    color: white;
+}
+
+.hvr-sweep-to-bottom:hover:before, .hvr-sweep-to-bottom:active:before {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+}
+
+/* Sweep To Top */
+.hvr-sweep-to-top {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.hvr-sweep-to-top:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #26a3de;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.hvr-sweep-to-top:hover, .hvr-sweep-to-top:active {
+    color: white;
+}
+
+.hvr-sweep-to-top:hover:before, .hvr-sweep-to-top:active:before {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers:
+ * http://juicystudio.com/article/screen-readers-display-none.php
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
