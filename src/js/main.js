@@ -228,12 +228,18 @@ var Stopwatch = React.createClass({
     },
 
     next: function (event) { //optional: pass in an event parameter.
+        var expectedEndTime = this.state.expectedEndTime;
         if (event) {// The button was pressed. Ignore the expected end time.
             event.preventDefault();
-            this.props.s_onNext(null);
+            expectedEndTime = null;
         } else { // The limit was reached: Forward the expected end time to the next Module for high-precision timing.
             this.playbackSound(this.props.onEndSound);
-            this.props.s_onNext(this.state.expectedEndTime);
+        }
+        if(!this.props.s_onNext(expectedEndTime)) {
+            this.setState({
+                timerValue: this.props.timerMax,
+                running: false
+            })
         }
         document.getElementById(this.props.id).classList.remove('running');
     },
@@ -839,10 +845,16 @@ var Main = React.createClass({
         this.setState(newState);
     },
 
+    //Return true if next was successful (e.g. not the same module was activated)
+    //Return false if otherwise
     next: function (previousModuleEndTime) {
         console.log('next was called.');
         var nextIndex = this.computeNextModule();
-        this.cycleActive(this.state.activeIndex, nextIndex, previousModuleEndTime);
+        if(nextIndex !== this.state.activeIndex) {
+            this.cycleActive(this.state.activeIndex, nextIndex, previousModuleEndTime);
+            return true;
+        }
+        return false;
     },
 
     computeNextModule: function () {
